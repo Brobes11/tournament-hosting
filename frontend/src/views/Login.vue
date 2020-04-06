@@ -1,85 +1,76 @@
 <template>
-  <div id="login" class="text-center">
-    <form class="form-signin" @submit.prevent="login">
+  <v-card width="450" id="login" class="mx-auto at-5">
+    <v-card-title>
       <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
-      <div class="alert alert-danger" role="alert" v-if="invalidCredentials">
-        Invalid username and password!
-      </div>
-      <div class="alert alert-success" role="alert" v-if="this.$route.query.registration">
-        Thank you for registering, please sign in.
-      </div>
-      <label for="username" class="sr-only">Username</label>
-      <input
-        type="text"
-        id="username"
-        class="form-control"
-        placeholder="Username"
-        v-model="user.username"
-        required
-        autofocus
-      />
-      <label for="password" class="sr-only">Password</label>
-      <input
-        type="password"
-        id="password"
-        class="form-control"
-        placeholder="Password"
-        v-model="user.password"
-        required
-      />
-      <router-link :to="{ name: 'register' }">Need an account?</router-link>
-      <button type="submit">Sign in</button>
-    </form>
-  </div>
+    </v-card-title>
+    <v-card-text>
+      <v-form class="form-signin" @submit.prevent="login">
+        <v-text-field label="Username" prepend-icon="mdi-account-circle" />
+        <v-text-field
+          :type="showPassword ? 'text' : 'password'"
+          label="Password"
+          prepend-icon="mdi-lock"
+          :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+          @click:append="showPassword = !showPassword"
+        />
+      </v-form>
+    </v-card-text>
+    <v-divider></v-divider>
+    <v-card-actions>
+      <v-btn color="info" :to="{ name: 'register' }">Not Registered?</v-btn>
+      <v-spacer></v-spacer>
+      <v-btn color="success" type="submit">Log In</v-btn>
+    </v-card-actions>
+  </v-card>
 </template>
 
 <script>
-import auth from '../auth';
+import auth from "../auth";
 
 export default {
-  name: 'login',
+  name: "login",
   components: {},
   data() {
     return {
       user: {
-        username: '',
-        password: '',
+        username: "",
+        password: ""
       },
       invalidCredentials: false,
+      showPassword: false
     };
   },
   methods: {
     login() {
       fetch(`${process.env.VUE_APP_REMOTE_API}/login`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
+          Accept: "application/json",
+          "Content-Type": "application/json"
         },
-        body: JSON.stringify(this.user),
+        body: JSON.stringify(this.user)
       })
-        .then((response) => {
+        .then(response => {
           if (response.ok) {
             return response.text();
           } else {
             this.invalidCredentials = true;
           }
         })
-        .then((token) => {
+        .then(token => {
           if (token != undefined) {
             if (token.includes('"')) {
-              token = token.replace(/"/g, '');
+              token = token.replace(/"/g, "");
             }
             auth.saveToken(token);
-            this.$router.push('/');
+            this.$router.push("/");
           }
         })
-        .catch((err) => console.error(err));
-    },
-  },
+        .catch(err => console.error(err));
+    }
+  }
 };
 </script>
 
-<style>
-
+<style scoped>
 </style>

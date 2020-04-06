@@ -1,89 +1,87 @@
 <template>
-  <div id="register" class="text-center">
-    <form class="form-register" @submit.prevent="register">
+  <v-card width="500" id="register" class="mx-auto at-5">
+    <v-card-title>
       <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
-      <div class="alert alert-danger" role="alert" v-if="registrationErrors">
-        There were problems registering this user.
-      </div>
-      <label for="username" class="sr-only">Username</label>
-      <input
-        type="text"
-        id="username"
-        class="form-control"
-        placeholder="Username"
-        v-model="user.username"
-        required
-        autofocus
-      />
-      <label for="password" class="sr-only">Password</label>
-      <input
-        type="password"
-        id="password"
-        class="form-control"
-        placeholder="Password"
-        v-model="user.password"
-        required
-      />
-      <input
-        type="password"
-        id="confirmPassword"
-        class="form-control"
-        placeholder="Confirm Password"
-        v-model="user.confirmPassword"
-        required
-      />
-      <router-link :to="{ name: 'login' }">
-        Have an account?
-      </router-link>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">
-        Create Account
-      </button>
-    </form>
-  </div>
+    </v-card-title>
+    <v-card-text>
+      <v-form>
+        <v-text-field label="First Name" prepend-icon="mdi-account-circle" />
+        <v-text-field label="Last Name" prepend-icon="mdi-account-circle" />
+        <v-text-field label="Username" prepend-icon="mdi-account-circle" />
+        <v-text-field type="email" label="Email" prepend-icon="mdi-email" />
+        <v-text-field type="phone" label="Phone" prepend-icon="mdi-phone" />
+        <v-text-field
+          :type="showPassword ? 'text' : 'password'"
+          label="Password"
+          prepend-icon="mdi-lock"
+          :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+          @click:append="showPassword = !showPassword"
+        />
+        <v-text-field
+          :type="showConfirmPassword ? 'text' : 'password'"
+          label="Password"
+          prepend-icon="mdi-lock"
+          :append-icon="showConfirmPassword ? 'mdi-eye' : 'mdi-eye-off'"
+          @click:append="showConfirmPassword = !showConfirmPassword"
+        />
+      </v-form>
+    </v-card-text>
+    <v-divider></v-divider>
+    <v-card-actions>
+      <v-btn color="info" :to="{ name: 'login' }">Already Have an Account?</v-btn>
+      <v-spacer></v-spacer>
+      <v-btn color="success" type="submit">Register</v-btn>
+    </v-card-actions>
+  </v-card>
 </template>
 
 <script>
 export default {
-  name: 'register',
+  name: "register",
   data() {
     return {
       user: {
-        username: '',
-        password: '',
-        confirmPassword: '',
-        role: 'user',
+        username: "",
+        password: "",
+        confirmPassword: "",
+        role: "user"
       },
       registrationErrors: false,
+      showPassword: false,
+      showConfirmPassword: false
     };
   },
   methods: {
     register() {
       fetch(`${process.env.VUE_APP_REMOTE_API}/register`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
+          Accept: "application/json",
+          "Content-Type": "application/json"
         },
-        body: JSON.stringify(this.user),
+        body: JSON.stringify(this.user)
       })
-        .then((response) => {
+        .then(response => {
           if (response.ok) {
-            return (response.json());
+            return response.json();
           } else {
             this.registrationErrors = true;
-            throw 'Register returned: ' + response.status;
+            throw "Register returned: " + response.status;
           }
         })
-        .then ((parsedData) => {
-            if (parsedData.success) {
-              this.$router.push({ path: '/login', query: { registration: 'success' } });
-            } else {
-              this.registrationErrors = true;
-            }
+        .then(parsedData => {
+          if (parsedData.success) {
+            this.$router.push({
+              path: "/login",
+              query: { registration: "success" }
+            });
+          } else {
+            this.registrationErrors = true;
+          }
         })
-        .catch((err) => console.log(err));
-    },
-  },
+        .catch(err => console.log(err));
+    }
+  }
 };
 </script>
 
