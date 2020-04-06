@@ -1,26 +1,15 @@
 <template>
-  <div class="home">
-    <h1>Home</h1>
-    <p>You must be authenticated to see this. You are logged in as {{user.sub}}.</p>
-    <button @click="logout">logout</button>
-  </div>
+  <hello-world />
 </template>
 
 <script>
-import auth from '@/auth.js'
+  import HelloWorld from '../components/HelloWorld'
 
-export default {
-  name: 'home',
-  data() {
-    return {
-      user: auth.getUser()
-    }
-  },
-  methods: {
-    logout() {
-      auth.logout();
-      this.$router.push('/login');
-    }
+  export default {
+    name: 'Home',
+
+    components: {
+      HelloWorld,
+    },
   }
-}
 </script>
