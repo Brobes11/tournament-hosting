@@ -5,6 +5,8 @@ import Home from './views/Home.vue'
 import Login from './views/Login.vue'
 import Register from './views/Register.vue'
 import CreateTeam from './views/CreateTeam.vue'
+import UserInfo from './views/UserInfo.vue'
+
 Vue.use(Router)
 
 /**
@@ -50,9 +52,15 @@ const router = new Router({
       component:CreateTeam,
       meta:{
         requiresAuth: false
+      },
+    },{
+      path: "/user-info",
+      name: "user-info",
+      component: UserInfo,
+      meta: {
+        requiresAuth: false
       }
-    
-  }
+    },
   ]
 })
 
