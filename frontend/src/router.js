@@ -45,8 +45,8 @@ const router = new Router({
       }
     },
     {
-      path:"/CreateTeam",
-      name:"CreateTeam",
+      path:"/create-team",
+      name:"create-team",
       component:CreateTeam,
       meta:{
         requiresAuth: false

@@ -1,13 +1,13 @@
 <template>
   <v-app>
-<v-card width="400" class="mx-auto mt-5">
+<v-card width="500" class="mx-auto mt-5">
 
     <v-card-title>
       <h1 class="display-1">Create A Team</h1>
       </v-card-title>
       <v-card-text>
         <v-form>
-          <v-text-field label="Team Name"/>
+          <v-text-field label="Team Name" v-model="team.name"/>
           <v-spacer></v-spacer>
        <h4>Please select your sport/game: </h4>
       
@@ -26,43 +26,29 @@
     </template>
 
     <v-list>
-      <v-list-item @click="method">
-        <v-list-item-title>Volleyball</v-list-item-title>
-      </v-list-item>
-      <v-list-item @click="method">
-        <v-list-item-title>Basketball</v-list-item-title>
-      </v-list-item>
-      <v-list-item @click="method">
-        <v-list-item-title>Soccer</v-list-item-title>
-      </v-list-item>
-        <v-list-item @click="method">
-        <v-list-item-title>Hockey</v-list-item-title>
-      </v-list-item>
-        <v-list-item @click="method">
-        <v-list-item-title>Bike Polo</v-list-item-title>
-      </v-list-item>
-        <v-list-item @click="method">
-        <v-list-item-title>Euchre</v-list-item-title>
-      </v-list-item>
-        <v-list-item @click="method">
-        <v-list-item-title>Poker</v-list-item-title>
-      </v-list-item>
-        <v-list-item @click="method">
-        <v-list-item-title>DnD</v-list-item-title>
-      </v-list-item>  <v-list-item @click="method">
-        <v-list-item-title>Magic The Gathering</v-list-item-title>
-      </v-list-item>
-        <v-list-item @click="method">
-        <v-list-item-title>Super Smash Brothers</v-list-item-title>
-      </v-list-item>
+   <v-list-item v-model="game" @click="method" v-for="sport in sports" :key="sport.id">
+     <v-list-item-title>{{sport.name}}</v-list-item-title>
+       <v-list-item-action>
+          <v-btn icon>
+            <v-icon color="grey lighten-1">mdi-information</v-icon>
+          </v-btn>
+        </v-list-item-action>
+   </v-list-item>
     </v-list>
   </v-menu>
-</template>
-   <v-text-field label="Other"/>
+ </template>
+   <v-text-field v-if="team.game==='other'" label="Other"/>
           <h4>Accepting New Members?</h4>
           
  <v-checkbox v-model="checkbox1" :label="`Accepting New Members? ${checkbox1.toString()}`"></v-checkbox>
-            
+            <h4>Level of Play:</h4>
+             <v-radio-group v-model="team.levelOfPlay" row>
+             <v-radio  label="Professional" value="Professional"></v-radio>
+            <v-radio  label="Competitive" value="Competitive"></v-radio>
+      <v-radio  label="Beer League" value="Beer League"></v-radio>
+      <v-text-field label="About The Team:"/>
+       
+    </v-radio-group>
         </v-form>
         </v-card-text>
         <v-card-actions>
@@ -86,7 +72,27 @@ export default {
 
   data: ()=> {
     return{
-      checkbox1: true
+      checkbox1: true,
+      sports:[
+    { id: 1, name: 'Volleyball' },
+    { id: 2, name: 'Basketball'},
+    { id: 3, name: 'Soccer' },
+    { id: 4, name: 'Hockey' },
+    { id: 5, name: 'Bike Polo'},
+    { id: 6, name: 'Euchre' },
+    { id: 7, name: 'Poker'},
+    { id: 8, name: 'DnD'},
+    { id: 9, name: 'Magic The Gathering'},
+    { id: 10, name: 'Super Smash Brothers'},
+    { id: 11, name: 'Other'}
+],
+      team:{
+        name:'',
+        game:'',
+        acceptingMembers: true,
+        teamBio:'',
+        levelOfPlay:''
+      }
     }
   },
 }
