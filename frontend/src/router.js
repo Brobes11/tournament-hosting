@@ -4,7 +4,7 @@ import auth from './auth'
 import Home from './views/Home.vue'
 import Login from './views/Login.vue'
 import Register from './views/Register.vue'
-
+import CreateTeam from './views/CreateTeam.vue'
 Vue.use(Router)
 
 /**
@@ -44,6 +44,15 @@ const router = new Router({
         requiresAuth: false
       }
     },
+    {
+      path:"/CreateTeam",
+      name:"CreateTeam",
+      component:CreateTeam,
+      meta:{
+        requiresAuth: false
+      }
+    
+  }
   ]
 })
 
