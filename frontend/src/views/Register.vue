@@ -5,8 +5,18 @@
     </v-card-title>
     <v-card-text>
       <v-form>
-        <v-text-field label="First Name" prepend-icon="mdi-account-circle" required />
-        <v-text-field label="Last Name" prepend-icon="mdi-account-circle" required />
+        <v-text-field
+          v-model="user.firstName"
+          label="First Name"
+          prepend-icon="mdi-account-circle"
+          required
+        />
+        <v-text-field
+          v-model="user.lastName"
+          label="Last Name"
+          prepend-icon="mdi-account-circle"
+          required
+        />
         <v-text-field
           v-model="user.username"
           label="Username"
@@ -45,7 +55,7 @@
     <v-card-actions>
       <v-btn color="info" :to="{ name: 'login' }">Already Have an Account?</v-btn>
       <v-spacer></v-spacer>
-      <v-btn color="success" @click="register" type="submit">Register</v-btn>
+      <v-btn color="success" type="submit" @click="register">Register</v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -57,6 +67,8 @@ export default {
     return {
       user: {
         username: "",
+        firstName: "",
+        lastName: "",
         email: "",
         password: "",
         confirmPassword: "",

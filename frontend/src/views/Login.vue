@@ -5,8 +5,9 @@
     </v-card-title>
     <v-card-text>
       <v-form class="form-signin" @submit.prevent="login">
-        <v-text-field label="Username" prepend-icon="mdi-account-circle" />
+        <v-text-field v-model="user.username" label="Username" prepend-icon="mdi-account-circle" />
         <v-text-field
+          v-model="user.password"
           :type="showPassword ? 'text' : 'password'"
           label="Password"
           id="password"
@@ -21,7 +22,7 @@
     <v-card-actions>
       <v-btn color="info" :to="{ name: 'register' }">Not Registered?</v-btn>
       <v-spacer></v-spacer>
-      <v-btn color="success" type="submit">Log In</v-btn>
+      <v-btn color="success" type="submit" @click="login">Log In</v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -65,7 +66,7 @@ export default {
               token = token.replace(/"/g, "");
             }
             auth.saveToken(token);
-            this.$router.push("/");
+            this.$router.push("/user-info");
           }
         })
         .catch(err => console.error(err));
