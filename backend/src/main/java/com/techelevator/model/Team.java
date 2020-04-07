@@ -1,10 +1,15 @@
 package com.techelevator.model;
 
+import javax.validation.constraints.NotBlank;
+
 public class Team {
 
     private long teamId;
+    @NotBlank(message = "Team Name is required")
     private String teamName;
+    @NotBlank(message = "Type of game/sport is required")
     private String game;
+    @NotBlank(message = "Please fill out some information about your team")
     private String teamBio;
     private boolean acceptingNewMembers = true;
 

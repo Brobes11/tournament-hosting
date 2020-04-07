@@ -23,12 +23,12 @@ public class Main implements WebMvcConfigurer {
 	public BasicDataSource dataSource() {
 		BasicDataSource dataSource = new BasicDataSource();
 		dataSource.setDriverClassName("org.postgresql.Driver");
-		dataSource.setUrl("jdbc:postgresql://localhost:5432/userdb");
+		dataSource.setUrl("jdbc:postgresql://localhost:5432/tourneydb");
 		dataSource.setUsername("postgres");
 		dataSource.setPassword("postgres1");
 		return dataSource;
 	}
-	
+
 	@Bean
 	public JwtAuthInterceptor interceptor() {
 		List<String> exceptions = new ArrayList<String>();
@@ -37,7 +37,7 @@ public class Main implements WebMvcConfigurer {
 		exceptions.add("/error");
 		return new JwtAuthInterceptor(exceptions);
 	}
-	
+
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(interceptor());

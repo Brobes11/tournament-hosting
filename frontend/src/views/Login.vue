@@ -9,9 +9,11 @@
         <v-text-field
           :type="showPassword ? 'text' : 'password'"
           label="Password"
+          id="password"
           prepend-icon="mdi-lock"
           :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
           @click:append="showPassword = !showPassword"
+          required
         />
       </v-form>
     </v-card-text>

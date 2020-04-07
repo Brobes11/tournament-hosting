@@ -5,24 +5,39 @@
     </v-card-title>
     <v-card-text>
       <v-form>
-        <v-text-field label="First Name" prepend-icon="mdi-account-circle" />
-        <v-text-field label="Last Name" prepend-icon="mdi-account-circle" />
-        <v-text-field label="Username" prepend-icon="mdi-account-circle" />
-        <v-text-field type="email" label="Email" prepend-icon="mdi-email" />
-        <v-text-field type="phone" label="Phone" prepend-icon="mdi-phone" />
+        <v-text-field label="First Name" prepend-icon="mdi-account-circle" required />
+        <v-text-field label="Last Name" prepend-icon="mdi-account-circle" required />
         <v-text-field
+          v-model="user.username"
+          label="Username"
+          prepend-icon="mdi-account-circle"
+          required
+        />
+        <v-text-field
+          v-model="user.email"
+          type="text"
+          label="Email"
+          prepend-icon="mdi-email"
+          required
+        />
+        <v-text-field type="phone" label="Phone" prepend-icon="mdi-phone" required />
+        <v-text-field
+          v-model="user.password"
           :type="showPassword ? 'text' : 'password'"
           label="Password"
           prepend-icon="mdi-lock"
           :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
           @click:append="showPassword = !showPassword"
+          required
         />
         <v-text-field
+          v-model="user.confirmPassword"
           :type="showConfirmPassword ? 'text' : 'password'"
           label="Password"
           prepend-icon="mdi-lock"
           :append-icon="showConfirmPassword ? 'mdi-eye' : 'mdi-eye-off'"
           @click:append="showConfirmPassword = !showConfirmPassword"
+          required
         />
       </v-form>
     </v-card-text>
@@ -30,7 +45,7 @@
     <v-card-actions>
       <v-btn color="info" :to="{ name: 'login' }">Already Have an Account?</v-btn>
       <v-spacer></v-spacer>
-      <v-btn color="success" type="submit">Register</v-btn>
+      <v-btn color="success" @click="register" type="submit">Register</v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -42,6 +57,7 @@ export default {
     return {
       user: {
         username: "",
+        email: "",
         password: "",
         confirmPassword: "",
         role: "user"
