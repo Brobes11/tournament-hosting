@@ -79,10 +79,12 @@
 import auth from "@/auth";
 
 export default {
+  data(){
+    return{
+      username: ''
+    }
+  },
   computed: {
-    userName() {
-      return auth.getUser().sub;
-    },
     userTeams() {
       return [
         { title: "Cincinnati Reds" },
@@ -112,6 +114,8 @@ export default {
       auth.logout();
       this.$router.push("/login");
     }
+  }, created(){
+    this.username = auth.getUser().sub;
   }
 };
 </script>
