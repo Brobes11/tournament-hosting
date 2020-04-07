@@ -1,1 +1,2 @@
-select * from users where UPPER(username) = 'al3x';
+select * from users where UPPER(username) = UPPER('aus7in');
+
