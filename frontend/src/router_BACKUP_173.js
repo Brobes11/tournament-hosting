@@ -7,7 +7,6 @@ import Register from './views/Register.vue'
 import CreateTeam from './views/CreateTeam.vue'
 import UserInfo from './views/UserInfo.vue'
 import Browse from '@/views/Browse.vue'
-
 import TeamPage from './views/TeamPage'
 Vue.use(Router)
 
@@ -70,6 +69,7 @@ const router = new Router({
       requiresAuth: false
     }
   },
+
   {
     path: "/TeamPage",
     name: "TeamPage",
