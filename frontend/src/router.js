@@ -47,8 +47,8 @@ const router = new Router({
             }
         },
         {
-            path: "/CreateTeam",
-            name: "CreateTeam",
+            path: "/create-team",
+            name: "create-team",
             component: CreateTeam,
             meta: {
                 requiresAuth: false
@@ -62,8 +62,8 @@ const router = new Router({
             }
         },
         {
-            path: "/browse",
-            name: "browse",
+            path: "/browse-teams",
+            name: "browse-teams",
             component: Browse,
             meta: {
                 requiresAuth: false

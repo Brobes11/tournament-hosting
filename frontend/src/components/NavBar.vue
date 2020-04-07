@@ -26,10 +26,10 @@
       </template>
       <v-list>
         <v-list-item>
-          <h4>Join Team</h4>
+          <h4 @click="$router.push('/browse-teams')">Join Team</h4>
         </v-list-item>
         <v-list-item>
-          <h4>Create Team</h4>
+          <h4 @click="$router.push('/create-team')" >Create Team</h4>
         </v-list-item>
         <v-divider></v-divider>
         <v-list-item v-for="(item, index) in userTeams" :key="index">
@@ -88,6 +88,10 @@ export default {
 
 <style scoped>
 h3 {
+  cursor: pointer;
+}
+
+v-list-item-title {
   cursor: pointer;
 }
 </style>
