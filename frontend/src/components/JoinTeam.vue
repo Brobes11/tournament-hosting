@@ -12,7 +12,7 @@
           <v-container>
             <v-row>
               <v-col cols="12">
-                <v-textarea outlined label="Message Team Captian" required></v-textarea>
+                <v-textarea outlined label="Message Team Captian" v-model="message" required></v-textarea>
               </v-col>
 
             </v-row>
@@ -34,8 +34,22 @@
       name:'JoinTeam',
     data: () => ({
       dialog: false,
+      message: '',
     }),
+
+    methods: {
+    joinTeam() {
+      
+    },
   }
+
+  }
+
+
+
+
+
+
 </script>
 
 <style>

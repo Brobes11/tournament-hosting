@@ -110,6 +110,20 @@
             return this.teams.filter((team)=> team.game == this.gamefilter);
         }
     },
+    methods:{
+      getTeams() {
+      fetch(`${process.env.VUE_APP_REMOTE_API}/browseTeams`, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        
+      })
+
+        
+    }
+    }
     
    
   }
