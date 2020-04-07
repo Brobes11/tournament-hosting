@@ -75,6 +75,10 @@ import auth from '@/auth'
 export default {
   computed: {
     loggedIn() {
+      let user = auth.getUser()
+      if(user === null){
+        return false;
+      }
       return true;
     },
     userName() {

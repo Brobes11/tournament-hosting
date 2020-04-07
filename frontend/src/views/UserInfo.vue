@@ -12,10 +12,7 @@
             <v-icon small>mdi-cog</v-icon>
             <span>Edit</span>
           </v-btn>
-          <v-btn flat text>
-            <v-icon small>mdi-lock-reset</v-icon>
-            <span>Reset Password</span>
-          </v-btn>
+          <reset-password/>
         </v-card-actions>
         </v-list-item-content>
       </v-list-item>
@@ -43,7 +40,12 @@
 </template>
 
 <script>
+import ResetPassword from '@/components/ResetPassword.vue';
+
 export default {
+  components:{
+        ResetPassword
+      },
   data() {
     return {
       teamHeaders: [
