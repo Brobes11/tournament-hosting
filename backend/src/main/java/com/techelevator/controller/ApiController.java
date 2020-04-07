@@ -2,12 +2,18 @@ package com.techelevator.controller;
 
 import com.techelevator.authentication.AuthProvider;
 import com.techelevator.authentication.UnauthorizedException;
+import com.techelevator.model.User;
+import com.techelevator.model.UserDao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 /**
  * ApiController
@@ -19,6 +25,9 @@ public class ApiController {
 
     @Autowired
     private AuthProvider authProvider;
+
+    @Autowired
+    private UserDao userDao;
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public String authorizedOnly() throws UnauthorizedException {
@@ -34,4 +43,10 @@ public class ApiController {
         }
         return "Success";
     }
+
+    @GetMapping(path="/user/{username}")
+    public User getUser(@PathVariable String username) {
+        return userDao.getUserByUsername(username);
+    }
+    
 }

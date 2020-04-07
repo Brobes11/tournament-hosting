@@ -23,7 +23,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click="dialog = false">Cancel</v-btn>
+          <v-btn color="blue darken-1" text @click="dialog = false; resetUser()">Cancel</v-btn>
           <v-btn color="blue darken-1" text @click="dialog = false">Save</v-btn>
         </v-card-actions>
       </v-card>
@@ -38,10 +38,22 @@ export default {
     },
   data() {
     return {
-        user: this.currentUser,
+        user: {
+            firstName:'',
+            lastName:'',
+            email:''
+        },
         dialog: false
     };
   },
+  methods:{
+     resetUser(){
+         this.user = Object.assign({},this.currentUser);
+     } 
+  },
+  created(){
+      this.resetUser();
+  }
   
 };
 </script>

@@ -19,7 +19,7 @@
         <v-data-table :headers="teamHeaders" :items="teams" :items-per-page="5" class="elevation-1"></v-data-table>
       </v-col>
       <v-col>
-        <v-data-table :headers="headers" :items="tourneys" :items-per-page="5" class="elevation-1"></v-data-table>
+        <v-data-table :headers="tourneyHeaders" :items="tourneys" :items-per-page="5" class="elevation-1"></v-data-table>
       </v-col>
     </v-row>
   </div>
@@ -28,6 +28,7 @@
 <script>
 import ResetPassword from "@/components/ResetPassword.vue";
 import EditUser from "@/components/EditUser.vue";
+import auth from '@/auth.js'
 
 export default {
   components: {
@@ -46,7 +47,7 @@ export default {
         { text: "Game/Sport", value: "game", sortable: false },
         { text: "Team Bio", sortable: false, value: "bio" }
       ],
-      headers: [
+      tourneyHeaders: [
         {
           text: "Tournament",
           align: "start",
@@ -56,12 +57,7 @@ export default {
         { text: "Game/Sport", value: "game", sortable: false },
         { text: "Tourney Info", value: "info", sortable: false }
       ],
-      user: {
-        firstName: "John",
-        lastName: "Doe",
-        email: "john@test.com",
-        username: "johndoe2020"
-      },
+      user: null,
       teams: [
         {
           name: "Blue Team",
@@ -115,6 +111,20 @@ export default {
         }
       ]
     };
+  },
+  created(){
+    let username = auth.getUser().sub;
+    fetch(`${process.env.VUE_APP_REMOTE_API}/api/user/${username}`,  {
+      method: 'GET',
+      headers: {
+        Authorization: 'Bearer ' + auth.getToken(),
+      },
+      credentials: 'same-origin',
+    })
+    .then((response) => {
+        return response.json();
+      })
+    .then(userFromApi => this.user = userFromApi)
   }
 };
 </script>
