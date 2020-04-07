@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app color="primary" dark class="mb-auto">
+  <v-app-bar app color="primary" dark>
     <div class="d-flex align-center">
       <v-img
         alt="Vuetify Logo"
@@ -19,7 +19,6 @@
     <router-link to="/login"><v-btn target="_blank" text v-if="!loggedIn">Login</v-btn></router-link>
     <router-link to="/register"><v-btn target="_blank" text v-if="!loggedIn">Register</v-btn></router-link>
 
-  <h3 v-if="loggedIn" @click="$router.push('/user-info')" class="clickable">Hi {{userName}}!</h3>
     <v-menu offset-y v-if="loggedIn">
       <template v-slot:activator="{ on }">
         <v-btn target="_blank" text v-on="on">Teams</v-btn>
@@ -54,10 +53,25 @@
         </v-list-item>
       </v-list>
     </v-menu>
+    <v-menu offset-y v-if="loggedIn">
+      <template v-slot:activator="{ on }">
+        <v-btn target="_blank" text v-on="on">Hi {{userName}}!</v-btn>
+      </template>
+      <v-list>
+        <v-list-item>
+          <h4 @click="$router.push('/user-info')" class="clickable">User Info</h4>
+        </v-list-item>
+        <v-list-item>
+          <h4 @click="$router.push('/')" class="clickable">Logout</h4>
+        </v-list-item>
+      </v-list>
+    </v-menu>
   </v-app-bar>
 </template>
 
 <script>
+import auth from '@/auth'
+
 export default {
   computed: {
     loggedIn() {
@@ -82,6 +96,12 @@ export default {
         { title: "NBA Playoffs" }
       ];
     }
+  },
+  methods: {
+    logout() {
+      auth.logout();
+      this.$router.go('/');
+    },
   }
 };
 </script>
