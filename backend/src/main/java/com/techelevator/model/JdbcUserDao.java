@@ -108,7 +108,7 @@ public class JdbcUserDao implements UserDao {
     @Override
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<User>();
-        String sqlSelectAllUsers = "SELECT id, username, role FROM users";
+        String sqlSelectAllUsers = "SELECT id, username, role, first_name, last_name, email FROM users";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectAllUsers);
 
         while (results.next()) {
@@ -124,12 +124,15 @@ public class JdbcUserDao implements UserDao {
         user.setId(results.getLong("id"));
         user.setUsername(results.getString("username"));
         user.setRole(results.getString("role"));
+        user.setFirstName(results.getString("first_name"));
+        user.setLastName(results.getString("last_name"));
+        user.setEmail(results.getString("email"));
         return user;
     }
 
     @Override
     public User getUserByUsername(String username) {
-        String sqlSelectUserByUsername = "SELECT id, username, role FROM users WHERE username = ?";
+        String sqlSelectUserByUsername = "SELECT id, username, role, email, first_name, last_name FROM users WHERE username = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectUserByUsername, username);
 
         if (results.next()) {

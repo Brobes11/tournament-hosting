@@ -61,7 +61,7 @@
     </v-menu>
     <v-menu offset-y v-if="loggedIn()">
       <template v-slot:activator="{ on }">
-        <v-btn target="_blank" text v-on="on">Hi {{userName}}!</v-btn>
+        <v-btn target="_blank" text v-on="on">Hi {{username}}!</v-btn>
       </template>
       <v-list>
         <v-list-item>
@@ -81,7 +81,7 @@ import auth from "@/auth";
 export default {
   computed: {
     userName() {
-      return "User";
+      return auth.getUser().sub;
     },
     userTeams() {
       return [
