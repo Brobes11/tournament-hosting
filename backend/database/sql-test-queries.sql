@@ -1,1 +1,1 @@
-select * from users;
+select * from users where UPPER(username) = 'al3x';

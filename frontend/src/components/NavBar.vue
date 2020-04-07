@@ -15,11 +15,17 @@
 
     <v-spacer></v-spacer>
 
-    <router-link to="/browse"><v-btn target="_blank" text v-if="!loggedIn">Browse</v-btn></router-link>
-    <router-link to="/login"><v-btn target="_blank" text v-if="!loggedIn">Login</v-btn></router-link>
-    <router-link to="/register"><v-btn target="_blank" text v-if="!loggedIn">Register</v-btn></router-link>
+    <router-link to="/browse">
+      <v-btn target="_blank" text v-if="!loggedIn()">Browse</v-btn>
+    </router-link>
+    <router-link to="/login">
+      <v-btn target="_blank" text v-if="!loggedIn()">Login</v-btn>
+    </router-link>
+    <router-link to="/register">
+      <v-btn target="_blank" text v-if="!loggedIn()">Register</v-btn>
+    </router-link>
 
-    <v-menu offset-y v-if="loggedIn">
+    <v-menu offset-y v-if="loggedIn()">
       <template v-slot:activator="{ on }">
         <v-btn target="_blank" text v-on="on">Teams</v-btn>
       </template>
@@ -36,12 +42,12 @@
         </v-list-item>
       </v-list>
     </v-menu>
-    <v-menu offset-y v-if="loggedIn">
+    <v-menu offset-y v-if="loggedIn()">
       <template v-slot:activator="{ on }">
         <v-btn target="_blank" text v-on="on">Tournaments</v-btn>
       </template>
       <v-list>
-           <v-list-item>
+        <v-list-item>
           <h4 class="clickable">Join Tournament</h4>
         </v-list-item>
         <v-list-item>
@@ -53,7 +59,7 @@
         </v-list-item>
       </v-list>
     </v-menu>
-    <v-menu offset-y v-if="loggedIn">
+    <v-menu offset-y v-if="loggedIn()">
       <template v-slot:activator="{ on }">
         <v-btn target="_blank" text v-on="on">Hi {{userName}}!</v-btn>
       </template>
@@ -62,7 +68,7 @@
           <h4 @click="$router.push('/user-info')" class="clickable">User Info</h4>
         </v-list-item>
         <v-list-item>
-          <h4 @click="$router.push('/')" class="clickable">Logout</h4>
+          <h4 @click="logout" class="clickable">Logout</h4>
         </v-list-item>
       </v-list>
     </v-menu>
@@ -70,17 +76,10 @@
 </template>
 
 <script>
-import auth from '@/auth'
+import auth from "@/auth";
 
 export default {
   computed: {
-    loggedIn() {
-      let user = auth.getUser()
-      if(user === null){
-        return false;
-      }
-      return true;
-    },
     userName() {
       return "User";
     },
@@ -102,10 +101,17 @@ export default {
     }
   },
   methods: {
+    loggedIn() {
+      let user = auth.getUser();
+      if (user === null) {
+        return false;
+      }
+      return true;
+    },
     logout() {
       auth.logout();
-      this.$router.go('/');
-    },
+      this.$router.push("/login");
+    }
   }
 };
 </script>
@@ -114,5 +120,4 @@ export default {
 .clickable {
   cursor: pointer;
 }
-
 </style>
