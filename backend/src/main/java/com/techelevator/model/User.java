@@ -1,8 +1,8 @@
 package com.techelevator.model;
 
 import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-
 
 /**
  * User
@@ -10,6 +10,12 @@ import javax.validation.constraints.NotBlank;
 public class User {
     @NotBlank(message = "Username is required")
     private String username;
+    private String firstName;
+    private String lastName;
+
+    @NotBlank(message = "Please provide a valid email address.")
+    @Email(message = "That is not a valid email address.")
+    private String email;
 
     @NotBlank(message = "Role is required")
     private String role;
@@ -84,4 +90,29 @@ public class User {
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
     }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
 }

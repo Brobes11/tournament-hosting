@@ -19,7 +19,7 @@ CREATE TABLE users (
 CREATE TABLE teams (
   id serial PRIMARY KEY,
   team_name varchar(255) NOT NULL,
-  sport/game varchar(255) NOT NULL,
+  game varchar(255) NOT NULL,
   accepting_members boolean NOT NULL,
   team_bio varchar(300)
 );
