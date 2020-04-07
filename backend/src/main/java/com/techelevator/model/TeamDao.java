@@ -1,5 +1,7 @@
 package com.techelevator.model;
 
+import java.util.List;
+
 public interface TeamDao {
 
     /**
@@ -11,5 +13,20 @@ public interface TeamDao {
      * @param teamBio             team bio provided by team captain.
      * @return the new team.
      */
-    public Team saveTeam(String teamName, String game, boolean acceptingNewMembers, String teamBio);
+    public Team createTeam(String teamName, String game, boolean acceptingNewMembers, String teamBio);
+
+    /**
+     * get a list of all active teams for any user to browse;
+     * 
+     * @return List of Team objects.
+     */
+    public List<Team> getAllTeams();
+
+    /**
+     * get single team profile based on the team id.
+     * 
+     * @param teamId
+     * @return all team information
+     */
+    public Team getTeamById(long id);
 }
