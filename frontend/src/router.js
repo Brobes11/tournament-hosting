@@ -8,6 +8,7 @@ import CreateTeam from './views/CreateTeam.vue'
 import UserInfo from './views/UserInfo.vue'
 import Browse from '@/views/Browse.vue'
 
+import TeamPage from './views/TeamPage'
 Vue.use(Router)
 
 /**
@@ -20,56 +21,65 @@ Vue.use(Router)
  */
 
 const router = new Router({
-    mode: 'history',
-    base: process.env.BASE_URL,
-    routes: [{
-            path: '/',
-            name: 'home',
-            component: Home,
-            meta: {
-                requiresAuth: true
-            }
-        },
-        {
-            path: "/login",
-            name: "login",
-            component: Login,
-            meta: {
-                requiresAuth: false
-            }
-        },
-        {
-            path: "/register",
-            name: "register",
-            component: Register,
-            meta: {
-                requiresAuth: false
-            }
-        },
-        {
-            path: "/create-team",
-            name: "create-team",
-            component: CreateTeam,
-            meta: {
-                requiresAuth: false
-            },
-        }, {
-            path: "/user-info",
-            name: "user-info",
-            component: UserInfo,
-            meta: {
-                requiresAuth: false
-            }
-        },
-        {
-            path: "/browse-teams",
-            name: "browse-teams",
-            component: Browse,
-            meta: {
-                requiresAuth: false
-            }
-        },
-    ]
+  mode: 'history',
+  base: process.env.BASE_URL,
+  routes: [{
+    path: '/',
+    name: 'home',
+    component: Home,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: Login,
+    meta: {
+      requiresAuth: false
+    }
+  },
+  {
+    path: "/register",
+    name: "register",
+    component: Register,
+    meta: {
+      requiresAuth: false
+    }
+  },
+  {
+    path: "/create-team",
+    name: "create-team",
+    component: CreateTeam,
+    meta: {
+      requiresAuth: false
+    },
+  }, {
+    path: "/user-info",
+    name: "user-info",
+    component: UserInfo,
+    meta: {
+      requiresAuth: false
+    }
+  },
+  {
+    path: "/browse-teams",
+    name: "browse-teams",
+    component: Browse,
+    meta: {
+      requiresAuth: false
+    }
+  },
+  {
+    path: "/TeamPage",
+    name: "TeamPage",
+    component: TeamPage,
+    meta: {
+      requiresAuth: false
+    }
+
+  }
+  ]
 })
 
 router.beforeEach((to, from, next) => {

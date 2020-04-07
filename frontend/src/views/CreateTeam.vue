@@ -11,7 +11,7 @@
           <v-spacer></v-spacer>
        <h4>Please select your sport/game: </h4>
       
-       <h5>If not on the list please enter it below. </h5>
+      
        <br>
        <spacer></spacer>
           <template>
@@ -26,29 +26,36 @@
     </template>
 
     <v-list>
-   <v-list-item v-model="game" @click="method" v-for="sport in sports" :key="sport.id">
+      
+   <v-list-item v-model="team.game"  v-for="sport in sports" :key="sport.id" @click="v-select" >
      <v-list-item-title>{{sport.name}}</v-list-item-title>
-       <v-list-item-action>
+       <v-list-item-action v-model="team.game">
           <v-btn icon>
             <v-icon color="grey lighten-1">mdi-information</v-icon>
           </v-btn>
         </v-list-item-action>
    </v-list-item>
+   
     </v-list>
   </v-menu>
  </template>
    <v-text-field v-if="team.game==='other'" label="Other"/>
           <h4>Accepting New Members?</h4>
           
- <v-checkbox v-model="checkbox1" :label="`Accepting New Members? ${checkbox1.toString()}`"></v-checkbox>
+ 
+ <v-radio-group v-model="team.acceptingMembers" row>
+   <v-radio label="yes" value="yes"></v-radio>
+   <v-radio label="no" value="no"></v-radio>
+   </v-radio-group>
             <h4>Level of Play:</h4>
              <v-radio-group v-model="team.levelOfPlay" row>
              <v-radio  label="Professional" value="Professional"></v-radio>
             <v-radio  label="Competitive" value="Competitive"></v-radio>
       <v-radio  label="Beer League" value="Beer League"></v-radio>
-      <v-text-field label="About The Team:"/>
-       
+     
     </v-radio-group>
+     <v-text-field label="About The Team:"/>
+       
         </v-form>
         </v-card-text>
         <v-card-actions>
@@ -89,7 +96,7 @@ export default {
       team:{
         name:'',
         game:'',
-        acceptingMembers: true,
+        acceptingMembers:true,
         teamBio:'',
         levelOfPlay:''
       }
