@@ -26,11 +26,11 @@
         <v-text-field
           v-model="user.email"
           type="text"
+          v-validate="'required|email'"
           label="Email"
           prepend-icon="mdi-email"
           required
         />
-        <v-text-field type="phone" label="Phone" prepend-icon="mdi-phone" required />
         <v-text-field
           v-model="user.password"
           :type="showPassword ? 'text' : 'password'"
@@ -70,6 +70,10 @@ export default {
         firstName: "",
         lastName: "",
         email: "",
+        emailRules: [
+          v => !!v || "E-mail is required",
+          v => /.+@.+\..+/.test(v) || "E-mail must be valid"
+        ],
         password: "",
         confirmPassword: "",
         role: "user"
