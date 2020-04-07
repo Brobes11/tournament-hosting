@@ -37,20 +37,11 @@
       message: '',
     }),
 
-    methods: {
-    joinTeam() {
-      
-    },
   }
-
-  }
-
-
-
-
-
 
 </script>
+
+
 
 <style>
 
