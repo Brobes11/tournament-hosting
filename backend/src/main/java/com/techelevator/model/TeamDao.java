@@ -13,7 +13,7 @@ public interface TeamDao {
      * @param teamBio             team bio provided by team captain.
      * @return the new team.
      */
-    public Team createTeam(String teamName, String game, boolean acceptingNewMembers, String teamBio);
+    public Team createTeam(Team newTeam);
 
     /**
      * get a list of all active teams for any user to browse;
@@ -38,6 +38,4 @@ public interface TeamDao {
      */
     public List<Team> getTeamsByUser(long id);
 
-    
-   
 }
