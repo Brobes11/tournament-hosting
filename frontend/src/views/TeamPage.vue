@@ -105,7 +105,7 @@ export default {
 
   created() {
 
-    fetch(`${process.env.VUE_APP_REMOTE_API}/api/user/team-page`,  {
+    fetch(`${process.env.VUE_APP_REMOTE_API}/api/team/team-page`,  {
       method: 'GET',
       headers: {
         Authorization: 'Bearer ' + auth.getToken(),

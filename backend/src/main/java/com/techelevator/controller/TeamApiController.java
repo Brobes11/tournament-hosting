@@ -44,6 +44,7 @@ public class TeamApiController {
     @GetMapping("/team-page")
     public Team getTeamById(@RequestParam long teamId){
         return teamDao.getTeamById(teamId);
+    }
         
 =======
 <<<<<<< Updated upstream
