@@ -1,5 +1,8 @@
 package com.techelevator.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.validation.constraints.NotBlank;
 
 public class Team {
@@ -12,6 +15,9 @@ public class Team {
     @NotBlank(message = "Please fill out some information about your team")
     private String teamBio;
     private boolean acceptingNewMembers = true;
+   
+	
+	
 
     public long getTeamId() {
         return teamId;
@@ -52,5 +58,6 @@ public class Team {
     public void setTeamName(String teamName) {
         this.teamName = teamName;
     }
+   
 
 }
