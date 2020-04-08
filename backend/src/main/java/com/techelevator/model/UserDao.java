@@ -42,4 +42,11 @@ public interface UserDao {
 
     public User getUserByUsername(String username);
 
+    /**
+     * Update the user name and email in the database
+     * 
+     * @return a boolean if it successful
+     */
+    public boolean updateUser(User user);
+
 }

@@ -132,14 +132,23 @@ public class JdbcUserDao implements UserDao {
 
     @Override
     public User getUserByUsername(String username) {
-        String sqlSelectUserByUsername = "SELECT id, username, role, email, first_name, last_name FROM users WHERE username = ?";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectUserByUsername, username);
+        String sql = "SELECT id, username, role, email, first_name, last_name FROM users WHERE username = ?";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, username);
 
         if (results.next()) {
             return mapResultToUser(results);
         } else {
             return null;
         }
+    }
+
+    @Override
+    public boolean updateUser(User user) {
+        String sql = "UPDATE users SET first_name = ?, last_name = ?, " +
+        "email = ? WHERE username = ?";
+        jdbcTemplate.update(sql, user.getFirstName(),
+         user.getLastName(), user.getEmail(), user.getUsername());
+        return true;
     }
 
 }
