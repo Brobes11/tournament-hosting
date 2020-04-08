@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @CrossOrigin
 @RestController
-@RequestMapping("/api")
-public class ApiController {
+@RequestMapping("/api/user")
+public class UserApiController {
 
     @Autowired
     private AuthProvider authProvider;
@@ -44,7 +44,7 @@ public class ApiController {
         return "Success";
     }
 
-    @GetMapping(path="/user/{username}")
+    @GetMapping(path="/{username}")
     public User getUser(@PathVariable String username) {
         return userDao.getUserByUsername(username);
     }
