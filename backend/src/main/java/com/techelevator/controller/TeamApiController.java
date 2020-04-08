@@ -29,6 +29,8 @@ public class TeamApiController {
 
     @Autowired
     private JdbcTeamDao teamDao;
+
+    @Autowired
     private JdbcTeamRequestDAO teamRequestDAO;
 
     @Autowired
@@ -37,8 +39,8 @@ public class TeamApiController {
     }
 
     @GetMapping
-    public List<Team> getAllTeams(@RequestParam(required = false) long userId) {
-        if (userId == 0) {
+    public List<Team> getAllTeams(@RequestParam(required = false) Long userId) {
+        if (userId == null) {
             return teamDao.getAllTeams();
         }
         return teamDao.getTeamsByUser(userId);

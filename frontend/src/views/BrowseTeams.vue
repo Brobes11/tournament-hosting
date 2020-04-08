@@ -81,7 +81,7 @@
     },
 
     created() {
-      fetch(`${process.env.VUE_APP_REMOTE_API}/api/team/browse-teams`, {
+      fetch(`${process.env.VUE_APP_REMOTE_API}/api/team`, {
         method: 'GET',
         headers: new Headers({
         Authorization: 'Bearer ' + auth.getToken(),
