@@ -8,7 +8,7 @@
           <div class="overline">Username: {{user.username}}</div>
           <div class="overline">Email: {{user.email}}</div>
           <v-card-actions>
-            <edit-user :currentUser="user"/>
+            <edit-user :current-user="user"/>
             <reset-password />
           </v-card-actions>
         </v-list-item-content>

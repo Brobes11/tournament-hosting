@@ -67,6 +67,7 @@ export default {
             }
             auth.saveToken(token);
             this.$router.push("/user-info");
+            this.$emit('update-user');
           }
         })
         .catch(err => console.error(err));

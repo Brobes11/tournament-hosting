@@ -16,16 +16,16 @@
     <v-spacer></v-spacer>
 
     <router-link to="/browse">
-      <v-btn target="_blank" text v-if="!loggedIn()">Browse</v-btn>
+      <v-btn target="_blank" text v-if="user === null">Browse</v-btn>
     </router-link>
     <router-link to="/login">
-      <v-btn target="_blank" text v-if="!loggedIn()">Login</v-btn>
+      <v-btn target="_blank" text v-if="user === null">Login</v-btn>
     </router-link>
     <router-link to="/register">
-      <v-btn target="_blank" text v-if="!loggedIn()">Register</v-btn>
+      <v-btn target="_blank" text v-if="user === null">Register</v-btn>
     </router-link>
 
-    <v-menu offset-y v-if="loggedIn()">
+    <v-menu offset-y v-if="user !== null">
       <template v-slot:activator="{ on }">
         <v-btn target="_blank" text v-on="on">Teams</v-btn>
       </template>
@@ -42,7 +42,7 @@
         </v-list-item>
       </v-list>
     </v-menu>
-    <v-menu offset-y v-if="loggedIn()">
+    <v-menu offset-y v-if="user !== null">
       <template v-slot:activator="{ on }">
         <v-btn target="_blank" text v-on="on">Tournaments</v-btn>
       </template>
@@ -59,9 +59,9 @@
         </v-list-item>
       </v-list>
     </v-menu>
-    <v-menu offset-y v-if="loggedIn()">
+    <v-menu offset-y v-if="user !== null">
       <template v-slot:activator="{ on }">
-        <v-btn target="_blank" text v-on="on">Hi {{username}}!</v-btn>
+        <v-btn target="_blank" text v-on="on">Hi {{user.sub}}!</v-btn>
       </template>
       <v-list>
         <v-list-item>
@@ -79,9 +79,11 @@
 import auth from "@/auth";
 
 export default {
+  props:{
+    user: Object
+  },
   data(){
     return{
-      username: ''
     }
   },
   computed: {
@@ -103,19 +105,11 @@ export default {
     }
   },
   methods: {
-    loggedIn() {
-      let user = auth.getUser();
-      if (user === null) {
-        return false;
-      }
-      return true;
-    },
     logout() {
       auth.logout();
       this.$router.push("/login");
+      this.$emit('update-user');
     }
-  }, created(){
-    this.username = auth.getUser().sub;
   }
 };
 </script>

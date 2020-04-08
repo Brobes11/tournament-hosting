@@ -1,8 +1,8 @@
 <template>
   <v-app>
-    <nav-bar :key="loggedIn()" />
+    <nav-bar :user="currentUser" @update-user="currentUser = getUser()"/>
     <v-content>
-      <router-view />
+      <router-view @update-user="currentUser = getUser()"/>
     </v-content>
   </v-app>
 </template>
@@ -16,17 +16,15 @@ export default {
   components: {
     NavBar
   },
-  methods: {
-    loggedIn() {
-      let user = auth.getUser();
-      if (user === null) {
-        return false;
-      }
-      return true;
+  data(){
+    return{
+      currentUser: this.getUser()
     }
   },
-  data: () => ({
-    //
-  })
+  methods: {
+    getUser() {
+      return auth.getUser();
+    }
+  }
 };
 </script>
