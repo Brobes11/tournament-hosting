@@ -84,4 +84,17 @@ public class JdbcTeamDao implements TeamDao {
         return team;
     }
 
+    @Override
+    public List<Team> getTeamsByUser(long id) {
+        List<Team> userTeams = new ArrayList<>();
+        String sql = "SELECT id, team_name, game, accepting_members, team_bio from teams "+
+        "WHERE id IN (SELECT team_id FROM teamroster WHERE user_id = ?)";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
+        while (results.next()) {
+            Team team = mapResultToTeam(results);
+            userTeams.add(team);
+        }
+        return userTeams;
+    }
+
 }

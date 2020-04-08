@@ -2,7 +2,7 @@
   <v-row justify="center">
     <v-dialog v-model="dialog" persistent max-width="600px">
       <template v-slot:activator="{ on }">
-        <v-btn flat text v-on="on">
+        <v-btn text v-on="on">
           <v-icon small>mdi-cog</v-icon>Edit User
         </v-btn>
       </template>
