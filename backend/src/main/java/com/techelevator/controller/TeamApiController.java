@@ -49,11 +49,6 @@ public class TeamApiController {
         return teamDao.getTeamById(teamId);
     }
 
-    @GetMapping("/user-teams/{id}")
-    public List<Team> getAllUsersTeams(@PathVariable long id) {
-
-    }
-
     @PostMapping
     public Team createTeam(@Valid @RequestBody Team team, BindingResult result) {
 
