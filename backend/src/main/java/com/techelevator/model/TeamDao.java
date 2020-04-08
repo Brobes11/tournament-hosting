@@ -39,4 +39,5 @@ public interface TeamDao {
     public List<Team> getTeamsByUser(long id);
 
     
+   
 }
