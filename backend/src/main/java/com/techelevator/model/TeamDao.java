@@ -31,7 +31,7 @@ public interface TeamDao {
     public Team getTeamById(long id);
 
     /**
-     * get single team profile based on the team id.
+     * get all teams tied to a specific user
      * 
      * @param userId
      * @return all teams that a specific user belongs to

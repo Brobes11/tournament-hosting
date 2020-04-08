@@ -24,7 +24,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" text @click="dialog = false; resetUser()">Cancel</v-btn>
-          <v-btn color="blue darken-1" text @click="dialog = false">Save</v-btn>
+          <v-btn color="blue darken-1" text @click="dialog = false; updateUser()">Save</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -49,6 +49,20 @@ export default {
   methods:{
      resetUser(){
          this.user = Object.assign({},this.currentUser);
+     },
+     updateUser(){
+       fetch(`${process.env.VUE_APP_REMOTE_API}/api/user/update`,{
+         method:'PUT',
+         headers:{
+           'content-type': 'application/json'
+         },
+         body: JSON.stringify(this.user)
+       })
+       .then(response =>{
+         if(response.ok){
+           this.$emit('update-user');
+         }
+       })
      } 
   },
   created(){
