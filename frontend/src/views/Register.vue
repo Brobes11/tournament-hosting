@@ -43,7 +43,7 @@
         <v-text-field
           v-model="user.confirmPassword"
           :type="showConfirmPassword ? 'text' : 'password'"
-          label="Password"
+          label="Please Confrim Your Password"
           prepend-icon="mdi-lock"
           :append-icon="showConfirmPassword ? 'mdi-eye' : 'mdi-eye-off'"
           @click:append="showConfirmPassword = !showConfirmPassword"
@@ -112,7 +112,7 @@ export default {
           }
         })
         .catch(err => console.log(err));
-        this.$emit('update-user');
+      this.$emit("update-user");
     }
   }
 };
