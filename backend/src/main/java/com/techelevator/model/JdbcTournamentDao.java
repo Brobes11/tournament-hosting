@@ -35,6 +35,7 @@ public class JdbcTournamentDao implements TournamentDao {
 
     private Tournament mapRowSetTournament(SqlRowSet results) {
         Tournament tournament = new Tournament();
+        tournament.setTournamentId(results.getLong("id"));
         tournament.setTournamentName(results.getString("tourney_name"));
         tournament.setGame(results.getString("game"));
         tournament.setStartDate(results.getDate("start_date").toLocalDate());
