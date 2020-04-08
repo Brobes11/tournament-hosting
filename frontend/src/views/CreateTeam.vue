@@ -7,13 +7,13 @@
       </v-card-title>
       <v-card-text>
         <v-form>
-          <v-text-field label="Team Name" v-model="team.name"/>
+          <v-text-field label="Team Name" v-model="team.teamName"/>
           <v-spacer></v-spacer>
        <h4>Please select your sport/game: </h4>
       
       
        <br>
-       <spacer></spacer>
+       
           <template>
   <v-menu>
     <template v-slot:activator="{ on, attrs }">
@@ -25,11 +25,11 @@
       </v-btn>
     </template>
 
-    <v-list>
+    <v-list >
       
-   <v-list-item v-model="team.game"  v-for="sport in sports" :key="sport.id" @click="v-select" >
+   <v-list-item   v-for="sport in sports" :key="sport.id" @click="team.game=sport.name" >
      <v-list-item-title>{{sport.name}}</v-list-item-title>
-       <v-list-item-action v-model="team.game">
+       <v-list-item-action >
           <v-btn icon>
             <v-icon color="grey lighten-1">mdi-information</v-icon>
           </v-btn>
@@ -43,17 +43,17 @@
           <h4>Accepting New Members?</h4>
           
  
- <v-radio-group v-model="team.acceptingMembers" row>
-   <v-radio label="yes" value="yes"></v-radio>
-   <v-radio label="no" value="no"></v-radio>
+ <v-radio-group v-model="acceptingMembersInput" row>
+   <v-radio label="yes" value="true"></v-radio>
+   <v-radio label="no" value="false"></v-radio>
    </v-radio-group>
          
-     <v-text-field label="About The Team:"/>
+     <v-text-field v-model="team.teamBio" label="About The Team:"/>
        
         </v-form>
         </v-card-text>
         <v-card-actions>
-          <v-btn color="success">Register</v-btn>
+          <v-btn color="success" @click="createTeam">Register</v-btn>
        </v-card-actions>
 
   </v-card>
@@ -62,7 +62,7 @@
 </template>
 
 <script>
-
+ import auth from '@/auth';
 
 export default {
   name: 'registerT',
@@ -91,22 +91,26 @@ export default {
     { id: 11, name: 'Other'}
 ],
  team:{
-        name:'',
+        teamName:'',
         game:'',
         acceptingMembers:true,
         teamBio:''
         
       },
       registrationErrors: false,
-     
+     acceptingMembersInput:'true'
+      
     }
+
   },
 
 methods:{
   createTeam() {
-    fetch('$process.env.VUE_APP_REMOTE_API}/createTeam',{
+    this.team.acceptingMembers=this.acceptingMembersInput==="true";
+    fetch(`${process.env.VUE_APP_REMOTE_API}/api/team`,{
        method: "POST",
         headers: {
+          Authorization: 'Bearer ' + auth.getToken(),
           Accept: "application/json",
           "Content-Type": "application/json"
         },
@@ -114,14 +118,27 @@ methods:{
       })
       .then((response)=>{
         if(response.ok){
-          this.$router.push({path:'/create-team',query :{registration: 'success'}});
+          return response.json;
 
         }else{
           this.registrationErrors=true;
+          throw "Register returned: " + response.status;
         }
 
       })
-      .then((err)=> console.error(err));
+      .then((parsedData)=>{
+        if(parsedData.success){
+          
+          this.$router.push({
+            path:"/team-page" , 
+            query:{registration:'success'}
+          });
+        }else{
+          this.registrationErros=true;
+        }
+        
+      })
+      .catch((err)=> console.error(err));
     },
   },
   
