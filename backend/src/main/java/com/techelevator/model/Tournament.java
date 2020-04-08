@@ -3,6 +3,8 @@ package com.techelevator.model;
 import java.time.LocalDate;
 
 public class Tournament {
+
+    private long tournamentId;
     private String tournamentName;
     private String game;
     private LocalDate startDate;
@@ -10,6 +12,14 @@ public class Tournament {
     private String location;
     private int entryFee;
     private String prizeDescription;
+
+    public long getTournamentId() {
+        return tournamentId;
+    }
+
+    public void setTournamentId(long tournamentId) {
+        this.tournamentId = tournamentId;
+    }
 
     public String getTournamentName() {
         return tournamentName;
