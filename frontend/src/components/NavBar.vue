@@ -48,7 +48,7 @@
       </template>
       <v-list>
         <v-list-item>
-          <h4 class="clickable">Join Tournament</h4>
+          <h4 class="clickable" @click="$router.push('/browse-tournaments')">Join Tournament</h4>
         </v-list-item>
         <v-list-item>
           <h4 class="clickable">Create Tournament</h4>
