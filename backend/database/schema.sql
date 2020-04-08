@@ -1,9 +1,9 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS teams;
 DROP TABLE IF EXISTS teamRoster;
 DROP TABLE IF EXISTS teamRequest;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS teams;
 
 CREATE TABLE users (
   id serial PRIMARY KEY,
@@ -27,13 +27,17 @@ CREATE TABLE teams (
 CREATE TABLE teamRoster (
   user_id integer REFERENCES users (id),
   team_id integer REFERENCES teams (id),
-  captain boolean NOT NULL
+  captain boolean NOT NULL,
+  PRIMARY KEY (user_id, team_id)
 );
 
 CREATE TABLE teamRequest (
   user_id integer REFERENCES users (id),
   team_id integer REFERENCES teams (id),
-  message varchar(300)
+  message varchar(300),
+  PRIMARY KEY (user_id, team_id)
 );
+
+INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('The Sharks', 'Super Smash Bros', true, 'Come have fun and get your smash on!');
 
 COMMIT TRANSACTION;

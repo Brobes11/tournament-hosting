@@ -5,12 +5,21 @@
         <v-img :src="require('../assets/logo.svg')" class="my-3" contain height="150" />
       </v-col>
       <v-col cols="3">
-        <h1>Team Name</h1>
-        <h2>sport/game</h2>
+        <h1>{{team.teamName}}</h1>
+        <h2>{{team.game}}</h2>
       </v-col>
       <v-col cols="6">
-        <h3>team bio:</h3>
-        <p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in</p>
+        <v-row>
+          <v-col>
+            <h3>team bio:</h3>
+          </v-col>
+          <v-col>
+            <v-card-actions>
+              <edit-team :current-team="team"/>
+          </v-card-actions>
+          </v-col>
+        </v-row>
+        <p>{{team.teamBio}}</p>
       </v-col>
     </v-row>
     <v-row>
@@ -59,7 +68,13 @@
 </template>
 
 <script>
+import EditTeam from "@/components/EditTeam.vue"
+import auth from '@/auth';
+
 export default {
+  components : {
+    EditTeam
+  },
   data() {
     return {
       searchApplicant: "",
@@ -82,11 +97,26 @@ export default {
 
       applicants: [],
 
-      roster: []
+      roster: [],
+
+      team:null
     };
   },
 
   created() {
+
+    fetch(`${process.env.VUE_APP_REMOTE_API}/api/user/team-page`,  {
+      method: 'GET',
+      headers: {
+        Authorization: 'Bearer ' + auth.getToken(),
+      },
+      credentials: 'same-origin',
+    })
+    .then((response) => {
+        return response.json();
+      })
+    .then(teamFromApi => this.team = teamFromApi)
+
     this.initialize();
   },
 
