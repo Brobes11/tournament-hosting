@@ -47,13 +47,7 @@
    <v-radio label="yes" value="yes"></v-radio>
    <v-radio label="no" value="no"></v-radio>
    </v-radio-group>
-            <h4>Level of Play:</h4>
-             <v-radio-group v-model="team.levelOfPlay" row>
-             <v-radio  label="Professional" value="Professional"></v-radio>
-            <v-radio  label="Competitive" value="Competitive"></v-radio>
-      <v-radio  label="Beer League" value="Beer League"></v-radio>
-     
-    </v-radio-group>
+         
      <v-text-field label="About The Team:"/>
        
         </v-form>
@@ -71,7 +65,7 @@
 
 
 export default {
-  name: 'App',
+  name: 'registerT',
 
   components: {
     
@@ -79,7 +73,10 @@ export default {
 
   data: ()=> {
     return{
+      
+
       checkbox1: true,
+
       sports:[
     { id: 1, name: 'Volleyball' },
     { id: 2, name: 'Basketball'},
@@ -93,14 +90,40 @@ export default {
     { id: 10, name: 'Super Smash Brothers'},
     { id: 11, name: 'Other'}
 ],
-      team:{
+ team:{
         name:'',
         game:'',
         acceptingMembers:true,
-        teamBio:'',
-        levelOfPlay:''
-      }
+        teamBio:''
+        
+      },
+      registrationErrors: false,
+     
     }
   },
-}
+
+methods:{
+  createTeam() {
+    fetch('$process.env.VUE_APP_REMOTE_API}/createTeam',{
+       method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(this.team)
+      })
+      .then((response)=>{
+        if(response.ok){
+          this.$router.push({path:'/create-team',query :{registration: 'success'}});
+
+        }else{
+          this.registrationErrors=true;
+        }
+
+      })
+      .then((err)=> console.error(err));
+    },
+  },
+  
+};
 </script>
