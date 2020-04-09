@@ -9,6 +9,7 @@ import UserInfo from './views/UserInfo.vue'
 import BrowseTeams from '@/views/BrowseTeams.vue'
 import TeamPage from './views/TeamPage'
 import BrowseTournaments from '@/views/BrowseTournaments.vue'
+import CreateTournament from '@/views/CreateTournament.vue'
 Vue.use(Router)
 
 /**
@@ -83,6 +84,14 @@ const router = new Router({
     path: "/browse-tournaments",
     name: "browse-tournaments",
     component: BrowseTournaments,
+    meta: {
+      requiresAuth: false
+    }
+  },
+  {
+    path: "/create-tournament",
+    name: "create-tournament",
+    component: CreateTournament,
     meta: {
       requiresAuth: false
     }

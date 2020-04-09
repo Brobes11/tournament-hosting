@@ -38,7 +38,10 @@
         </v-list-item>
         <v-divider></v-divider>
         <v-list-item v-for="(item, index) in teams" :key="index">
-          <v-list-item-title class="clickable" @click="$router.push('/team-page/' + item.teamId)">{{ item.teamName }}</v-list-item-title>
+          <v-list-item-title
+            class="clickable"
+            @click="$router.push('/team-page/' + item.teamId)"
+          >{{ item.teamName }}</v-list-item-title>
         </v-list-item>
       </v-list>
     </v-menu>
@@ -51,11 +54,11 @@
           <h4 class="clickable" @click="$router.push('/browse-tournaments')">Join Tournament</h4>
         </v-list-item>
         <v-list-item>
-          <h4 class="clickable">Create Tournament</h4>
+          <h4 class="clickable" @click="$router.push('/create-tournament')">Create Tournament</h4>
         </v-list-item>
         <v-divider></v-divider>
         <v-list-item v-for="(item, index) in userTournaments" :key="index">
-          <v-list-item-title class="clickable" >{{ item.title }}</v-list-item-title>
+          <v-list-item-title class="clickable">{{ item.title }}</v-list-item-title>
         </v-list-item>
       </v-list>
     </v-menu>
@@ -79,14 +82,12 @@
 import auth from "@/auth";
 
 export default {
-  props:{
+  props: {
     user: Object,
     teams: Array
   },
-  data(){
-    return{
-
-    }
+  data() {
+    return {};
   },
   computed: {
     userTournaments() {
@@ -102,7 +103,7 @@ export default {
     logout() {
       auth.logout();
       this.$router.push("/login");
-      this.$emit('update-user');
+      this.$emit("update-user");
     }
   }
 };
