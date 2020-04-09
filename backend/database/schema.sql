@@ -68,11 +68,24 @@ CREATE TABLE tournamentRoster (
 );
 
 INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('DirtyDan', '8FEzT3Yop2aA7MJNWw7dyg==', 'zFiGLfGKoTZPIVaF6bhqfRfFeSr3EsmgXfAlhZEw28rwi42Hou5NIjNVjJgIrtd6n50VseitoiS1hCyKqMJBIK0K+Tua5es8uh2pMerQoceujeMewXkGyAZbTdYSR172h2BhwiclB9UbhonIHsGlbW1kwGqsTddxA3jiy4vaCfI=', 'junk@junkmail.com', 'Ben', 'Peters');
+INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('Brobes11', 'pjL/Ikmd4opHKbbrA70o8g==	', '1I0cJKQaQ+8oUbGd4gQK4zdTehUedjJqQ6o+6SGu4+qhZIMWF7QYpo1Dz+F6z7CjrftlwsRMWUG3nl6Z9jNlDYX60wYtI7CXMITMNgai2kYeHvXmq5+bOpMl81BvjMRi8GgL7R+8G1OWSK2X4rVn43xFY1NBVfW0ots+8TEe+hs=', 'brobes11@gmail.com', 'Taylor', 'Broberg');
+INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('WaterBoy', 'OHlSjWgXpn9+F9tNQxQJQw==', 'b4iuB9/S1D1DQPDk5S5l1iZdbVhnPA1DgbZwBGur+I2tacuj6J1d/Mga3hrEcHRdJ+t0xpqYaIVWzCIAk9acBPK36+UhtEWCCxHuXGxW9BcGO13DfCGUcjEPGE3TS4VjIJgAM3u+eqU1hceFn/L69fLLUdf7Rg55O7An/uMaKBk=', 'thewaterboy@waterboy.org', 'Bobby', 'Bouche');
+INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('BIG', '3DR4R18IGzjnA5iVh5m+RA==', 'wGnAK/Zhicve54OmiPoH1RlkyGrJC09YUC9i5NRSZ97cujoFb3FOzB6fQNMh0tuZ2dKP2XkOdVQyHzzfXqzDH9kZuWmiFSKdyb7QjZtsKWrwacCCwlmVbDss9nJOI5U6mwZWEWMWCGE3jfjSKVLBuMaatP0h0CxPH0Ugu2O9FJE=', 'thenotorius@gmail.com', 'Biggie', 'Smalls');
+INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('Still_Alive_Bitches', '2ANUQvJmp1YsBlfOKbffRg==', 'BC1v/iFhPAETeVP6e4w0CYp+xHpmQygwJkiDHcYhgoJGWcHl9+QblW+d9sqMFplzB4WyJtFMiH59s7boFyJc++Qt83xT5eeJQl8MSCoRHQVXR0SHcoayecoIzDAKhIKE88bpGTrxbTax5W/z+X+3BpAHYp2sv6EKiHLp34Y005c=', 'WithMyBoyElvis@secretIsland.com', 'Tupac', 'Shakur');
+INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('TheRealSlimShady', 'AsBdYTF15lNapuqpTxj9LA==', 'UzfWrA9Wk1eHeH4wvrl0GHsegL/UCncWVuIr5OQoDKbFPs98eLdGpCf6pKxo0TR6XhcmzoXLAHgtyDToARBOudj9yGK060XU77slcrQvTumghkkpgtPMJnfbdxlKg3Q/1M+At2i6gSttQFu0UYOy4GIJcjMiI2jFiM1Dij9TNxY=', 'shady@dreRecords.com', 'Marshall', 'Mathers');
+INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('BringMeACarrot', 'CpS4JcKslj15L5cbMuiJDA==', 'J+jzNPL1ALV6gCU0sIdix8XRedSeQqcEtNmGSBQyl8+3JVSxkmdbba38MtgcxZ04zDvubzdnON8nu1YPw/GUA9/lfMjzrr7FvTJnHIXLnW8nItWZdoxb9HuUveXLeK2VxW+QSvdefngNjRWsiJyBzg/WbDXu7GWmvXwlRRqAk1c=', 'IuseAustinsEmail@gmail.com', 'Austins', 'Rabbit');
+INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('IputTheSecureInSecurity', 'T/LZ8EtJAuzEMSxeujimSQ==', 'ccNvZXRL4Wx7t0KRX2boH/DJofnvGbbBSV8wE8EVwzNZOJHLt243WlppOh2fjBRjd0wxrt3C45KZLSgzbx+k9qxPxOkTA8iME9fW1vKXqbDEAxxoj+03SlGj2zHZZi00s4/QDnS2DUH5Pp/o2d5dIxbKh2X2q3V/uz2dSQR4COY=', 'joe.security@darkweb.com', 'Joe', 'Security');
+INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('MissileMan69', 'aJpq5YPlwUpOosvalA0Oxg==', 'yZp4LiKMqJ5QZO0/nq1OL+wDkPEFVBcEYV5tMmuRr77u2QinkRTvl25MLt6IA7rIiDv3fcw1PzhpQm8uc1b1lbZjg1P8rWV2l8gJ+FPNFH5xKS8adSfcegsew61pz6kFcs9VrM0Kf+PmJwfd9JeAN4J+x+tDp4d110Yg8IxJeQs=', 'TheOneTrueLeader@northkorea.com', 'Kim', 'Jong-un');
+INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('I_Pitty_The_Fool', '5ACU3Q3rHHSTdcgMquig0Q==', 'jdTc9I7aK9rois2BJBuZmAUr/QWGntB2cb6q0k2DpK7YT5T5JBM3aax+L67oScgqpFy41hGAlo99Jtfh/xAMALtE2Uog577aCcOpJjiSyvnYcpT4TbZ6NlA4nKLfEdNlfQ2+rpRT22oACQ+c2mVzLlbqRXkh2UYgMboTE3YwvL0=', 'theOneAndOnly@yoursTruly.com', 'Mr.', 'T');
+
+
+
+
 
 INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('The Sharks', 'Super Smash Bros', true, 'Come have fun and get your smash on!');
 INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('The Exotics', 'Basketball', true, 'Just Shoot it');
 INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Magic', 'Magic the Gathering', false, 'magic chickens');
-INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Test Team', 'Bike Polo', false, 'test blurb');
+INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Pen15', 'Bike Polo', false, 'beep boop beep');
 INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Cyclone jr.', 'Hockey', true, 'Grab your sticks and get on the ice');
 
 
