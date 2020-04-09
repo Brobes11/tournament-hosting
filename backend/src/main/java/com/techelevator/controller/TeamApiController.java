@@ -48,7 +48,7 @@ public class TeamApiController {
     }
 
     @PutMapping
-    public boolean updateUser(@Valid @RequestBody Team team, BindingResult result) {
+    public boolean updateTeam(@Valid @RequestBody Team team, BindingResult result) {
         return teamDao.updateTeam(team);
     }
 
@@ -73,5 +73,6 @@ public class TeamApiController {
     public void joinTeamRequest(@RequestBody TeamRequest request) {
         teamRequestDAO.createTeamRequest(request);
     }
+    
 
 }

@@ -65,6 +65,15 @@ CREATE TABLE tournamentRoster (
   constraint pk_tournamentRoster primary key (tourney_id, team_id)
 );
 
+INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('DirtyDan', '8FEzT3Yop2aA7MJNWw7dyg==', 'zFiGLfGKoTZPIVaF6bhqfRfFeSr3EsmgXfAlhZEw28rwi42Hou5NIjNVjJgIrtd6n50VseitoiS1hCyKqMJBIK0K+Tua5es8uh2pMerQoceujeMewXkGyAZbTdYSR172h2BhwiclB9UbhonIHsGlbW1kwGqsTddxA3jiy4vaCfI=', 'junk@junkmail.com', 'Ben', 'Peters');
+
 INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('The Sharks', 'Super Smash Bros', true, 'Come have fun and get your smash on!');
+INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('The Exotics', 'Basketball', true, 'Just Shoot it');
+INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Magic', 'Magic the Gathering', false, 'magic chickens');
+INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Test Team', 'Bike Polo', false, 'test blurb');
+INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Cyclone jr.', 'Hockey', true, 'Grab your sticks and get on the ice');
+
 
 COMMIT TRANSACTION;
+
+SELECT * FROM users;

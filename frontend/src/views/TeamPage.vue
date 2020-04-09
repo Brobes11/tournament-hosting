@@ -105,7 +105,13 @@ export default {
         }
       ],
 
-      roster: [],
+      roster: [
+        {
+          userName: '',
+          firstName: '',
+          lastName: '',
+        }
+      ],
 
     };
   },
@@ -113,8 +119,6 @@ export default {
   created() {
 
     this.getTeam();
-
-    this.initialize();
   },
 
   methods: {
@@ -133,19 +137,37 @@ export default {
       this.team = data;
       })
     },
-    
-    initialize() {
 
-      this.roster = [
-        {
-          userName: "test",
-          firstName: "Ben",
-          lastName: "Peters",
-          email: "ben@hotmail.com",
-          captainStatus: true
-        }
-      ];
-    },
+    getApplicants(teamId){
+       fetch(`${process.env.VUE_APP_REMOTE_API}/api/user?teamId=${teamId}isRequest=true`,  {
+      method: 'GET',
+      headers: {
+        Authorization: 'Bearer ' + auth.getToken(),
+      },
+      credentials: 'same-origin',
+    })
+    .then((response) => {
+        return response.json();
+      })
+    .then(requests => this.applicants = requests)
+    
+  },
+
+  getRoster(teamId){
+       fetch(`${process.env.VUE_APP_REMOTE_API}/api/user?teamId=${teamId}isRequest=false`,  {
+      method: 'GET',
+      headers: {
+        Authorization: 'Bearer ' + auth.getToken(),
+      },
+      credentials: 'same-origin',
+    })
+    .then((response) => {
+        return response.json();
+      })
+    .then(members => this.roster = members)
+    
+  },
+  
 
     deleteItem(item) {
       const index = this.roster.indexOf(item);

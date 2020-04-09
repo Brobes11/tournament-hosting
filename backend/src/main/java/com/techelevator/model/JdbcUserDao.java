@@ -151,4 +151,28 @@ public class JdbcUserDao implements UserDao {
         return true;
     }
 
+    @Override
+    public List<User> getUsersByRequest(long teamId) {
+        List<User> teamRequests = new ArrayList<>();
+        String sql = "SELECT id, username, role, email, first_name, last_name FROM users WHERE id IN (SELECT user_id FROM teamRequest WHERE team_id = ?);";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, teamId);
+        while (results.next()) {
+            User request = mapResultToUser(results);
+            teamRequests.add(request);
+        }
+        return teamRequests;
+    }
+
+    @Override
+    public List<User> getUsersByTeam(long teamId) {
+        List<User> teamRoster = new ArrayList<>();
+        String sql = "SELECT id, username, role, email, first_name, last_name FROM users WHERE id IN (SELECT user_id FROM teamRoster WHERE team_id = ?);";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, teamId);
+        while (results.next()) {
+            User member = mapResultToUser(results);
+            teamRoster.add(member);
+        }
+        return teamRoster;
+    }
+
 }

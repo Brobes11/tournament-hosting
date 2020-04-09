@@ -1,5 +1,7 @@
 package com.techelevator.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import com.techelevator.authentication.AuthProvider;
@@ -12,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -45,6 +48,14 @@ public class UserApiController {
             throw new UnauthorizedException();
         }
         return "Success";
+    }
+
+    @GetMapping
+    public List<User> getUsers(@RequestParam Long teamId, @RequestParam boolean isRequest) {
+        if (isRequest == true) {
+            return userDao.getUsersByRequest(teamId);
+        } 
+        return userDao.getUsersByTeam(teamId);
     }
 
     @GetMapping(path = "/{username}")
