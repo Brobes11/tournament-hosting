@@ -48,7 +48,9 @@ public class TeamApiController {
 
     @GetMapping("/{teamId}")
     public Team getTeamById(@PathVariable long teamId) {
-        return teamDao.getTeamById(teamId);
+        Team team = teamDao.getTeamById(teamId);
+
+        return team;
     }
 
     @PostMapping

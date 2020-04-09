@@ -33,14 +33,17 @@
 import auth from '@/auth';
 
   export default {
-      name:'JoinTeam',
+    name:'JoinTeam',
+
+    props:{
+      teamId: Number
+    },
+      
     data: () => ({
       dialog: false,
-      
-      
       request:{
         userId: '',
-        teamId: 7,
+        teamId: '',
         message: ''
       },
 
@@ -63,14 +66,17 @@ import auth from '@/auth';
          }
        })
       },
-
       setUser(){
         this.request.userId = auth.getUser().id;
+      },
+      setTeam(){
+        this.request.teamId = this.teamId;
       }
 
     },
     created(){
       this.setUser();
+      this.setTeam();
     },
 
 
