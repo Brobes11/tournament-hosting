@@ -23,7 +23,7 @@ public class JdbcTournamentDao implements TournamentDao {
     @Override
     public List<Tournament> getAllTournaments() {
         List<Tournament> allTournaments = new ArrayList<>();
-        String sql = "SELECT id, tourney_name, game, start_date, end_date, location, entry_fee, prize_desc FROM "
+        String sql = "SELECT id, tourney_name, game, start_date, end_date, location, entry_fee, prize_desc, accepting_entries FROM "
                 + "tournaments;";
         SqlRowSet results = JdbcTemplate.queryForRowSet(sql);
         while (results.next()) {
@@ -43,6 +43,7 @@ public class JdbcTournamentDao implements TournamentDao {
         tournament.setLocation(results.getString("location"));
         tournament.setEntryFee(results.getInt("entry_fee"));
         tournament.setPrizeDescription(results.getString("prize_desc"));
+        tournament.setAcceptingEntries(results.getBoolean("accepting_entries"));
         return tournament;
     }
 
