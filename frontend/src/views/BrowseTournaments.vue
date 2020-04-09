@@ -32,7 +32,7 @@
             <td>{{row.item.startDate}}</td>
             <td>{{row.item.prizeDescription}}</td>
             <td>
-                <join-tournament></join-tournament>
+                <join-tournament :tournamentId="row.item.tournamentId" @join-success="handleSnack()"></join-tournament>
             </td>
           </tr>
       </template>
@@ -72,6 +72,13 @@ import JoinTournament from '@/components/JoinTournament.vue';
             game:'',
             tournamentBio:''
         }],
+        teams:[{
+          teamName:'',
+          teamBio:'',
+          game:''          
+        }],
+        userId:'',
+        user: null,
       }
     },
 
@@ -91,6 +98,7 @@ import JoinTournament from '@/components/JoinTournament.vue';
         }
     },
      created() {
+       
       fetch(`${process.env.VUE_APP_REMOTE_API}/api/tournament`, {
         method: 'GET',
         headers: new Headers({
@@ -107,7 +115,17 @@ import JoinTournament from '@/components/JoinTournament.vue';
           this.tournaments = data;
         })
         .catch((err) => console.error(err));
-    }
+
+        this.getUserTeams();
+        this.getUserId();
+        this.getUser()
+    },
+
+
+
+
+
+    
   }
 </script>
 
