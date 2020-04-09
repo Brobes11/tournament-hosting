@@ -6,4 +6,10 @@ public interface TournamentDao {
 
     public List<Tournament> getAllTournaments();
 
+    public Tournament getTournamentById(long id);
+
+    public List<Tournament> getTournamentsByUser(long id);
+
+    public Tournament createTournament(Tournament newTournament, Long userId);
+
 }

@@ -46,4 +46,22 @@ public class JdbcTournamentDao implements TournamentDao {
         return tournament;
     }
 
+    @Override
+    public Tournament getTournamentById(long id) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public List<Tournament> getTournamentsByUser(long id) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Tournament createTournament(Tournament newTournament, Long userId) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }
