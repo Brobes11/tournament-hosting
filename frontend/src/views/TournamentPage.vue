@@ -24,6 +24,7 @@
 </template>
  
  <script>
+import auth from "@/auth";
 export default {
   data() {
     return {
@@ -32,7 +33,21 @@ export default {
   },
   methods: {
     getTournament() {
-      fetch();
+      const tourneyId = this.$route.params.id;
+      fetch(`${process.env.VUE_APP_REMOTE_API}/api/tournament/${tourneyId}`, {
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + auth.getToken()
+        }
+      })
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          }
+        })
+        .then(data => {
+          this.tournament = data;
+        });
     }
   },
   created() {
