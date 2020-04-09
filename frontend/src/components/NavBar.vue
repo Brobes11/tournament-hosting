@@ -37,8 +37,8 @@
           <h4 @click="$router.push('/create-team')" class="clickable">Create Team</h4>
         </v-list-item>
         <v-divider></v-divider>
-        <v-list-item v-for="(item, index) in userTeams" :key="index">
-          <v-list-item-title class="clickable">{{ item.title }}</v-list-item-title>
+        <v-list-item v-for="(item, index) in teams" :key="index">
+          <v-list-item-title class="clickable">{{ item.teamName }}</v-list-item-title>
         </v-list-item>
       </v-list>
     </v-menu>
@@ -80,21 +80,15 @@ import auth from "@/auth";
 
 export default {
   props:{
-    user: Object
+    user: Object,
+    teams: Array
   },
   data(){
     return{
+
     }
   },
   computed: {
-    userTeams() {
-      return [
-        { title: "Cincinnati Reds" },
-        { title: "Cincinnati Bearcats" },
-        { title: "Cincinnati Bengals" },
-        { title: "Cincinnati Royals" }
-      ];
-    },
     userTournaments() {
       return [
         { title: "World Series" },
