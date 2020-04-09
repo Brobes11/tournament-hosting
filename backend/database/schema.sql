@@ -89,6 +89,6 @@ INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Pen15',
 INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Cyclone jr.', 'Hockey', true, 'Grab your sticks and get on the ice');
 
 
-COMMIT TRANSACTION;''
+COMMIT TRANSACTION;
 
-select * FROM teamRequest;
+SELECT * FROM users;

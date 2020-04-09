@@ -1,39 +1,60 @@
 <template>
-<v-row justify="center">
-  <v-dialog v-model="dialog" persistent max-width="600px">
+  <v-row justify="center">
+    <v-dialog v-model="dialog" persistent max-width="600px">
       <template v-slot:activator="{ on }">
-        <v-btn color="primary" dark v-on="on"><v-icon dark>mdi-send</v-icon> Join  </v-btn>
+        <v-btn color="primary" dark v-on="on">Team Requests</v-btn>
       </template>
       <v-card>
         <v-card-title>
-          <span class="headline">Join Team</span>
+          <span class="headline">Sign Up Requests</span>
         </v-card-title>
-        <v-card-text>
-          <v-container>
-            <v-row>
-              <v-col cols="12">
-                <v-textarea outlined label="Message Team Captian" v-model="request.message" required></v-textarea>
-              </v-col>
-            </v-row>
-          </v-container>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click="dialog = false;">Close</v-btn>
-          <v-btn color="blue darken-1" text @click="dialog = false; sendJoinRequest()">Join</v-btn>
-        </v-card-actions>
+        <v-data-table :headers="headers" :items="requests" class="elevation-10">
+          <template v-slot:item="row">
+            <tr>
+              <td
+                class="clickable"
+                @click="$router.push('/team-page/' + row.item.teamId)"
+              >{{row.item.teamName}}</td>
+              <td>{{row.item.teamBio}}</td>
+              <td>
+                <v-btn class="mx-2" fab dark small color="primary">
+                  <v-icon dark>mdi-check-circle-outline</v-icon>
+                </v-btn>
+                <v-btn class="mx-2" fab dark small color="primary">
+                  <v-icon dark>mdi-minus-circle-outline</v-icon>
+                </v-btn>
+              </td>
+            </tr>
+          </template>
+        </v-data-table>
       </v-card>
-      </v-dialog>
-
+    </v-dialog>
   </v-row>
 </template>
 
 <script>
 export default {
-
-}
+  data() {
+    return {
+      dialog: false,
+      requests: [
+        {
+          teamName: "team team",
+          message: "Please let me play"
+        },
+        {
+          teamName: "team two",
+          message: "Let me play"
+        },
+        {
+          teamName: "team win",
+          message: "Whatever"
+        }
+      ]
+    };
+  }
+};
 </script>
 
 <style>
-
 </style>

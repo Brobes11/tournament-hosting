@@ -56,7 +56,8 @@ export default {
         endDate: "",
         location: "",
         entryFee: 0,
-        prizeDescription: ""
+        prizeDescription: "",
+        acceptingEntries: true
       },
       sports: [
         { id: 1, name: "Volleyball" },
