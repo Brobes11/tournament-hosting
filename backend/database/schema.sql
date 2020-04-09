@@ -59,7 +59,7 @@ CREATE TABLE tournamentRequest (
 CREATE TABLE tournamentRoster (
   tourney_id integer REFERENCES tournaments (id), 
   team_id integer REFERENCES teams (id),
-  constraint pk_tournamentRequest primary key (tourney_id, team_id)
+  constraint pk_tournamentRoster primary key (tourney_id, team_id)
 );
 
 INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('The Sharks', 'Super Smash Bros', true, 'Come have fun and get your smash on!');
