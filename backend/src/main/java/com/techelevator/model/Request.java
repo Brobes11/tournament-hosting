@@ -5,6 +5,7 @@ public class Request {
     private long senderId;
     private long recipientId;
     private String message;
+    private String senderName;
 
     public long getSenderId() {
         return senderId;
@@ -28,6 +29,14 @@ public class Request {
 
     public void setSenderId(long senderId) {
         this.senderId = senderId;
+    }
+
+    public void setSenderName(String senderName){
+        this.senderName = senderName;
+    }
+
+    public String getSenderName(){
+        return senderName;
     }
 
 }
