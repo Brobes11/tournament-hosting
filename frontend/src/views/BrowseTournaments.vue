@@ -28,7 +28,7 @@
           <tr>
             <td>{{row.item.tournamentName}}</td>
             <td>{{row.item.game}}</td>
-            <td>{{row.item.tournamentBio}}</td>
+            <td>{{row.item.prizeDescription}}</td>
             <td>
                 <join-team></join-team>
             </td>
@@ -41,14 +41,14 @@
 </template>
 
 <script>
-
+import auth from '@/auth.js';
   export default {
     components:{
     },
     data () {
       return {
         gamefilter:'All',
-        dropdown_games: ['Football', 'Baseball', 'Basketball', 'Volleyball', 'Super Smash', 'All']  ,
+        dropdown_games: ['All','Football', 'Baseball', 'Basketball', 'Volleyball', 'Super Smash']  ,
 
         headers: [
           {
@@ -58,13 +58,13 @@
             value: 'name',
           },
           { text: 'Game', value: 'game' },
-          { text: 'Tournament Bio', value: 'bio' },
+          { text: 'Tournament Prize', value: 'prize' },
           { text: '', value: 'join' }
         ],
         tournaments:[{
-            tournamentName:'World Series',
-            game:'Baseball',
-            tournamentBio:'Winner takes home title of World Champ'
+            tournamentName:'',
+            game:'',
+            tournamentBio:''
         }],
       }
     },
@@ -76,6 +76,24 @@
             }
             return this.tournaments.filter((team)=> team.game == this.gamefilter);
         }
+    },
+     created() {
+      fetch(`${process.env.VUE_APP_REMOTE_API}/api/tournament`, {
+        method: 'GET',
+        headers: new Headers({
+        Authorization: 'Bearer ' + auth.getToken(),
+        }),
+        credentials: 'same-origin',
+        })
+        .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } 
+        })
+        .then((data) => {
+          this.tournaments = data;
+        })
+        .catch((err) => console.error(err));
     }
   }
 </script>
