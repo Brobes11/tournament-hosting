@@ -7,33 +7,38 @@
       below to create your tournament.
     </v-card-text>
     <v-card-text>
-    <v-form>
+      <v-form>
         <v-text-field label="Tournament Name" v-model="tournament.tournamentName"></v-text-field>
         <template>
-            <v-menu>
-              <template v-slot:activator="{ on, attrs }">
-                <v-btn v-bind="attrs" v-on="on">{{tournament.game===''?'Sport/game':tournament.game}}</v-btn>
-              </template>
-              <v-list>
-                <v-list-item v-for="sport in sports" :key="sport.id" @click="tournament.game=sport.name">
-                  <v-list-item-title>{{sport.name}}</v-list-item-title>
-                  <v-list-item-action>
-                    <v-btn icon>
-                      <v-icon color="grey lighten-1">mdi-information</v-icon>
-                    </v-btn>
-                  </v-list-item-action>
-                </v-list-item>
-              </v-list>
-              </v-menu>
-          </template>
+          <v-menu>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn v-bind="attrs" v-on="on">{{tournament.game===''?'Sport/game':tournament.game}}</v-btn>
+            </template>
+            <v-list>
+              <v-list-item
+                v-for="sport in sports"
+                :key="sport.id"
+                @click="tournament.game=sport.name"
+              >
+                <v-list-item-title>{{sport.name}}</v-list-item-title>
+                <v-list-item-action>
+                  <v-btn icon>
+                    <v-icon color="grey lighten-1">mdi-information</v-icon>
+                  </v-btn>
+                </v-list-item-action>
+              </v-list-item>
+            </v-list>
+          </v-menu>
+        </template>
         <v-text-field type="date" label="Start Date" v-model="tournament.startDate"></v-text-field>
         <v-text-field type="date" label="End Date" v-model="tournament.endDate"></v-text-field>
+        <v-text-field label="Location" v-model="tournament.location"></v-text-field>
         <v-text-field label="Entry Fee" v-model="tournament.entryFee"></v-text-field>
         <v-textarea label="Prize Description" v-model="tournament.prizeDescription"></v-textarea>
-        <v-card-actions>
-          <v-btn color="success" type="submit">Create Your Tournament</v-btn>
-        </v-card-actions>
       </v-form>
+      <v-card-actions>
+        <v-btn color="success" @click="createTournament">Create Your Tournament</v-btn>
+      </v-card-actions>
     </v-card-text>
   </v-card>
 </template>
@@ -50,12 +55,8 @@ export default {
         startDate: "",
         endDate: "",
         location: "",
-        entryFee: "",
+        entryFee: 0,
         prizeDescription: ""
-      },
-      user: {
-        userId: "",
-        userName: ""
       },
       sports: [
         { id: 1, name: "Volleyball" },
@@ -69,13 +70,15 @@ export default {
         { id: 9, name: "Magic The Gathering" },
         { id: 10, name: "Super Smash Brothers" },
         { id: 11, name: "Other" }
-      ],
-       methods: {
+      ]
+    };
+  },
+  methods: {
     createTournament() {
-      
       fetch(
-        `${process.env.VUE_APP_REMOTE_API}/api/team?tournamentId=${
-          auth.getTournament().id}`,
+        `${process.env.VUE_APP_REMOTE_API}/api/tournament?userId=${
+          auth.getUser().id
+        }`,
         {
           method: "POST",
           headers: {
@@ -91,8 +94,6 @@ export default {
         }
       });
     }
-  }
-    };
   }
 };
 </script>
