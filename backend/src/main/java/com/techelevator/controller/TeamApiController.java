@@ -42,7 +42,7 @@ public class TeamApiController {
         return teamDao.getAllTeams();
     }
 
-    @GetMapping("/team-page")
+    @GetMapping("/{teamId}")
     public Team getTeamById(@PathVariable long teamId) {
         return teamDao.getTeamById(teamId);
     }
