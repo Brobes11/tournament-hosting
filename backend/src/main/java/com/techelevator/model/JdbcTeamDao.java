@@ -40,12 +40,12 @@ public class JdbcTeamDao implements TeamDao {
 
         long newId = jdbcTemplate.queryForObject(
                 "INSERT INTO teams (team_name, game, accepting_members, team_bio) VALUES (?, ?, ?, ?) RETURNING id",
-                Long.class, newTeam.getTeamName(), newTeam.getGame(), newTeam.isAcceptingNewMembers(), newTeam.getTeamBio());
+                Long.class, newTeam.getTeamName(), newTeam.getGame(), newTeam.isAcceptingNewMembers(),
+                newTeam.getTeamBio());
 
-       
         newTeam.setTeamId(newId);
-         String makeCaptain= "INSERT INTO teamroster (user_id,team_id,captain )VALUES (?,?,true)";
-         jdbcTemplate.update(makeCaptain,userId,newId);
+        String makeCaptain = "INSERT INTO teamroster (user_id,team_id,captain )VALUES (?,?,true)";
+        jdbcTemplate.update(makeCaptain, userId, newId);
         return newTeam;
     }
 
@@ -85,8 +85,8 @@ public class JdbcTeamDao implements TeamDao {
     @Override
     public List<Team> getTeamsByUser(long id) {
         List<Team> userTeams = new ArrayList<>();
-        String sql = "SELECT id, team_name, game, accepting_members, team_bio from teams "+
-        "WHERE id IN (SELECT team_id FROM teamroster WHERE user_id = ?)";
+        String sql = "SELECT id, team_name, game, accepting_members, team_bio from teams "
+                + "WHERE id IN (SELECT team_id FROM teamroster WHERE user_id = ?)";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
         while (results.next()) {
             Team team = mapResultToTeam(results);
