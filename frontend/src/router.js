@@ -71,7 +71,7 @@ const router = new Router({
     }
   },
   {
-    path: "/team-page",
+    path: "/team-page/:id",
     name: "team-page",
     component: TeamPage,
     meta: {

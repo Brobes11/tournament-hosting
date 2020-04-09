@@ -77,6 +77,11 @@ export default {
   },
   data() {
     return {
+      team: {
+        teamName: '',
+        game: '',
+        teamBio: '',
+      },
       searchApplicant: "",
       searchRoster: "",
       pendingHeaders: [
@@ -99,13 +104,13 @@ export default {
 
       roster: [],
 
-      team:null
     };
   },
 
   created() {
 
-    fetch(`${process.env.VUE_APP_REMOTE_API}/api/team/team-page`,  {
+    const teamId = this.$route.params.id;
+    fetch(`${process.env.VUE_APP_REMOTE_API}/api/team/${teamId}`,  {
       method: 'GET',
       headers: {
         Authorization: 'Bearer ' + auth.getToken(),
@@ -115,7 +120,7 @@ export default {
     .then((response) => {
         return response.json();
       })
-    .then(teamFromApi => this.team = teamFromApi)
+    .then(data => this.team = data)
 
     this.initialize();
   },
@@ -133,7 +138,7 @@ export default {
 
       this.roster = [
         {
-           userName: "test",
+          userName: "test",
           firstName: "Ben",
           lastName: "Peters",
           email: "ben@hotmail.com",
