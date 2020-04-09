@@ -71,8 +71,6 @@ export default {
      } 
   },
   created(){
-      this.updateTeam();
-
       this.resetTeam();
   }
   
