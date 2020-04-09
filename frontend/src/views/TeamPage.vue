@@ -15,8 +15,8 @@
           </v-col>
           <v-col>
             <v-card-actions>
-              <edit-team :current-team="team" @update-team="getTeam()"/>
-          </v-card-actions>
+              <edit-team :current-team="team" @update-team="getTeam()" />
+            </v-card-actions>
           </v-col>
         </v-row>
         <p>{{team.teamBio}}</p>
@@ -36,7 +36,15 @@
               hide-details
             ></v-text-field>
           </v-card-title>
-          <v-data-table :headers="pendingHeaders" :items="applicants" :search="searchApplicant"></v-data-table>
+          <v-data-table :headers="pendingHeaders" :items="applicants" :search="searchApplicant">
+            <template v-slot:item="row">
+              <tr>
+                <td>{{row.item.username}}</td>
+                <td>{{row.item.firstName}}</td>
+                <td>{{row.item.lastName}}</td>
+              </tr>
+            </template>
+          </v-data-table>
         </v-card>
       </v-col>
 
@@ -54,6 +62,13 @@
             ></v-text-field>
           </v-card-title>
           <v-data-table :headers="rosterHeaders" :items="roster" :search="searchRoster">
+            <template v-slot:item="row">
+              <tr>
+                <td>{{row.item.username}}</td>
+                <td>{{row.item.firstName}}</td>
+                <td>{{row.item.lastName}}</td>
+              </tr>
+            </template>
             <template v-slot:item.captainStatus="{ item }">
               <v-simple-checkbox v-model="item.captainStatus" disabled></v-simple-checkbox>
             </template>
@@ -68,13 +83,12 @@
 </template>
 
 <script>
-import EditTeam from "@/components/EditTeam.vue"
-import auth from '@/auth';
+import EditTeam from "@/components/EditTeam.vue";
+import auth from "@/auth";
 
 export default {
-  components : {
+  components: {
     EditTeam
-
   },
   data() {
     return {
@@ -82,14 +96,14 @@ export default {
       searchApplicant: "",
       searchRoster: "",
       pendingHeaders: [
-        { text: "Username", value: "userName" },
+        { text: "Username", value: "username" },
         { text: "First Name", value: "firstName" },
         { text: "Last Name", value: "lastName" },
         { text: "", value: "accept" }
       ],
 
       rosterHeaders: [
-        { text: "Username", value: "userName" },
+        { text: "Username", value: "username" },
         { text: "First Name", value: "firstName" },
         { text: "Last Name", value: "lastName" },
         { text: "Email Address", value: "email" },
@@ -99,75 +113,82 @@ export default {
 
       applicants: [
         {
-          userName: '',
-          firstName: '',
-          lastName: '',
+          userName: "",
+          firstName: "",
+          lastName: ""
         }
       ],
 
       roster: [
         {
-          userName: '',
-          firstName: '',
-          lastName: '',
+          userName: "",
+          firstName: "",
+          lastName: ""
         }
-      ],
-
+      ]
     };
   },
 
   created() {
-
     this.getTeam();
   },
 
   methods: {
-     getTeam(){
+    getTeam() {
       const teamId = this.$route.params.id;
-    fetch(`${process.env.VUE_APP_REMOTE_API}/api/team/${teamId}`,  {
-      method: 'GET',
-      headers: {
-        Authorization: 'Bearer ' + auth.getToken(),
-      },
-    })
-    .then((response) => {
-        return response.json();
+      fetch(`${process.env.VUE_APP_REMOTE_API}/api/team/${teamId}`, {
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + auth.getToken()
+        }
       })
-    .then(data => {
-      this.team = data;
-      })
+        .then(response => {
+          return response.json();
+        })
+        .then(data => {
+          this.team = data;
+          this.getApplicants(data.teamId);
+          this.getRoster(data.teamId);
+        });
     },
 
-    getApplicants(teamId){
-       fetch(`${process.env.VUE_APP_REMOTE_API}/api/user?teamId=${teamId}isRequest=true`,  {
-      method: 'GET',
-      headers: {
-        Authorization: 'Bearer ' + auth.getToken(),
-      },
-      credentials: 'same-origin',
-    })
-    .then((response) => {
-        return response.json();
-      })
-    .then(requests => this.applicants = requests)
-    
-  },
+    getApplicants(teamId) {
+      fetch(
+        `${process.env.VUE_APP_REMOTE_API}/api/user?teamId=${teamId}&isRequest=true`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: "Bearer " + auth.getToken()
+          },
+          credentials: "same-origin"
+        }
+      )
+        .then(response => {
+          return response.json();
+        })
+        .then(data => (this.applicants = data));
+    },
 
-  getRoster(teamId){
-       fetch(`${process.env.VUE_APP_REMOTE_API}/api/user?teamId=${teamId}isRequest=false`,  {
-      method: 'GET',
-      headers: {
-        Authorization: 'Bearer ' + auth.getToken(),
-      },
-      credentials: 'same-origin',
-    })
-    .then((response) => {
-        return response.json();
-      })
-    .then(members => this.roster = members)
-    
-  },
-  
+    getRoster(teamId) {
+      fetch(
+        `${process.env.VUE_APP_REMOTE_API}/api/user?teamId=${teamId}&isRequest=false`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: "Bearer " + auth.getToken()
+          },
+          credentials: "same-origin"
+        }
+      )
+        .then(response => {
+          return response.json();
+        })
+        .then(members => (this.roster = members));
+    },
+
+    declineRequest(userId, teamId) {
+
+    },
 
     deleteItem(item) {
       const index = this.roster.indexOf(item);
