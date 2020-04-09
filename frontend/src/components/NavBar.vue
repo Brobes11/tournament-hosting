@@ -38,7 +38,7 @@
         </v-list-item>
         <v-divider></v-divider>
         <v-list-item v-for="(item, index) in teams" :key="index">
-          <v-list-item-title class="clickable">{{ item.teamName }}</v-list-item-title>
+          <v-list-item-title class="clickable" @click="$router.push('/team-page/' + item.teamId)">{{ item.teamName }}</v-list-item-title>
         </v-list-item>
       </v-list>
     </v-menu>
@@ -55,7 +55,7 @@
         </v-list-item>
         <v-divider></v-divider>
         <v-list-item v-for="(item, index) in userTournaments" :key="index">
-          <v-list-item-title class="clickable">{{ item.title }}</v-list-item-title>
+          <v-list-item-title class="clickable" >{{ item.title }}</v-list-item-title>
         </v-list-item>
       </v-list>
     </v-menu>

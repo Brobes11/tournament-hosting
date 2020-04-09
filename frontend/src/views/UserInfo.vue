@@ -15,7 +15,15 @@
     </v-card>
     <v-row class="mx-auto">
       <v-col>
-        <v-data-table :headers="teamHeaders" :items="teams" :items-per-page="5" class="elevation-1"></v-data-table>
+        <v-data-table :headers="teamHeaders" :items="teams" :items-per-page="5" class="elevation-1">
+          <template v-slot:item="row">
+          <tr>
+            <td class="clickable" @click="$router.push('/team-page/' + row.item.teamId)">{{row.item.teamName}}</td>
+            <td>{{row.item.game}}</td>
+            <td>{{row.item.teamBio}}</td>
+          </tr>
+      </template>
+        </v-data-table>
       </v-col>
       <v-col>
         <v-data-table :headers="tourneyHeaders" :items="tourneys" :items-per-page="5" class="elevation-1"></v-data-table>
@@ -128,4 +136,7 @@ export default {
 </script>
 
 <style>
+  .clickable{
+    cursor: pointer;
+  }
 </style>
