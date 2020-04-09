@@ -36,10 +36,10 @@ import auth from '@/auth';
       name:'JoinTeam',
     data: () => ({
       dialog: false,
-      text: 'Hello, I\'m a snackbar',
+      
       
       request:{
-        userId: 1,
+        userId: '',
         teamId: 7,
         message: ''
       },
@@ -62,8 +62,15 @@ import auth from '@/auth';
            this.$emit('join-success');
          }
        })
+      },
+
+      setUser(){
+        this.request.userId = auth.getUser().id;
       }
 
+    },
+    created(){
+      this.setUser();
     },
 
 
