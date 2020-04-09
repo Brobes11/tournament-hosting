@@ -21,6 +21,7 @@
     </v-col>
 
   </v-row>
+  <v-switch inset v-model="show_closed_tournaments" :label="show_closed_tournaments? 'Showing All Tournaments':'Showing Only Open Tournaments'"></v-switch>
 </v-container>
 
 <v-data-table :headers="headers" :items="sortTournaments" class="elevation-10">
@@ -52,7 +53,7 @@ import JoinTournament from '@/components/JoinTournament.vue';
       return {
         gamefilter:'All',
         dropdown_games: ['All','Football', 'Baseball', 'Basketball', 'Volleyball', 'Super Smash']  ,
-
+        show_closed_tournaments: true,
         headers: [
           {
             text: 'Tournament',
@@ -74,10 +75,17 @@ import JoinTournament from '@/components/JoinTournament.vue';
 
     computed:{
         sortTournaments(){
-            if(this.gamefilter === "All"){
+            if(this.gamefilter === "All" && this.show_closed_tournaments){
                 return this.tournaments;
+            } else if(this.gamefilter !== "All" && this.show_closed_tournaments){
+            return this.tournaments.filter((team)=> team.game === this.gamefilter);
+            } else if(this.gamefilter === "All" && !this.show_closed_tournaments){
+              return this.tournaments.filter((team)=> team.acceptingEntries === true);
+            } else {
+              return this.tournaments.filter((team)=> {
+                return team.acceptingEntries === true && team.game === this.gamefilter
+                });
             }
-            return this.tournaments.filter((team)=> team.game == this.gamefilter);
         }
     },
      created() {
