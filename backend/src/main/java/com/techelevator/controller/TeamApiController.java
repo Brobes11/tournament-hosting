@@ -4,15 +4,13 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import com.techelevator.model.JdbcRequestDAO;
 import com.techelevator.model.JdbcTeamDao;
-import com.techelevator.model.JdbcTeamRequestDAO;
+import com.techelevator.model.Request;
 import com.techelevator.model.Team;
-import com.techelevator.model.TeamRequest;
-import com.techelevator.model.TeamRequestDAO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,7 +30,7 @@ public class TeamApiController {
     private JdbcTeamDao teamDao;
 
     @Autowired
-    private JdbcTeamRequestDAO teamRequestDAO;
+    private JdbcRequestDAO requestDAO;
 
     @Autowired
     public TeamApiController(JdbcTeamDao teamDao) {
@@ -70,8 +68,8 @@ public class TeamApiController {
     }
 
     @PostMapping("/join-request")
-    public void joinTeamRequest(@RequestBody TeamRequest request) {
-        teamRequestDAO.createTeamRequest(request);
+    public void joinTeamRequest(@RequestBody Request request) {
+        requestDAO.createTeamRequest(request);
     }
     
 

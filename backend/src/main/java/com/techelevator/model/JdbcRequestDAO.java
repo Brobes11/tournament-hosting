@@ -8,20 +8,20 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-public class JdbcTeamRequestDAO implements TeamRequestDAO {
+public class JdbcRequestDAO implements RequestDAO {
     
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public JdbcTeamRequestDAO(DataSource dataSource) {
+    public JdbcRequestDAO(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
 
     @Override
-    public TeamRequest createTeamRequest(TeamRequest request) {
+    public Request createTeamRequest(Request request) {
         String sql = "INSERT into teamrequest(user_id, team_id, message) VALUES(?,?,?);" ;
-        jdbcTemplate.update(sql, request.getUserId(), request.getTeamId(), request.getMessage() );
+        jdbcTemplate.update(sql, request.getSenderId(), request.getRecipientId(), request.getMessage() );
         return null;
     }
 

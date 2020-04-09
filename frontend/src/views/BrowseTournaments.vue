@@ -29,6 +29,7 @@
           <tr>
             <td>{{row.item.tournamentName}}</td>
             <td>{{row.item.game}}</td>
+            <td>{{row.item.startDate}}</td>
             <td>{{row.item.prizeDescription}}</td>
             <td>
                 <join-tournament></join-tournament>
@@ -62,6 +63,7 @@ import JoinTournament from '@/components/JoinTournament.vue';
             value: 'name',
           },
           { text: 'Game', value: 'game' },
+          { text: 'Start Date', value: 'date' },
           { text: 'Tournament Prize', value: 'prize' },
           { text: '', value: 'join' }
         ],

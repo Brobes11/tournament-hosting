@@ -42,8 +42,8 @@ import auth from '@/auth';
     data: () => ({
       dialog: false,
       request:{
-        userId: '',
-        teamId: '',
+        senderId: '',
+        recipientId: '',
         message: ''
       },
 
@@ -67,10 +67,10 @@ import auth from '@/auth';
        })
       },
       setUser(){
-        this.request.userId = auth.getUser().id;
+        this.request.senderId = auth.getUser().id;
       },
       setTeam(){
-        this.request.teamId = this.teamId;
+        this.request.recipientId = this.teamId;
       }
 
     },

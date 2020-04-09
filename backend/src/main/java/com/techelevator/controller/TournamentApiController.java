@@ -8,7 +8,6 @@ import com.techelevator.model.JdbcTournamentDao;
 import com.techelevator.model.Tournament;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.integration.IntegrationProperties.Jdbc;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
