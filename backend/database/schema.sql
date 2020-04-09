@@ -1,8 +1,10 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS tournaments;
+DROP TABLE IF EXISTS tournamentRequest;
+DROP TABLE IF EXISTS tournamentRoster;
 DROP TABLE IF EXISTS teamRoster;
 DROP TABLE IF EXISTS teamRequest;
+DROP TABLE IF EXISTS tournaments;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS teams;
 
@@ -46,7 +48,8 @@ CREATE TABLE tournaments (
   start_date DATE NOT NULL,
   end_date DATE NOT NULL,
   location varchar(255) NOT NULL, 
-  prize_desc varchar(300) NOT NULL
+  prize_desc varchar(300) NOT NULL,
+  tournament_owner integer REFERENCES users(id)
 );
 
 CREATE TABLE tournamentRequest (
