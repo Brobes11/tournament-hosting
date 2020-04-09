@@ -25,7 +25,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" text @click="dialog = false; resetTeam()">Cancel</v-btn>
-          <v-btn color="blue darken-1" text @click="dialog = false">Save</v-btn>
+          <v-btn color="blue darken-1" text @click="dialog = false; updateTeam()">Save</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import auth from '@/auth';
 export default {
     props:{
         currentTeam: Object
@@ -51,9 +52,27 @@ export default {
   methods:{
      resetTeam(){
          this.team = Object.assign({},this.currentTeam);
+     },
+     updateTeam(){
+       fetch(`${process.env.VUE_APP_REMOTE_API}/api/team`,{
+         method:'PUT',
+         headers:{
+            Authorization: 'Bearer ' + auth.getToken(),
+            Accept: "application/json",
+           'content-type': 'application/json'
+         },
+         body: JSON.stringify(this.team)
+       })
+       .then(response =>{
+         if(response.ok){
+           this.$emit('update-team');
+         }
+       })
      } 
   },
   created(){
+      this.updateTeam();
+
       this.resetTeam();
   }
   

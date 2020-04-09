@@ -15,7 +15,7 @@
           </v-col>
           <v-col>
             <v-card-actions>
-              <edit-team :current-team="team"/>
+              <edit-team :current-team="team" @update-team="getTeam()"/>
           </v-card-actions>
           </v-col>
         </v-row>
@@ -74,6 +74,7 @@ import auth from '@/auth';
 export default {
   components : {
     EditTeam
+
   },
   data() {
     return {
@@ -81,6 +82,7 @@ export default {
         teamName: '',
         game: '',
         teamBio: '',
+        acceptingMembers: '',
       },
       searchApplicant: "",
       searchRoster: "",
@@ -109,23 +111,28 @@ export default {
 
   created() {
 
-    const teamId = this.$route.params.id;
-    fetch(`${process.env.VUE_APP_REMOTE_API}/api/team/${teamId}`,  {
-      method: 'GET',
-      headers: {
-        Authorization: 'Bearer ' + auth.getToken(),
-      },
-      credentials: 'same-origin',
-    })
-    .then((response) => {
-        return response.json();
-      })
-    .then(data => this.team = data)
+    this.getTeam();
 
     this.initialize();
   },
 
   methods: {
+     getTeam(){
+      const teamId = this.$route.params.id;
+    fetch(`${process.env.VUE_APP_REMOTE_API}/api/team/${teamId}`,  {
+      method: 'GET',
+      headers: {
+        Authorization: 'Bearer ' + auth.getToken(),
+      },
+    })
+    .then((response) => {
+        return response.json();
+      })
+    .then(data => {
+      this.team = data;
+      })
+    },
+    
     initialize() {
       this.applicants = [
         {

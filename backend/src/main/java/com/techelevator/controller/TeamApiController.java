@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,6 +45,11 @@ public class TeamApiController {
             return teamDao.getAllTeams();
         }
         return teamDao.getTeamsByUser(userId);
+    }
+
+    @PutMapping
+    public boolean updateUser(@Valid @RequestBody Team team, BindingResult result) {
+        return teamDao.updateTeam(team);
     }
 
     @GetMapping("/{teamId}")

@@ -38,4 +38,11 @@ public interface TeamDao {
      */
     public List<Team> getTeamsByUser(long id);
 
+    /** 
+     * update team name, game, and bio in the database
+     * 
+     * @return a boolean if successful
+    */
+    public boolean updateTeam(Team team);
+
 }

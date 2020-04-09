@@ -94,4 +94,13 @@ public class JdbcTeamDao implements TeamDao {
         return userTeams;
     }
 
+    @Override
+    public boolean updateTeam(Team team) {
+        String sql = "UPDATE teams SET team_name = ?, game = ?, " +
+        "team_bio = ?, accepting_members = ? WHERE id = ?";
+        jdbcTemplate.update(sql, team.getTeamName(),
+         team.getGame(), team.getTeamBio(), team.isAcceptingNewMembers(), team.getTeamId());
+        return true;
+    }
+
 }
