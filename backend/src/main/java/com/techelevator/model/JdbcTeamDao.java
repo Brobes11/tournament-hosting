@@ -36,7 +36,7 @@ public class JdbcTeamDao implements TeamDao {
      * @param teamBio             team bio provided by team captain.
      * @return the new team.
      */
-    public Team createTeam(Team newTeam) {
+    public Team createTeam(Team newTeam, Long userId) {
 
         long newId = jdbcTemplate.queryForObject(
                 "INSERT INTO teams (team_name, game, accepting_members, team_bio) VALUES (?, ?, ?, ?) RETURNING id",
@@ -44,7 +44,8 @@ public class JdbcTeamDao implements TeamDao {
 
        
         newTeam.setTeamId(newId);
-     
+         String makeCaptain= "INSERT INTO teamroster (user_id,team_id,captain )VALUES (?,?,true)";
+         jdbcTemplate.update(makeCaptain,userId,newId);
         return newTeam;
     }
 

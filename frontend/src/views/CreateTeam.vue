@@ -21,7 +21,7 @@
         v-bind="attrs"
         v-on="on"
       >
-      Sport/game
+     {{team.game===''?'Sport/game':team.game}} 
       </v-btn>
     </template>
 
@@ -107,7 +107,7 @@ export default {
 methods:{
   createTeam() {
     this.team.acceptingMembers=this.acceptingMembersInput==="true";
-    fetch(`${process.env.VUE_APP_REMOTE_API}/api/team`,{
+    fetch(`${process.env.VUE_APP_REMOTE_API}/api/team?userId=${auth.getUser().id}`,{
        method: "POST",
         headers: {
           Authorization: 'Bearer ' + auth.getToken(),
@@ -118,29 +118,18 @@ methods:{
       })
       .then((response)=>{
         if(response.ok){
-          return response.json;
-
-        }else{
-          this.registrationErrors=true;
-          throw "Register returned: " + response.status;
-        }
-
-      })
-      .then((parsedData)=>{
-        if(parsedData.success){
-          
-          this.$router.push({
-            path:"/team-page" , 
-            query:{registration:'success'}
-          });
-        }else{
-          this.registrationErros=true;
-        }
         
-      })
-      .catch((err)=> console.error(err));
-    },
-  },
+           this.$router.push( "/user-info" );
+
+       
+        }
+      
+        }
+      )
+     
+    }
+  }
+  };
   
-};
+
 </script>
