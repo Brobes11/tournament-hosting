@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @RestController
 @CrossOrigin
 @RequestMapping("/api/team")
@@ -30,43 +29,41 @@ public class TeamApiController {
 
     @Autowired
     private JdbcTeamDao teamDao;
+
+    @Autowired
     private JdbcTeamRequestDAO teamRequestDAO;
 
     @Autowired
-    public TeamApiController(JdbcTeamDao teamDao){
+    public TeamApiController(JdbcTeamDao teamDao) {
         this.teamDao = teamDao;
     }
 
-    @GetMapping("/browse-teams")
-    public List<Team> getAllTeams(){
-        return teamDao.getAllTeams();
+    @GetMapping
+    public List<Team> getAllTeams(@RequestParam(required = false) Long userId) {
+        if (userId == null) {
+            return teamDao.getAllTeams();
+        }
+        return teamDao.getTeamsByUser(userId);
     }
 
     @GetMapping("/{teamId}")
     public Team getTeamById(@PathVariable long teamId) {
         return teamDao.getTeamById(teamId);
     }
-        
-
-    @GetMapping("/user-teams/{id}")
-    public List<Team> getAllUsersTeams(@PathVariable long id){
-        return teamDao.getTeamsByUser(id);
-    }
 
     @PostMapping
-    public Team createTeam(@Valid @RequestBody Team team, BindingResult result){
-        
-        if (result.hasErrors()==false) {
-         return teamDao.createTeam(team);
-               
-            }
+    public Team createTeam(@Valid @RequestBody Team team, BindingResult result) {
+
+        if (result.hasErrors() == false) {
+            return teamDao.createTeam(team);
+
+        }
         return null;
     }
 
     @PostMapping("/join-request")
-    public void joinTeamRequest(@RequestBody TeamRequest request){
+    public void joinTeamRequest(@RequestBody TeamRequest request) {
         teamRequestDAO.createTeamRequest(request);
     }
-
 
 }

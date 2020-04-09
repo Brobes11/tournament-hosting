@@ -8,7 +8,7 @@
           <div class="overline">Username: {{user.username}}</div>
           <div class="overline">Email: {{user.email}}</div>
           <v-card-actions>
-            <edit-user :current-user="user"/>
+            <edit-user :current-user="user" @update-user="getUser()"/>
           </v-card-actions>
         </v-list-item-content>
       </v-list-item>
@@ -91,22 +91,8 @@ export default {
     };
   },
   methods:{
-    getUserTeams(userId){
-       fetch(`${process.env.VUE_APP_REMOTE_API}/api/team/user-teams/${userId}`,  {
-      method: 'GET',
-      headers: {
-        Authorization: 'Bearer ' + auth.getToken(),
-      },
-      credentials: 'same-origin',
-    })
-    .then((response) => {
-        return response.json();
-      })
-    .then(teamsFromApi => this.teams = teamsFromApi)
-    }
-  },
-  beforeCreate(){
-    let username = auth.getUser().sub;
+    getUser(){
+      let username = auth.getUser().sub;
     fetch(`${process.env.VUE_APP_REMOTE_API}/api/user/${username}`,  {
       method: 'GET',
       headers: {
@@ -120,6 +106,23 @@ export default {
       this.user = userFromApi;
       this.getUserTeams(userFromApi.id)
       })
+    },
+    getUserTeams(userId){
+       fetch(`${process.env.VUE_APP_REMOTE_API}/api/team?userId=${userId}`,  {
+      method: 'GET',
+      headers: {
+        Authorization: 'Bearer ' + auth.getToken(),
+      },
+      credentials: 'same-origin',
+    })
+    .then((response) => {
+        return response.json();
+      })
+    .then(teamsFromApi => this.teams = teamsFromApi)
+    }
+  },
+  created(){
+    this.getUser()
   }
 };
 </script>

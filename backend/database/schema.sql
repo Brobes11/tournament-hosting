@@ -1,5 +1,6 @@
 BEGIN TRANSACTION;
 
+DROP TABLE IF EXISTS tournaments;
 DROP TABLE IF EXISTS teamRoster;
 DROP TABLE IF EXISTS teamRequest;
 DROP TABLE IF EXISTS users;
@@ -35,7 +36,30 @@ CREATE TABLE teamRequest (
   user_id integer REFERENCES users (id),
   team_id integer REFERENCES teams (id),
   message varchar(300),
-  PRIMARY KEY (user_id, team_id)
+  constraint pk_teamRequest primary key (user_id, team_id)
+);
+
+CREATE TABLE tournaments (
+  id serial PRIMARY KEY,
+  tourney_name varchar(255) NOT NULL,
+  game varchar(255) NOT NULL,
+  start_date DATE NOT NULL,
+  end_date DATE NOT NULL,
+  location varchar(255) NOT NULL, 
+  prize_desc varchar(300) NOT NULL
+);
+
+CREATE TABLE tournamentRequest (
+  tourney_id integer REFERENCES tournaments (id), 
+  team_id integer REFERENCES teams (id),
+  message varchar(300),
+  constraint pk_tournamentRequest primary key (tourney_id, team_id)
+);
+
+CREATE TABLE tournamentRoster (
+  tourney_id integer REFERENCES tournaments (id), 
+  team_id integer REFERENCES teams (id),
+  constraint pk_tournamentRequest primary key (tourney_id, team_id)
 );
 
 INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('The Sharks', 'Super Smash Bros', true, 'Come have fun and get your smash on!');

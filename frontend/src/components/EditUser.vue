@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import auth from '@/auth';
 export default {
     props:{
         currentUser: Object
@@ -51,9 +52,11 @@ export default {
          this.user = Object.assign({},this.currentUser);
      },
      updateUser(){
-       fetch(`${process.env.VUE_APP_REMOTE_API}/api/user/update`,{
+       fetch(`${process.env.VUE_APP_REMOTE_API}/api/user`,{
          method:'PUT',
          headers:{
+            Authorization: 'Bearer ' + auth.getToken(),
+            Accept: "application/json",
            'content-type': 'application/json'
          },
          body: JSON.stringify(this.user)
