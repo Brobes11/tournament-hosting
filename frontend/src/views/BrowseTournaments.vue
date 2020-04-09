@@ -30,7 +30,7 @@
             <td>{{row.item.game}}</td>
             <td>{{row.item.prizeDescription}}</td>
             <td>
-                <join-team></join-team>
+                <join-tournament></join-tournament>
             </td>
           </tr>
       </template>
@@ -42,8 +42,11 @@
 
 <script>
 import auth from '@/auth.js';
+import JoinTournament from '@/components/JoinTournament.vue';
+
   export default {
     components:{
+      JoinTournament
     },
     data () {
       return {

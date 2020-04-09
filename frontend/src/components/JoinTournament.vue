@@ -1,0 +1,94 @@
+<template>
+  <v-row justify="center">
+
+    <v-dialog v-model="dialog" persistent max-width="600px">
+      <template v-slot:activator="{ on }">
+        <v-btn color="primary" dark v-on="on"><v-icon dark>mdi-send</v-icon> Join  </v-btn>
+      </template>
+      <v-card>
+        <v-card-title>
+          <span class="headline">Join Tournament</span>
+        </v-card-title>
+        <v-card-text>
+          <v-container>
+            <v-row>
+              <v-col cols="12">
+                <v-textarea outlined label="Message Tournament Host" v-model="request.message" required></v-textarea>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="blue darken-1" text @click="dialog = false;">Close</v-btn>
+          <v-btn color="blue darken-1" text @click="dialog = false; sendJoinRequest()">Join</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
+  </v-row>
+</template>
+
+<script>
+import auth from '@/auth';
+
+  export default {
+    name:'JoinTournament',
+
+    props:{
+      tournamentId: Number,
+      teamId: Number
+    },
+      
+    data: () => ({
+      dialog: false,
+      request:{
+        tourneyId: '',
+        teamId: '',
+        message: ''
+      },
+
+    }),
+
+      methods:{
+      sendJoinRequest(){
+        fetch(`${process.env.VUE_APP_REMOTE_API}/api/tournament/join-request`,{
+         method:'POST',
+         headers:{
+            Authorization: 'Bearer ' + auth.getToken(),
+            Accept: "application/json",
+           'content-type': 'application/json'
+         },
+         body: JSON.stringify(this.request)
+       })
+       .then(response =>{
+         if(response.ok){
+           this.$emit('join-success');
+         }
+       })
+      },
+      setTournament(){
+        this.request.tourneyId = '1';
+      },
+      setTeam(){
+        this.request.teamId = this.teamId;
+      }
+
+    },
+    created(){
+      this.setTournament();
+      this.setTeam();
+    },
+
+
+
+
+  };
+
+</script>
+
+
+
+<style>
+
+</style>
