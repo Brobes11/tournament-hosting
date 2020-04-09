@@ -78,12 +78,7 @@ export default {
   },
   data() {
     return {
-      team: {
-        teamName: '',
-        game: '',
-        teamBio: '',
-        acceptingMembers: '',
-      },
+      team: null,
       searchApplicant: "",
       searchRoster: "",
       pendingHeaders: [
@@ -102,7 +97,13 @@ export default {
         { text: "", value: "delete" }
       ],
 
-      applicants: [],
+      applicants: [
+        {
+          userName: '',
+          firstName: '',
+          lastName: '',
+        }
+      ],
 
       roster: [],
 
@@ -134,14 +135,6 @@ export default {
     },
     
     initialize() {
-      this.applicants = [
-        {
-          userName: "test",
-          firstName: "Ben",
-          lastName: "Peters",
-          accept: "accept"
-        }
-      ];
 
       this.roster = [
         {

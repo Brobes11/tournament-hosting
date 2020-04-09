@@ -12,15 +12,8 @@ public class Team {
     @NotBlank(message = "Please fill out some information about your team")
     private String teamBio;
     private boolean acceptingNewMembers = true;
-    private boolean teamCaptain= false;
     
     
-    public boolean isTeamCaptain(){
-        return teamCaptain;
-    }
-    public void setTeamCaptain(Boolean teamCaptain){
-        this.teamCaptain= teamCaptain;
-    }
 
     public long getTeamId() {
         return teamId;

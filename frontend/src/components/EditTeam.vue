@@ -17,7 +17,7 @@
                 <v-text-field v-model="team.teamName" label="Team Name" required/>
                 <v-text-field v-model="team.game" label="sport/game" required/>
                 <v-text-field v-model="team.teamBio" label="Team Bio" required/>
-                <v-checkbox v-model="team.acceptingMembers" label="Accepting Members" required/>
+                <v-checkbox v-model="team.acceptingNewMembers" label="Accepting Members" required/>
               </v-col>
             </v-row>
           </v-container>
@@ -44,7 +44,7 @@ export default {
             teamName:'',
             teamBio:'',
             game:'',
-            acceptingMembers:'',
+            acceptingNewMembers:'',
         },
         dialog: false
     };
