@@ -16,4 +16,6 @@ SELECT * from users
 
 INSERT INTO teamroster (user_id,team_id,captain )VALUES (1,1,true)
 
-SELECT * FROM teamroster
+SELECT * FROM tournaments
+
+INSERT INTO tournaments (tourney_name, game, start_date, end_date, location, prize_desc, tournament_owner, entry_fee, accepting_entries) VALUES ('World Series', 'Baseball', '10/05/2020', '10/12/2020' , 'Cinncinnati, OH', 'World Series Trohpy and title of World Champions', 2, 200, true)

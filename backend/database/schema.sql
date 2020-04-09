@@ -47,9 +47,11 @@ CREATE TABLE tournaments (
   game varchar(255) NOT NULL,
   start_date DATE NOT NULL,
   end_date DATE NOT NULL,
-  location varchar(255) NOT NULL, 
+  location varchar(255) NOT NULL,
+  entry_fee integer NOT NULL, 
   prize_desc varchar(300) NOT NULL,
-  tournament_owner integer REFERENCES users(id)
+  tournament_owner integer REFERENCES users(id),
+  accepting_entries boolean NOT NULL
 );
 
 CREATE TABLE tournamentRequest (
