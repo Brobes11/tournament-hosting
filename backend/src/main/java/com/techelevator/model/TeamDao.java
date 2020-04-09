@@ -13,7 +13,7 @@ public interface TeamDao {
      * @param teamBio             team bio provided by team captain.
      * @return the new team.
      */
-    public Team createTeam(Team newTeam);
+    public Team createTeam(Team newTeam, Long userId);
 
     /**
      * get a list of all active teams for any user to browse;

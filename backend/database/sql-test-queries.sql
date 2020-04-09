@@ -13,3 +13,7 @@ SELECT team_name, game, team_bio FROM teams WHERE id IN (SELECT team_id FROM tea
 UPDATE users SET first_name = 'austin', last_name = 'zani', email = 'austinzani@me.com' WHERE username = 'zaniad'
 
 SELECT * from users
+
+INSERT INTO teamroster (user_id,team_id,captain )VALUES (1,1,true)
+
+SELECT * FROM teamroster

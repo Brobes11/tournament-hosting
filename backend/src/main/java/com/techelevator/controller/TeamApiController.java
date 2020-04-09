@@ -60,10 +60,10 @@ public class TeamApiController {
     }
 
     @PostMapping
-    public Team createTeam(@Valid @RequestBody Team team, BindingResult result) {
+    public Team createTeam(@Valid @RequestBody Team team, BindingResult result, @RequestParam Long userId) {
 
         if (result.hasErrors() == false) {
-            return teamDao.createTeam(team);
+            return teamDao.createTeam(team, userId);
 
         }
         return null;
