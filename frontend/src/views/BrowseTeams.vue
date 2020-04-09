@@ -24,7 +24,7 @@
 <v-data-table :headers="headers" :items="sortGames" class="elevation-10">
       <template v-slot:item="row">
           <tr>
-            <td>{{row.item.teamName}}</td>
+            <td class="clickable" @click="$router.push('/team-page/' + row.item.teamId)">{{row.item.teamName}}</td>
             <td>{{row.item.game}}</td>
             <td>{{row.item.teamBio}}</td>
              <td>        <!--(handle snackbar notification) -->

@@ -24,7 +24,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" text @click="dialog = false; resetUser()">Cancel</v-btn>
-          <v-btn color="blue darken-1" text @click="dialog = false; updateUser()">Save</v-btn>
+          <v-btn color="blue darken-1" text @click="updateUser()">Save</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -64,6 +64,7 @@ export default {
        .then(response =>{
          if(response.ok){
            this.$emit('update-user');
+           this.dialog = false; 
          }
        })
      } 
