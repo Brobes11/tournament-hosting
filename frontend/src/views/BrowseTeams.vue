@@ -28,7 +28,7 @@
             <td>{{row.item.game}}</td>
             <td>{{row.item.teamBio}}</td>
              <td>        <!--(handle snackbar notification) -->
-              <join-team @join-success="handleSnack()"></join-team>
+              <join-team :teamId="row.item.teamId" @join-success="handleSnack()"></join-team>
             </td>
           </tr>
       </template>
