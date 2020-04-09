@@ -17,7 +17,6 @@
               <template v-slot:activator="{ on, attrs }">
                 <v-btn v-bind="attrs" v-on="on">{{team.game===''?'Sport/game':team.game}}</v-btn>
               </template>
-
               <v-list>
                 <v-list-item v-for="sport in sports" :key="sport.id" @click="team.game=sport.name">
                   <v-list-item-title>{{sport.name}}</v-list-item-title>
