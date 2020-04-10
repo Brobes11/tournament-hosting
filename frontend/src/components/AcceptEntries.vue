@@ -13,11 +13,11 @@
         <v-data-table :headers="headers" :items="requests" class="elevation-10">
           <template v-slot:item="row">
             <tr>
-              <td>{{row.item.teamName}}</td>
-              <td>{{row.item.teamBio}}</td>
+              <td>{{row.item.senderName}}</td>
+              <td>{{row.item.message}}</td>
               <td>
                 <v-spacer></v-spacer>
-                <v-btn class="mx-2" fab dark small color="green">
+                <v-btn class="mx-2 text-right" fab dark small color="green">
                   <v-icon dark>mdi-check-circle-outline</v-icon>
                 </v-btn>
                 <v-btn class="mx-2" fab dark small color="red">
@@ -55,14 +55,12 @@ export default {
       this.tourney = Object.assign({}, this.currentTourney);
     },
     getTournamentRequests(){
-      fetch(`${process.env.VUE_APP_REMOTE_API}/api/tournament/request`, {
-        method: 'GET',
+      fetch(`${process.env.VUE_APP_REMOTE_API}/api/tournament/request?tournamentId=${this.tourney.tournamentId}`, {
         headers:{
         Authorization: 'Bearer ' + auth.getToken(),
         Accept: "application/json",
            'content-type': 'application/json'
-        },
-        body: JSON.stringify(this.currentTourney)
+        }
         })
         .then((response) => {
         if (response.ok) {

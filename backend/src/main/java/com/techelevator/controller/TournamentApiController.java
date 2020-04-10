@@ -63,16 +63,16 @@ public class TournamentApiController {
     }
 
     @GetMapping("/request")
-    public List<Request> getTournamentRequests(@Valid @RequestBody Tournament tournament,  BindingResult result){
-        if(result.hasErrors()){
-            return null;
-        }
-        return requestDao.getRequestsByTournamentId(tournament.getTournamentId());
+    public List<Request> getTournamentRequests(@RequestParam long tournamentId){
+            return requestDao.getRequestsByTournamentId(tournamentId);
     }
 
     @DeleteMapping("/request")
     public void deleteTournamentRequest(@Valid @RequestBody Request tourneyRequest, BindingResult result){
-
+        if(result.hasErrors()){
+            
+        }
+        requestDao.deleteTourneyRequest(tourneyRequest);
     }
 
 }
