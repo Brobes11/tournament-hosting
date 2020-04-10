@@ -72,7 +72,7 @@ import JoinTournament from '@/components/JoinTournament.vue';
             game:'',
             tournamentBio:''
         }],
-        teams:[{
+        captainsTeams:[{
           teamName:'',
           teamBio:'',
           game:''          

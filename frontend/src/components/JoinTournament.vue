@@ -54,12 +54,9 @@ import auth from '@/auth';
         teamId: '',
         message: ''
       },
-      userTeams:[
-        'Sharks',
-        'Jets',
-        'Newsies'
-      ],
+      userTeams:[],
       tournamentId:'',
+      selectedTeam:''
       
 
     }),
