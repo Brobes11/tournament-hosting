@@ -57,6 +57,13 @@ public class TeamApiController {
         return team;
     }
 
+    @GetMapping("/{teamId}")
+    public List<Team> getTeamsByTournamentId(@PathVariable long tournamentId) {
+        List<Team> tourneyTeams = teamDao.getTeamsByTournamentId(tournamentId);
+
+        return tourneyTeams;
+    }
+
     @PostMapping
     public Team createTeam(@Valid @RequestBody Team team, BindingResult result, @RequestParam Long userId) {
 
@@ -71,10 +78,10 @@ public class TeamApiController {
     public void joinTeamRequest(@RequestBody Request request) {
         requestDAO.createTeamRequest(request);
     }
-    
+
     @GetMapping("/requests")
-    public List<Request> getAllRequestsByTeam(@Valid @RequestBody Team team, BindingResult result){
-        if(result.hasErrors()){
+    public List<Request> getAllRequestsByTeam(@Valid @RequestBody Team team, BindingResult result) {
+        if (result.hasErrors()) {
             return null;
         }
 

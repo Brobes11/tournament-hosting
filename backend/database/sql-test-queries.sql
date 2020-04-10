@@ -34,3 +34,8 @@ WHERE team_id = 2
 
 SELECT * FROM tournaments 
 WHERE id IN (SELECT tourney_id FROM tournamentroster WHERE team_id IN (SELECT id FROM teamroster WHERE user_id = 1))
+select tourney_name, game, start_date, end_date, location, 
+entry_fee, prize_desc, tournament_owner, accepting_entries 
+from tournaments 
+where id = 2;
+

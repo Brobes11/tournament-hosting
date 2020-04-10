@@ -31,6 +31,14 @@ public interface TeamDao {
     public Team getTeamById(long id);
 
     /**
+     * get single team profile based on the team id.
+     * 
+     * @param tournamentId
+     * @return all teams and captains for a single tournament.
+     */
+    public List<Team> getTeamsByTournamentId(long tournamentId);
+
+    /**
      * get all teams tied to a specific user
      * 
      * @param userId
@@ -38,11 +46,11 @@ public interface TeamDao {
      */
     public List<Team> getTeamsByUser(long id);
 
-    /** 
+    /**
      * update team name, game, and bio in the database
      * 
      * @return a boolean if successful
-    */
+     */
     public boolean updateTeam(Team team);
 
     public List<Team> getTeamsForCaptain(String game, long userId);

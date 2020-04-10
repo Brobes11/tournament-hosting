@@ -72,6 +72,11 @@ public class JdbcTeamDao implements TeamDao {
         }
     }
 
+    @Override
+    public List<Team> getTeamsByTournamentId(long tournamentId) {
+        return null;
+    }
+
     private Team mapResultToTeam(SqlRowSet results) {
         Team team = new Team();
         team.setTeamId(results.getLong("id"));
@@ -97,10 +102,9 @@ public class JdbcTeamDao implements TeamDao {
 
     @Override
     public boolean updateTeam(Team team) {
-        String sql = "UPDATE teams SET team_name = ?, game = ?, " +
-        "team_bio = ?, accepting_members = ? WHERE id = ?";
-        jdbcTemplate.update(sql, team.getTeamName(),
-         team.getGame(), team.getTeamBio(), team.isAcceptingNewMembers(), team.getTeamId());
+        String sql = "UPDATE teams SET team_name = ?, game = ?, " + "team_bio = ?, accepting_members = ? WHERE id = ?";
+        jdbcTemplate.update(sql, team.getTeamName(), team.getGame(), team.getTeamBio(), team.isAcceptingNewMembers(),
+                team.getTeamId());
         return true;
     }
 
