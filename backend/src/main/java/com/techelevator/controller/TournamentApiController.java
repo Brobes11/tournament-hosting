@@ -75,4 +75,13 @@ public class TournamentApiController {
         requestDao.deleteTourneyRequest(tourneyRequest);
     }
 
+    @PostMapping("/request")
+    public void acceptTournamentRequest(@Valid @RequestBody Request tourneyRequest, BindingResult result) {
+        if(result.hasErrors()){
+            
+        }
+        requestDao.acceptTourneyRequest(tourneyRequest);
+    }
+    
+
 }

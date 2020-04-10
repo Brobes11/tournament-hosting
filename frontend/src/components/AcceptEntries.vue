@@ -17,10 +17,10 @@
               <td>{{row.item.message}}</td>
               <td>
                 <v-spacer></v-spacer>
-                <v-btn class="mx-2 text-right" fab dark small color="green">
+                <v-btn class="mx-2" fab dark small color="green" @click="dialog = false;acceptRequest(row.item)">
                   <v-icon dark>mdi-check-circle-outline</v-icon>
                 </v-btn>
-                <v-btn class="mx-2" fab dark small color="red">
+                <v-btn class="mx-2" fab dark small color="red" @click="dialog = false;deleteRequest(row.item)">
                   <v-icon dark>mdi-minus-circle-outline</v-icon>
                 </v-btn>
               </td>
@@ -71,6 +71,40 @@ export default {
           this.requests = data;
         })
         .catch((err) => console.error(err));
+    },
+    deleteRequest(requestToDelete){
+      fetch(`${process.env.VUE_APP_REMOTE_API}/api/tournament/request`,{
+         method:'DELETE',
+         headers:{
+            Authorization: 'Bearer ' + auth.getToken(),
+            Accept: "application/json",
+           'content-type': 'application/json'
+         },
+         body: JSON.stringify(requestToDelete)
+       })
+       .then(response =>{
+         if(response.ok){
+           this.$emit('request-update');
+           this.getTournamentRequests();
+         }
+       })
+    },
+    acceptRequest(requestToAccept){
+      fetch(`${process.env.VUE_APP_REMOTE_API}/api/tournament/request`,{
+         method:'POST',
+         headers:{
+            Authorization: 'Bearer ' + auth.getToken(),
+            Accept: "application/json",
+           'content-type': 'application/json'
+         },
+         body: JSON.stringify(requestToAccept)
+       })
+       .then(response =>{
+         if(response.ok){
+           this.$emit('request-update');
+           this.deleteRequest(requestToAccept);
+         }
+       })
     }
   },
   created(){

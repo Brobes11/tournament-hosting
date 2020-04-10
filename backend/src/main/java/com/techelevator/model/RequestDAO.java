@@ -15,4 +15,6 @@ public interface RequestDAO {
 
     public void deleteTourneyRequest(Request request);
 
+    public void acceptTourneyRequest(Request request);
+
 }
