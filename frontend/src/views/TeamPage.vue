@@ -67,6 +67,8 @@
                 <td>{{row.item.username}}</td>
                 <td>{{row.item.firstName}}</td>
                 <td>{{row.item.lastName}}</td>
+                <td>{{row.item.email}}</td>
+                <td>{{row.item.role}}</td>
               </tr>
             </template>
             <template v-slot:item.captainStatus="{ item }">

@@ -166,10 +166,15 @@ public class JdbcUserDao implements UserDao {
     @Override
     public List<User> getUsersByTeam(long teamId) {
         List<User> teamRoster = new ArrayList<>();
-        String sql = "SELECT id, username, role, email, first_name, last_name FROM users WHERE id IN (SELECT user_id FROM teamRoster WHERE team_id = ?);";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, teamId);
+        String sql = "SELECT id, username, role, email, first_name, last_name, teamroster.captain FROM users " +
+        "JOIN teamroster ON teamroster.user_id = users.id "+
+        "WHERE id IN (SELECT user_id FROM teamRoster WHERE team_id = ?) AND teamroster.team_id = ?;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, teamId, teamId);
         while (results.next()) {
             User member = mapResultToUser(results);
+            if(results.getBoolean("captain")){
+                member.setRole("captain");
+            }
             teamRoster.add(member);
         }
         return teamRoster;
