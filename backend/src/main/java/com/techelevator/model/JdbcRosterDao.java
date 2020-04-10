@@ -36,7 +36,7 @@ public class JdbcRosterDao implements RosterDao {
     @Override
     public boolean deleteMember(long userId, long teamId) {
         boolean result = false;
-        String sql = "INSERT into teamRoster(user_id, team_id) VALUES(?,?);";
+        String sql = "DELETE FROM teamRoster WHERE user_id = ? AND team_id = ?;";
         jdbcTemplate.update(sql, userId, teamId);
         return result;
     }

@@ -30,7 +30,7 @@ CREATE TABLE teams (
 CREATE TABLE teamRoster (
   user_id integer REFERENCES users (id),
   team_id integer REFERENCES teams (id),
-  captain boolean NOT NULL,
+  captain boolean NOT NULL DEFAULT FALSE,
   PRIMARY KEY (user_id, team_id)
 );
 

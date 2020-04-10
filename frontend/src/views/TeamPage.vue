@@ -150,8 +150,6 @@ export default {
         })
         .then(data => {
           this.team = data;
-          this.getApplicants(data.teamId);
-          this.getRoster(data.teamId);
         });
     },
 
@@ -187,10 +185,6 @@ export default {
           return response.json();
         })
         .then(members => (this.roster = members));
-    },
-
-    declineRequest(userId, teamId) {
-
     },
 
     deleteItem(item) {

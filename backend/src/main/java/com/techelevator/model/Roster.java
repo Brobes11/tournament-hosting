@@ -2,12 +2,12 @@ package com.techelevator.model;
 
 public class Roster {
 
-    private long senderId;
-    private long recipientId;
+    private long memberId;
+    private long teamId;
     private boolean captainStatus;
 
-    public long getSenderId() {
-        return senderId;
+    public long getMemberId() {
+        return memberId;
     }
 
     public boolean isCaptainStatus() {
@@ -18,16 +18,16 @@ public class Roster {
         this.captainStatus = captainStatus;
     }
 
-    public long getRecipientId() {
-        return recipientId;
+    public long getTeamId() {
+        return teamId;
     }
 
-    public void setRecipientId(long recipientId) {
-        this.recipientId = recipientId;
+    public void setTeamId(long teamId) {
+        this.teamId = teamId;
     }
 
-    public void setSenderId(long senderId) {
-        this.senderId = senderId;
+    public void SetMemberId(long senderId) {
+        this.memberId = senderId;
     }
 
 }
