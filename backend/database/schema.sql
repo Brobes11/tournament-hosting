@@ -89,10 +89,6 @@ INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Pen15',
 INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Cyclone jr.', 'Hockey', true, 'Grab your sticks and get on the ice');
 
 
-COMMIT TRANSACTION;''
-
-select * FROM teamRequest;
-
 
 
 INSERT INTO teamRoster(team_id, user_id, captain) VALUES (1,1,false);
