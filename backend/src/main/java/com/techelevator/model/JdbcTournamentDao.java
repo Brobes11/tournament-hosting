@@ -13,11 +13,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class JdbcTournamentDao implements TournamentDao {
 
-    private JdbcTemplate JdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
 
     @Autowired
     public JdbcTournamentDao(DataSource dataSource) {
-        this.JdbcTemplate = new JdbcTemplate(dataSource);
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     @Override
@@ -25,7 +25,7 @@ public class JdbcTournamentDao implements TournamentDao {
         List<Tournament> allTournaments = new ArrayList<>();
         String sql = "SELECT id, tourney_name, game, start_date, end_date, location, entry_fee, prize_desc, accepting_entries FROM "
                 + "tournaments;";
-        SqlRowSet results = JdbcTemplate.queryForRowSet(sql);
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
         while (results.next()) {
             Tournament tournament = mapRowSetTournament(results);
             allTournaments.add(tournament);
@@ -49,7 +49,12 @@ public class JdbcTournamentDao implements TournamentDao {
 
     @Override
     public Tournament getTournamentById(long id) {
-        // TODO Auto-generated method stub
+        String sql = "SELECT id, tourney_name, game, start_date, end_date, location, "
+                + " entry_fee, prize_desc, tournament_owner, accepting_entries FROM tournaments WHERE id = ? ;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
+        if (results.next()) {
+            return mapRowSetTournament(results);
+        }
         return null;
     }
 
@@ -63,7 +68,7 @@ public class JdbcTournamentDao implements TournamentDao {
     public Tournament createTournament(Tournament newTournament, Long userId) {
         String sql = "INSERT INTO tournaments (tourney_name, game, start_date, end_date, location, prize_desc, tournament_owner, entry_fee, accepting_entries) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id";
-        Long newId = JdbcTemplate.queryForObject(sql, Long.class, newTournament.getTournamentName(),
+        Long newId = jdbcTemplate.queryForObject(sql, Long.class, newTournament.getTournamentName(),
                 newTournament.getGame(), newTournament.getStartDate(), newTournament.getEndDate(),
                 newTournament.getLocation(), newTournament.getPrizeDescription(), userId, newTournament.getEntryFee(),
                 newTournament.isAcceptingEntries());

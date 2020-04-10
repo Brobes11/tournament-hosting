@@ -6,7 +6,7 @@
       </v-col>
       <v-col cols="3">
         <h1>{{tournament.tournamentName}}</h1>
-        <h2>{{tournament.game}}</h2>
+        <h2>GAME GOES HERE</h2>
       </v-col>
       <v-col cols="6">
         <v-row>
@@ -17,7 +17,7 @@
             <v-card-actions></v-card-actions>
           </v-col>
         </v-row>
-        <p>{{tournament.prizeDescription}}</p>
+        <p>PRIZE DESCRIPTION GOES HERE</p>
       </v-col>
     </v-row>
   </v-container>

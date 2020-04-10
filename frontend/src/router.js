@@ -10,7 +10,7 @@ import BrowseTeams from '@/views/BrowseTeams.vue'
 import TeamPage from './views/TeamPage'
 import BrowseTournaments from '@/views/BrowseTournaments.vue'
 import CreateTournament from '@/views/CreateTournament.vue'
-import TournamentPage from '@/views/TournamentPage'
+import TournamentPage from '@/views/TournamentPage.vue'
 Vue.use(Router)
 
 /**
