@@ -79,7 +79,7 @@ public class TeamApiController {
         requestDAO.createTeamRequest(request);
     }
 
-    @GetMapping("/requests")
+    @GetMapping("/request")
     public List<Request> getAllRequestsByTeam(@Valid @RequestBody Team team, BindingResult result) {
         if (result.hasErrors()) {
             return null;

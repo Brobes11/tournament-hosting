@@ -11,16 +11,14 @@
         <v-data-table :headers="headers" :items="requests" class="elevation-10">
           <template v-slot:item="row">
             <tr>
-              <td
-                class="clickable"
-                @click="$router.push('/team-page/' + row.item.teamId)"
-              >{{row.item.teamName}}</td>
+              <td>{{row.item.teamName}}</td>
               <td>{{row.item.teamBio}}</td>
               <td>
-                <v-btn class="mx-2" fab dark small color="primary">
+                <v-spacer></v-spacer>
+                <v-btn class="mx-2" fab dark small color="green">
                   <v-icon dark>mdi-check-circle-outline</v-icon>
                 </v-btn>
-                <v-btn class="mx-2" fab dark small color="primary">
+                <v-btn class="mx-2" fab dark small color="red">
                   <v-icon dark>mdi-minus-circle-outline</v-icon>
                 </v-btn>
               </td>
