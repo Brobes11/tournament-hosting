@@ -7,7 +7,14 @@
       </template>
       <v-card>
         <v-card-title>
+          <v-row>
+            <v-col>
           <span class="headline">Join Tournament</span>
+            </v-col>
+          <v-col class="d-flex" cols="12" sm="6">
+            <v-select :items="userTeams" label="Team Joining:" dense outlined></v-select>
+          </v-col>
+          </v-row>
         </v-card-title>
         <v-card-text>
           <v-container>
@@ -47,6 +54,13 @@ import auth from '@/auth';
         teamId: '',
         message: ''
       },
+      userTeams:[
+        'Sharks',
+        'Jets',
+        'Newsies'
+      ],
+      tournamentId:'',
+      
 
     }),
 
@@ -68,7 +82,7 @@ import auth from '@/auth';
        })
       },
       setTournament(){
-        this.request.tourneyId = '1';
+        this.request.tourneyId = this.tournamentId;
       },
       setTeam(){
         this.request.teamId = this.teamId;
@@ -78,6 +92,7 @@ import auth from '@/auth';
     created(){
       this.setTournament();
       this.setTeam();
+      
     },
 
 
