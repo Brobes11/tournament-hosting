@@ -189,6 +189,10 @@ export default {
         .then(members => (this.roster = members));
     },
 
+    declineRequest(userId, teamId) {
+
+    },
+
     deleteItem(item) {
       const index = this.roster.indexOf(item);
       confirm("Are you sure you want to delete this item?") &&
