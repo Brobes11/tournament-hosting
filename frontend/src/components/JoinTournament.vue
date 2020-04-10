@@ -54,9 +54,12 @@ import auth from '@/auth';
         teamId: '',
         message: ''
       },
+      userId:'',
       userTeams:[],
       tournamentId:'',
-      selectedTeam:''
+      selectedTeam:{
+                    game: "Super Smash Bros"
+                    },
       
 
     }),
@@ -83,12 +86,37 @@ import auth from '@/auth';
       },
       setTeam(){
         this.request.teamId = this.teamId;
+      },
+      setUserId(){
+        this.userId= auth.getUser().id;
+      },
+
+      getCaptainsTeamsByGame(){
+      
+      fetch(`${process.env.VUE_APP_REMOTE_API}api/team/captain-teams?userId=${this.userId}&game=${this.game}`, {
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + auth.getToken(),
+          Accept: "application/json",
+           'content-type': 'application/json'
+        },
+        body: JSON.stringify(this.selectedTeam)
+      })
+        .then(response => {
+          return response.json();
+        })
+        .then(data => {
+          this.userTeams = data;
+        });
+
       }
 
     },
     created(){
       this.setTournament();
       this.setTeam();
+      this.setUserId();
+      this.getCaptainsTeamsByGame();
       
     },
 

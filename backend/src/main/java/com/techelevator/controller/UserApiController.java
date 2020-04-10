@@ -65,6 +65,7 @@ public class UserApiController {
             if (isRequest == false) {
                 
             }
+            return result;
     }
 
     @GetMapping(path = "/{username}")
