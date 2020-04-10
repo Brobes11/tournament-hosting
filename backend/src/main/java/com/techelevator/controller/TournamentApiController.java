@@ -12,6 +12,7 @@ import com.techelevator.model.Tournament;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -61,12 +62,17 @@ public class TournamentApiController {
         return null;
     }
 
-    @GetMapping("/requests")
+    @GetMapping("/request")
     public List<Request> getTournamentRequests(@Valid @RequestBody Tournament tournament,  BindingResult result){
         if(result.hasErrors()){
             return null;
         }
         return requestDao.getRequestsByTournamentId(tournament.getTournamentId());
+    }
+
+    @DeleteMapping("/request")
+    public void deleteTournamentRequest(@Valid @RequestBody Request tourneyRequest, BindingResult result){
+
     }
 
 }

@@ -157,7 +157,5 @@ export default {
 </script>
 
 <style>
-  .clickable{
-    cursor: pointer;
-  }
+
 </style>

@@ -27,7 +27,7 @@
 <v-data-table :headers="headers" :items="sortTournaments" class="elevation-10">
       <template v-slot:item="row">
           <tr>
-            <td>{{row.item.tournamentName}}</td>
+            <td class="clickable" @click="$router.push('/tournament-page/' + row.item.tournamentId)">{{row.item.tournamentName}}</td>
             <td>{{row.item.game}}</td>
             <td>{{row.item.startDate}}</td>
             <td>{{row.item.prizeDescription}}</td>

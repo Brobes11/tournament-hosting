@@ -89,6 +89,84 @@ INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Pen15',
 INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Cyclone jr.', 'Hockey', true, 'Grab your sticks and get on the ice');
 
 
-COMMIT TRANSACTION;''
 
-select * FROM teamRequest;
+
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (1,1,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (1,2,true);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (2,3,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (2,4,true);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (3,5,true);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (3,6,true);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (4,7,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (4,8,true);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (5,9,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (5,10,true);
+
+
+
+
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (10,1, 'please sir give me a home');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (9,1, 'you guys want some cookieeesss!');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (8,1, 'me big and strong. me play ball');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (7,1, 'death by snu snu ');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (6,1, 'Mr. Gorbachev, tear down this wall!');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (5,1, 'In the town where I was born Lived a man who sailed to sea And he told us of his life In the land of submarines');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (4,1, 'yall motha f*&c!S need jesus');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (3,1, 'Dont you lose him, Samwise Gamgee');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (2,1, 'In a galaxy far far away');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (1,1, 'you dont even know me');
+
+
+
+ 
+INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)(
+VALUES(1,'Smash to the death','Super Smash Brothers', 2020-10-06,2020-10-08,'Cincinnati',5,'winner gets gold joycons',5,true);
+
+INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)(
+VALUES(2,'Sun in the Sand','Volleyball', 2020-08-06,2020-08-08,'Cincinnati',25,'winner gets a new ball and sunglasses',2,true);
+
+INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)(
+VALUES(3,'White men cant jump','Basketball', 2020-01-06,2020-01-08,'Brooklyn',30,'winner gets new jock strap',5,false);
+
+INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)(
+VALUES(4,'Your soul will be mine','DnD', 2020-11-06,2020-11-08,'Tampa',10,'almighty glory',8,false);
+
+INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)(
+VALUES(5,'White men cant jump','Bike Polo', 2020-01-06,2020-01-08,'Brooklyn',30,'winner gets new jock strap',5,true);
+
+
+
+
+
+INSERT INTO tournamentRequest(tourney_id, team_id,message)VALUES(1,1,'let us host a tournament please');
+INSERT INTO tournamentRequest(tourney_id, team_id,message)VALUES(2,2,'you let us in!');
+INSERT INTO tournamentRequest(tourney_id, team_id,message)VALUES(3,3,'we host tourney. have mad fun.');
+INSERT INTO tournamentRequest(tourney_id, team_id,message)VALUES(4,4,'we play ball');
+INSERT INTO tournamentRequest(tourney_id, team_id,message)VALUES(5,5,'champions r us ');
+
+
+
+
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (1,1);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (2,2);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (3,3);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (4,4);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (5,5);
+
+
+
+
+
+
+
+
+
+COMMIT TRANSACTION;
+
+SELECT * FROM users
+SELECT * FROM tournamentRequest
+SELECT * FROM tournamentRoster
+SELECT * FROM teamRoster
+SELECT * FROM teamRequest
+SELECT * FROM tournaments
+SELECT * FROM teams
