@@ -38,11 +38,13 @@ public class TournamentApiController {
     }
 
     @GetMapping
-    public List<Tournament> getAllTournaments(@RequestParam(required = false) Long userId ){
-        if(userId ==null){
-            return tournamentDao.getAllTournaments();
+    public List<Tournament> getAllTournaments(@RequestParam(required = false) Long userId, @RequestParam(required = false) Long teamId){
+        if(userId != null){
+            return tournamentDao.getTournamentsByUser(userId);
+        } else if (teamId != null){
+            return tournamentDao.getTournamentsByTeam(teamId);
         }
-        return tournamentDao.getTournamentsByUser(userId);
+        return tournamentDao.getAllTournaments();
     }
 
     @GetMapping("/{tournamentId}")

@@ -1,5 +1,5 @@
 <template>
-  <v-card width="450" id="login" class="mx-auto at-5">
+  <v-card width="450" id="login" class="mx-auto mt-5 at-5">
     <v-card-title>
       <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
     </v-card-title>

@@ -25,8 +25,16 @@
       </template>
         </v-data-table>
       </v-col>
-      <v-col>
-        <v-data-table :headers="tourneyHeaders" :items="tourneys" :items-per-page="5" class="elevation-1"></v-data-table>
+       <v-col>
+        <v-data-table :headers="tourneyHeaders" :items="tourneys" :items-per-page="5" class="elevation-1">
+          <template v-slot:item="row">
+          <tr>
+            <td class="clickable" @click="$router.push('/tournament-page/' + row.item.tournamentId)">{{row.item.tournamentName}}</td>
+            <td>{{row.item.game}}</td>
+            <td>{{row.item.startDate}}</td>
+          </tr>
+      </template>
+        </v-data-table>
       </v-col>
     </v-row>
   </div>
@@ -60,7 +68,7 @@ export default {
           sortable: false
         },
         { text: "Game/Sport", value: "game", sortable: false },
-        { text: "Tourney Info", value: "info", sortable: false }
+        { text: "Start Date", value: "start-date", sortable: false }
       ],
       user: null,
       teams: [
@@ -72,10 +80,9 @@ export default {
       ],
       tourneys: [
         {
-          name: "Blue Team",
-          game: "Football",
-          info:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,"
+          tournamentName: "",
+          game: "",
+          startDate: ""
         },
         {
           name: "Red Team",
@@ -113,6 +120,7 @@ export default {
     .then(userFromApi => {
       this.user = userFromApi;
       this.getUserTeams(userFromApi.id)
+      this.getUserTournaments(userFromApi.id)
       })
     },
     getUserTeams(userId){
@@ -127,6 +135,19 @@ export default {
         return response.json();
       })
     .then(teamsFromApi => this.teams = teamsFromApi)
+    },
+     getUserTournaments(userId){
+       fetch(`${process.env.VUE_APP_REMOTE_API}/api/tournament?userId=${userId}`,  {
+      method: 'GET',
+      headers: {
+        Authorization: 'Bearer ' + auth.getToken(),
+      },
+      credentials: 'same-origin',
+    })
+    .then((response) => {
+        return response.json();
+      })
+    .then(tourneysFromApi => this.tourneys = tourneysFromApi)
     }
   },
   created(){

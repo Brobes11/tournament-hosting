@@ -60,8 +60,19 @@ public class JdbcTournamentDao implements TournamentDao {
 
     @Override
     public List<Tournament> getTournamentsByUser(long id) {
-        // TODO Auto-generated method stub
-        return null;
+        List<Tournament> usersTournaments = new ArrayList<>();
+
+        String sql = "SELECT id, tourney_name, game, start_date, end_date, location, "
+        + " entry_fee, prize_desc, tournament_owner, accepting_entries FROM tournaments " +
+        "WHERE id IN (SELECT tourney_id FROM tournamentroster WHERE team_id " + 
+        "IN (SELECT id FROM teamroster WHERE user_id = ?));";
+
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
+        while(results.next()){
+            usersTournaments.add(mapRowSetTournament(results));
+        }
+        return usersTournaments;
     }
 
     @Override
@@ -75,6 +86,12 @@ public class JdbcTournamentDao implements TournamentDao {
         newTournament.setTournamentId(newId);
 
         return newTournament;
+    }
+
+    @Override
+    public List<Tournament> getTournamentsByTeam(long id) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

@@ -23,7 +23,7 @@ select * from tournaments
 INSERT INTO tournaments (tourney_name, game, start_date, end_date, location, prize_desc, tournament_owner, entry_fee, accepting_entries) VALUES ('World Series', 'Baseball', '10/05/2020', '10/12/2020' , 'Cinncinnati, OH', 'World Series Trohpy and title of World Champions', 2, 200, false)
 
 
-INSERT INTO tournamentrequest (tourney_id, team_id, message) VALUES (2,3,'This is a message also')
+INSERT INTO tournamentroster (tourney_id, team_id) VALUES (2,2)
 
 SELECT * from tournamentrequest
 
@@ -31,3 +31,6 @@ SELECT users.username, message
 FROM teamrequest
 JOIN users ON teamrequest.user_id = users.id
 WHERE team_id = 2
+
+SELECT * FROM tournaments 
+WHERE id IN (SELECT tourney_id FROM tournamentroster WHERE team_id IN (SELECT id FROM teamroster WHERE user_id = 1))
