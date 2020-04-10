@@ -4,7 +4,9 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import com.techelevator.model.JdbcRequestDAO;
 import com.techelevator.model.JdbcTournamentDao;
+import com.techelevator.model.Request;
 import com.techelevator.model.Tournament;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,9 @@ public class TournamentApiController {
 
     @Autowired
     private JdbcTournamentDao tournamentDao;
+
+    @Autowired
+    private JdbcRequestDAO requestDao;
 
     @Autowired
     public TournamentApiController(JdbcTournamentDao tournamentDao){
@@ -54,6 +59,12 @@ public class TournamentApiController {
         return null;
     }
 
-
+    @GetMapping("/requests")
+    public List<Request> getTournamentRequests(@Valid @RequestBody Tournament tournament,  BindingResult result){
+        if(result.hasErrors()){
+            return null;
+        }
+        return requestDao.getRequestsByTournamentId(tournament.getTournamentId());
+    }
 
 }

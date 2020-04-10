@@ -9,4 +9,6 @@ public interface RequestDAO {
 
     public List<Request> getRequestsByTournamentId(Long tournamentId);
 
+    public List<Request> getRequestsByTeamId(Long teamId);
+
 }

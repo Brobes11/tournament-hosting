@@ -6,22 +6,28 @@ select * from teams
 
 DELETE FROM teamroster WHERE captain = false
 
-select * from teamroster
+select * from users
 
 SELECT team_name, game, team_bio FROM teams WHERE id IN (SELECT team_id FROM teamroster WHERE user_id = 1)
 
 UPDATE users SET first_name = 'austin', last_name = 'zani', email = 'austinzani@me.com' WHERE username = 'zaniad'
 
-SELECT * from users
+SELECT * from teams
 
 INSERT INTO teamroster (user_id,team_id,captain )VALUES (1,1,true)
 
-SELECT * FROM tournamentroster;
+SELECT * FROM tournaments
 
-INSERT INTO tournaments (tourney_name, game, start_date, end_date, location, prize_desc, tournament_owner, entry_fee, accepting_entries) VALUES ('World Series', 'Baseball', '10/05/2020', '10/12/2020' , 'Cinncinnati, OH', 'World Series Trohpy and title of World Champions', 1, 200, true)
+select * from tournaments
+
+INSERT INTO tournaments (tourney_name, game, start_date, end_date, location, prize_desc, tournament_owner, entry_fee, accepting_entries) VALUES ('World Series', 'Baseball', '10/05/2020', '10/12/2020' , 'Cinncinnati, OH', 'World Series Trohpy and title of World Champions', 2, 200, false)
 
 
+INSERT INTO tournamentrequest (tourney_id, team_id, message) VALUES (2,3,'This is a message also')
 
-select * from users;
+SELECT * from tournamentrequest
 
-select * from tournaments;
+SELECT users.username, message
+FROM teamrequest
+JOIN users ON teamrequest.user_id = users.id
+WHERE team_id = 2
