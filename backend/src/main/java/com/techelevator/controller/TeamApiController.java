@@ -80,12 +80,8 @@ public class TeamApiController {
     }
 
     @GetMapping("/request")
-    public List<Request> getAllRequestsByTeam(@Valid @RequestBody Team team, BindingResult result) {
-        if (result.hasErrors()) {
-            return null;
-        }
-
-        return requestDAO.getRequestsByTeamId(team.getTeamId());
+    public List<Request> getAllRequestsByTeam(@Valid @RequestParam long teamId) {
+        return requestDAO.getRequestsByTeamId(teamId);
     }
 
     @GetMapping("/captain-teams")

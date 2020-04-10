@@ -69,7 +69,10 @@ public class TournamentApiController {
 
     @DeleteMapping("/request")
     public void deleteTournamentRequest(@Valid @RequestBody Request tourneyRequest, BindingResult result){
-
+        if(result.hasErrors()){
+            
+        }
+        requestDao.deleteTourneyRequest(tourneyRequest);
     }
 
 }
