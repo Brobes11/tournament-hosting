@@ -53,6 +53,6 @@ public interface TeamDao {
      */
     public boolean updateTeam(Team team);
 
-    public List<Team> getTeamsForCaptain(String game, long userId);
+    public List<Team> getTeamsForCaptain(String game, Long userId);
 
 }

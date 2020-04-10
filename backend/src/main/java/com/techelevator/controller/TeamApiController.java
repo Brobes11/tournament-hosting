@@ -88,4 +88,9 @@ public class TeamApiController {
         return requestDAO.getRequestsByTeamId(team.getTeamId());
     }
 
+    @GetMapping("/captain-teams")
+    public List<Team> getTeamsByGameandCaptain(@RequestBody String game, Long userId){
+        return teamDao.getTeamsForCaptain(game, userId);
+    }
+
 }

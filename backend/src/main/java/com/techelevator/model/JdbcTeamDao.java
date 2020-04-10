@@ -73,7 +73,8 @@ public class JdbcTeamDao implements TeamDao {
     }
 
     @Override
-    public List<Team> getTeamsByTournamentId(long tournamentId, boolean isRequest) {
+    public List<Team> getTeamsByTournamentId(long tournamentId, boolean isRequest){
+  
         return null;
     }
 
@@ -109,7 +110,7 @@ public class JdbcTeamDao implements TeamDao {
     }
 
     @Override
-    public List<Team> getTeamsForCaptain(String game, long userId) {
+    public List<Team> getTeamsForCaptain(String game, Long userId){
         List<Team> captainsTeams = new ArrayList<>();
 
         String sql = "SELECT teams.id, team_name, game, accepting_members, team_bio from teams "
