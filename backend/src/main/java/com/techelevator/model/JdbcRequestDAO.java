@@ -21,17 +21,16 @@ public class JdbcRequestDAO implements RequestDAO {
     }
 
     @Override
-    public Request createTeamRequest(Request request) {
+    public void createTeamRequest(Request request) {
         String sql = "INSERT into teamrequest(user_id, team_id, message) VALUES(?,?,?);";
         jdbcTemplate.update(sql, request.getSenderId(), request.getRecipientId(), request.getMessage());
-        return null;
     }
 
     @Override
     public List<Request> getRequestsByTournamentId(Long tournamentId) {
         List<Request> tournamentRequests = new ArrayList<>();
 
-        String sql ="SELECT teams.team_name, message FROM tournamentrequest " +
+        String sql ="SELECT teams.team_name, message, team_id FROM tournamentrequest " +
         "JOIN teams ON tournamentrequest.team_id = teams.id " +
         "WHERE tourney_id = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, tournamentId);
@@ -39,6 +38,7 @@ public class JdbcRequestDAO implements RequestDAO {
             Request newRequest = new Request();
             newRequest.setSenderName(results.getString("team_name"));
             newRequest.setMessage(results.getString("message"));
+            newRequest.setSenderId(results.getLong("team_id"));
             tournamentRequests.add(newRequest);
         }
        
@@ -49,7 +49,7 @@ public class JdbcRequestDAO implements RequestDAO {
     public List<Request> getRequestsByTeamId(Long teamId) {
         List<Request> teamRequests = new ArrayList<>();
 
-        String sql ="SELECT users.username, message FROM teamrequest " +
+        String sql ="SELECT users.username, message, user_id FROM teamrequest " +
         "JOIN users ON teamrequest.user_id = users.id " +
         "WHERE team_id = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, teamId);
@@ -57,10 +57,17 @@ public class JdbcRequestDAO implements RequestDAO {
             Request newRequest = new Request();
             newRequest.setSenderName(results.getString("username"));
             newRequest.setMessage(results.getString("message"));
+            newRequest.setSenderId(results.getLong("user_id"));
             teamRequests.add(newRequest);
         }
        
         return teamRequests;
+    }
+
+    @Override
+    public void deleteTourneyRequest(Request request) {
+        String sql = "DELETE FROM tournamentrequest WHERE team_id = ? AND tourney_id = ?";
+        jdbcTemplate.update(sql, request.getSenderId(), request.getRecipientId());
     }
 
 }

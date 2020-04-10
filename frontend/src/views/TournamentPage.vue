@@ -20,12 +20,14 @@
         <p>{{tournament.prizeDescription}}</p>
       </v-col>
     </v-row>
+
     <v-row>
       <v-col>
         <v-card>
           <v-card-title>
             Tournament Teams
             <v-spacer></v-spacer>
+            <accept-entries/>
             <v-text-field
               v-model="searchTeams"
               append-icon="mdi-magnify"
@@ -51,7 +53,11 @@
  
  <script>
 import auth from "@/auth";
+import AcceptEntries from "@/components/AcceptEntries.vue"
 export default {
+  components:{
+     AcceptEntries
+    },
   data() {
     return {
       tournament: null,

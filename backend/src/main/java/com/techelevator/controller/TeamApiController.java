@@ -79,13 +79,18 @@ public class TeamApiController {
         requestDAO.createTeamRequest(request);
     }
 
-    @GetMapping("/requests")
+    @GetMapping("/request")
     public List<Request> getAllRequestsByTeam(@Valid @RequestBody Team team, BindingResult result) {
         if (result.hasErrors()) {
             return null;
         }
 
         return requestDAO.getRequestsByTeamId(team.getTeamId());
+    }
+
+    @GetMapping("/captain-teams")
+    public List<Team> getTeamsByGameandCaptain(@RequestBody String game, Long userId){
+        return teamDao.getTeamsForCaptain(game, userId);
     }
 
 }
