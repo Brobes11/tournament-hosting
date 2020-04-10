@@ -59,14 +59,6 @@ public class UserApiController {
         return userDao.getUsersByTeam(teamId);
     }
 
-    @DeleteMapping
-    public boolean deleteUser(@RequestParam long userId, @RequestParam long teamId, @RequestParam boolean isRequest) {
-        boolean result = false;
-            if (isRequest == false) {
-                
-            }
-    }
-
     @GetMapping(path = "/{username}")
     public User getUser(@PathVariable String username) {
         return userDao.getUserByUsername(username);

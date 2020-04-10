@@ -6,12 +6,16 @@ import javax.validation.Valid;
 
 import com.techelevator.model.JdbcRequestDAO;
 import com.techelevator.model.JdbcTeamDao;
+import com.techelevator.model.JdbcTeamMemberDao;
 import com.techelevator.model.Request;
 import com.techelevator.model.Team;
+import com.techelevator.model.TeamMember;
+import com.techelevator.model.TeamMemberDao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,6 +35,9 @@ public class TeamApiController {
 
     @Autowired
     private JdbcRequestDAO requestDAO;
+
+    @Autowired
+    private JdbcTeamMemberDao TeamMemberDao;
 
     @Autowired
     public TeamApiController(JdbcTeamDao teamDao) {
@@ -82,6 +89,37 @@ public class TeamApiController {
     @GetMapping("/request")
     public List<Request> getAllRequestsByTeam(@Valid @RequestParam long teamId) {
         return requestDAO.getRequestsByTeamId(teamId);
+    }
+
+    @DeleteMapping("/request")
+    public boolean deleteTeamRequest(@RequestBody Request request, BindingResult result) {
+        if(result.hasErrors()) {
+            return false;
+        }
+
+        requestDAO.deleteTeamRequest(request);
+        return true;
+    }
+
+    @PostMapping("/roster")
+    public boolean addTeamMember(@RequestBody TeamMember teamMember, BindingResult result) {
+        if(result.hasErrors()) {
+            return false;
+        }
+
+        TeamMemberDao.addMember(teamMember);
+        return true;
+    }
+
+    @DeleteMapping("/roster")
+    public boolean deleteTeamMember(@RequestBody TeamMember teamMember, BindingResult result) {
+        
+        if(result.hasErrors()) {
+            return false;
+        }
+
+        TeamMemberDao.deleteMember(teamMember);
+        return true;
     }
 
     @GetMapping("/captain-teams")

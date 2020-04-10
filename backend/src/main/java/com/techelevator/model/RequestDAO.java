@@ -7,6 +7,8 @@ public interface RequestDAO {
 
     public void createTeamRequest(Request request);
 
+    public void deleteTeamRequest(Request request);
+
     public List<Request> getRequestsByTournamentId(Long tournamentId);
 
     public List<Request> getRequestsByTeamId(Long teamId);

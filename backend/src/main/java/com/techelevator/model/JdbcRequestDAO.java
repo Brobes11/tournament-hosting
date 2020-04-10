@@ -27,6 +27,13 @@ public class JdbcRequestDAO implements RequestDAO {
     }
 
     @Override
+    public void deleteTeamRequest(Request request) {
+        String sql = "DELETE FROM teamRequest WHERE user_id = ? AND team_id = ?";
+        jdbcTemplate.update(sql, request.getSenderId(), request.getRecipientId());
+        
+    }
+
+    @Override
     public List<Request> getRequestsByTournamentId(Long tournamentId) {
         List<Request> tournamentRequests = new ArrayList<>();
 
