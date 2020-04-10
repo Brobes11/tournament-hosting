@@ -36,7 +36,7 @@ public interface TeamDao {
      * @param tournamentId
      * @return all teams and captains for a single tournament.
      */
-    public List<Team> getTeamsByTournamentId(long tournamentId, boolean isRequest);
+    public List<Team> getTeamsByTournamentId(long tournamentId);
 
     /**
      * get all teams tied to a specific user

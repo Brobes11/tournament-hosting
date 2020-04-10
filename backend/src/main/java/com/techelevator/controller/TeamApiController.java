@@ -58,8 +58,8 @@ public class TeamApiController {
     }
 
     @GetMapping("/tournament/{tournamentId}")
-    public List<Team> getTeamsByTournamentId(@PathVariable long tournamentId, @RequestParam boolean isRequest) {
-        List<Team> tourneyTeams = teamDao.getTeamsByTournamentId(tournamentId, isRequest);
+    public List<Team> getTeamsByTournamentId(@PathVariable long tournamentId) {
+        List<Team> tourneyTeams = teamDao.getTeamsByTournamentId(tournamentId);
 
         return tourneyTeams;
     }
@@ -89,7 +89,7 @@ public class TeamApiController {
     }
 
     @GetMapping("/captain-teams")
-    public List<Team> getTeamsByGameandCaptain(@RequestBody String game, Long userId){
+    public List<Team> getTeamsByGameandCaptain(@RequestBody String game, Long userId) {
         return teamDao.getTeamsForCaptain(game, userId);
     }
 
