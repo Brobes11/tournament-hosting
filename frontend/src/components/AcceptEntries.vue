@@ -7,6 +7,8 @@
       <v-card>
         <v-card-title>
           <span class="headline">Sign Up Requests</span>
+          <v-spacer></v-spacer>
+          <v-icon class="clickable" @click="dialog = false">mdi-close-box-outline</v-icon>
         </v-card-title>
         <v-data-table :headers="headers" :items="requests" class="elevation-10">
           <template v-slot:item="row">
@@ -31,28 +33,56 @@
 </template>
 
 <script>
+import auth from '@/auth.js';
 export default {
+  props:{
+        currentTourney: Object
+    },
   data() {
     return {
+      tourney: null,
       dialog: false,
       requests: [
         {
           teamName: "team team",
           message: "Please let me play"
-        },
-        {
-          teamName: "team two",
-          message: "Let me play"
-        },
-        {
-          teamName: "team win",
-          message: "Whatever"
         }
       ]
     };
+  },
+  methods:{
+    setTournament(){
+      this.tourney = Object.assign({}, this.currentTourney);
+    },
+    getTournamentRequests(){
+      fetch(`${process.env.VUE_APP_REMOTE_API}/api/tournament/request`, {
+        method: 'GET',
+        headers:{
+        Authorization: 'Bearer ' + auth.getToken(),
+        Accept: "application/json",
+           'content-type': 'application/json'
+        },
+        body: JSON.stringify(this.currentTourney)
+        })
+        .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } 
+        })
+        .then((data) => {
+          this.requests = data;
+        })
+        .catch((err) => console.error(err));
+    }
+  },
+  created(){
+    this.setTournament();
+    this.getTournamentRequests();
+    
   }
 };
 </script>
 
 <style>
+
 </style>

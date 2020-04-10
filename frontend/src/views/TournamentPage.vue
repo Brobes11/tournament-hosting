@@ -27,7 +27,7 @@
           <v-card-title>
             Tournament Teams
             <v-spacer></v-spacer>
-            <accept-entries/>
+            <accept-entries :currentTourney="tournament"/>
             <v-text-field
               v-model="searchTeams"
               append-icon="mdi-magnify"
