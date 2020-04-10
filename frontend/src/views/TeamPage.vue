@@ -67,8 +67,11 @@
                 <td>{{row.item.username}}</td>
                 <td>{{row.item.firstName}}</td>
                 <td>{{row.item.lastName}}</td>
+<<<<<<< Updated upstream
                 <td>{{row.item.email}}</td>
                 <td>{{row.item.role}}</td>
+=======
+>>>>>>> Stashed changes
               </tr>
             </template>
             <template v-slot:item.captainStatus="{ item }">
@@ -187,6 +190,13 @@ export default {
         })
         .then(members => (this.roster = members));
     },
+<<<<<<< Updated upstream
+=======
+
+    declineRequest(userId, teamId) {
+
+    },
+>>>>>>> Stashed changes
 
     deleteItem(item) {
       const index = this.roster.indexOf(item);
