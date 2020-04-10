@@ -57,7 +57,7 @@ public class TeamApiController {
         return team;
     }
 
-    @GetMapping("/{teamId}")
+    @GetMapping("/{tournamentId}")
     public List<Team> getTeamsByTournamentId(@PathVariable long tournamentId, @RequestParam boolean isRequest) {
         List<Team> tourneyTeams = teamDao.getTeamsByTournamentId(tournamentId, isRequest);
 

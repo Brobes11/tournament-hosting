@@ -80,22 +80,22 @@ export default {
         .then(data => {
           this.tournament = data;
         });
+    },
+    getTourneyTeams() {
+      const tourneyId = this.$route.params.id;
+      fetch(`${process.env.VUE_APP_REMOTE_API}/api/tournament/${tourneyId}`, {
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + auth.getToken()
+        }
+      })
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          }
+        })
+        .then(tourneyTeams => (this.tourneyRoster = tourneyTeams));
     }
-    // getTourneyTeams() {
-    //   const tourneyId = this.$route.params.id;
-    //   fetch(`${process.env.VUE_APP_REMOTE_API}/api/tournament/${tourneyId}`, {
-    //     method: "GET",
-    //     headers: {
-    //       Authorization: "Bearer " + auth.getToken()
-    //     }
-    //   })
-    //     .then(response => {
-    //       if (response.ok) {
-    //         return response.json();
-    //       }
-    //     })
-    //     .then(tourneyTeams => (this.tourneyRoster = tourneyTeams));
-    // }
   },
   created() {
     this.getTournament();

@@ -39,3 +39,6 @@ entry_fee, prize_desc, tournament_owner, accepting_entries
 from tournaments 
 where id = 2;
 
+SELECT * 
+FROM teams
+JOIN 
