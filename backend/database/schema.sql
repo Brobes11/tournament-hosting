@@ -30,7 +30,7 @@ CREATE TABLE teams (
 CREATE TABLE teamRoster (
   user_id integer REFERENCES users (id),
   team_id integer REFERENCES teams (id),
-  captain boolean NOT NULL,
+  captain boolean NOT NULL DEFAULT FALSE,
   PRIMARY KEY (user_id, team_id)
 );
 
@@ -89,6 +89,6 @@ INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Pen15',
 INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Cyclone jr.', 'Hockey', true, 'Grab your sticks and get on the ice');
 
 
-COMMIT TRANSACTION;
+COMMIT TRANSACTION;''
 
-SELECT * FROM users;
+select * FROM teamRequest;

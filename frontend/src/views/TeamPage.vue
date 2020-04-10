@@ -69,6 +69,7 @@
                 <td>{{row.item.lastName}}</td>
                 <td>{{row.item.email}}</td>
                 <td>{{row.item.role}}</td>
+
               </tr>
             </template>
             <template v-slot:item.captainStatus="{ item }">
@@ -149,8 +150,6 @@ export default {
         })
         .then(data => {
           this.team = data;
-          this.getApplicants(data.teamId);
-          this.getRoster(data.teamId);
         });
     },
 

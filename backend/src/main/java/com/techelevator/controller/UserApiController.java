@@ -12,6 +12,7 @@ import com.techelevator.model.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -56,6 +57,14 @@ public class UserApiController {
             return userDao.getUsersByRequest(teamId);
         } 
         return userDao.getUsersByTeam(teamId);
+    }
+
+    @DeleteMapping
+    public boolean deleteUser(@RequestParam long userId, @RequestParam long teamId, @RequestParam boolean isRequest) {
+        boolean result = false;
+            if (isRequest == false) {
+                
+            }
     }
 
     @GetMapping(path = "/{username}")
