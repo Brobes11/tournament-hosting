@@ -79,6 +79,8 @@ import JoinTournament from '@/components/JoinTournament.vue';
         }],
         userId:'',
         user: null,
+        snackbar: false,
+        snackText:'Your request has been submitted!',
       }
     },
 
@@ -116,10 +118,13 @@ import JoinTournament from '@/components/JoinTournament.vue';
         })
         .catch((err) => console.error(err));
 
-        this.getUserTeams();
-        this.getUserId();
-        this.getUser()
+  
     },
+    methods:{
+      handleSnack(){
+        this.snackbar=true;
+      }
+    }
 
 
 

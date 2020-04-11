@@ -82,6 +82,14 @@ public class TournamentApiController {
         }
         requestDao.acceptTourneyRequest(tourneyRequest);
     }
+
+    @PostMapping("/join-request")
+    public void joinTournamentRequest(@Valid @RequestBody Request request, BindingResult result) {
+        if(result.hasErrors()){
+            
+        }
+        requestDao.createTournamentRequest(request);
+    }
     
 
 }

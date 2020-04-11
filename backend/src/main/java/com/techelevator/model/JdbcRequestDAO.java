@@ -86,4 +86,10 @@ public class JdbcRequestDAO implements RequestDAO {
 
     }
 
+    @Override
+    public void createTournamentRequest(Request request) {
+        String sql = "INSERT into tournamentrequest (team_id, tourney_id, message) VALUES(?,?,?);";
+        jdbcTemplate.update(sql, request.getSenderId(), request.getRecipientId(), request.getMessage());
+    }
+
 }

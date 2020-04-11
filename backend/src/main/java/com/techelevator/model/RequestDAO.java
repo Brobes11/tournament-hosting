@@ -17,4 +17,6 @@ public interface RequestDAO {
 
     public void acceptTourneyRequest(Request request);
 
+    public void createTournamentRequest(Request request);
+
 }

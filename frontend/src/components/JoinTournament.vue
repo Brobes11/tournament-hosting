@@ -12,7 +12,13 @@
           <span class="headline">Join Tournament</span>
             </v-col>
           <v-col class="d-flex" cols="12" sm="6">
-            <v-select :items="getListOfUserGames" label="Team Joining:" dense outlined></v-select>
+            <v-select 
+              :items="userTeams" 
+              item-text="teamName" 
+              v-model="selectedTeam" 
+              label="Team Joining:" 
+              @change="getIdFromTeamObj();" 
+              dense outlined></v-select>
           </v-col>
           </v-row>
         </v-card-title>
@@ -32,7 +38,6 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-
   </v-row>
 </template>
 
@@ -44,23 +49,26 @@ import auth from '@/auth';
 
     props:{
       tournamentId: Number,
-      teamId: Number,
       game: String
     },
       
     data: () => ({
       dialog: false,
-      request:{
-        tourneyId: '',
-        teamId: '',
+      request: {
+        senderId: '',
+        recipientId: '',
         message: ''
       },
       userId:'',
-      userTeams:[],
-      dropDownTeams: [],
-      
-      
-
+      userTeams:[{
+        teamId: '',
+        teamName: '',
+        game: '',
+        teamBio: '',
+        acceptingNewMembers: ''
+      }],
+      selectedTeam:'',
+      selectedTeamObj:[],
     }),
 
       methods:{
@@ -95,16 +103,22 @@ import auth from '@/auth';
       },
 
       setTournament(){
-        this.request.tourneyId = this.tournamentId;
+        this.request.recipientId = this.tournamentId;
       },
       setTeam(){
-        this.request.teamId = this.teamId;
+        this.request.senderId = this.selectedTeamObj.teamId;
       },
       setUserId(){
         this.userId = auth.getUser().id;
       },
+      getIdFromTeamObj(){
+        this.selectedTeamObj = this.userTeams.find((team) => team.teamName === this.selectedTeam);
+        this.setTeam();
+      },
+      
 
     },
+
     created(){
       this.setTournament();
       this.setTeam();
@@ -112,12 +126,11 @@ import auth from '@/auth';
       this.getCaptainsTeamsByGame();
 
     },
+
     computed:{
       getListOfUserGames(){
         return this.userTeams.map(a => a.teamName);
-        
-        
-      }
+      },
 
     },
 
