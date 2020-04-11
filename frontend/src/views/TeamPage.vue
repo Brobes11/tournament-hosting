@@ -69,14 +69,10 @@
                 <td>{{row.item.lastName}}</td>
                 <td>{{row.item.email}}</td>
                 <td>{{row.item.role}}</td>
-
+                <td>
+                  <v-icon small @click="deleteItem(row.item.userId)">mdi-delete</v-icon>
+                </td>
               </tr>
-            </template>
-            <template v-slot:item.captainStatus="{ item }">
-              <v-simple-checkbox v-model="item.captainStatus" disabled></v-simple-checkbox>
-            </template>
-            <template v-slot:item.delete="{ item }">
-              <v-icon small @click="deleteItem(item)">mdi-delete</v-icon>
             </template>
           </v-data-table>
         </v-card>
@@ -110,7 +106,7 @@ export default {
         { text: "First Name", value: "firstName" },
         { text: "Last Name", value: "lastName" },
         { text: "Email Address", value: "email" },
-        { text: "Captain", value: "captainStatus" },
+        { text: "Role", value: "role" },
         { text: "", value: "delete" }
       ],
 
@@ -126,7 +122,10 @@ export default {
         {
           userName: "",
           firstName: "",
-          lastName: ""
+          lastName: "",
+          email: "",
+          role: "",
+          userId: ""
         }
       ]
     };
@@ -150,6 +149,8 @@ export default {
         })
         .then(data => {
           this.team = data;
+          this.getApplicants(data.teamId);
+          this.getRoster(data.teamId);
         });
     },
 
@@ -187,10 +188,23 @@ export default {
         .then(members => (this.roster = members));
     },
 
-    deleteItem(item) {
-      const index = this.roster.indexOf(item);
+    deleteItem(userId) {
+      const teamId = this.$route.params.id;
+
       confirm("Are you sure you want to delete this item?") &&
-        this.roster.splice(index, 1);
+        fetch(
+        `${process.env.VUE_APP_REMOTE_API}/api/team/roster?userId=${userId}&teamId=${teamId}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: "Bearer " + auth.getToken()
+          },
+          credentials: "same-origin"
+        }
+      )
+        .then(response => {
+          return response.json();
+        });
     }
   }
 };

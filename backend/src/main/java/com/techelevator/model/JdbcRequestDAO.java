@@ -27,6 +27,13 @@ public class JdbcRequestDAO implements RequestDAO {
     }
 
     @Override
+    public void deleteTeamRequest(Request request) {
+        String sql = "DELETE FROM teamRequest WHERE user_id = ? AND team_id = ?";
+        jdbcTemplate.update(sql, request.getSenderId(), request.getRecipientId());
+        
+    }
+
+    @Override
     public List<Request> getRequestsByTournamentId(Long tournamentId) {
         List<Request> tournamentRequests = new ArrayList<>();
 
@@ -70,6 +77,13 @@ public class JdbcRequestDAO implements RequestDAO {
     public void deleteTourneyRequest(Request request) {
         String sql = "DELETE FROM tournamentrequest WHERE team_id = ? AND tourney_id = ?";
         jdbcTemplate.update(sql, request.getSenderId(), request.getRecipientId());
+    }
+
+    @Override
+    public void acceptTourneyRequest(Request request) {
+        String sql = "INSERT INTO tournamentroster (tourney_id, team_id) VALUES (?,?)";
+        jdbcTemplate.update(sql, request.getRecipientId(), request.getSenderId());
+
     }
 
 }

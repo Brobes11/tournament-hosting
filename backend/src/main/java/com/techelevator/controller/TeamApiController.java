@@ -9,9 +9,11 @@ import com.techelevator.model.JdbcTeamDao;
 import com.techelevator.model.Request;
 import com.techelevator.model.Team;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -82,6 +84,26 @@ public class TeamApiController {
     @GetMapping("/request")
     public List<Request> getAllRequestsByTeam(@Valid @RequestParam long teamId) {
         return requestDAO.getRequestsByTeamId(teamId);
+    }
+
+    @DeleteMapping("/request")
+    public boolean deleteTeamRequest(@RequestBody Request request, BindingResult result) {
+        if(result.hasErrors()) {
+            return false;
+        }
+
+        requestDAO.deleteTeamRequest(request);
+        return true;
+    }
+
+    @PostMapping("/roster")
+    public void addTeamMember(@RequestParam long userId, @RequestParam long teamId, @RequestParam boolean captainStatus) {
+        teamDao.addMember(userId, teamId, captainStatus);
+    }
+
+    @DeleteMapping("/roster")
+    public void deleteTeamMember(@RequestParam long userId, @RequestParam long teamId) {
+        teamDao.deleteMember(userId, teamId);
     }
 
     @GetMapping("/captain-teams")

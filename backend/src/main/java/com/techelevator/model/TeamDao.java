@@ -55,4 +55,23 @@ public interface TeamDao {
 
     public List<Team> getTeamsForCaptain(String game, Long userId);
 
+    /**
+     * add user to team
+     * 
+     * @param userId user id of user being added
+     * @param teamId team id of the team the user is being added to
+     * @param captainStatus boolean set to true if the user being added is a captain and set to false if the user is not a captain
+     * @return boolean for true if successful
+     */
+    public boolean addMember(long userId, long teamId, boolean captainStatus);
+
+    /**
+     * delete user from team
+     * 
+     * @param userId user id of user being deleted
+     * @param teamId team id of the team the user is being deleted from
+     * @return boolean set to true if successful
+     */
+    public boolean deleteMember(long userId, long teamId);
+
 }
