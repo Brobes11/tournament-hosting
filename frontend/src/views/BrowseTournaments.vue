@@ -32,7 +32,7 @@
             <td>{{row.item.startDate}}</td>
             <td>{{row.item.prizeDescription}}</td>
             <td>
-                <join-tournament :tournamentId="row.item.tournamentId" @join-success="handleSnack()"></join-tournament>
+                <join-tournament :game="row.item.game" :tournamentId="row.item.tournamentId" @join-success="handleSnack()"></join-tournament>
             </td>
           </tr>
       </template>

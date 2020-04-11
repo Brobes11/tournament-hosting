@@ -12,7 +12,7 @@
           <span class="headline">Join Tournament</span>
             </v-col>
           <v-col class="d-flex" cols="12" sm="6">
-            <v-select :items="userTeams" label="Team Joining:" dense outlined></v-select>
+            <v-select :items="getListOfUserGames" label="Team Joining:" dense outlined></v-select>
           </v-col>
           </v-row>
         </v-card-title>
@@ -44,7 +44,8 @@ import auth from '@/auth';
 
     props:{
       tournamentId: Number,
-      teamId: Number
+      teamId: Number,
+      game: String
     },
       
     data: () => ({
@@ -56,10 +57,8 @@ import auth from '@/auth';
       },
       userId:'',
       userTeams:[],
-      tournamentId:'',
-      selectedTeam:{
-                    game: "Super Smash Bros"
-                    },
+      dropDownTeams: [],
+      
       
 
     }),
@@ -81,6 +80,20 @@ import auth from '@/auth';
          }
        })
       },
+
+      getCaptainsTeamsByGame(){
+      fetch(`${process.env.VUE_APP_REMOTE_API}/api/team/captain-teams?game=${this.game}&userId=${this.userId}`, {
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + auth.getToken(),
+        }
+      })
+        .then(response => {
+          return response.json();
+        })
+        .then(captainsTeams => (this.userTeams = captainsTeams));
+      },
+
       setTournament(){
         this.request.tourneyId = this.tournamentId;
       },
@@ -88,28 +101,8 @@ import auth from '@/auth';
         this.request.teamId = this.teamId;
       },
       setUserId(){
-        this.userId= auth.getUser().id;
+        this.userId = auth.getUser().id;
       },
-
-      getCaptainsTeamsByGame(){
-      
-      fetch(`${process.env.VUE_APP_REMOTE_API}api/team/captain-teams?userId=${this.userId}&game=${this.game}`, {
-        method: "GET",
-        headers: {
-          Authorization: "Bearer " + auth.getToken(),
-          Accept: "application/json",
-           'content-type': 'application/json'
-        },
-        body: JSON.stringify(this.selectedTeam)
-      })
-        .then(response => {
-          return response.json();
-        })
-        .then(data => {
-          this.userTeams = data;
-        });
-
-      }
 
     },
     created(){
@@ -117,7 +110,15 @@ import auth from '@/auth';
       this.setTeam();
       this.setUserId();
       this.getCaptainsTeamsByGame();
-      
+
+    },
+    computed:{
+      getListOfUserGames(){
+        return this.userTeams.map(a => a.teamName);
+        
+        
+      }
+
     },
 
 
