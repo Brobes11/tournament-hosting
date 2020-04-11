@@ -119,19 +119,19 @@ INSERT INTO teamRequest(team_id, user_id, message) VALUES (1,1, 'you dont even k
 
 
  
-INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)(
+INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
 VALUES(1,'Smash to the death','Super Smash Brothers', 2020-10-06,2020-10-08,'Cincinnati',5,'winner gets gold joycons',5,true);
 
-INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)(
+INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
 VALUES(2,'Sun in the Sand','Volleyball', 2020-08-06,2020-08-08,'Cincinnati',25,'winner gets a new ball and sunglasses',2,true);
 
-INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)(
+INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
 VALUES(3,'White men cant jump','Basketball', 2020-01-06,2020-01-08,'Brooklyn',30,'winner gets new jock strap',5,false);
 
-INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)(
+INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
 VALUES(4,'Your soul will be mine','DnD', 2020-11-06,2020-11-08,'Tampa',10,'almighty glory',8,false);
 
-INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)(
+INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
 VALUES(5,'White men cant jump','Bike Polo', 2020-01-06,2020-01-08,'Brooklyn',30,'winner gets new jock strap',5,true);
 
 
