@@ -69,10 +69,10 @@
                 <td>{{row.item.lastName}}</td>
                 <td>{{row.item.email}}</td>
                 <td>{{row.item.role}}</td>
+                <td>
+                  <v-icon small @click="deleteItem(row.item.userId)">mdi-delete</v-icon>
+                </td>
               </tr>
-            </template>
-            <template v-slot item.delete="{ item }">
-                  <v-icon small @click="deleteItem(item)">mdi-delete</v-icon>
             </template>
           </v-data-table>
         </v-card>
@@ -188,10 +188,12 @@ export default {
         .then(members => (this.roster = members));
     },
 
-    deleteItem(item) {
+    deleteItem(userId) {
+      const teamId = this.$route.params.id;
+
       confirm("Are you sure you want to delete this item?") &&
         fetch(
-        `${process.env.VUE_APP_REMOTE_API}/api/team/roster?userId=${item.userId}&teamId=${team.teamId}`,
+        `${process.env.VUE_APP_REMOTE_API}/api/team/roster?userId=${userId}&teamId=${teamId}`,
         {
           method: "DELETE",
           headers: {
