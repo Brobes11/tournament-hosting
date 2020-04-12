@@ -19,6 +19,11 @@
         </v-row>
         <p>{{tournament.prizeDescription}}</p>
       </v-col>
+      <v-col>
+        <v-card-actions>
+          <edit-tournament :current-tournament="tournament" @update-tournament="getTournament()" />
+        </v-card-actions>
+      </v-col>
     </v-row>
 
     <v-row>
@@ -63,9 +68,12 @@
  
  <script>
 import auth from "@/auth";
+import EditTournament from "@/components/EditTournament.vue";
 import AcceptEntries from "@/components/AcceptEntries.vue";
+
 export default {
   components: {
+    EditTournament,
     AcceptEntries
   },
   data() {

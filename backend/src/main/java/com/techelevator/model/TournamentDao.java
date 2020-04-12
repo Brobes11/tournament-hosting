@@ -14,4 +14,6 @@ public interface TournamentDao {
 
     public Tournament createTournament(Tournament newTournament, Long userId);
 
+    public boolean updateTournament(Tournament tournament);
+
 }

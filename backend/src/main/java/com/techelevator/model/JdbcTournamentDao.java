@@ -63,13 +63,12 @@ public class JdbcTournamentDao implements TournamentDao {
         List<Tournament> usersTournaments = new ArrayList<>();
 
         String sql = "SELECT id, tourney_name, game, start_date, end_date, location, "
-        + " entry_fee, prize_desc, tournament_owner, accepting_entries FROM tournaments " +
-        "WHERE id IN (SELECT tourney_id FROM tournamentroster WHERE team_id " + 
-        "IN (SELECT id FROM teamroster WHERE user_id = ?));";
-
+                + " entry_fee, prize_desc, tournament_owner, accepting_entries FROM tournaments "
+                + "WHERE id IN (SELECT tourney_id FROM tournamentroster WHERE team_id "
+                + "IN (SELECT id FROM teamroster WHERE user_id = ?));";
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
-        while(results.next()){
+        while (results.next()) {
             usersTournaments.add(mapRowSetTournament(results));
         }
         return usersTournaments;
@@ -92,6 +91,14 @@ public class JdbcTournamentDao implements TournamentDao {
     public List<Tournament> getTournamentsByTeam(long id) {
         // TODO Auto-generated method stub
         return null;
+    }
+
+    @Override
+    public boolean updateTournament(Tournament tournament) {
+        String sql = "UPDATE tournaments SET tourney_name = ?, prize_desc = ? WHERE id = ?;";
+        jdbcTemplate.update(sql, tournament.getTournamentName(), tournament.getPrizeDescription(),
+                tournament.getTournamentId());
+        return true;
     }
 
 }
