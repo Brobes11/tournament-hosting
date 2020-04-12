@@ -17,10 +17,24 @@
               <td>{{row.item.message}}</td>
               <td>
                 <v-spacer></v-spacer>
-                <v-btn class="mx-2" fab dark small color="green" @click="dialog = false;acceptRequest(row.item)">
+                <v-btn
+                  class="mx-2"
+                  fab
+                  dark
+                  small
+                  color="green"
+                  @click="dialog = false;acceptRequest(row.item)"
+                >
                   <v-icon dark>mdi-check-circle-outline</v-icon>
                 </v-btn>
-                <v-btn class="mx-2" fab dark small color="red" @click="dialog = false;deleteRequest(row.item)">
+                <v-btn
+                  class="mx-2"
+                  fab
+                  dark
+                  small
+                  color="red"
+                  @click="dialog = false;deleteRequest(row.item)"
+                >
                   <v-icon dark>mdi-minus-circle-outline</v-icon>
                 </v-btn>
               </td>
@@ -33,11 +47,11 @@
 </template>
 
 <script>
-import auth from '@/auth.js';
+import auth from "@/auth.js";
 export default {
-  props:{
-        currentTourney: Object
-    },
+  props: {
+    currentTourney: Object
+  },
   data() {
     return {
       tourney: null,
@@ -50,71 +64,70 @@ export default {
       ]
     };
   },
-  methods:{
-    setTournament(){
+  methods: {
+    setTournament() {
       this.tourney = Object.assign({}, this.currentTourney);
     },
-    getTournamentRequests(){
-      fetch(`${process.env.VUE_APP_REMOTE_API}/api/tournament/request?tournamentId=${this.tourney.tournamentId}`, {
-        headers:{
-        Authorization: 'Bearer ' + auth.getToken(),
-        Accept: "application/json",
-           'content-type': 'application/json'
+    getTournamentRequests() {
+      fetch(
+        `${process.env.VUE_APP_REMOTE_API}/api/tournament/request?tournamentId=${this.tourney.tournamentId}`,
+        {
+          headers: {
+            Authorization: "Bearer " + auth.getToken(),
+            Accept: "application/json",
+            "content-type": "application/json"
+          }
         }
+      )
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          }
         })
-        .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } 
-        })
-        .then((data) => {
+        .then(data => {
           this.requests = data;
         })
-        .catch((err) => console.error(err));
+        .catch(err => console.error(err));
     },
-    deleteRequest(requestToDelete){
-      fetch(`${process.env.VUE_APP_REMOTE_API}/api/tournament/request`,{
-         method:'DELETE',
-         headers:{
-            Authorization: 'Bearer ' + auth.getToken(),
-            Accept: "application/json",
-           'content-type': 'application/json'
-         },
-         body: JSON.stringify(requestToDelete)
-       })
-       .then(response =>{
-         if(response.ok){
-           this.$emit('request-update');
-           this.getTournamentRequests();
-         }
-       })
+    deleteRequest(requestToDelete) {
+      fetch(`${process.env.VUE_APP_REMOTE_API}/api/tournament/request`, {
+        method: "DELETE",
+        headers: {
+          Authorization: "Bearer " + auth.getToken(),
+          Accept: "application/json",
+          "content-type": "application/json"
+        },
+        body: JSON.stringify(requestToDelete)
+      }).then(response => {
+        if (response.ok) {
+          this.$emit("request-update");
+          this.getTournamentRequests();
+        }
+      });
     },
-    acceptRequest(requestToAccept){
-      fetch(`${process.env.VUE_APP_REMOTE_API}/api/tournament/request`,{
-         method:'POST',
-         headers:{
-            Authorization: 'Bearer ' + auth.getToken(),
-            Accept: "application/json",
-           'content-type': 'application/json'
-         },
-         body: JSON.stringify(requestToAccept)
-       })
-       .then(response =>{
-         if(response.ok){
-           this.$emit('request-update');
-           this.deleteRequest(requestToAccept);
-         }
-       })
+    acceptRequest(requestToAccept) {
+      fetch(`${process.env.VUE_APP_REMOTE_API}/api/tournament/request`, {
+        method: "POST",
+        headers: {
+          Authorization: "Bearer " + auth.getToken(),
+          Accept: "application/json",
+          "content-type": "application/json"
+        },
+        body: JSON.stringify(requestToAccept)
+      }).then(response => {
+        if (response.ok) {
+          this.$emit("request-update");
+          this.deleteRequest(requestToAccept);
+        }
+      });
     }
   },
-  created(){
+  created() {
     this.setTournament();
     this.getTournamentRequests();
-    
   }
 };
 </script>
 
 <style>
-
 </style>

@@ -39,12 +39,18 @@
           <v-data-table :headers="tourneyTeamHeaders" :items="tourneyTeams" :search="searchTeams">
             <template v-slot:item="row">
               <tr>
-                <td>{{row.item.teamName}}</td>
+                <td
+                  class="clickable"
+                  @click="$router.push('/team-page/' + row.item.teamId)"
+                >{{row.item.teamName}}</td>
                 <td>{{row.item.captainUsername}}</td>
                 <td>{{row.item.captainEmail}}</td>
-                <td>{{row.item.teamId}}</td>
                 <td align="right" width="10">
-                  <v-btn small @click="deleteTeamFromTournament(row.item.teamId)">Remove Team</v-btn>
+                  <v-btn
+                    class="error"
+                    small
+                    @click="deleteTeamFromTournament(row.item.teamId)"
+                  >Remove Team</v-btn>
                 </td>
               </tr>
             </template>
@@ -135,7 +141,6 @@ export default {
           }
         });
       this.getTourneyTeams();
-      this.$router.go();
     }
   },
   created() {
