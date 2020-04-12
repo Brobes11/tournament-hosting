@@ -112,8 +112,8 @@ export default {
     }
   },
   created() {
-    this.getTournament();
     this.getTourneyTeams();
+    this.getTournament();
   }
 };
 </script>
