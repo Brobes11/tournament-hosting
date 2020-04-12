@@ -39,6 +39,7 @@ entry_fee, prize_desc, tournament_owner, accepting_entries
 from tournaments 
 where id = 2;
 
-SELECT * 
-FROM teams
-JOIN 
+SELECT a.id, a.team_name, c.username, c.email FROM teams a JOIN teamroster b ON a.id = b.team_id 
+                JOIN users c ON b.user_id = c.id WHERE b.captain = true AND a.game in 
+                (SELECT a.game FROM teams a JOIN tournamentroster b ON a.id = b.team_id JOIN tournaments c ON b.tourney_id = c.id 
+                WHERE c.id = ?);

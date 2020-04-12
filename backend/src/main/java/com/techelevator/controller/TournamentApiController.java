@@ -8,6 +8,8 @@ import com.techelevator.model.JdbcRequestDAO;
 import com.techelevator.model.JdbcTournamentDao;
 import com.techelevator.model.Request;
 import com.techelevator.model.Tournament;
+import com.techelevator.model.TournamentTeam;
+import com.techelevator.model.TournamentTeamDao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -21,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @RestController
 @CrossOrigin
 @RequestMapping("/api/tournament")
@@ -34,28 +35,30 @@ public class TournamentApiController {
     private JdbcRequestDAO requestDao;
 
     @Autowired
-    public TournamentApiController(JdbcTournamentDao tournamentDao){
+    public TournamentApiController(JdbcTournamentDao tournamentDao) {
         this.tournamentDao = tournamentDao;
     }
 
     @GetMapping
-    public List<Tournament> getAllTournaments(@RequestParam(required = false) Long userId, @RequestParam(required = false) Long teamId){
-        if(userId != null){
+    public List<Tournament> getAllTournaments(@RequestParam(required = false) Long userId,
+            @RequestParam(required = false) Long teamId) {
+        if (userId != null) {
             return tournamentDao.getTournamentsByUser(userId);
-        } else if (teamId != null){
+        } else if (teamId != null) {
             return tournamentDao.getTournamentsByTeam(teamId);
         }
         return tournamentDao.getAllTournaments();
     }
 
     @GetMapping("/{tournamentId}")
-    public Tournament getTournamentById(@PathVariable long tournamentId){
+    public Tournament getTournamentById(@PathVariable long tournamentId) {
         Tournament tournament = tournamentDao.getTournamentById(tournamentId);
         return tournament;
     }
 
     @PostMapping
-    public Tournament createTournament(@Valid @RequestBody Tournament tournament, BindingResult result, @RequestParam Long userId) {
+    public Tournament createTournament(@Valid @RequestBody Tournament tournament, BindingResult result,
+            @RequestParam Long userId) {
         if (result.hasErrors() == false) {
             return tournamentDao.createTournament(tournament, userId);
         }
@@ -63,33 +66,32 @@ public class TournamentApiController {
     }
 
     @GetMapping("/request")
-    public List<Request> getTournamentRequests(@RequestParam long tournamentId){
-            return requestDao.getRequestsByTournamentId(tournamentId);
+    public List<Request> getTournamentRequests(@RequestParam long tournamentId) {
+        return requestDao.getRequestsByTournamentId(tournamentId);
     }
 
     @DeleteMapping("/request")
-    public void deleteTournamentRequest(@Valid @RequestBody Request tourneyRequest, BindingResult result){
-        if(result.hasErrors()){
-            
+    public void deleteTournamentRequest(@Valid @RequestBody Request tourneyRequest, BindingResult result) {
+        if (result.hasErrors()) {
+
         }
         requestDao.deleteTourneyRequest(tourneyRequest);
     }
 
     @PostMapping("/request")
     public void acceptTournamentRequest(@Valid @RequestBody Request tourneyRequest, BindingResult result) {
-        if(result.hasErrors()){
-            
+        if (result.hasErrors()) {
+
         }
         requestDao.acceptTourneyRequest(tourneyRequest);
     }
 
     @PostMapping("/join-request")
     public void joinTournamentRequest(@Valid @RequestBody Request request, BindingResult result) {
-        if(result.hasErrors()){
-            
+        if (result.hasErrors()) {
+
         }
         requestDao.createTournamentRequest(request);
     }
-    
 
 }

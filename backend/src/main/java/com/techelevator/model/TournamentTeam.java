@@ -2,9 +2,18 @@ package com.techelevator.model;
 
 public class TournamentTeam {
 
+    private long teamId;
     private String teamName;
     private String captainUsername;
     private String captainEmail;
+
+    public long getTeamId() {
+        return teamId;
+    }
+
+    public void setTeamId(long teamId) {
+        this.teamId = teamId;
+    }
 
     public String getTeamName() {
         return teamName;

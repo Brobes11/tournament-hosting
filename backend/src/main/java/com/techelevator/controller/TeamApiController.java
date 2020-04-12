@@ -70,6 +70,11 @@ public class TeamApiController {
         return tourneyTeams;
     }
 
+    @DeleteMapping("/tournament/{tournamentId}")
+    public void deleteTournamentTeam(@PathVariable long tournamentId, @RequestParam long teamId) {
+        tournamentTeamDao.deleteTeam(tournamentId, teamId);
+    }
+
     @PostMapping
     public Team createTeam(@Valid @RequestBody Team team, BindingResult result, @RequestParam Long userId) {
 

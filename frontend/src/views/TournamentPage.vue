@@ -23,7 +23,7 @@
 
     <v-row>
       <v-col>
-        <v-card>
+        <v-card dark>
           <v-card-title>
             Tournament Teams
             <v-spacer></v-spacer>
@@ -42,6 +42,10 @@
                 <td>{{row.item.teamName}}</td>
                 <td>{{row.item.captainUsername}}</td>
                 <td>{{row.item.captainEmail}}</td>
+                <td>{{row.item.teamId}}</td>
+                <td align="right" width="10">
+                  <v-btn small @click="deleteTeamFromTournament(row.item.teamId)">Remove Team</v-btn>
+                </td>
               </tr>
             </template>
           </v-data-table>
@@ -65,9 +69,11 @@ export default {
       tourneyTeamHeaders: [
         { text: "Team Name", value: "teamName" },
         { text: "Captain", value: "username" },
-        { text: "Captain Email", value: "email" }
+        { text: "Captain Email", value: "email" },
+        { text: "", value: "button" }
       ],
       tourneyTeams: {
+        teamId: "",
         teamName: "",
         captainUsername: "",
         captainEmail: ""
@@ -109,6 +115,27 @@ export default {
           }
         })
         .then(teamsInfo => (this.tourneyTeams = teamsInfo));
+    },
+    deleteTeamFromTournament(teamId) {
+      const tournamentId = this.$route.params.id;
+      confirm(
+        "Are you sure you want to remove this team from your tournament?"
+      ) &&
+        fetch(
+          `${process.env.VUE_APP_REMOTE_API}/api/team/tournament/${tournamentId}?teamId=${teamId}`,
+          {
+            method: "DELETE",
+            headers: {
+              Authorization: "Bearer " + auth.getToken()
+            }
+          }
+        ).then(response => {
+          if (response.ok) {
+            return response.json();
+          }
+        });
+      this.getTourneyTeams();
+      this.$router.go();
     }
   },
   created() {
