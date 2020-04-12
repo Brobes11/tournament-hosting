@@ -8,8 +8,6 @@ import com.techelevator.model.JdbcRequestDAO;
 import com.techelevator.model.JdbcTournamentDao;
 import com.techelevator.model.Request;
 import com.techelevator.model.Tournament;
-import com.techelevator.model.TournamentTeam;
-import com.techelevator.model.TournamentTeamDao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
