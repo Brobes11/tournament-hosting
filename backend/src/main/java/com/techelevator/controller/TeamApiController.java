@@ -6,9 +6,10 @@ import javax.validation.Valid;
 
 import com.techelevator.model.JdbcRequestDAO;
 import com.techelevator.model.JdbcTeamDao;
+import com.techelevator.model.JdbcTournamentTeamDao;
 import com.techelevator.model.Request;
 import com.techelevator.model.Team;
-
+import com.techelevator.model.TournamentTeam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -30,6 +31,9 @@ public class TeamApiController {
 
     @Autowired
     private JdbcTeamDao teamDao;
+
+    @Autowired
+    private JdbcTournamentTeamDao tournamentTeamDao;
 
     @Autowired
     private JdbcRequestDAO requestDAO;
@@ -60,8 +64,8 @@ public class TeamApiController {
     }
 
     @GetMapping("/tournament/{tournamentId}")
-    public List<Team> getTeamsByTournamentId(@PathVariable long tournamentId) {
-        List<Team> tourneyTeams = teamDao.getTeamsByTournamentId(tournamentId);
+    public List<TournamentTeam> getTeamsByTournamentId(@PathVariable long tournamentId) {
+        List<TournamentTeam> tourneyTeams = tournamentTeamDao.getTournamentRosterById(tournamentId);
 
         return tourneyTeams;
     }
@@ -88,7 +92,7 @@ public class TeamApiController {
 
     @DeleteMapping("/request")
     public boolean deleteTeamRequest(@RequestBody Request request, BindingResult result) {
-        if(result.hasErrors()) {
+        if (result.hasErrors()) {
             return false;
         }
 
@@ -97,7 +101,8 @@ public class TeamApiController {
     }
 
     @PostMapping("/roster")
-    public void addTeamMember(@RequestParam long userId, @RequestParam long teamId, @RequestParam boolean captainStatus) {
+    public void addTeamMember(@RequestParam long userId, @RequestParam long teamId,
+            @RequestParam boolean captainStatus) {
         teamDao.addMember(userId, teamId, captainStatus);
     }
 
@@ -107,7 +112,7 @@ public class TeamApiController {
     }
 
     @GetMapping("/captain-teams")
-    public List<Team> getTeamsByGameandCaptain(@RequestParam String game,@RequestParam Long userId){
+    public List<Team> getTeamsByGameandCaptain(@RequestParam String game, @RequestParam Long userId) {
         return teamDao.getTeamsForCaptain(game, userId);
     }
 

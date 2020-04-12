@@ -27,7 +27,7 @@
           <v-card-title>
             Tournament Teams
             <v-spacer></v-spacer>
-            <accept-entries :currentTourney="tournament"/>
+            <accept-entries :currentTourney="tournament" />
             <v-text-field
               v-model="searchTeams"
               append-icon="mdi-magnify"
@@ -36,12 +36,12 @@
               hide-details
             ></v-text-field>
           </v-card-title>
-          <v-data-table :headers="tourneyTeamHeaders" :items="teams" :search="searchTeams">
+          <v-data-table :headers="tourneyTeamHeaders" :items="tourneyTeams" :search="searchTeams">
             <template v-slot:item="row">
               <tr>
-                <td>{{row.item.username}}</td>
-                <td>{{row.item.firstName}}</td>
-                <td>{{row.item.lastName}}</td>
+                <td>{{row.item.teamName}}</td>
+                <td>{{row.item.captainUsername}}</td>
+                <td>{{row.item.captainEmail}}</td>
               </tr>
             </template>
           </v-data-table>
@@ -53,11 +53,11 @@
  
  <script>
 import auth from "@/auth";
-import AcceptEntries from "@/components/AcceptEntries.vue"
+import AcceptEntries from "@/components/AcceptEntries.vue";
 export default {
-  components:{
-     AcceptEntries
-    },
+  components: {
+    AcceptEntries
+  },
   data() {
     return {
       tournament: null,
@@ -66,7 +66,12 @@ export default {
         { text: "Team Name", value: "teamName" },
         { text: "Captain", value: "username" },
         { text: "Captain Email", value: "email" }
-      ]
+      ],
+      tourneyTeams: {
+        teamName: "",
+        captainUsername: "",
+        captainEmail: ""
+      }
     };
   },
   methods: {
@@ -89,22 +94,26 @@ export default {
     },
     getTourneyTeams() {
       const tourneyId = this.$route.params.id;
-      fetch(`${process.env.VUE_APP_REMOTE_API}/api/tournament/${tourneyId}`, {
-        method: "GET",
-        headers: {
-          Authorization: "Bearer " + auth.getToken()
+      fetch(
+        `${process.env.VUE_APP_REMOTE_API}/api/team/tournament/${tourneyId}`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: "Bearer " + auth.getToken()
+          }
         }
-      })
+      )
         .then(response => {
           if (response.ok) {
             return response.json();
           }
         })
-        .then(tourneyTeams => (this.tourneyRoster = tourneyTeams));
+        .then(teamsInfo => (this.tourneyTeams = teamsInfo));
     }
   },
   created() {
     this.getTournament();
+    this.getTourneyTeams();
   }
 };
 </script>

@@ -72,21 +72,6 @@ public class JdbcTeamDao implements TeamDao {
         }
     }
 
-    @Override
-    public List<Team> getTeamsByTournamentId(long tournamentId) {
-        List<Team> tourneyTeams = new ArrayList<>();
-        String sql = "SELECT a.team_name, c.username, c.email FROM teams a JOIN teamroster b ON a.id = b.team_id "
-                + "JOIN users c ON b.user_id = c.id WHERE b.captain = true AND a.game in "
-                + "(SELECT a.game FROM teams a JOIN tournamentroster b ON a.id = b.team_id JOIN tournaments c ON b.tourney_id = c.id "
-                + "WHERE c.id = ?);";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, tournamentId);
-        while (results.next()) {
-            Team team = mapResultToTeam(results);
-            tourneyTeams.add(team);
-        }
-        return tourneyTeams;
-    }
-
     private Team mapResultToTeam(SqlRowSet results) {
         Team team = new Team();
         team.setTeamId(results.getLong("id"));
@@ -150,6 +135,5 @@ public class JdbcTeamDao implements TeamDao {
         jdbcTemplate.update(sql, userId, teamId);
         return result;
     }
-    
 
 }

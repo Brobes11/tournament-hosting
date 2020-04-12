@@ -31,14 +31,6 @@ public interface TeamDao {
     public Team getTeamById(long id);
 
     /**
-     * get single team profile based on the team id.
-     * 
-     * @param tournamentId
-     * @return all teams and captains for a single tournament.
-     */
-    public List<Team> getTeamsByTournamentId(long tournamentId);
-
-    /**
      * get all teams tied to a specific user
      * 
      * @param userId
@@ -58,9 +50,10 @@ public interface TeamDao {
     /**
      * add user to team
      * 
-     * @param userId user id of user being added
-     * @param teamId team id of the team the user is being added to
-     * @param captainStatus boolean set to true if the user being added is a captain and set to false if the user is not a captain
+     * @param userId        user id of user being added
+     * @param teamId        team id of the team the user is being added to
+     * @param captainStatus boolean set to true if the user being added is a captain
+     *                      and set to false if the user is not a captain
      * @return boolean for true if successful
      */
     public boolean addMember(long userId, long teamId, boolean captainStatus);
