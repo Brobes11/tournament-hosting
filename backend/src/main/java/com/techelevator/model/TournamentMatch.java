@@ -7,8 +7,8 @@ public class TournamentMatch {
     private int round;
     private long team1Id;
     private long team2Id;
-    private long team1Score;
-    private long team2Score;
+    private int team1Score;
+    private int team2Score;
     private long winnerId;
 
     public long getId() {
@@ -27,7 +27,7 @@ public class TournamentMatch {
         return team2Score;
     }
 
-    public void setTeam2Score(long team2Score) {
+    public void setTeam2Score(int team2Score) {
         this.team2Score = team2Score;
     }
 
@@ -35,7 +35,7 @@ public class TournamentMatch {
         return team1Score;
     }
 
-    public void setTeam1Score(long team1Score) {
+    public void setTeam1Score(int team1Score) {
         this.team1Score = team1Score;
     }
 

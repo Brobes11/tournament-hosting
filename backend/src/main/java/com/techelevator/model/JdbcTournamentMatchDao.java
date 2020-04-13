@@ -6,6 +6,7 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -16,6 +17,19 @@ public class JdbcTournamentMatchDao implements TournamentMatchDao {
     @Autowired
     public JdbcTournamentMatchDao(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
+    }
+
+    private TournamentMatch mapRowSetTournamentMatch(SqlRowSet results) {
+        TournamentMatch tournamentMatch = new TournamentMatch();
+        tournamentMatch.setId(results.getLong("match_id"));
+        tournamentMatch.setTournamentId(results.getLong("tourney_id"));
+        tournamentMatch.setRound(results.getInt("round_number"));
+        tournamentMatch.setTeam1Id(results.getLong("team_1_id"));
+        tournamentMatch.setTeam2Id(results.getLong("team_2_id"));
+        tournamentMatch.setTeam1Score(results.getInt("team_1_score"));
+        tournamentMatch.setTeam2Score(results.getInt("team_2_score"));
+        tournamentMatch.setWinnerId(results.getLong("winner_id"));
+        return tournamentMatch;
     }
 
     @Override

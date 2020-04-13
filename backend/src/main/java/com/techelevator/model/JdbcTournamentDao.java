@@ -66,7 +66,7 @@ public class JdbcTournamentDao implements TournamentDao {
         String sql = "SELECT id, tourney_name, game, start_date, end_date, location, "
                 + " entry_fee, prize_desc, tournament_owner, accepting_entries FROM tournaments "
                 + "WHERE id IN (SELECT tourney_id FROM tournamentroster WHERE team_id "
-                + "IN (SELECT team_id FROM teamroster WHERE user_id = ?));";
+                + "IN (SELECT team_id FROM teamroster WHERE user_id = ?)) GROUP BY id;";
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
         while (results.next()) {
