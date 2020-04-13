@@ -26,8 +26,8 @@ public class JdbcTournamentTeamDao implements TournamentTeamDao {
         String sql = "SELECT a.id, a.team_name, c.username, c.email FROM teams a JOIN teamroster b ON a.id = b.team_id "
                 + "JOIN users c ON b.user_id = c.id WHERE b.captain = true AND a.game in "
                 + "(SELECT a.game FROM teams a JOIN tournamentroster b ON a.id = b.team_id JOIN tournaments c ON b.tourney_id = c.id "
-                + "WHERE c.id = ?) AND a.id IN (SELECT team_id FROM tournamentroster WHERE tourney_id = 6);";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, tournamentId);
+                + "WHERE c.id = ?) AND a.id IN (SELECT team_id FROM tournamentroster WHERE tourney_id = ?);";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, tournamentId, tournamentId);
         while (results.next()) {
             TournamentTeam tourneyTeam = mapResultToTournamentTeam(results);
             tourneyTeams.add(tourneyTeam);

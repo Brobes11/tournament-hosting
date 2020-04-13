@@ -24,6 +24,10 @@
             <h3>Tournament Entry Fee:</h3>
             <p>$$$ {{tournament.entryFee}}</p>
           </v-col>
+          <v-col>
+            <h3>Tournament Timeline:</h3>
+            <p>{{tournament.startDate}} - {{tournament.endDate}}</p>
+          </v-col>
         </v-row>
       </v-col>
       <v-col v-if="tournament.tournamentOwner === currentUser">
