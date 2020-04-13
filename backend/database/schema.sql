@@ -95,10 +95,10 @@ INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES
 
 
 INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('The Sharks', 'Super Smash Bros', true, 'Come have fun and get your smash on!');
-INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('The Exotics', 'Basketball', true, 'Just Shoot it');
-INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Magic', 'Magic the Gathering', false, 'magic chickens');
-INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Pen15', 'Bike Polo', false, 'beep boop beep');
-INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Cyclone jr.', 'Hockey', true, 'Grab your sticks and get on the ice');
+INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('The Exotics', 'Volleyball', true, 'Just Bump it');
+INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Magic', 'Basketball', false, 'Orlando is our home');
+INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Pen15', 'DnD', false, 'beep boop beep');
+INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Cyclone jr.', 'Bike Polo', true, 'Grab your sticks and your bikes');
 
 
 
@@ -108,7 +108,7 @@ INSERT INTO teamRoster(team_id, user_id, captain) VALUES (1,2,true);
 INSERT INTO teamRoster(team_id, user_id, captain) VALUES (2,3,false);
 INSERT INTO teamRoster(team_id, user_id, captain) VALUES (2,4,true);
 INSERT INTO teamRoster(team_id, user_id, captain) VALUES (3,5,true);
-INSERT INTO teamRoster(team_id, user_id, captain) VALUES (3,6,true);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (3,6,false);
 INSERT INTO teamRoster(team_id, user_id, captain) VALUES (4,7,false);
 INSERT INTO teamRoster(team_id, user_id, captain) VALUES (4,8,true);
 INSERT INTO teamRoster(team_id, user_id, captain) VALUES (5,9,false);
@@ -144,7 +144,7 @@ INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_
 VALUES(4,'Your soul will be mine','DnD', '2020-11-06','2020-11-08','Tampa',10,'almighty glory',8,false);
 
 INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
-VALUES(5,'White men cant jump','Bike Polo', '2020-01-06','2020-01-08','Brooklyn',30,'winner gets new jock strap',5,true);
+VALUES(5,'Tour De France','Bike Polo', '2020-01-06','2020-01-08','Brooklyn',30,'winner gets new bike',5,true);
 
 
 
