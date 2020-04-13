@@ -144,23 +144,21 @@ public class JdbcUserDao implements UserDao {
 
     @Override
     public boolean updateUser(User user) {
-        String sql = "UPDATE users SET first_name = ?, last_name = ?, " +
-        "email = ? WHERE username = ?";
-        jdbcTemplate.update(sql, user.getFirstName(),
-         user.getLastName(), user.getEmail(), user.getUsername());
+        String sql = "UPDATE users SET first_name = ?, last_name = ?, " + "email = ? WHERE username = ?";
+        jdbcTemplate.update(sql, user.getFirstName(), user.getLastName(), user.getEmail(), user.getUsername());
         return true;
     }
 
     @Override
     public List<User> getUsersByTeam(long teamId) {
         List<User> teamRoster = new ArrayList<>();
-        String sql = "SELECT id, username, role, email, first_name, last_name, teamroster.captain FROM users " +
-        "JOIN teamroster ON teamroster.user_id = users.id "+
-        "WHERE id IN (SELECT user_id FROM teamRoster WHERE team_id = ?) AND teamroster.team_id = ?;";
+        String sql = "SELECT id, username, role, email, first_name, last_name, teamroster.captain FROM users "
+                + "JOIN teamroster ON teamroster.user_id = users.id "
+                + "WHERE id IN (SELECT user_id FROM teamRoster WHERE team_id = ?) AND teamroster.team_id = ?;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, teamId, teamId);
         while (results.next()) {
             User member = mapResultToUser(results);
-            if(results.getBoolean("captain")){
+            if (results.getBoolean("captain")) {
                 member.setRole("captain");
             }
             teamRoster.add(member);
@@ -174,11 +172,23 @@ public class JdbcUserDao implements UserDao {
 
         String sql = "SELECT team_id FROM teamroster WHERE user_id = ? AND captain = true";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
-        while(results.next()){
+        while (results.next()) {
             captainedTeams.add(results.getLong("team_id"));
         }
 
         return captainedTeams;
+    }
+
+    @Override
+    public User getTournamentOwnerUsername(long tournamentId) {
+        User user = new User();
+        String sql = "SELECT a.username FROM users a "
+                + "JOIN tournaments b on a.id = b.tournament_owner WHERE b.id = ?;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, tournamentId);
+        if (results.next()) {
+            user.setUsername(results.getString("username"));
+        }
+        return user;
     }
 
 }

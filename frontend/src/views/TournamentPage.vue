@@ -7,7 +7,7 @@
       <v-col cols="3">
         <h1>{{tournament.tournamentName}}</h1>
         <h2>{{tournament.game}}</h2>
-        <p>Tourney Organizer: {{tournament.tournamentOwner}}</p>
+        <p>Tourney Organizer: {{tournamentOwner.username}}</p>
       </v-col>
       <v-col cols="6">
         <v-row>
@@ -95,6 +95,9 @@ export default {
         teamName: "",
         captainUsername: "",
         captainEmail: ""
+      },
+      tournamentOwner: {
+        username: ""
       }
     };
   },
@@ -119,7 +122,7 @@ export default {
     getTournamentOwnerUsername() {
       const tourneyId = this.$route.params.id;
       fetch(
-        `${process.env.VUE_APP_REMOTE_API}/api/team/tournamentOwner/${tourneyId}`,
+        `${process.env.VUE_APP_REMOTE_API}/api/user/tournamentOwner/${tourneyId}`,
         {
           method: "GET",
           headers: {
@@ -132,9 +135,7 @@ export default {
             return response.json();
           }
         })
-        .then(
-          tournamentOwner => (this.tournament.tournamentOwner = tournamentOwner)
-        );
+        .then(data => (this.tournamentOwner = data));
     },
     getTourneyTeams() {
       const tourneyId = this.$route.params.id;
@@ -176,6 +177,7 @@ export default {
     }
   },
   created() {
+    this.getTournamentOwnerUsername();
     this.getTourneyTeams();
     this.getTournament();
   }

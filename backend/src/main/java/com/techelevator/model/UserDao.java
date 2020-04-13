@@ -60,9 +60,20 @@ public interface UserDao {
     /**
      * Get all teams that a user is captain of
      * 
-     * @param teamId the id of the user who is checking for teams they are captain of
+     * @param teamId the id of the user who is checking for teams they are captain
+     *               of
      * @return a List of teamId
      */
     public List<Long> getUsersCaptainedTeams(long userId);
+
+    /**
+     * Get the user who is the tournament owner of a given tournament
+     * 
+     * @param tournamentId the id of the user who is checking for teams they are
+     *                     captain of
+     * @return the username of the tournament organizer.
+     */
+
+    public User getTournamentOwnerUsername(long tournamentId);
 
 }

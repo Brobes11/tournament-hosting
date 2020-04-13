@@ -12,7 +12,6 @@ import com.techelevator.model.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -68,11 +67,13 @@ public class UserApiController {
     }
 
     @GetMapping("/captain")
-    public List<Long> captainedTeams(@RequestParam long id){
+    public List<Long> captainedTeams(@RequestParam long id) {
         return userDao.getUsersCaptainedTeams(id);
     }
 
-    
-
+    @GetMapping("/tournamentOwner/{tournamentId}")
+    public User getTournamentOwnerUsername(@PathVariable long tournamentId) {
+        return userDao.getTournamentOwnerUsername(tournamentId);
+    }
 
 }
