@@ -12,6 +12,7 @@ public class Tournament {
     private String location;
     private int entryFee;
     private String prizeDescription;
+    private int tournamentOwner;
     private boolean acceptingEntries;
 
     public long getTournamentId() {
@@ -78,11 +79,19 @@ public class Tournament {
         this.prizeDescription = prizeDescription;
     }
 
-    public void setAcceptingEntries(Boolean acceptingEntries){
+    public int getTournamentOwner() {
+        return tournamentOwner;
+    }
+
+    public void setTournamentOwner(int tournamentOwner) {
+        this.tournamentOwner = tournamentOwner;
+    }
+
+    public void setAcceptingEntries(Boolean acceptingEntries) {
         this.acceptingEntries = acceptingEntries;
     }
 
-    public boolean isAcceptingEntries(){
+    public boolean isAcceptingEntries() {
         return acceptingEntries;
     }
 }
