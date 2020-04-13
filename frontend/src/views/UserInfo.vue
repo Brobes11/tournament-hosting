@@ -8,7 +8,7 @@
           <div class="overline">Username: {{user.username}}</div>
           <div class="overline">Email: {{user.email}}</div>
           <v-card-actions>
-            <edit-user :current-user="user" @update-user="updateUser()"/>
+            <edit-user :current-user="user" @update-user="updateUser()" />
           </v-card-actions>
         </v-list-item-content>
       </v-list-item>
@@ -17,24 +17,37 @@
       <v-col>
         <v-data-table :headers="teamHeaders" :items="teams" :items-per-page="5" class="elevation-1">
           <template v-slot:item="row">
-          <tr>
-            <td class="clickable" @click="$router.push('/team-page/' + row.item.teamId)">{{row.item.teamName}}</td>
-            <td>{{row.item.game}}</td>
-            <td>{{row.item.teamBio}}</td>
-            <td><v-icon v-if="captainedTeams.includes(row.item.teamId)">mdi-check-bold</v-icon></td>
-          </tr>
-      </template>
+            <tr>
+              <td
+                class="clickable"
+                @click="$router.push('/team-page/' + row.item.teamId)"
+              >{{row.item.teamName}}</td>
+              <td>{{row.item.game}}</td>
+              <td>{{row.item.teamBio}}</td>
+              <td>
+                <v-icon v-if="captainedTeams.includes(row.item.teamId)">mdi-check-bold</v-icon>
+              </td>
+            </tr>
+          </template>
         </v-data-table>
       </v-col>
-       <v-col>
-        <v-data-table :headers="tourneyHeaders" :items="tourneys" :items-per-page="5" class="elevation-1">
+      <v-col>
+        <v-data-table
+          :headers="tourneyHeaders"
+          :items="tourneys"
+          :items-per-page="5"
+          class="elevation-1"
+        >
           <template v-slot:item="row">
-          <tr>
-            <td class="clickable" @click="$router.push('/tournament-page/' + row.item.tournamentId)">{{row.item.tournamentName}}</td>
-            <td>{{row.item.game}}</td>
-            <td>{{row.item.startDate}}</td>
-          </tr>
-      </template>
+            <tr>
+              <td
+                class="clickable"
+                @click="$router.push('/tournament-page/' + row.item.tournamentId)"
+              >{{row.item.tournamentName}}</td>
+              <td>{{row.item.game}}</td>
+              <td>{{row.item.startDate}}</td>
+            </tr>
+          </template>
         </v-data-table>
       </v-col>
     </v-row>
@@ -60,7 +73,7 @@ export default {
         },
         { text: "Game/Sport", value: "game", sortable: false },
         { text: "Team Bio", sortable: false, value: "teamBio" },
-        { text: "Captain", sortable: false, value: "captain"}
+        { text: "Captain", sortable: false, value: "captain" }
       ],
       tourneyHeaders: [
         {
@@ -75,9 +88,9 @@ export default {
       user: null,
       teams: [
         {
-          teamName:'',
-          teamBio:'',
-          game:''          
+          teamName: "",
+          teamBio: "",
+          game: ""
         }
       ],
       tourneys: [
@@ -109,26 +122,21 @@ export default {
     };
   },
   methods: {
-    updateUser(){
-      api.getUser()
-    .then(result => this.user = result);
+    updateUser() {
+      api.getUser().then(result => (this.user = result));
     }
   },
-  created(){
+  created() {
     this.updateUser();
 
-    api.getCaptainedTeams()
-    .then(result => this.captainedTeams = result);
+    api.getCaptainedTeams().then(result => (this.captainedTeams = result));
 
-    api.getUserTeams()
-    .then(result => this.teams = result);
+    api.getUserTeams().then(result => (this.teams = result));
 
-    api.getUserTournaments()
-    .then(result => this.tourneys = result);
+    api.getUserTournaments().then(result => (this.tourneys = result));
   }
 };
 </script>
 
 <style>
-
 </style>

@@ -6,11 +6,14 @@
       </v-col>
       <v-col cols="3">
         <h1>{{tournament.tournamentName}}</h1>
-        <h2>{{tournament.game}}</h2>
         <p>Tourney Organizer: {{tournamentOwner.username}}</p>
       </v-col>
       <v-col cols="6">
         <v-row>
+          <v-col>
+            <h3>Tournament Game/Sport:</h3>
+            <p>{{tournament.game}}</p>
+          </v-col>
           <v-col>
             <h3>Tournament Prize Description:</h3>
             <p>{{tournament.prizeDescription}}</p>
@@ -23,7 +26,7 @@
           </v-col>
         </v-row>
       </v-col>
-      <v-col>
+      <v-col v-if="tournament.tournamentOwner === currentUser">
         <v-card-actions>
           <edit-tournament :current-tournament="tournament" @update-tournament="getTournament()" />
         </v-card-actions>
@@ -32,11 +35,14 @@
 
     <v-row>
       <v-col>
-        <v-card dark>
+        <v-card>
           <v-card-title>
             Tournament Teams
             <v-spacer></v-spacer>
-            <accept-entries :currentTourney="tournament" />
+            <accept-entries
+              v-if="tournament.tournamentOwner === currentUser"
+              :currentTourney="tournament"
+            />
             <v-text-field
               v-model="searchTeams"
               append-icon="mdi-magnify"
@@ -56,6 +62,7 @@
                 <td>{{row.item.captainEmail}}</td>
                 <td align="right" width="10">
                   <v-btn
+                    v-if="tournament.tournamentOwner === currentUser"
                     class="error"
                     small
                     @click="deleteTeamFromTournament(row.item.teamId)"
@@ -83,6 +90,7 @@ export default {
   data() {
     return {
       tournament: null,
+      currentUser: null,
       searchTeams: "",
       tourneyTeamHeaders: [
         { text: "Team Name", value: "teamName" },
@@ -177,6 +185,7 @@ export default {
     }
   },
   created() {
+    this.currentUser = auth.getUser().id;
     this.getTournamentOwnerUsername();
     this.getTourneyTeams();
     this.getTournament();
