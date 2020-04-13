@@ -23,7 +23,7 @@
 
     <v-row justify="center">
       <v-col class="d-flex" cols="16" sm="3">
-        <v-select :items="matchups" label="Matchup" v-model="selectedMatchup" outlined item-text></v-select>
+        <v-select :disabled="teams.length === 0" :items="matchups" label="Matchup" v-model="selectedMatchup" outlined item-text></v-select>
       </v-col>
       <v-col class="d-flex" cols="16" sm="3">
         <v-select
@@ -33,6 +33,7 @@
           return-object="true"
           v-model="homeTeam"
           outlined
+          :disabled="teams.length === 0"
         ></v-select>
       </v-col>
       <v-col class="d-flex" cols="16" sm="3">
@@ -43,17 +44,24 @@
           return-object="true"
           v-model="awayTeam"
           outlined
-          :disabled="selectedMatchup === 'BYE'"
+          :disabled="selectedMatchup === 'BYE' || teams.length === 0"
         ></v-select>
       </v-col>
       <v-col class="d-flex" cols="16" sm="3">
-        <v-btn v-if="readyToSubmit"
-         @click="readyToSubmit">Add Matchup</v-btn>
-         <v-btn v-if="readyToSubmit === false" disabled>Add Matchup</v-btn>
+        <v-btn v-if="readyToSubmit && teams.length > 0"
+         @click="createMatchup()" class="primary">Add Matchup</v-btn>
+         <v-btn v-if="readyToSubmit === false && teams.length > 0" disabled>Add Matchup</v-btn>
+         <v-btn v-if="teams.length === 0" color="success">Submit Mathcups</v-btn>
       </v-col>
     </v-row>
     <v-row justify="center">
-      <p v-if="homeTeam === awayTeam && homeTeam !== null">Can't choose same team for Home and Away</p>
+      <p v-if="homeTeam === awayTeam && homeTeam !== null && selectedMatchup !== 'BYE'">Can't choose same team for Home and Away</p>
+    </v-row>
+    <v-row>
+        <v-col v-for="matchup in finalMatchups" :key="matchup">
+            <v-card v-if="matchup.awayTeam !== null">{{matchup.homeTeam.teamName}} Vs. {{matchup.awayTeam.teamName}}</v-card>
+            <v-card v-if="matchup.awayTeam === null">{{matchup.homeTeam.teamName}} has a BYE</v-card>
+        </v-col>
     </v-row>
   </v-container>
 </template>
@@ -76,7 +84,11 @@ export default {
   },
   computed:{
       readyToSubmit(){
+        if(this.selectedMatchup !== "BYE"){
       return this.homeTeam !== null && this.awayTeam !== null && this.selectedMatchup !== null && this.homeTeam !== this.awayTeam;
+      } else {
+          return this.homeTeam !== null;
+      }
       }
   },
   methods: {
