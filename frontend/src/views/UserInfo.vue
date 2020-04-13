@@ -8,7 +8,7 @@
           <div class="overline">Username: {{user.username}}</div>
           <div class="overline">Email: {{user.email}}</div>
           <v-card-actions>
-            <edit-user :current-user="user" @update-user="getUser()"/>
+            <edit-user :current-user="user" @update-user="updateUser()"/>
           </v-card-actions>
         </v-list-item-content>
       </v-list-item>
@@ -43,7 +43,7 @@
 
 <script>
 import EditUser from "@/components/EditUser.vue";
-import auth from '@/auth.js'
+import api from "@/api.js";
 
 export default {
   components: {
@@ -108,67 +108,23 @@ export default {
       captainedTeams: []
     };
   },
-  methods:{
-    getUser(){
-      let username = auth.getUser().sub;
-    fetch(`${process.env.VUE_APP_REMOTE_API}/api/user/${username}`,  {
-      method: 'GET',
-      headers: {
-        Authorization: 'Bearer ' + auth.getToken(),
-      },
-    })
-    .then((response) => {
-        return response.json();
-      })
-    .then(userFromApi => {
-      this.user = userFromApi;
-      this.getUserTeams(userFromApi.id);
-      this.getUserTournaments(userFromApi.id);
-      this.getCaptainedTeams(userFromApi.id);
-      })
-    },
-    getUserTeams(userId){
-       fetch(`${process.env.VUE_APP_REMOTE_API}/api/team?userId=${userId}`,  {
-      method: 'GET',
-      headers: {
-        Authorization: 'Bearer ' + auth.getToken(),
-      },
-      credentials: 'same-origin',
-    })
-    .then((response) => {
-        return response.json();
-      })
-    .then(teamsFromApi => this.teams = teamsFromApi)
-    },
-     getUserTournaments(userId){
-       fetch(`${process.env.VUE_APP_REMOTE_API}/api/tournament?userId=${userId}`,  {
-      method: 'GET',
-      headers: {
-        Authorization: 'Bearer ' + auth.getToken(),
-      },
-      credentials: 'same-origin',
-    })
-    .then((response) => {
-        return response.json();
-      })
-    .then(tourneysFromApi => this.tourneys = tourneysFromApi)
-    },
-    getCaptainedTeams(userId){
-       fetch(`${process.env.VUE_APP_REMOTE_API}/api/user/captain?id=${userId}`,  {
-      method: 'GET',
-      headers: {
-        Authorization: 'Bearer ' + auth.getToken(),
-      },
-      credentials: 'same-origin',
-    })
-    .then((response) => {
-        return response.json();
-      })
-    .then(apiCaptainedTeams => this.captainedTeams = apiCaptainedTeams)
+  methods: {
+    updateUser(){
+      api.getUser()
+    .then(result => this.user = result);
     }
   },
   created(){
-    this.getUser();
+    this.updateUser();
+
+    api.getCaptainedTeams()
+    .then(result => this.captainedTeams = result);
+
+    api.getUserTeams()
+    .then(result => this.teams = result);
+
+    api.getUserTournaments()
+    .then(result => this.tourneys = result);
   }
 };
 </script>

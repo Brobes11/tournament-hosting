@@ -4,7 +4,7 @@ export default {
 
     
       getUserTeams(){
-         fetch(`${process.env.VUE_APP_REMOTE_API}/api/team?userId=${auth.getUser().id}`,  {
+        return fetch(`${process.env.VUE_APP_REMOTE_API}/api/team?userId=${auth.getUser().id}`,  {
         method: 'GET',
         headers: {
           Authorization: 'Bearer ' + auth.getToken(),
@@ -19,7 +19,7 @@ export default {
       })
       },
        getUserTournaments(){
-         fetch(`${process.env.VUE_APP_REMOTE_API}/api/tournament?userId=${auth.getUser().id}`,  {
+        return fetch(`${process.env.VUE_APP_REMOTE_API}/api/tournament?userId=${auth.getUser().id}`,  {
         method: 'GET',
         headers: {
           Authorization: 'Bearer ' + auth.getToken(),
@@ -34,7 +34,7 @@ export default {
       })
       },
       getCaptainedTeams(){
-         fetch(`${process.env.VUE_APP_REMOTE_API}/api/user/captain?id=${auth.getUser().id}`,  {
+        return fetch(`${process.env.VUE_APP_REMOTE_API}/api/user/captain?id=${auth.getUser().id}`,  {
         method: 'GET',
         headers: {
           Authorization: 'Bearer ' + auth.getToken(),
@@ -50,7 +50,7 @@ export default {
       },
       getUser(){
         let username = auth.getUser().sub;
-      fetch(`${process.env.VUE_APP_REMOTE_API}/api/user/${username}`,  {
+      return fetch(`${process.env.VUE_APP_REMOTE_API}/api/user/${username}`,  {
         method: 'GET',
         headers: {
           Authorization: 'Bearer ' + auth.getToken(),
