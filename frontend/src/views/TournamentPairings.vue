@@ -23,7 +23,7 @@
 
     <v-row justify="center">
       <v-col class="d-flex" cols="16" sm="3">
-        <v-select :items="matchups" label="Matchup" outlined item-text></v-select>
+        <v-select :items="matchups" label="Matchup" v-model="selectedMatchup" outlined item-text></v-select>
       </v-col>
       <v-col class="d-flex" cols="16" sm="3">
         <v-select
@@ -43,10 +43,13 @@
           return-object="true"
           v-model="awayTeam"
           outlined
+          :disabled="selectedMatchup === 'BYE'"
         ></v-select>
       </v-col>
       <v-col class="d-flex" cols="16" sm="3">
-        <v-btn>Add Matchup</v-btn>
+        <v-btn v-if="readyToSubmit"
+         @click="readyToSubmit">Add Matchup</v-btn>
+         <v-btn v-if="readyToSubmit === false" disabled>Add Matchup</v-btn>
       </v-col>
     </v-row>
     <v-row justify="center">
@@ -67,8 +70,14 @@ export default {
       homeTeam: null,
       awayTeam: null,
       selectedMatchup: null,
-      round: 1
+      round: 1,
+      finalMatchups: []
     };
+  },
+  computed:{
+      readyToSubmit(){
+      return this.homeTeam !== null && this.awayTeam !== null && this.selectedMatchup !== null && this.homeTeam !== this.awayTeam;
+      }
   },
   methods: {
     getTournament() {
@@ -98,6 +107,20 @@ export default {
       }
 
       this.matchups = emptyMatchups;
+    },
+    createMatchup(){
+        this.finalMatchups.push({
+            round: this.round,
+            tournamentId: this.tournament.tournamentId,
+            homeTeam: this.homeTeam,
+            awayTeam: this.awayTeam,
+        })
+        this.teams = this.teams.filter(team => team !== this.homeTeam && team !== this.awayTeam);
+        this.matchups = this.matchups.filter(matchup => matchup !== this.selectedMatchup);
+
+        this.homeTeam = null;
+        this.awayTeam = null;
+        this.selectedMatchup = null;
     }
   },
   created() {
