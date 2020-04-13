@@ -52,20 +52,9 @@ public class UserApiController {
     }
 
     @GetMapping
-    public List<User> getUsers(@RequestParam Long teamId, @RequestParam boolean isRequest) {
-        if (isRequest == true) {
-            return userDao.getUsersByRequest(teamId);
-        } 
-        return userDao.getUsersByTeam(teamId);
-    }
+    public List<User> getUsersByTeam(@RequestParam Long teamId) {
 
-    @DeleteMapping
-    public boolean deleteUser(@RequestParam long userId, @RequestParam long teamId, @RequestParam boolean isRequest) {
-        boolean result = false;
-            if (isRequest == false) {
-                
-            }
-            return result;
+        return userDao.getUsersByTeam(teamId);
     }
 
     @GetMapping(path = "/{username}")

@@ -91,7 +91,7 @@ public class TeamApiController {
     }
 
     @GetMapping("/request")
-    public List<Request> getAllRequestsByTeam(@Valid @RequestParam long teamId) {
+    public List<Request> getAllRequestsByTeam(@RequestParam long teamId) {
         return requestDAO.getRequestsByTeamId(teamId);
     }
 
@@ -106,9 +106,8 @@ public class TeamApiController {
     }
 
     @PostMapping("/roster")
-    public void addTeamMember(@RequestParam long userId, @RequestParam long teamId,
-            @RequestParam boolean captainStatus) {
-        teamDao.addMember(userId, teamId, captainStatus);
+    public void addTeamMember(@Valid @RequestParam boolean captainStatus, @RequestBody Request request) {
+        teamDao.addMember(request, captainStatus);
     }
 
     @DeleteMapping("/roster")

@@ -50,13 +50,12 @@ public interface TeamDao {
     /**
      * add user to team
      * 
-     * @param userId        user id of user being added
-     * @param teamId        team id of the team the user is being added to
+     * @param request request being accepted
      * @param captainStatus boolean set to true if the user being added is a captain
      *                      and set to false if the user is not a captain
      * @return boolean for true if successful
      */
-    public boolean addMember(long userId, long teamId, boolean captainStatus);
+    public boolean addMember(Request request, boolean captainStatus);
 
     /**
      * delete user from team

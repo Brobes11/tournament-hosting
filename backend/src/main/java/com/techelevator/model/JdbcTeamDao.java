@@ -121,10 +121,10 @@ public class JdbcTeamDao implements TeamDao {
     }
 
     @Override
-    public boolean addMember(long userId, long teamId, boolean captainStatus) {
+    public boolean addMember(Request request, boolean captainStatus) {
         boolean result = false;
         String sql = "INSERT into teamRoster(user_id, team_id, captain) VALUES(?,?,?);";
-        jdbcTemplate.update(sql, userId, teamId, captainStatus);
+        jdbcTemplate.update(sql, request.getSenderId(), request.getRecipientId(), captainStatus);
         return result;
     }
 

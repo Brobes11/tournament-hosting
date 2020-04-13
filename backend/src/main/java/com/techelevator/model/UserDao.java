@@ -50,14 +50,6 @@ public interface UserDao {
     public boolean updateUser(User user);
 
     /**
-     * Get all users from the database with pending requests to join a team
-     * 
-     * @param teamId the id of the team the request was sent to
-     * @return a List of user objects
-     */
-    public List<User> getUsersByRequest(long teamId);
-
-    /**
      * Get all users from the database on a specific team
      * 
      * @param teamId the id of the team the request was sent to
