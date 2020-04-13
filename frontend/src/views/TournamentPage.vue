@@ -26,7 +26,8 @@
           </v-col>
           <v-col>
             <h3>Tournament Timeline:</h3>
-            <p>{{tournament.startDate}} - {{tournament.endDate}}</p>
+            <span>From: {{tournament.startDate}}</span>
+            <p>To: {{tournament.endDate}}</p>
           </v-col>
         </v-row>
       </v-col>
