@@ -13,7 +13,7 @@
           <v-col>
             <h3>team bio:</h3>
           </v-col>
-          <v-col>
+          <v-col v-if="captainedTeams.includes(team.teamId)">
             <v-card-actions>
               <edit-team :current-team="team" @update-team="getTeam()" />
             </v-card-actions>
@@ -23,7 +23,7 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col>
+      <v-col v-if="captainedTeams.includes(team.teamId)">
         <v-card>
           <v-card-title>
             Pending Applications
@@ -91,7 +91,11 @@
                 <td>{{row.item.lastName}}</td>
                 <td>{{row.item.email}}</td>
                 <td>{{row.item.role}}</td>
+<<<<<<< Updated upstream
+                <td v-if="captainedTeams.includes(team.teamId)">
+=======
                 <td>
+>>>>>>> Stashed changes
                   <v-icon small @click="deleteMember(row.item.id)">mdi-delete</v-icon>
                 </td>
               </tr>
@@ -106,6 +110,7 @@
 <script>
 import EditTeam from "@/components/EditTeam.vue";
 import auth from "@/auth";
+import api from "@/api";
 
 export default {
   components: {
@@ -132,13 +137,24 @@ export default {
       ],
 
       requests: [],
+<<<<<<< Updated upstream
+
+      roster: [],
+
+      captainedTeams: []
+
+=======
 
       roster: []
+>>>>>>> Stashed changes
     };
   },
 
   created() {
     this.getTeam();
+    
+   api.getCaptainedTeams()
+    .then(result => this.captainedTeams = result);
   },
 
   methods: {
@@ -252,6 +268,13 @@ export default {
           this.getRequests(teamId);
         }
       });
+<<<<<<< Updated upstream
+    },
+
+    doesexist(id){
+
+=======
+>>>>>>> Stashed changes
     }
   }
 };
