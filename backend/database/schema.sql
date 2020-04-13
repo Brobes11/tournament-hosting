@@ -68,11 +68,11 @@ CREATE TABLE tournamentRoster (
 );
 
 CREATE TABLE tournamentMatch (
-  match_id serial PRIMARY KEY
+  match_id serial PRIMARY KEY,
   tourney_id integer REFERENCES tournaments (id),
   round_number integer NOT NULL,
   team_1_id integer REFERENCES teams (id) NOT NULL,
-  team_2_id integer REFERENCES teams (id) NOT NULL,
+  team_2_id integer REFERENCES teams (id),
   team_1_score integer,
   team_2_score integer,
   winner_id integer REFERENCES teams (id)
