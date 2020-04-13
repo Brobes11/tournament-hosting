@@ -170,5 +170,3 @@ SELECT * FROM teamRoster
 SELECT * FROM teamRequest
 SELECT * FROM tournaments
 SELECT * FROM teams
-
-INSERT INTO teamRoster(team_id, user_id, captain) VALUES (4,5,false);
