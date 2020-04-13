@@ -5,7 +5,6 @@
     </v-card-title>
     <v-card-text>
       <v-form>
-        <v-text-field v-model="errors" v-if="registrationErrors===true">{{errors[0]}}</v-text-field>
         <v-text-field
           v-model="user.firstName"
           label="First Name"
@@ -39,15 +38,16 @@
           :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
           @click:append="showPassword = !showPassword"
           :rules="passwordRules"
+          error-count="5"
         />
         <v-text-field
           v-model="user.confirmPassword"
           :type="showConfirmPassword ? 'text' : 'password'"
-          label="Please Confrim Your Password"
+          label="Please Confirm Your Password"
           prepend-icon="mdi-lock"
           :append-icon="showConfirmPassword ? 'mdi-eye' : 'mdi-eye-off'"
           @click:append="showConfirmPassword = !showConfirmPassword"
-          required
+          :rules="confirmPasswordRules"
         />
       </v-form>
     </v-card-text>
@@ -83,7 +83,17 @@ export default {
       ],
       passwordRules: [
         v => !!v || "Password is required.",
-        v => v.length >= 8 || "Password must be at least 8 characters."
+        v => v.length >= 8 || "Password must be at least 8 characters.",
+        v =>
+          /(?=.*[A-Z])/.test(v) ||
+          "Password must have one uppercase character.",
+        v => /(?=.*\d)/.test(v) || "Password must have one number.",
+        v =>
+          /([!@$%])/.test(v) ||
+          "Password must have one special character. [!@$%]"
+      ],
+      confirmPasswordRules: [
+        v => v === this.password || "Passwords must match."
       ],
       registrationErrors: false,
       showPassword: false,
@@ -91,6 +101,9 @@ export default {
     };
   },
   methods: {
+    getPassword() {
+      this.user.password;
+    },
     register() {
       fetch(`${process.env.VUE_APP_REMOTE_API}/register`, {
         method: "POST",
