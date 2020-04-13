@@ -10,6 +10,7 @@
 <script>
 import NavBar from "./components/NavBar.vue";
 import auth from "@/auth";
+import api from "@/api.js";
 
 export default {
   name: "App",
@@ -28,30 +29,12 @@ export default {
       return auth.getUser();
     },
     getUserTeams(){
-       fetch(`${process.env.VUE_APP_REMOTE_API}/api/team?userId=${auth.getUser().id}`,  {
-      method: 'GET',
-      headers: {
-        Authorization: 'Bearer ' + auth.getToken(),
-      },
-      credentials: 'same-origin',
-    })
-    .then((response) => {
-        return response.json();
-      })
-    .then(teamsFromApi => this.currentTeams = teamsFromApi)
+       api.getUserTeams()
+       .then(results => this.currentTeams = results)
     },
      getUserTournaments(){
-       fetch(`${process.env.VUE_APP_REMOTE_API}/api/tournament?userId=${auth.getUser().id}`,  {
-      method: 'GET',
-      headers: {
-        Authorization: 'Bearer ' + auth.getToken(),
-      },
-      credentials: 'same-origin',
-    })
-    .then((response) => {
-        return response.json();
-      })
-    .then(tourneysFromApi => this.currentTournaments = tourneysFromApi)
+      api.getUserTournaments()
+    .then(tourneysFromApi => this.currentTournaments = tourneysFromApi);
     }
   }
 };

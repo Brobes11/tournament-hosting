@@ -16,7 +16,7 @@
               <td>{{row.item.senderName}}</td>
               <td>{{row.item.message}}</td>
               <td>
-                <v-spacer></v-spacer>
+                <v-row class="justify-end">
                 <v-btn
                   class="mx-2"
                   fab
@@ -37,6 +37,7 @@
                 >
                   <v-icon dark>mdi-minus-circle-outline</v-icon>
                 </v-btn>
+                </v-row>
               </td>
             </tr>
           </template>
