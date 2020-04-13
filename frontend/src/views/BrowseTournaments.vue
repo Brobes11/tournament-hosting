@@ -7,11 +7,11 @@
   <v-row>
 
     <v-col sm="1">
-      <p>Sort by:</p>
+      <p>Filter by:</p>
     </v-col>
-
+<div class="drop"> 
     <v-col>
-      <v-overflow-btn
+      <v-overflow-btn 
         class="elevation-5"
         :items="dropdown_games"
         label="Choose Sport"
@@ -19,9 +19,11 @@
         target="#dropdown-example"
       ></v-overflow-btn>
     </v-col>
+</div>
 
   </v-row>
-  <v-switch inset v-model="show_closed_tournaments" :label="show_closed_tournaments? 'Showing All Tournaments':'Showing Only Open Tournaments'"></v-switch>
+  <p>Show Closed Tournaments?</p>
+  <v-switch inset v-model="show_closed_tournaments" :label="show_closed_tournaments? 'True':'False'"></v-switch>
 </v-container>
 
 <v-data-table :headers="headers" :items="sortTournaments" class="elevation-10">
@@ -31,8 +33,12 @@
             <td>{{row.item.game}}</td>
             <td>{{row.item.startDate}}</td>
             <td>{{row.item.prizeDescription}}</td>
-            <td>
-                <join-tournament :game="row.item.game" :tournamentId="row.item.tournamentId" @join-success="handleSnack()"></join-tournament>
+            <td >
+              
+                <join-tournament v-if="row.item.acceptingEntries" :game="row.item.game" :tournamentId="row.item.tournamentId" @join-success="handleSnack()"></join-tournament>
+                <v-row justify="center">
+                <v-btn class="mxauto" v-if="row.item.acceptingEntries===false" disabled color="primary" ><v-icon dark>mdi-send</v-icon> Join  </v-btn>
+               </v-row>
             </td>
           </tr>
       </template>
@@ -122,7 +128,9 @@ import JoinTournament from '@/components/JoinTournament.vue';
     },
     methods:{
       handleSnack(){
+        
         this.snackbar=true;
+      
       }
     }
 
@@ -135,5 +143,7 @@ import JoinTournament from '@/components/JoinTournament.vue';
 </script>
 
 <style>
-
+.elevation-5{
+  width:15em;
+}
 </style>
