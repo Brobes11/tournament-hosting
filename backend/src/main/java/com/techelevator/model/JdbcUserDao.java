@@ -180,4 +180,17 @@ public class JdbcUserDao implements UserDao {
         return teamRoster;
     }
 
+    @Override
+    public List<Long> getUsersCaptainedTeams(long userId) {
+        List<Long> captainedTeams = new ArrayList<>();
+
+        String sql = "SELECT team_id FROM teamroster WHERE user_id = ? AND captain = true";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
+        while(results.next()){
+            captainedTeams.add(results.getLong("team_id"));
+        }
+
+        return captainedTeams;
+    }
+
 }

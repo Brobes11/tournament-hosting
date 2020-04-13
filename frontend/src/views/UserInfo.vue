@@ -21,6 +21,7 @@
             <td class="clickable" @click="$router.push('/team-page/' + row.item.teamId)">{{row.item.teamName}}</td>
             <td>{{row.item.game}}</td>
             <td>{{row.item.teamBio}}</td>
+            <td><v-icon v-if="captainedTeams.includes(row.item.teamId)">mdi-check-bold</v-icon></td>
           </tr>
       </template>
         </v-data-table>
@@ -58,7 +59,8 @@ export default {
           sortable: false
         },
         { text: "Game/Sport", value: "game", sortable: false },
-        { text: "Team Bio", sortable: false, value: "teamBio" }
+        { text: "Team Bio", sortable: false, value: "teamBio" },
+        { text: "Captain", sortable: false, value: "captain"}
       ],
       tourneyHeaders: [
         {
@@ -102,7 +104,8 @@ export default {
             "voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
           game: "Super Smash"
         }
-      ]
+      ],
+      captainedTeams: []
     };
   },
   methods:{
@@ -119,8 +122,9 @@ export default {
       })
     .then(userFromApi => {
       this.user = userFromApi;
-      this.getUserTeams(userFromApi.id)
-      this.getUserTournaments(userFromApi.id)
+      this.getUserTeams(userFromApi.id);
+      this.getUserTournaments(userFromApi.id);
+      this.getCaptainedTeams(userFromApi.id);
       })
     },
     getUserTeams(userId){
@@ -148,10 +152,23 @@ export default {
         return response.json();
       })
     .then(tourneysFromApi => this.tourneys = tourneysFromApi)
+    },
+    getCaptainedTeams(userId){
+       fetch(`${process.env.VUE_APP_REMOTE_API}/api/user/captain?id=${userId}`,  {
+      method: 'GET',
+      headers: {
+        Authorization: 'Bearer ' + auth.getToken(),
+      },
+      credentials: 'same-origin',
+    })
+    .then((response) => {
+        return response.json();
+      })
+    .then(apiCaptainedTeams => this.captainedTeams = apiCaptainedTeams)
     }
   },
   created(){
-    this.getUser()
+    this.getUser();
   }
 };
 </script>

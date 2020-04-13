@@ -78,4 +78,12 @@ public class UserApiController {
         return userDao.updateUser(user);
     }
 
+    @GetMapping("/captain")
+    public List<Long> captainedTeams(@RequestParam long id){
+        return userDao.getUsersCaptainedTeams(id);
+    }
+
+    
+
+
 }

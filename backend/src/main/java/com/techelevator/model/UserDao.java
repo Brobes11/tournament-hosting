@@ -65,4 +65,12 @@ public interface UserDao {
      */
     public List<User> getUsersByTeam(long teamId);
 
+    /**
+     * Get all teams that a user is captain of
+     * 
+     * @param teamId the id of the user who is checking for teams they are captain of
+     * @return a List of teamId
+     */
+    public List<Long> getUsersCaptainedTeams(long userId);
+
 }
