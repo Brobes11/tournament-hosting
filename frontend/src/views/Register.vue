@@ -47,7 +47,7 @@
           prepend-icon="mdi-lock"
           :append-icon="showConfirmPassword ? 'mdi-eye' : 'mdi-eye-off'"
           @click:append="showConfirmPassword = !showConfirmPassword"
-          :rules="confirmPasswordRules"
+          :rules="confirmPasswordRules.concat(passwordConfirmationRule)"
         />
       </v-form>
     </v-card-text>
@@ -93,7 +93,7 @@ export default {
           "Password must have one special character. [!@$%]"
       ],
       confirmPasswordRules: [
-        v => v === this.password || "Passwords must match."
+        v => v === this.user.password || "Passwords must match"
       ],
       registrationErrors: false,
       showPassword: false,
@@ -101,9 +101,6 @@ export default {
     };
   },
   methods: {
-    getPassword() {
-      this.user.password;
-    },
     register() {
       fetch(`${process.env.VUE_APP_REMOTE_API}/register`, {
         method: "POST",
