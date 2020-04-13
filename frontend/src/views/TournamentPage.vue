@@ -7,17 +7,21 @@
       <v-col cols="3">
         <h1>{{tournament.tournamentName}}</h1>
         <h2>{{tournament.game}}</h2>
+        <p>Tourney Organizer: {{tournament.tournamentOwner}}</p>
       </v-col>
       <v-col cols="6">
         <v-row>
           <v-col>
             <h3>Tournament Prize Description:</h3>
-          </v-col>
-          <v-col>
-            <v-card-actions></v-card-actions>
+            <p>{{tournament.prizeDescription}}</p>
           </v-col>
         </v-row>
-        <p>{{tournament.prizeDescription}}</p>
+        <v-row>
+          <v-col>
+            <h3>Tournament Entry Fee:</h3>
+            <p>$$$ {{tournament.entryFee}}</p>
+          </v-col>
+        </v-row>
       </v-col>
       <v-col>
         <v-card-actions>
@@ -111,6 +115,26 @@ export default {
         .then(data => {
           this.tournament = data;
         });
+    },
+    getTournamentOwnerUsername() {
+      const tourneyId = this.$route.params.id;
+      fetch(
+        `${process.env.VUE_APP_REMOTE_API}/api/team/tournamentOwner/${tourneyId}`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: "Bearer " + auth.getToken()
+          }
+        }
+      )
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          }
+        })
+        .then(
+          tournamentOwner => (this.tournament.tournamentOwner = tournamentOwner)
+        );
     },
     getTourneyTeams() {
       const tourneyId = this.$route.params.id;
