@@ -5,10 +5,10 @@ public class TournamentMatch {
     private long id;
     private long tournamentId;
     private int round;
-    private long team1Id;
-    private long team2Id;
-    private int team1Score;
-    private int team2Score;
+    private long homeTeam;
+    private long awayTeam;
+    private int homeScore;
+    private int awayScore;
     private long winnerId;
 
     public long getId() {
@@ -23,36 +23,36 @@ public class TournamentMatch {
         this.winnerId = winnerId;
     }
 
-    public long getTeam2Score() {
-        return team2Score;
+    public long getAwayScore() {
+        return awayScore;
     }
 
-    public void setTeam2Score(int team2Score) {
-        this.team2Score = team2Score;
+    public void setAwayScore(int awayScore) {
+        this.awayScore = awayScore;
     }
 
-    public long getTeam1Score() {
-        return team1Score;
+    public long getHomeScore() {
+        return homeScore;
     }
 
-    public void setTeam1Score(int team1Score) {
-        this.team1Score = team1Score;
+    public void setHomeScore(int homeScore) {
+        this.homeScore = homeScore;
     }
 
-    public long getTeam2Id() {
-        return team2Id;
+    public long getAwayTeam() {
+        return awayTeam;
     }
 
-    public void setTeam2Id(long team2Id) {
-        this.team2Id = team2Id;
+    public void setAwayTeam(long awayTeam) {
+        this.awayTeam = awayTeam;
     }
 
-    public long getTeam1Id() {
-        return team1Id;
+    public long getHomeTeam() {
+        return homeTeam;
     }
 
-    public void setTeam1Id(long team1Id) {
-        this.team1Id = team1Id;
+    public void setHomeTeam(long homeTeam) {
+        this.homeTeam = homeTeam;
     }
 
     public int getRound() {
