@@ -91,11 +91,7 @@
                 <td>{{row.item.lastName}}</td>
                 <td>{{row.item.email}}</td>
                 <td>{{row.item.role}}</td>
-<<<<<<< Updated upstream
                 <td v-if="captainedTeams.includes(team.teamId)">
-=======
-                <td>
->>>>>>> Stashed changes
                   <v-icon small @click="deleteMember(row.item.id)">mdi-delete</v-icon>
                 </td>
               </tr>
@@ -137,16 +133,11 @@ export default {
       ],
 
       requests: [],
-<<<<<<< Updated upstream
 
       roster: [],
 
       captainedTeams: []
 
-=======
-
-      roster: []
->>>>>>> Stashed changes
     };
   },
 
@@ -268,14 +259,8 @@ export default {
           this.getRequests(teamId);
         }
       });
-<<<<<<< Updated upstream
     },
 
-    doesexist(id){
-
-=======
->>>>>>> Stashed changes
-    }
   }
 };
 </script>

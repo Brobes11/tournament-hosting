@@ -67,6 +67,18 @@ CREATE TABLE tournamentRoster (
   constraint pk_tournamentRoster primary key (tourney_id, team_id)
 );
 
+CREATE TABLE tournamentMatch (
+  match_id serial PRIMARY KEY
+  tourney_id integer REFERENCES tournaments (id),
+  round_number integer NOT NULL,
+  team_1_id integer REFERENCES teams (id) NOT NULL,
+  team_2_id integer REFERENCES teams (id) NOT NULL,
+  team_1_score integer,
+  team_2_score integer,
+  winner_id integer REFERENCES teams (id)
+
+);
+
 INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('DirtyDan', '8FEzT3Yop2aA7MJNWw7dyg==', 'zFiGLfGKoTZPIVaF6bhqfRfFeSr3EsmgXfAlhZEw28rwi42Hou5NIjNVjJgIrtd6n50VseitoiS1hCyKqMJBIK0K+Tua5es8uh2pMerQoceujeMewXkGyAZbTdYSR172h2BhwiclB9UbhonIHsGlbW1kwGqsTddxA3jiy4vaCfI=', 'junk@junkmail.com', 'Ben', 'Peters');
 INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('Brobes11', 'pjL/Ikmd4opHKbbrA70o8g==	', '1I0cJKQaQ+8oUbGd4gQK4zdTehUedjJqQ6o+6SGu4+qhZIMWF7QYpo1Dz+F6z7CjrftlwsRMWUG3nl6Z9jNlDYX60wYtI7CXMITMNgai2kYeHvXmq5+bOpMl81BvjMRi8GgL7R+8G1OWSK2X4rVn43xFY1NBVfW0ots+8TEe+hs=', 'brobes11@gmail.com', 'Taylor', 'Broberg');
 INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('WaterBoy', 'OHlSjWgXpn9+F9tNQxQJQw==', 'b4iuB9/S1D1DQPDk5S5l1iZdbVhnPA1DgbZwBGur+I2tacuj6J1d/Mga3hrEcHRdJ+t0xpqYaIVWzCIAk9acBPK36+UhtEWCCxHuXGxW9BcGO13DfCGUcjEPGE3TS4VjIJgAM3u+eqU1hceFn/L69fLLUdf7Rg55O7An/uMaKBk=', 'thewaterboy@waterboy.org', 'Bobby', 'Bouche');
