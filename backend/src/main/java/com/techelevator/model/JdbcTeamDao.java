@@ -108,7 +108,7 @@ public class JdbcTeamDao implements TeamDao {
         List<Team> captainsTeams = new ArrayList<>();
 
         String sql = "SELECT teams.id, team_name, game, accepting_members, team_bio from teams "
-                + "JOIN teamroster on teams.id = teamroster.user_id " + "JOIN users on teamroster.user_id = users.id "
+                + "JOIN teamroster on teams.id = teamroster.team_id " + "JOIN users on teamroster.user_id = users.id "
                 + "WHERE captain = true AND teams.game = ? AND teamroster.user_id = ?;";
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, game, userId);
