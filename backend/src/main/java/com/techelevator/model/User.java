@@ -16,8 +16,6 @@ public class User {
     @NotBlank(message = "Please provide a valid email address.")
     @Email(message = "That is not a valid email address.")
     private String email;
-
-    @NotBlank(message = "Role is required")
     private String role;
     private long id;
 

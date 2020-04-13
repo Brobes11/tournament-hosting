@@ -5,31 +5,31 @@
     </v-card-title>
     <v-card-text>
       <v-form>
+        <v-text-field v-model="errors" v-if="registrationErrors===true">{{errors[0]}}</v-text-field>
         <v-text-field
           v-model="user.firstName"
           label="First Name"
           prepend-icon="mdi-account-circle"
-          required
+          :rules="firstNameRules"
         />
         <v-text-field
           v-model="user.lastName"
           label="Last Name"
           prepend-icon="mdi-account-circle"
-          required
+          :rules="lastNameRules"
         />
         <v-text-field
           v-model="user.username"
           label="Username"
           prepend-icon="mdi-account-circle"
-          required
+          :rules="usernameRules"
         />
         <v-text-field
           v-model="user.email"
           type="text"
-          v-validate="'required|email'"
           label="Email"
           prepend-icon="mdi-email"
-          required
+          :rules="emailRules"
         />
         <v-text-field
           v-model="user.password"
@@ -38,7 +38,7 @@
           prepend-icon="mdi-lock"
           :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
           @click:append="showPassword = !showPassword"
-          required
+          :rules="passwordRules"
         />
         <v-text-field
           v-model="user.confirmPassword"
@@ -70,14 +70,21 @@ export default {
         firstName: "",
         lastName: "",
         email: "",
-        emailRules: [
-          v => !!v || "E-mail is required",
-          v => /.+@.+\..+/.test(v) || "E-mail must be valid"
-        ],
         password: "",
         confirmPassword: "",
         role: "user"
       },
+      usernameRules: [v => !!v || "Username is required."],
+      firstNameRules: [v => !!v || "First Name is required."],
+      lastNameRules: [v => !!v || "Last Name is required."],
+      emailRules: [
+        v => !!v || "E-mail is required.",
+        v => /.+@.+\..+/.test(v) || "E-mail must be valid."
+      ],
+      passwordRules: [
+        v => !!v || "Password is required.",
+        v => v.length >= 8 || "Password must be at least 8 characters."
+      ],
       registrationErrors: false,
       showPassword: false,
       showConfirmPassword: false
@@ -109,6 +116,7 @@ export default {
             });
           } else {
             this.registrationErrors = true;
+            this.errors = parsedData;
           }
         })
         .catch(err => console.log(err));

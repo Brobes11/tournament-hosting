@@ -5,7 +5,12 @@
     </v-card-title>
     <v-card-text>
       <v-form class="form-signin" @submit.prevent="login">
-        <v-text-field v-model="user.username" label="Username" prepend-icon="mdi-account-circle" />
+        <v-text-field
+          v-model="user.username"
+          label="Username"
+          prepend-icon="mdi-account-circle"
+          :rules="usernameRules"
+        />
         <v-text-field
           v-model="user.password"
           :type="showPassword ? 'text' : 'password'"
@@ -14,7 +19,7 @@
           prepend-icon="mdi-lock"
           :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
           @click:append="showPassword = !showPassword"
-          required
+          :rules="passwordRules"
         />
       </v-form>
     </v-card-text>
@@ -32,15 +37,17 @@ import auth from "../auth";
 
 export default {
   name: "login",
-  components: {},
   data() {
     return {
       user: {
         username: "",
         password: ""
       },
-      invalidCredentials: false,
-      showPassword: false
+      usernameRules: [v => !!v || "Username is required."],
+      passwordRules: [
+        v => !!v || "Password is required.",
+        v => v.length >= 8 || "Password must be at least 8 characters."
+      ]
     };
   },
   methods: {
@@ -67,7 +74,7 @@ export default {
             }
             auth.saveToken(token);
             this.$router.push("/user-info");
-            this.$emit('update-user');
+            this.$emit("update-user");
           }
         })
         .catch(err => console.error(err));
