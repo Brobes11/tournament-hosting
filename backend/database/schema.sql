@@ -1,5 +1,6 @@
 BEGIN TRANSACTION;
 
+DROP TABLE IF EXISTS tournamentMatch;
 DROP TABLE IF EXISTS tournamentRequest;
 DROP TABLE IF EXISTS tournamentRoster;
 DROP TABLE IF EXISTS teamRoster;
