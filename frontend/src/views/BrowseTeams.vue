@@ -60,7 +60,7 @@
     data () {
       return {
         gamefilter:'All',
-        dropdown_games: ["Volleyball","Basketball","Soccer","Hockey","Bike Polo","Euchre","Poker","DnD","Magic The Gathering","Super Smash Brothers","Other"] ,
+        dropdown_games: ["All","Volleyball","Basketball","Soccer","Hockey","Bike Polo","Euchre","Poker","DnD","Magic The Gathering","Super Smash Brothers","Other"] ,
         snackbar: false,
         snackText:'Your request has been submitted!',
 
