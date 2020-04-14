@@ -70,6 +70,11 @@ public class TeamApiController {
         return tourneyTeams;
     }
 
+    @GetMapping("/round")
+    public TournamentTeam getTournamentTeamByTeamId(@RequestParam long teamId) {
+        return tournamentTeamDao.getTournamentTeamByTeamId(teamId);
+    }
+
     @DeleteMapping("/tournament/{tournamentId}")
     public void deleteTournamentTeam(@PathVariable long tournamentId, @RequestParam long teamId) {
         tournamentTeamDao.deleteTeam(tournamentId, teamId);
