@@ -8,4 +8,6 @@ public interface TournamentMatchDao {
 
     public boolean finalizeMatches(List<TournamentMatch> matches);
 
+    public List<TournamentMatch> getAllMatchesByTournamentRound(Long tournamentId, Long round);
+
 }

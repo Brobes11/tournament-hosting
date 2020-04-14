@@ -111,6 +111,11 @@ public class TournamentApiController {
         }
         tournamentMatchDao.createMatches(matches);
     }
+
+    @GetMapping("/matchups")
+    public List<TournamentMatch> getTourneyMatchupsByRound(@RequestParam Long tournamentId, @RequestParam Long round){
+        return tournamentMatchDao.getAllMatchesByTournamentRound(tournamentId, round);
+    }
     
 
 }

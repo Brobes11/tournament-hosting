@@ -1,5 +1,6 @@
 package com.techelevator.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -15,6 +16,9 @@ public class JdbcTournamentMatchDao implements TournamentMatchDao {
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
+    private TournamentTeamDao tournamentTeamDao;
+
+    @Autowired
     public JdbcTournamentMatchDao(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
@@ -24,8 +28,8 @@ public class JdbcTournamentMatchDao implements TournamentMatchDao {
         tournamentMatch.setId(results.getLong("match_id"));
         tournamentMatch.setTournamentId(results.getLong("tourney_id"));
         tournamentMatch.setRound(results.getInt("round_number"));
-        tournamentMatch.setHomeTeam(results.getLong("team_1_id"));
-        tournamentMatch.setAwayTeam(results.getLong("team_2_id"));
+        tournamentMatch.setHomeTeam(tournamentTeamDao.getTournamentTeamByTeamId(results.getLong("team_1_id")));
+        tournamentMatch.setAwayTeam(tournamentTeamDao.getTournamentTeamByTeamId(results.getLong("team_2_id")));
         tournamentMatch.setHomeScore(results.getInt("team_1_score"));
         tournamentMatch.setAwayScore(results.getInt("team_2_score"));
         tournamentMatch.setWinnerId(results.getLong("winner_id"));
@@ -56,5 +60,20 @@ public class JdbcTournamentMatchDao implements TournamentMatchDao {
         }
         return true;
     }
+
+    @Override
+    public List<TournamentMatch> getAllMatchesByTournamentRound(Long tournamentId, Long round) {
+        List<TournamentMatch> roundsMatches = new ArrayList<>();
+        String sql = "SELECT match_id, tourney_id, round_number, team_1_id, team_2_id, team_1_score, team_2_score, winner_id " + 
+        "FROM tournamentmatch WHERE tourney_id = ? AND round_number = ?";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, tournamentId, round);
+        while(results.next()){
+           TournamentMatch matchup = mapRowSetTournamentMatch(results);
+           roundsMatches.add(matchup);
+        }
+        return roundsMatches;
+    }
+
+    
 
 }
