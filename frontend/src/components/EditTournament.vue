@@ -17,6 +17,7 @@
                 <v-text-field v-model="tournament.tournamentName" label="Tournament Name" required />
                 <v-text-field v-model="tournament.entryFee" label="Entry Fee" />
                 <v-text-field v-model="tournament.prizeDescription" label="Prize Description" />
+                <v-text-field v-model="tournament.location" label="Location"></v-text-field>
                 <v-text-field v-model="tournament.startDate" label="Tournament Start Date" />
                 <v-text-field v-model="tournament.endDate" label="Tournament End Date" />
               </v-col>
@@ -25,8 +26,8 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click="dialog = false; resetTeam()">Cancel</v-btn>
-          <v-btn color="blue darken-1" text @click="dialog = false; updateTeam()">Save</v-btn>
+          <v-btn color="blue darken-1" text @click="dialog = false; resetTournament()">Close</v-btn>
+          <v-btn color="blue darken-1" text @click="updateTournament()">Save</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -42,19 +43,23 @@ export default {
   data() {
     return {
       tournament: {
+        tournamentId: "",
         tournamentName: "",
         entryFee: "",
+        game: "",
+        location: "",
         prizeDescription: "",
         startDate: "",
         endDate: ""
-      }
+      },
+      dialog: false
     };
   },
   methods: {
-    resetTeam() {
+    resetTournament() {
       this.tournament = Object.assign({}, this.currentTournament);
     },
-    updateTeam() {
+    updateTournament() {
       fetch(`${process.env.VUE_APP_REMOTE_API}/api/tournament`, {
         method: "PUT",
         headers: {
@@ -66,6 +71,7 @@ export default {
       }).then(response => {
         if (response.ok) {
           this.$emit("update-tournament");
+          this.dailog = false;
         }
       });
     }

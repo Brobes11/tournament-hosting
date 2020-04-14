@@ -6,7 +6,8 @@
       </v-col>
       <v-col cols="3">
         <h1>{{tournament.tournamentName}}</h1>
-        <p>Tourney Organizer: {{tournamentOwner.username}}</p>
+        <span>Organizer: {{tournamentOwner.username}}</span>
+        <p>Location: {{tournament.location}}</p>
       </v-col>
       <v-col cols="6">
         <v-row>
@@ -76,6 +77,19 @@
               </tr>
             </template>
           </v-data-table>
+          <div>
+            <v-btn
+              color="#03DAC5"
+              v-if="tournament.tournamentOwner === currentUser"
+              :to="{ name: 'tournament-pairings' }"
+            >Start Tournament</v-btn>
+
+            <v-btn
+              color="#BB86FC"
+              v-if="tournament.tournamentOwner !== currentUser"
+              :to="{ name: 'tournament-pairings' }"
+            >Go to Tournament Activity</v-btn>
+          </div>
         </v-card>
       </v-col>
     </v-row>
