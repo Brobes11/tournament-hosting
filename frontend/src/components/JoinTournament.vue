@@ -18,7 +18,8 @@
               v-model="selectedTeam" 
               label="Team Joining:" 
               @change="getIdFromTeamObj();" 
-              dense outlined></v-select>
+              dense outlined
+              required></v-select>
           </v-col>
           </v-row>
         </v-card-title>
@@ -86,6 +87,10 @@ import auth from '@/auth';
          if(response.ok){
            this.$emit('join-success');
          }
+         else{
+           this.$emit('duplicate-request');
+         }
+
        })
       },
 

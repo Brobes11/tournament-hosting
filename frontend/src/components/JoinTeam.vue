@@ -64,6 +64,9 @@ import auth from '@/auth';
          if(response.ok){
            this.$emit('join-success');
          }
+         else{
+           this.$emit('duplicate-request');
+         }
        })
       },
       setUser(){

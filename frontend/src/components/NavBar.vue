@@ -5,7 +5,7 @@
         <!-- nav bar- row tag start -->
 
         <v-col md="6" cols="12" class="pa-1">
-          <div class="d-flex align-center">
+          <div class="d-flex align-end">
             <v-img
               alt="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
               class="shrink mr-2"
@@ -14,7 +14,7 @@
               transition="scale-transition"
               width="50"
             />
-            <h1>Tournament Buddy</h1>
+            <h1 class="d-flex align-end pa-1">Tournament Buddy</h1>
           </div>
         </v-col>
 
