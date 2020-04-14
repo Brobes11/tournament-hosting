@@ -2,16 +2,30 @@ package com.techelevator.model;
 
 import java.time.LocalDate;
 
-public class Tournament {
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
+public class Tournament {
+    @NotNull
     private long tournamentId;
+    @NotBlank(message = "Tournament name is required to continue with registration.")
     private String tournamentName;
+    @NotBlank(message = "What sport/game you'll be playing is required to continue with registration.")
     private String game;
+    @FutureOrPresent(message="Please provide a start date for the tournament.")
     private LocalDate startDate;
+    @FutureOrPresent(message="Please provide an end date for the tournament.")
     private LocalDate endDate;
+    @NotBlank(message = "Location is required to continue with registration.")
     private String location;
+    @NotNull(message="A minimum entry fee of $5 is required for every tournament for facility costs.")
+    @Min(5)
     private int entryFee;
+    @NotBlank(message = "All tournaments must have a prize.")
     private String prizeDescription;
+    @NotNull
     private int tournamentOwner;
     private boolean acceptingEntries;
 
