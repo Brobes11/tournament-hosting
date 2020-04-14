@@ -78,6 +78,7 @@
             </template>
           </v-data-table>
           <v-card-actions>
+            <v-spacer></v-spacer>
             <v-btn
               color="#03DAC5"
               v-if="tournament.tournamentOwner === currentUser"
@@ -89,6 +90,7 @@
               v-if="tournament.tournamentOwner !== currentUser"
               :to="{ name: 'tournament-pairings' }"
             >Go to Tournament Activity</v-btn>
+            <v-spacer></v-spacer>
           </v-card-actions>
         </v-card>
       </v-col>
