@@ -13,7 +13,6 @@ import com.techelevator.model.JdbcUserDao;
 import com.techelevator.model.Request;
 import com.techelevator.model.Tournament;
 import com.techelevator.model.TournamentMatch;
-import com.techelevator.model.UserDao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -55,11 +54,28 @@ public class TournamentApiController {
 
     @GetMapping
     public List<Tournament> getAllTournaments(@RequestParam(required = false) Long userId,
-            @RequestParam(required = false) Long teamId) {
+            @RequestParam(required = false) Long teamId) throws UnauthorizedException {
         if (userId != null) {
-            return tournamentDao.getTournamentsByUser(userId);
+            if (userId == auth.getCurrentUser().getId()) {
+                return tournamentDao.getTournamentsByUser(userId);
+            } else {
+                throw new UnauthorizedException();
+            }
         } else if (teamId != null) {
-            return tournamentDao.getTournamentsByTeam(teamId);
+            // Gets all teams that the userToken ID is captain of and checks if it is the
+            // same as the one passed to the API
+            List<Long> myTeams = userDao.getUsersCaptainedTeams(auth.getCurrentUser().getId());
+            boolean isAuthorized = false;
+            for (Long team : myTeams) {
+                if (team == teamId) {
+                    isAuthorized = true;
+                }
+            }
+            if (isAuthorized) {
+                return tournamentDao.getTournamentsByTeam(teamId);
+            } else {
+                throw new UnauthorizedException();
+            }
         }
         return tournamentDao.getAllTournaments();
     }
@@ -80,58 +96,100 @@ public class TournamentApiController {
     }
 
     @PutMapping
-    public boolean updateTournament(@Valid @RequestBody Tournament tournament) {
-        return tournamentDao.updateTournament(tournament);
+    public boolean updateTournament(@Valid @RequestBody Tournament tournament) throws UnauthorizedException{
+        //Making sure that the ID passed to the update belongs to a tournament the user is owner of
+        Tournament idTourney = tournamentDao.getTournamentById(tournament.getTournamentId());
+        if(idTourney.getTournamentOwner() == auth.getCurrentUser().getId()){
+            return tournamentDao.updateTournament(tournament);
+        } else {
+            throw new UnauthorizedException();
+        }
+        
 
     }
 
     @GetMapping("/request")
-    public List<Request> getTournamentRequests(@RequestParam long tournamentId) {
-        return requestDao.getRequestsByTournamentId(tournamentId);
+    public List<Request> getTournamentRequests(@RequestParam long tournamentId) throws UnauthorizedException {
+        Tournament idTourney = tournamentDao.getTournamentById(tournamentId);
+        if(idTourney.getTournamentOwner() == auth.getCurrentUser().getId()){
+            return requestDao.getRequestsByTournamentId(tournamentId);
+        } else{
+            throw new UnauthorizedException();
+        }
+        
     }
 
     @DeleteMapping("/request")
-    public void deleteTournamentRequest(@Valid @RequestBody Request tourneyRequest, BindingResult result) {
+    public void deleteTournamentRequest(@Valid @RequestBody Request tourneyRequest, BindingResult result) throws UnauthorizedException {
         if (result.hasErrors()) {
 
         }
-        requestDao.deleteTourneyRequest(tourneyRequest);
+
+        Tournament idTourney = tournamentDao.getTournamentById(tourneyRequest.getRecipientId());
+        if(idTourney.getTournamentOwner() == auth.getCurrentUser().getId()){
+            requestDao.deleteTourneyRequest(tourneyRequest);
+        } else{
+            throw new UnauthorizedException();
+        }
+        
     }
 
     @PostMapping("/request")
-    public void acceptTournamentRequest(@Valid @RequestBody Request tourneyRequest, BindingResult result) {
+    public void acceptTournamentRequest(@Valid @RequestBody Request tourneyRequest, BindingResult result) throws UnauthorizedException{
         if (result.hasErrors()) {
 
         }
-        requestDao.acceptTourneyRequest(tourneyRequest);
+
+        Tournament idTourney = tournamentDao.getTournamentById(tourneyRequest.getRecipientId());
+        if(idTourney.getTournamentOwner() == auth.getCurrentUser().getId()){
+            requestDao.acceptTourneyRequest(tourneyRequest);
+        } else{
+            throw new UnauthorizedException();
+        }
+        
     }
 
     @PostMapping("/join-request")
-    public void joinTournamentRequest(@Valid @RequestBody Request request, BindingResult result) throws UnauthorizedException {
+    public void joinTournamentRequest(@Valid @RequestBody Request request, BindingResult result)
+            throws UnauthorizedException {
         if (result.hasErrors()) {
 
         }
         boolean isAuthorized = false;
         List<Long> myTeams = userDao.getUsersCaptainedTeams(auth.getCurrentUser().getId());
         for (Long team : myTeams) {
-            if(team==request.getSenderId()){
+            if (team == request.getSenderId()) {
                 isAuthorized = true;
             }
         }
-        if (isAuthorized == true){
+        if (isAuthorized == true) {
             requestDao.createTournamentRequest(request);
-        }
-        else{
+        } else {
             throw new UnauthorizedException();
         }
     }
 
     @PostMapping("/matchups")
-    public void submitTournamentMatchups(@Valid @RequestBody List<TournamentMatch> matches, BindingResult result) {
+    public void submitTournamentMatchups(@Valid @RequestBody List<TournamentMatch> matches, BindingResult result) throws UnauthorizedException{
         if (result.hasErrors()) {
 
         }
-        tournamentMatchDao.createMatches(matches);
+        long initialTourneyId = matches.get(0).getTournamentId();
+        boolean sameTourney = true;
+        //makes sure that all the matchups are set to be a part of the same tourney to ensure fake data doesn't slip through
+        for(TournamentMatch match: matches){
+            if(match.getTournamentId() != initialTourneyId){
+                sameTourney = false;
+            }
+        }
+        //ensures the token is the owner of the tourney that matchups are being set for
+        Tournament idTourney = tournamentDao.getTournamentById(initialTourneyId);
+        if(idTourney.getTournamentOwner() == auth.getCurrentUser().getId() && sameTourney){
+            tournamentMatchDao.createMatches(matches);
+        } else{
+            throw new UnauthorizedException();
+        }
+        
     }
 
     @GetMapping("/matchups")

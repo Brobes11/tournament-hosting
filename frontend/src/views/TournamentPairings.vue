@@ -101,7 +101,7 @@ export default {
       homeTeam: null,
       awayTeam: null,
       selectedMatchup: null,
-      round: 1,
+      round: Number.parseInt(this.$route.params.round),
       finalMatchups: []
     };
   },

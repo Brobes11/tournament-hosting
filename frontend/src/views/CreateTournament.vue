@@ -13,7 +13,7 @@
         <v-text-field type="date" label="Start Date" v-model="tournament.startDate" :rules="startDateRules" required></v-text-field>
         <v-text-field type="date" label="End Date" v-model="tournament.endDate" :rules="endDateRules" required></v-text-field>
         <v-text-field label="Location" v-model="tournament.location" :rules="locationRules" required ></v-text-field>
-        <v-text-field label="Entry Fee" v-model="tournament.entryFee" :rules="entryFeeRules" required></v-text-field>
+        <v-text-field label="Entry Fee" v-model="tournament.entryFee" :rules="entryFeeRules" required><v-icon slot="prepend">mdi-currency-usd</v-icon></v-text-field>
         <v-textarea label="Prize Description" v-model="tournament.prizeDescription" :rules="prizeDescriptionRules" required></v-textarea>
       </v-form>
       <v-card-actions>
@@ -35,7 +35,7 @@ export default {
         startDate: "",
         endDate: "",
         location: "",
-        entryFee: 0,
+        entryFee: "",
         prizeDescription: "",
         acceptingEntries: true
       },

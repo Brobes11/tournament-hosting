@@ -108,7 +108,7 @@ const router = new Router({
     }
   },
   {
-    path: "/tournament-pairings/:id",
+    path: "/tournament-pairings/:id/:round",
     name: "tournament-pairings",
     component: TournamentPairings,
     meta: {
