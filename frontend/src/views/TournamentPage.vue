@@ -39,13 +39,7 @@
             color="#03DAC5"
             v-if="tournament.tournamentOwner === currentUser"
             :to="{ name: 'tournament-pairings' }"
-          >Manage Tournament</v-btn>
-
-          <v-btn
-            color="#BB86FC"
-            v-if="tournament.tournamentOwner !== currentUser"
-            :to="{ name: 'tournament-pairings' }"
-          >Go to Tournament Activity</v-btn>
+          >Make New Round</v-btn>
           <v-spacer></v-spacer>
           <edit-tournament :current-tournament="tournament" @update-tournament="getTournament()" />
           <v-spacer></v-spacer>
@@ -94,6 +88,20 @@
         </v-card>
       </v-col>
     </v-row>
+    <v-row>
+      <v-spacer></v-spacer>
+      <v-card>
+        <v-card-actions>
+          <v-btn
+            :to="{ name: 'round' }"
+            color="#03DAC5"
+            v-for="round in rounds"
+            :key="round"
+          >Round {{round}} Details</v-btn>
+        </v-card-actions>
+      </v-card>
+      <v-spacer></v-spacer>
+    </v-row>
   </v-container>
 </template>
  
@@ -126,7 +134,8 @@ export default {
       },
       tournamentOwner: {
         username: ""
-      }
+      },
+      rounds: []
     };
   },
   methods: {
@@ -202,9 +211,28 @@ export default {
           }
         });
       this.getTourneyTeams();
+    },
+    getTourneyRounds() {
+      const tournamentId = this.$route.params.id;
+      fetch(
+        `${process.env.VUE_APP_REMOTE_API}/api/tournament/tournamentRounds/${tournamentId}`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: "Bearer " + auth.getToken()
+          }
+        }
+      )
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          }
+        })
+        .then(data => (this.rounds = data));
     }
   },
   created() {
+    this.getTourneyRounds();
     this.currentUser = auth.getUser().id;
     this.getTournamentOwnerUsername();
     this.getTourneyTeams();

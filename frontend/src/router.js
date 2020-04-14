@@ -12,6 +12,7 @@ import BrowseTournaments from '@/views/BrowseTournaments.vue'
 import CreateTournament from '@/views/CreateTournament.vue'
 import TournamentPage from '@/views/TournamentPage.vue'
 import TournamentPairings from '@/views/TournamentPairings.vue'
+import Round from '@/views/Round.vue'
 Vue.use(Router)
 
 /**
@@ -110,6 +111,14 @@ const router = new Router({
     path: "/tournament-pairings/:id",
     name: "tournament-pairings",
     component: TournamentPairings,
+    meta: {
+      requiresAuth: false
+    }
+  },
+  {
+    path: "/round/:roundNumber",
+    name: "round",
+    component: Round,
     meta: {
       requiresAuth: false
     }
