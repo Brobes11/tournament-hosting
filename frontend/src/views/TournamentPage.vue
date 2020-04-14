@@ -34,7 +34,21 @@
       </v-col>
       <v-col v-if="tournament.tournamentOwner === currentUser">
         <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="#03DAC5"
+            v-if="tournament.tournamentOwner === currentUser"
+            :to="{ name: 'tournament-pairings' }"
+          >Manage Tournament</v-btn>
+
+          <v-btn
+            color="#BB86FC"
+            v-if="tournament.tournamentOwner !== currentUser"
+            :to="{ name: 'tournament-pairings' }"
+          >Go to Tournament Activity</v-btn>
+          <v-spacer></v-spacer>
           <edit-tournament :current-tournament="tournament" @update-tournament="getTournament()" />
+          <v-spacer></v-spacer>
         </v-card-actions>
       </v-col>
     </v-row>
@@ -77,21 +91,6 @@
               </tr>
             </template>
           </v-data-table>
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn
-              color="#03DAC5"
-              v-if="tournament.tournamentOwner === currentUser"
-              :to="{ name: 'tournament-pairings' }"
-            >Manage Tournament</v-btn>
-
-            <v-btn
-              color="#BB86FC"
-              v-if="tournament.tournamentOwner !== currentUser"
-              :to="{ name: 'tournament-pairings' }"
-            >Go to Tournament Activity</v-btn>
-            <v-spacer></v-spacer>
-          </v-card-actions>
         </v-card>
       </v-col>
     </v-row>
