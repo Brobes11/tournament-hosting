@@ -44,17 +44,7 @@ export default {
         password: ""
       },
       usernameRules: [v => !!v || "Username is required."],
-      passwordRules: [
-        v => !!v || "Password is required.",
-        v => v.length >= 8 || "Password must be at least 8 characters.",
-        v =>
-          /(?=.*[A-Z])/.test(v) ||
-          "Password must have one uppercase character.",
-        v => /(?=.*\d)/.test(v) || "Password must have one number.",
-        v =>
-          /([!@$%])/.test(v) ||
-          "Password must have one special character. [!@$%]"
-      ]
+      passwordRules: [v => !!v || "Password is required."]
     };
   },
   methods: {
