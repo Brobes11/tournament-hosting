@@ -47,7 +47,7 @@
           prepend-icon="mdi-lock"
           :append-icon="showConfirmPassword ? 'mdi-eye' : 'mdi-eye-off'"
           @click:append="showConfirmPassword = !showConfirmPassword"
-          :rules="confirmPasswordRules.concat(passwordConfirmationRule)"
+          :rules="confirmPasswordRules"
         />
       </v-form>
     </v-card-text>
