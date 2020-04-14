@@ -25,9 +25,9 @@
     </v-card-text>
     <v-divider></v-divider>
     <v-card-actions>
-      <v-btn color="info" :to="{ name: 'register' }">Not Registered?</v-btn>
+      <v-btn color="#BB86FC" :to="{ name: 'register' }">Not Registered?</v-btn>
       <v-spacer></v-spacer>
-      <v-btn color="success" type="submit" @click="login">Log In</v-btn>
+      <v-btn color="#03DAC5" type="submit" @click="login">Log In</v-btn>
     </v-card-actions>
   </v-card>
 </template>

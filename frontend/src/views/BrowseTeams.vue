@@ -1,16 +1,15 @@
 <template>
 <v-container>
-<v-card-title dark large class="elevation-5"> Browse Teams</v-card-title >
+<v-card-title dark large > Browse Teams</v-card-title >
 
 <!-- Sort teams by type of game or sport  -->
 <v-container>
   <v-row>
-    <v-col sm="1">
-      <p>Sort by:</p>
+    <v-col cols="1" class="d-flex justify-start align-center">
+      <p>Filter by:</p>
     </v-col>
-    <v-col>
+    <v-col xs="4" md="3" >
       <v-overflow-btn
-        class="elevation-5"
         :items="dropdown_games"
         label="Choose Sport"
         v-model="gamefilter"
@@ -21,7 +20,7 @@
 </v-container>
 
 <!-- available teams -->
-<v-data-table :headers="headers" :items="sortGames" class="elevation-10">
+<v-data-table dark :headers="headers" :items="sortGames" >
       <template v-slot:item="row">
           <tr>
             <td class="clickable" @click="$router.push('/team-page/' + row.item.teamId)">{{row.item.teamName}}</td>
@@ -37,7 +36,7 @@
 <!-- notification pops only when the user's request is succesfully sent  -->
     <v-snackbar v-model="snackbar">
       {{ snackText }}
-      <v-btn color="green" text @click="snackbar = false"> Close </v-btn>
+      <v-btn color="#03DAC5" text @click="snackbar = false"> Close </v-btn>
     </v-snackbar>
 
 </v-container>
@@ -58,7 +57,7 @@
     data () {
       return {
         gamefilter:'All',
-        dropdown_games: ['Football', 'Baseball', 'Basketball', 'Volleyball', 'Super Smash', 'All']  ,
+        dropdown_games: ["Volleyball","Basketball","Soccer","Hockey","Bike Polo","Euchre","Poker","DnD","Magic The Gathering","Super Smash Brothers","Other"] ,
         snackbar: false,
         snackText:'Your request has been submitted!',
 

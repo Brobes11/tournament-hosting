@@ -1,32 +1,32 @@
 <template>
   <v-container>
 
-    <v-card-title large class="elevation-5">Browse Tournaments</v-card-title >
+    <v-card-title large flat>Browse Tournaments</v-card-title >
 
 <v-container>
   <v-row>
 
-    <v-col sm="1">
-      <p>Filter by:</p>
+    <v-col cols="1" class="d-flex justify-start align-center">
+      <p>Filter by: </p>
     </v-col>
-<div class="drop"> 
-    <v-col>
+
+    <v-col xs="3" md="3" >
       <v-overflow-btn 
-        class="elevation-5"
+        color="#03DAC5"
         :items="dropdown_games"
         label="Choose Sport"
         v-model="gamefilter"
         target="#dropdown-example"
       ></v-overflow-btn>
     </v-col>
-</div>
+
 
   </v-row>
   <p>Show Closed Tournaments?</p>
-  <v-switch inset v-model="show_closed_tournaments" :label="show_closed_tournaments? 'True':'False'"></v-switch>
+  <v-switch color="#03DAC5" inset v-model="show_closed_tournaments" :label="show_closed_tournaments? 'True':'False'"></v-switch>
 </v-container>
 
-<v-data-table :headers="headers" :items="sortTournaments" class="elevation-10">
+<v-data-table :headers="headers" :items="sortTournaments" flat>
       <template v-slot:item="row">
           <tr>
             <td class="clickable" @click="$router.push('/tournament-page/' + row.item.tournamentId)">{{row.item.tournamentName}}</td>
@@ -59,7 +59,8 @@ import JoinTournament from '@/components/JoinTournament.vue';
     data () {
       return {
         gamefilter:'All',
-        dropdown_games: ['All','Football', 'Baseball', 'Basketball', 'Volleyball', 'Super Smash']  ,
+        dropdown_games: ["Volleyball","Basketball","Soccer","Hockey","Bike Polo","Euchre","Poker","DnD","Magic The Gathering","Super Smash Brothers","Other"] ,
+
         show_closed_tournaments: true,
         headers: [
           {

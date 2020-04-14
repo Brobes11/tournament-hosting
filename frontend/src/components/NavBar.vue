@@ -1,33 +1,57 @@
 <template>
-  <v-app-bar app color="primary" dark>
+<v-container grid-list-xl >
+  <v-app-bar 
+      prominent 
+      flat 
+      src="https://picsum.photos/1920/1080?random"
+      xl
+      >
+
+    
+ <v-row>  <!-- nav bar- row tag start -->
+
+    <v-col xs="12" cols="5" class="pa-1">
     <div class="d-flex align-center">
       <v-img
-        alt="Vuetify Logo"
+        alt="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
         class="shrink mr-2"
         contain
         src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
         transition="scale-transition"
         width="40"
       />
-
-      <h1>Tournament Buddy</h1>
+      <h1 >Tournament Buddy</h1>
     </div>
+    
 
-    <v-spacer></v-spacer>
+    </v-col>
 
+      <v-row class="d-flex justify-center align-end pa-1" dense align-end>
     <router-link to="/browse">
-      <v-btn target="_blank" text v-if="user === null">Browse</v-btn>
+      <v-col cols="4" xs="3"  class="d-flex justify-center">
+      <v-btn target="_blank" text v-if="user === null"><v-icon>mdi-magnify</v-icon>Browse</v-btn>
+      </v-col>
     </router-link>
     <router-link to="/login">
-      <v-btn target="_blank" text v-if="user === null">Login</v-btn>
+      <v-col cols="4" xs="3"  class="d-flex justify-center">
+      <v-btn target="_blank" text v-if="user === null"><v-icon>mdi-account</v-icon>Login</v-btn>
+      </v-col>
     </router-link>
     <router-link to="/register">
-      <v-btn target="_blank" text v-if="user === null">Register</v-btn>
+      <v-col cols="4" xs="3"  class="d-flex justify-center">
+      <v-btn target="_blank" text v-if="user === null"><v-icon>mdi-new-box</v-icon> Register</v-btn>
+      </v-col>
     </router-link>
+      </v-row>
 
+      <v-row class="d-flex justify-center align-end pa-1" dense align-end>
     <v-menu offset-y v-if="user !== null">
       <template v-slot:activator="{ on }">
-        <v-btn target="_blank" text v-on="on">Teams</v-btn>
+
+        <v-col cols="4" xs="3"  class="d-flex justify-center">
+        <v-btn target="_blank"  text v-on="on"><v-icon>mdi-account-group</v-icon>Teams</v-btn>
+        </v-col>
+
       </template>
       <v-list>
         <v-list-item>
@@ -45,9 +69,13 @@
         </v-list-item>
       </v-list>
     </v-menu>
+  
+
     <v-menu offset-y v-if="user !== null">
       <template v-slot:activator="{ on }">
-        <v-btn target="_blank" text v-on="on">Tournaments</v-btn>
+        <v-col cols="4"  xs="3"  class="d-flex justify-center ">
+        <v-btn target="_blank" text v-on="on"><v-icon>mdi-trophy</v-icon>Tournaments</v-btn>
+        </v-col>
       </template>
       <v-list>
         <v-list-item>
@@ -62,9 +90,12 @@
         </v-list-item>
       </v-list>
     </v-menu>
+
     <v-menu offset-y v-if="user !== null">
       <template v-slot:activator="{ on }">
-        <v-btn target="_blank" text v-on="on">Hi {{user.sub}}!</v-btn>
+        <v-col cols="4"  xs="3" class="d-flex justify-center ">
+        <v-btn target="_blank" text v-on="on"> <v-icon>mdi-account-circle</v-icon> Hi {{user.sub}}!</v-btn>
+        </v-col>
       </template>
       <v-list>
         <v-list-item>
@@ -75,7 +106,12 @@
         </v-list-item>
       </v-list>
     </v-menu>
+    
+    </v-row>
+  </v-row>
+  
   </v-app-bar>
+  </v-container>
 </template>
 
 <script>
@@ -103,5 +139,10 @@ export default {
 <style scoped>
 .clickable {
   cursor: pointer;
+}
+h1{
+  font-size: 2.5vw;
+  font-family: Helvetica Neue,Helvetica,Arial,sans-serif; 
+
 }
 </style>

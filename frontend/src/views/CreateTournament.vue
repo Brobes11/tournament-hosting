@@ -37,7 +37,7 @@
         <v-textarea label="Prize Description" v-model="tournament.prizeDescription"></v-textarea>
       </v-form>
       <v-card-actions>
-        <v-btn color="success" @click="createTournament">Create Your Tournament</v-btn>
+        <v-btn color="#03DAC5" @click="createTournament">Create Your Tournament</v-btn>
       </v-card-actions>
     </v-card-text>
   </v-card>

@@ -33,15 +33,15 @@
           <h4>Accepting New Members?</h4>
 
           <v-radio-group v-model="acceptingMembersInput" row>
-            <v-radio label="yes" value="true"></v-radio>
-            <v-radio label="no" value="false"></v-radio>
+            <v-radio color="#03DAC5" label="yes" value="true"></v-radio>
+            <v-radio color="#03DAC5" label="no" value="false"></v-radio>
           </v-radio-group>
 
           <v-text-field v-model="team.teamBio" label="About The Team:" />
         </v-form>
       </v-card-text>
       <v-card-actions>
-        <v-btn color="success" @click="createTeam">Register</v-btn>
+        <v-btn color="#03DAC5" @click="createTeam">Register</v-btn>
       </v-card-actions>
     </v-card>
   </v-app>
