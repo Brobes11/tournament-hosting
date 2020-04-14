@@ -6,12 +6,7 @@
       </v-card-title>
       <v-card-text>
         <v-form>
-          <v-text-field 
-          label="Team Name" 
-          :rules="teamNameRules"
-          required
-          v-model="team.teamName"
-           />
+          <v-text-field label="Team Name" :rules="teamNameRules" required v-model="team.teamName" />
           <v-spacer></v-spacer>
           <h4>Please select your sport/game:</h4>
 
@@ -20,10 +15,11 @@
           <template>
             <v-menu>
               <template v-slot:activator="{ on, attrs }">
-                <v-btn v-bind="attrs" 
-                v-on="on"
-                :rules="btnRules"
-                required
+                <v-btn
+                  v-bind="attrs"
+                  v-on="on"
+                  :rules="btnRules"
+                  required
                 >{{team.game===''?'Sport/game':team.game}}</v-btn>
               </template>
               <v-list>
@@ -41,24 +37,21 @@
           <v-text-field v-if="team.game==='other'" label="Other" />
           <h4>Accepting New Members?</h4>
 
-          <v-radio-group v-model="acceptingMembersInput" row>
+          <v-radio-group
+            v-model="acceptingMembersInput"
+            :rules="acceptingMembersRules"
+            required
+            row
+          >
             <v-radio color="#03DAC5" label="yes" value="true"></v-radio>
             <v-radio color="#03DAC5" label="no" value="false"></v-radio>
-          <v-radio-group 
-          v-model="acceptingMembersInput" 
-          :rules="acceptingMembersRules"
-          required
-          row>
-            <v-radio label="yes" value="false"></v-radio>
-            <v-radio label="no" value="false"></v-radio>
           </v-radio-group>
 
-          <v-text-field 
-          v-model="team.teamBio" 
-          label="About The Team:"
-          :rules="teamBioRules"
-          required 
-         
+          <v-text-field
+            v-model="team.teamBio"
+            label="About The Team:"
+            :rules="teamBioRules"
+            required
           />
         </v-form>
       </v-card-text>
@@ -102,17 +95,10 @@ export default {
       },
       registrationErrors: false,
       acceptingMembersInput: "true",
-      
-      teamNameRules:[
-          v=> !!v || 'Team Name is required'
-          ],
-      teamBioRules:[
-          v=> !!v || 'Some team info is required.'
-          ],
-      btnRules:[
-        v=> !!v || 'Sport/Game selection is required.'
-      ]
-          
+
+      teamNameRules: [v => !!v || "Team Name is required"],
+      teamBioRules: [v => !!v || "Some team info is required."],
+      btnRules: [v => !!v || "Sport/Game selection is required."]
     };
   },
 
