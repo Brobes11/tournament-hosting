@@ -1,6 +1,6 @@
 <template>
   <v-container grid-list-xl>
-    <v-app-bar prominent flat src="https://i.picsum.photos/id/353/6016/3376.jpg" collapse-on-scroll >
+    <v-app-bar prominent flat src="https://i.picsum.photos/id/353/6016/3376.jpg"  >
       <v-row>
         <!-- nav bar- row tag start -->
 
