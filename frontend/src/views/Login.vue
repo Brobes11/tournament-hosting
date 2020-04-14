@@ -44,7 +44,8 @@ export default {
         password: ""
       },
       usernameRules: [v => !!v || "Username is required."],
-      passwordRules: [v => !!v || "Password is required."]
+      passwordRules: [v => !!v || "Password is required."],
+      showPassword: false
     };
   },
   methods: {
