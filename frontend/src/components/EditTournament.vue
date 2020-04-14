@@ -15,7 +15,10 @@
             <v-row>
               <v-col cols="12">
                 <v-text-field v-model="tournament.tournamentName" label="Tournament Name" required />
+                <v-text-field v-model="tournament.entryFee" label="Entry Fee" />
                 <v-text-field v-model="tournament.prizeDescription" label="Prize Description" />
+                <v-text-field v-model="tournament.startDate" label="Tournament Start Date" />
+                <v-text-field v-model="tournament.endDate" label="Tournament End Date" />
               </v-col>
             </v-row>
           </v-container>
@@ -40,7 +43,10 @@ export default {
     return {
       tournament: {
         tournamentName: "",
-        prizeDescription: ""
+        entryFee: "",
+        prizeDescription: "",
+        startDate: "",
+        endDate: ""
       }
     };
   },
