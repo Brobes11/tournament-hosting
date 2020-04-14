@@ -74,6 +74,7 @@ import auth from '@/auth';
 
       methods:{
       sendJoinRequest(){
+        
         fetch(`${process.env.VUE_APP_REMOTE_API}/api/tournament/join-request`,{
          method:'POST',
          headers:{

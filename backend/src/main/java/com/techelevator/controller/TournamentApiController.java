@@ -4,12 +4,16 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import com.techelevator.authentication.AuthProvider;
+import com.techelevator.authentication.UnauthorizedException;
 import com.techelevator.model.JdbcRequestDAO;
 import com.techelevator.model.JdbcTournamentDao;
 import com.techelevator.model.JdbcTournamentMatchDao;
+import com.techelevator.model.JdbcUserDao;
 import com.techelevator.model.Request;
 import com.techelevator.model.Tournament;
 import com.techelevator.model.TournamentMatch;
+import com.techelevator.model.UserDao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -37,6 +41,12 @@ public class TournamentApiController {
 
     @Autowired
     private JdbcTournamentMatchDao tournamentMatchDao;
+
+    @Autowired
+    private JdbcUserDao userDao;
+
+    @Autowired
+    private AuthProvider auth;
 
     @Autowired
     public TournamentApiController(JdbcTournamentDao tournamentDao) {
@@ -97,11 +107,23 @@ public class TournamentApiController {
     }
 
     @PostMapping("/join-request")
-    public void joinTournamentRequest(@Valid @RequestBody Request request, BindingResult result) {
+    public void joinTournamentRequest(@Valid @RequestBody Request request, BindingResult result) throws UnauthorizedException {
         if (result.hasErrors()) {
 
         }
-        requestDao.createTournamentRequest(request);
+        boolean isAuthorized = false;
+        List<Long> myTeams = userDao.getUsersCaptainedTeams(auth.getCurrentUser().getId());
+        for (Long team : myTeams) {
+            if(team==request.getSenderId()){
+                isAuthorized = true;
+            }
+        }
+        if (isAuthorized == true){
+            requestDao.createTournamentRequest(request);
+        }
+        else{
+            throw new UnauthorizedException();
+        }
     }
 
     @PostMapping("/matchups")
