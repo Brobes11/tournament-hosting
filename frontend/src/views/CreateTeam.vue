@@ -5,36 +5,13 @@
         <h1 class="display-1">Create A Team</h1>
       </v-card-title>
       <v-card-text>
-        <v-form>
+        <v-form ref="createTeamForm">
           <v-text-field label="Team Name" :rules="teamNameRules" required v-model="team.teamName" />
           <v-spacer></v-spacer>
           <h4>Please select your sport/game:</h4>
 
-          <br />
+          <v-select :items="sports" v-model="team.game" :rules="sportSelectRules" required />
 
-          <template>
-            <v-menu>
-              <template v-slot:activator="{ on, attrs }">
-                <v-btn
-                  v-bind="attrs"
-                  v-on="on"
-                  :rules="btnRules"
-                  required
-                >{{team.game===''?'Sport/game':team.game}}</v-btn>
-              </template>
-              <v-list>
-                <v-list-item v-for="sport in sports" :key="sport.id" @click="team.game=sport.name">
-                  <v-list-item-title>{{sport.name}}</v-list-item-title>
-                  <v-list-item-action>
-                    <v-btn icon>
-                      <v-icon color="grey lighten-1">mdi-information</v-icon>
-                    </v-btn>
-                  </v-list-item-action>
-                </v-list-item>
-              </v-list>
-            </v-menu>
-          </template>
-          <v-text-field v-if="team.game==='other'" label="Other" />
           <h4>Accepting New Members?</h4>
 
           <v-radio-group
@@ -75,54 +52,56 @@ export default {
       checkbox1: true,
 
       sports: [
-        { id: 1, name: "Volleyball" },
-        { id: 2, name: "Basketball" },
-        { id: 3, name: "Soccer" },
-        { id: 4, name: "Hockey" },
-        { id: 5, name: "Bike Polo" },
-        { id: 6, name: "Euchre" },
-        { id: 7, name: "Poker" },
-        { id: 8, name: "DnD" },
-        { id: 9, name: "Magic The Gathering" },
-        { id: 10, name: "Super Smash Brothers" },
-        { id: 11, name: "Other" }
+        "Volleyball",
+        "Basketball",
+        "Soccer",
+        "Hockey",
+        "Bike Polo",
+        "Euchre",
+        "Poker",
+        "DnD",
+        "Magic The Gathering",
+        "Super Smash Brothers",
+        "Other"
       ],
       team: {
         teamName: "",
         game: "",
-        acceptingMembers: true,
+        acceptingMembers: "",
         teamBio: ""
       },
       registrationErrors: false,
-      acceptingMembersInput: "true",
-
+      acceptingMembersInput: "",
+      acceptingMembersRules: [v => !!v || "must select"],
       teamNameRules: [v => !!v || "Team Name is required"],
       teamBioRules: [v => !!v || "Some team info is required."],
-      btnRules: [v => !!v || "Sport/Game selection is required."]
+      sportSelectRules: [v => !!v || "Sport/Game selection is required."]
     };
   },
-
+  
   methods: {
     createTeam() {
-      this.team.acceptingMembers = this.acceptingMembersInput === "true";
-      fetch(
-        `${process.env.VUE_APP_REMOTE_API}/api/team?userId=${
-          auth.getUser().id
-        }`,
-        {
-          method: "POST",
-          headers: {
-            Authorization: "Bearer " + auth.getToken(),
-            Accept: "application/json",
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(this.team)
-        }
-      ).then(response => {
-        if (response.ok) {
-          this.$router.push("/user-info");
-        }
-      });
+      if (this.$refs.createTeamForm.validate()) {
+        this.team.acceptingMembers = this.acceptingMembersInput === "true";
+        fetch(
+          `${process.env.VUE_APP_REMOTE_API}/api/team?userId=${
+            auth.getUser().id
+          }`,
+          {
+            method: "POST",
+            headers: {
+              Authorization: "Bearer " + auth.getToken(),
+              Accept: "application/json",
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(this.team)
+          }
+        ).then(response => {
+          if (response.ok) {
+            this.$router.push("/user-info");
+          }
+        });
+      }
     }
   }
 };
