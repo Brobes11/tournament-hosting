@@ -6,6 +6,8 @@ import javax.validation.Valid;
 
 import com.techelevator.authentication.AuthProvider;
 import com.techelevator.authentication.UnauthorizedException;
+import com.techelevator.model.Tournament;
+import com.techelevator.model.TournamentDao;
 import com.techelevator.model.User;
 import com.techelevator.model.UserDao;
 
@@ -35,6 +37,9 @@ public class UserApiController {
     @Autowired
     private UserDao userDao;
 
+    @Autowired
+    private TournamentDao tournamentDao;
+
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public String authorizedOnly() throws UnauthorizedException {
         /*
@@ -52,7 +57,6 @@ public class UserApiController {
 
     @GetMapping
     public List<User> getUsersByTeam(@RequestParam Long teamId) {
-
         return userDao.getUsersByTeam(teamId);
     }
 
@@ -62,13 +66,23 @@ public class UserApiController {
     }
 
     @PutMapping
-    public boolean updateUser(@Valid @RequestBody User user, BindingResult result) {
-        return userDao.updateUser(user);
+    public boolean updateUser(@Valid @RequestBody User user, BindingResult result) throws UnauthorizedException {
+        if(authProvider.getCurrentUser().getId() == user.getId()){
+            return userDao.updateUser(user);
+        } else {
+            throw new UnauthorizedException();
+        }
+        
     }
 
     @GetMapping("/captain")
-    public List<Long> captainedTeams(@RequestParam long id) {
-        return userDao.getUsersCaptainedTeams(id);
+    public List<Long> captainedTeams(@RequestParam long id) throws UnauthorizedException {
+        if(id == authProvider.getCurrentUser().getId()){
+            return userDao.getUsersCaptainedTeams(id);
+        } else {
+            throw new UnauthorizedException();
+        }
+        
     }
 
     @GetMapping("/tournamentOwner/{tournamentId}")
