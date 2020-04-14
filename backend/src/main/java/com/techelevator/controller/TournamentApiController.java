@@ -10,7 +10,6 @@ import com.techelevator.model.JdbcTournamentMatchDao;
 import com.techelevator.model.Request;
 import com.techelevator.model.Tournament;
 import com.techelevator.model.TournamentMatch;
-import com.techelevator.model.TournamentMatchDao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;

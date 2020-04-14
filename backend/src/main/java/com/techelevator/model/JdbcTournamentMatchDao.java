@@ -33,20 +33,24 @@ public class JdbcTournamentMatchDao implements TournamentMatchDao {
     }
 
     @Override
-    public List<TournamentMatch> createMatches(List<TournamentMatch> matches) {
+    public void createMatches(List<TournamentMatch> matches) {
         for (TournamentMatch tournamentMatch : matches) {
             String sql = "INSERT INTO tournamentMatch (tourney_id, round_number, team_1_id, team_2_id) "
-                    + "VALUES (?, ?, ?, ?) RETURNING match_id";
-            Long newId = jdbcTemplate.queryForObject(sql, Long.class, tournamentMatch.getTournamentId(),
+                    + "VALUES (?, ?, ?, ?)";
+            if(tournamentMatch.getAwayTeam() == null){
+                jdbcTemplate.update(sql, tournamentMatch.getTournamentId(),
+                    tournamentMatch.getRound(), tournamentMatch.getHomeTeam().getTeamId(), null);
+            } else {
+                jdbcTemplate.update(sql, tournamentMatch.getTournamentId(),
                     tournamentMatch.getRound(), tournamentMatch.getHomeTeam().getTeamId(), tournamentMatch.getAwayTeam().getTeamId());
-            tournamentMatch.setId(newId);
+            }
         }
-        return matches;
     }
 
     @Override
     public boolean finalizeMatches(List<TournamentMatch> matches) {
         for (TournamentMatch tournamentMatch : matches) {
+            
             String sql = "UPDATE tournamentMatch SET team_1_score = ?, team_2_score = ? winner_id = ? WHERE id = ?;";
         jdbcTemplate.update(sql, tournamentMatch.getHomeScore(), tournamentMatch.getAwayScore(), tournamentMatch.getWinnerId(), tournamentMatch.getId());
         }
