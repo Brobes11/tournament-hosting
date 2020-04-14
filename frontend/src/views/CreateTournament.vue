@@ -7,8 +7,8 @@
       below to create your tournament.
     </v-card-text>
     <v-card-text>
-      <v-form>
-        <v-text-field label="Tournament Name" v-model="tournament.tournamentName"></v-text-field>
+      <v-form ref="createTournamentForm">
+        <v-text-field label="Tournament Name" v-model="tournament.tournamentName" :rules="tNameRules" required></v-text-field>
         <template>
           <v-menu>
             <template v-slot:activator="{ on, attrs }">
@@ -30,14 +30,14 @@
             </v-list>
           </v-menu>
         </template>
-        <v-text-field type="date" label="Start Date" v-model="tournament.startDate" required></v-text-field>
-        <v-text-field type="date" label="End Date" v-model="tournament.endDate" required></v-text-field>
-        <v-text-field label="Location" v-model="tournament.location"></v-text-field>
-        <v-text-field label="Entry Fee" v-model="tournament.entryFee"></v-text-field>
-        <v-textarea label="Prize Description" v-model="tournament.prizeDescription"></v-textarea>
+        <v-text-field type="date" label="Start Date" v-model="tournament.startDate" :rules="startDateRules" required></v-text-field>
+        <v-text-field type="date" label="End Date" v-model="tournament.endDate" :rules="endDateRules" required></v-text-field>
+        <v-text-field label="Location" v-model="tournament.location" :rules="locationRules" required ></v-text-field>
+        <v-text-field label="Entry Fee" v-model="tournament.entryFee" :rules="entryFeeRules" required></v-text-field>
+        <v-textarea label="Prize Description" v-model="tournament.prizeDescription" :rules="prizeDescriptionRules" required></v-textarea>
       </v-form>
       <v-card-actions>
-        <v-btn color="#03DAC5" @click="createTournament">Create Your Tournament</v-btn>
+        <v-btn color="#03DAC5" @click="createTournament" >Create Your Tournament</v-btn>
       </v-card-actions>
     </v-card-text>
   </v-card>
@@ -71,11 +71,18 @@ export default {
         { id: 9, name: "Magic The Gathering" },
         { id: 10, name: "Super Smash Brothers" },
         { id: 11, name: "Other" }
-      ]
+      ],
+      tNameRules:[v => !!v || "Tournament Name is required"],
+      startDateRules:[v => !!v || "required"],
+      endDateRules:[v => !!v || "required"],
+      locationRules:[v => !!v || "required"],
+      entryFeeRules:[v => !!v || "required"],
+      prizeDescriptionRules:[v => !!v || "required"],
     };
   },
   methods: {
     createTournament() {
+      if(this.$refs.createTournamentForm.validate()){
       fetch(
         `${process.env.VUE_APP_REMOTE_API}/api/tournament?userId=${
           auth.getUser().id
@@ -94,6 +101,7 @@ export default {
           this.$router.push("/browse-tournaments");
         }
       });
+    }
     }
   }
 };
