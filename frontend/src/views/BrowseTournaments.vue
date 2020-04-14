@@ -36,6 +36,7 @@
           >{{row.item.tournamentName}}</td>
           <td>{{row.item.game}}</td>
           <td>{{row.item.startDate}}</td>
+          <td>{{row.item.endDate}}</td>
           <td>{{row.item.prizeDescription}}</td>
           <td>
             <join-tournament

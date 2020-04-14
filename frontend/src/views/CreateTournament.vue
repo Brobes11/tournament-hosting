@@ -59,7 +59,7 @@ export default {
       endDateRules:[v => !!v || "required"],
       locationRules:[v => !!v || "required" ,
        v => v && v.length <= 30 || " 30 characters or less please."],
-      entryFeeRules:[v => !!v || "required"],
+      entryFeeRules:[v => !!v || "required", v=> v && v>=5 || "A minimum cost of 5$ required for facility fees."],
       prizeDescriptionRules:[v => !!v || "required"],
       
     };
