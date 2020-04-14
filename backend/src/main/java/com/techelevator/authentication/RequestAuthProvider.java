@@ -68,9 +68,9 @@ public class RequestAuthProvider implements AuthProvider {
     }
 
     @Override
-    public void register(String username, String firstName, String lastName, String email, String password,
+    public User register(String username, String firstName, String lastName, String email, String password,
             String role) {
-        dao.saveUser(username, firstName, lastName, email, password, role);
+        return dao.saveUser(username, firstName, lastName, email, password, role);
     }
 
     @Override

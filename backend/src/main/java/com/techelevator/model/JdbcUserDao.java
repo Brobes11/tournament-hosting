@@ -9,6 +9,7 @@ import javax.sql.DataSource;
 import com.techelevator.authentication.PasswordHasher;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
@@ -48,19 +49,22 @@ public class JdbcUserDao implements UserDao {
         byte[] salt = passwordHasher.generateRandomSalt();
         String hashedPassword = passwordHasher.computeHash(password, salt);
         String saltString = new String(Base64.getEncoder().encode(salt));
-        long newId = jdbcTemplate.queryForObject(
-                "INSERT INTO users(username, first_name, last_name, email, password, salt, role) VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING id",
-                Long.class, userName, firstName, lastName, email, hashedPassword, saltString, role);
+        try {
+            long newId = jdbcTemplate.queryForObject(
+                    "INSERT INTO users(username, first_name, last_name, email, password, salt, role) VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING id",
+                    Long.class, userName, firstName, lastName, email, hashedPassword, saltString, role);
 
-        User newUser = new User();
-        newUser.setId(newId);
-        newUser.setUsername(userName);
-        newUser.setFirstName(firstName);
-        newUser.setLastName(lastName);
-        newUser.setEmail(email);
-        newUser.setRole(role);
-
-        return newUser;
+            User newUser = new User();
+            newUser.setId(newId);
+            newUser.setUsername(userName);
+            newUser.setFirstName(firstName);
+            newUser.setLastName(lastName);
+            newUser.setEmail(email);
+            newUser.setRole(role);
+            return newUser;
+        } catch (DuplicateKeyException e) {
+            return null;
+        }
     }
 
     @Override

@@ -43,9 +43,13 @@ public class AccountController {
                 registrationResult.addError(error.getDefaultMessage());
             }
         } else {
-            auth.register(user.getUsername(), user.getFirstName(), user.getLastName(), user.getEmail(),
-                    user.getPassword(), user.getRole());
-            registrationResult.setSuccess(true);
+            User createdUser = auth.register(user.getUsername(), user.getFirstName(), user.getLastName(),
+                    user.getEmail(), user.getPassword(), user.getRole());
+            if (createdUser != null) {
+                registrationResult.setSuccess(true);
+            } else {
+                registrationResult.addError("Username already exists. Please select a different username.");
+            }
         }
         return registrationResult;
     }
