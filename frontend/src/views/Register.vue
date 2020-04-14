@@ -50,6 +50,7 @@
           :rules="confirmPasswordRules"
         />
       </v-form>
+      <div id="errors" v-for="error in errors" :key="error">{{error}}</div>
     </v-card-text>
     <v-divider></v-divider>
     <v-card-actions>
@@ -97,7 +98,8 @@ export default {
       ],
       registrationErrors: false,
       showPassword: false,
-      showConfirmPassword: false
+      showConfirmPassword: false,
+      errors: []
     };
   },
   methods: {
@@ -126,7 +128,7 @@ export default {
             });
           } else {
             this.registrationErrors = true;
-            this.errors = parsedData;
+            this.errors = parsedData.errors;
           }
         })
         .catch(err => console.log(err));
@@ -136,5 +138,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+#errors {
+  color: firebrick;
+}
 </style>

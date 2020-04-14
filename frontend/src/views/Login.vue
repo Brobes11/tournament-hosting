@@ -22,6 +22,7 @@
           :rules="passwordRules"
         />
       </v-form>
+      <div id="invalidCredentials" v-if="invalidCredentials">Incorrect Username and Password.</div>
     </v-card-text>
     <v-divider></v-divider>
     <v-card-actions>
@@ -45,7 +46,8 @@ export default {
       },
       usernameRules: [v => !!v || "Username is required."],
       passwordRules: [v => !!v || "Password is required."],
-      showPassword: false
+      showPassword: false,
+      invalidCredentials: false
     };
   },
   methods: {
@@ -82,4 +84,7 @@ export default {
 </script>
 
 <style scoped>
+#invalidCredentials {
+  color: firebrick;
+}
 </style>
