@@ -77,19 +77,19 @@
               </tr>
             </template>
           </v-data-table>
-          <div>
+          <v-card-actions>
             <v-btn
               color="#03DAC5"
               v-if="tournament.tournamentOwner === currentUser"
               :to="{ name: 'tournament-pairings' }"
-            >Start Tournament</v-btn>
+            >Manage Tournament</v-btn>
 
             <v-btn
               color="#BB86FC"
               v-if="tournament.tournamentOwner !== currentUser"
               :to="{ name: 'tournament-pairings' }"
             >Go to Tournament Activity</v-btn>
-          </div>
+          </v-card-actions>
         </v-card>
       </v-col>
     </v-row>
