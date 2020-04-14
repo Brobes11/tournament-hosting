@@ -9,27 +9,7 @@
     <v-card-text>
       <v-form ref="createTournamentForm">
         <v-text-field label="Tournament Name" v-model="tournament.tournamentName" :rules="tNameRules" required></v-text-field>
-        <template>
-          <v-menu>
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn v-bind="attrs" v-on="on">{{tournament.game===''?'Sport/game':tournament.game}}</v-btn>
-            </template>
-            <v-list>
-              <v-list-item
-                v-for="sport in sports"
-                :key="sport.id"
-                @click="tournament.game=sport.name"
-              >
-                <v-list-item-title>{{sport.name}}</v-list-item-title>
-                <v-list-item-action>
-                  <v-btn icon>
-                    <v-icon color="grey lighten-1">mdi-information</v-icon>
-                  </v-btn>
-                </v-list-item-action>
-              </v-list-item>
-            </v-list>
-          </v-menu>
-        </template>
+        <v-select :items="sports" v-model="tournament.game" :rules="sportSelectRules" required />
         <v-text-field type="date" label="Start Date" v-model="tournament.startDate" :rules="startDateRules" required></v-text-field>
         <v-text-field type="date" label="End Date" v-model="tournament.endDate" :rules="endDateRules" required></v-text-field>
         <v-text-field label="Location" v-model="tournament.location" :rules="locationRules" required ></v-text-field>
@@ -60,24 +40,28 @@ export default {
         acceptingEntries: true
       },
       sports: [
-        { id: 1, name: "Volleyball" },
-        { id: 2, name: "Basketball" },
-        { id: 3, name: "Soccer" },
-        { id: 4, name: "Hockey" },
-        { id: 5, name: "Bike Polo" },
-        { id: 6, name: "Euchre" },
-        { id: 7, name: "Poker" },
-        { id: 8, name: "DnD" },
-        { id: 9, name: "Magic The Gathering" },
-        { id: 10, name: "Super Smash Brothers" },
-        { id: 11, name: "Other" }
+        "Volleyball" ,
+        "Basketball" ,
+        "Soccer" ,
+        "Hockey" ,
+        "Bike Polo",
+        "Euchre" ,
+        "Poker" ,
+        "DnD" ,
+        "Magic The Gathering" ,
+        "Super Smash Brothers" ,
+        "Other" 
       ],
-      tNameRules:[v => !!v || "Tournament Name is required"],
+      tNameRules:[v => !!v || "Tournament Name is required",
+      v => v && v.length <= 20 || " 20 characters or less please."],
+      sportSelectRules: [v => !!v || "Sport/Game selection is required."],
       startDateRules:[v => !!v || "required"],
       endDateRules:[v => !!v || "required"],
-      locationRules:[v => !!v || "required"],
+      locationRules:[v => !!v || "required" ,
+       v => v && v.length <= 30 || " 30 characters or less please."],
       entryFeeRules:[v => !!v || "required"],
       prizeDescriptionRules:[v => !!v || "required"],
+      
     };
   },
   methods: {
