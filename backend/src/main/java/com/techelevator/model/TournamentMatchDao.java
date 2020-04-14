@@ -10,4 +10,6 @@ public interface TournamentMatchDao {
 
     public List<TournamentMatch> getAllMatchesByTournamentRound(Long tournamentId, Long round);
 
+    public List<Integer> getAllRoundsByTournamentId(long tournamentId);
+
 }

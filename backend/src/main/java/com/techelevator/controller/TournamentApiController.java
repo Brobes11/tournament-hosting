@@ -128,16 +128,20 @@ public class TournamentApiController {
 
     @PostMapping("/matchups")
     public void submitTournamentMatchups(@Valid @RequestBody List<TournamentMatch> matches, BindingResult result) {
-        if(result.hasErrors()){
+        if (result.hasErrors()) {
 
         }
         tournamentMatchDao.createMatches(matches);
     }
 
     @GetMapping("/matchups")
-    public List<TournamentMatch> getTourneyMatchupsByRound(@RequestParam Long tournamentId, @RequestParam Long round){
+    public List<TournamentMatch> getTourneyMatchupsByRound(@RequestParam Long tournamentId, @RequestParam Long round) {
         return tournamentMatchDao.getAllMatchesByTournamentRound(tournamentId, round);
     }
-    
+
+    @GetMapping("/tournamentRounds/{tournamentId}")
+    public List<Integer> getAllRoundsByTournamentId(@PathVariable long tournamentId) {
+        return tournamentMatchDao.getAllRoundsByTournamentId(tournamentId);
+    }
 
 }
