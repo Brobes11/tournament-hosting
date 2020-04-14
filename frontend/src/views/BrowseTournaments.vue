@@ -35,7 +35,7 @@
             <td>{{row.item.prizeDescription}}</td>
             <td >
               
-                <join-tournament v-if="row.item.acceptingEntries" :game="row.item.game" :tournamentId="row.item.tournamentId" @join-success="handleSnack()"></join-tournament>
+                <join-tournament v-if="row.item.acceptingEntries===true" :game="row.item.game" :tournamentId="row.item.tournamentId" @join-success="handleSnack()"></join-tournament>
                 <v-row justify="center">
                 <v-btn class="mxauto" v-if="row.item.acceptingEntries===false" disabled color="primary" ><v-icon dark>mdi-send</v-icon> Join  </v-btn>
                </v-row>

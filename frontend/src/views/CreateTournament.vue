@@ -30,8 +30,8 @@
             </v-list>
           </v-menu>
         </template>
-        <v-text-field type="date" label="Start Date" v-model="tournament.startDate"></v-text-field>
-        <v-text-field type="date" label="End Date" v-model="tournament.endDate"></v-text-field>
+        <v-text-field type="date" label="Start Date" v-model="tournament.startDate" required></v-text-field>
+        <v-text-field type="date" label="End Date" v-model="tournament.endDate" required></v-text-field>
         <v-text-field label="Location" v-model="tournament.location"></v-text-field>
         <v-text-field label="Entry Fee" v-model="tournament.entryFee"></v-text-field>
         <v-textarea label="Prize Description" v-model="tournament.prizeDescription"></v-textarea>

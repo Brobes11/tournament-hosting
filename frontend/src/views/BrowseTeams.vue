@@ -27,7 +27,10 @@
             <td>{{row.item.game}}</td>
             <td>{{row.item.teamBio}}</td>
              <td>        <!--(handle snackbar notification) -->
-              <join-team :teamId="row.item.teamId" @join-success="handleSnack()"></join-team>
+              <join-team v-if="row.item.acceptingNewMembers===true" :teamId="row.item.teamId" @join-success="handleSnack()"></join-team>
+              <v-row justify="center">
+                 <v-btn class="mxauto" v-if="row.item.acceptingNewMembers===false" disabled color="primary" ><v-icon dark>mdi-send</v-icon> Join  </v-btn>
+              </v-row>
             </td>
           </tr>
       </template>
