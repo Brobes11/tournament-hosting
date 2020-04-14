@@ -36,6 +36,18 @@ public class JdbcTournamentTeamDao implements TournamentTeamDao {
     }
 
     @Override
+    public TournamentTeam getTournamentTeamByTeamId(long teamId) {
+        TournamentTeam tournamentTeam = new TournamentTeam();
+        String sql = "SELECT id, team_name FROM teams WHERE id = ?;";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, teamId);
+        if (result.next()) {
+            tournamentTeam.setTeamId(result.getLong("id"));
+            tournamentTeam.setTeamName(result.getString("team_name"));
+        }
+        return tournamentTeam;
+    }
+
+    @Override
     public boolean deleteTeam(long tournamentId, long teamId) {
         boolean result = false;
         String sql = "DELETE FROM tournamentroster WHERE tourney_id = ? AND team_id = ?";
