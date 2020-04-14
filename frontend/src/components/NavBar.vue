@@ -1,6 +1,6 @@
 <template>
   <v-container grid-list-xl>
-    <v-app-bar prominent flat src="https://picsum.photos/1920/1080?random" >
+    <v-app-bar prominent flat src="https://i.picsum.photos/id/353/6016/3376.jpg" collapse-on-scroll >
       <v-row>
         <!-- nav bar- row tag start -->
 
@@ -12,7 +12,7 @@
               contain
               src="@/assets/tournLogo.png"
               transition="scale-transition"
-              width="40"
+              width="50"
             />
             <h1>Tournament Buddy</h1>
           </div>

@@ -10,6 +10,7 @@
           label="Username"
           prepend-icon="mdi-account-circle"
           :rules="usernameRules"
+          color="#03DAC5"
         />
         <v-text-field
           v-model="user.password"
@@ -20,6 +21,7 @@
           :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
           @click:append="showPassword = !showPassword"
           :rules="passwordRules"
+          color="#03DAC5"
         />
       </v-form>
       <div id="invalidCredentials" v-if="invalidCredentials">Incorrect Username and Password.</div>

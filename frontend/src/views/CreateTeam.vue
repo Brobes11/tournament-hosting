@@ -21,7 +21,7 @@
             row
           >
             <v-radio color="#03DAC5" label="yes" value="true"></v-radio>
-            <v-radio color="#03DAC5" label="no" value="false"></v-radio>
+            <v-radio color="#BB86FC" label="no" value="false"></v-radio>
           </v-radio-group>
 
           <v-text-field
