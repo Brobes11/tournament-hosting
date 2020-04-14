@@ -8,7 +8,7 @@
         <v-card-title>
           <span class="headline">Sign Up Requests</span>
           <v-spacer></v-spacer>
-          <v-icon class="clickable" @click="dialog = false">mdi-close-box-outline</v-icon>
+          <v-icon class="clickable" ripple @click="dialog = false">mdi-close-box-outline</v-icon>
         </v-card-title>
         <v-data-table :headers="headers" :items="requests" class="elevation-10">
           <template v-slot:item="row">

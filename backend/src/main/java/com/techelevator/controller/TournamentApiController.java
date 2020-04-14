@@ -6,8 +6,11 @@ import javax.validation.Valid;
 
 import com.techelevator.model.JdbcRequestDAO;
 import com.techelevator.model.JdbcTournamentDao;
+import com.techelevator.model.JdbcTournamentMatchDao;
 import com.techelevator.model.Request;
 import com.techelevator.model.Tournament;
+import com.techelevator.model.TournamentMatch;
+import com.techelevator.model.TournamentMatchDao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -32,6 +35,9 @@ public class TournamentApiController {
 
     @Autowired
     private JdbcRequestDAO requestDao;
+
+    @Autowired
+    private JdbcTournamentMatchDao tournamentMatchDao;
 
     @Autowired
     public TournamentApiController(JdbcTournamentDao tournamentDao) {
@@ -98,5 +104,14 @@ public class TournamentApiController {
         }
         requestDao.createTournamentRequest(request);
     }
+
+    @PostMapping("/matchups")
+    public void submitTournamentMatchups(@Valid @RequestBody List<TournamentMatch> matches, BindingResult result) {
+        if(result.hasErrors()){
+
+        }
+        tournamentMatchDao.createMatches(matches);
+    }
+    
 
 }

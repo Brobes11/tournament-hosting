@@ -38,7 +38,7 @@ public class JdbcTournamentMatchDao implements TournamentMatchDao {
             String sql = "INSERT INTO tournamentMatch (tourney_id, round_number, team_1_id, team_2_id) "
                     + "VALUES (?, ?, ?, ?) RETURNING match_id";
             Long newId = jdbcTemplate.queryForObject(sql, Long.class, tournamentMatch.getTournamentId(),
-                    tournamentMatch.getRound(), tournamentMatch.getHomeTeam(), tournamentMatch.getAwayTeam());
+                    tournamentMatch.getRound(), tournamentMatch.getHomeTeam().getTeamId(), tournamentMatch.getAwayTeam().getTeamId());
             tournamentMatch.setId(newId);
         }
         return matches;

@@ -5,8 +5,8 @@ public class TournamentMatch {
     private long id;
     private long tournamentId;
     private int round;
-    private long homeTeam;
-    private long awayTeam;
+    private TournamentTeam homeTeam;
+    private TournamentTeam awayTeam;
     private int homeScore;
     private int awayScore;
     private long winnerId;
@@ -39,19 +39,19 @@ public class TournamentMatch {
         this.homeScore = homeScore;
     }
 
-    public long getAwayTeam() {
+    public TournamentTeam getAwayTeam() {
         return awayTeam;
     }
 
-    public void setAwayTeam(long awayTeam) {
+    public void setAwayTeam(TournamentTeam awayTeam) {
         this.awayTeam = awayTeam;
     }
 
-    public long getHomeTeam() {
+    public TournamentTeam getHomeTeam() {
         return homeTeam;
     }
 
-    public void setHomeTeam(long homeTeam) {
+    public void setHomeTeam(TournamentTeam homeTeam) {
         this.homeTeam = homeTeam;
     }
 
