@@ -116,7 +116,7 @@ const router = new Router({
     }
   },
   {
-    path: "/round/:roundNumber",
+    path: "/round/:id/:roundNumber",
     name: "round",
     component: Round,
     meta: {

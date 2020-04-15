@@ -91,13 +91,8 @@
     <v-row>
       <v-spacer></v-spacer>
       <v-card>
-        <v-card-actions>
-          <v-btn
-            :to="{ name: 'round' }"
-            color="#03DAC5"
-            v-for="round in rounds"
-            :key="round"
-          >Round {{round}} Details</v-btn>
+        <v-card-actions v-for="round in rounds" :key="round">
+          <v-btn :to="{name: 'round'}" color="#03DAC5">Round {{round}} Details</v-btn>
         </v-card-actions>
       </v-card>
       <v-spacer></v-spacer>
