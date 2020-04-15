@@ -1,6 +1,7 @@
 package com.techelevator.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -200,6 +201,11 @@ public class TournamentApiController {
     @GetMapping("/tournamentRounds/{tournamentId}")
     public List<Integer> getAllRoundsByTournamentId(@PathVariable long tournamentId) {
         return tournamentMatchDao.getAllRoundsByTournamentId(tournamentId);
+    }
+
+    @GetMapping("/wins")
+    public Map<String, Integer> getAllTournamentRounds(@RequestParam Long tourneyId){
+        return tournamentDao.getTourneyWins(tourneyId);
     }
 
 }

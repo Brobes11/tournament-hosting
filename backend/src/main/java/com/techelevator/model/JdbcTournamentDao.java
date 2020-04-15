@@ -1,7 +1,9 @@
 package com.techelevator.model;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.sql.DataSource;
 
@@ -103,6 +105,23 @@ public class JdbcTournamentDao implements TournamentDao {
                 tournament.getPrizeDescription(), tournament.getLocation(), tournament.getStartDate(),
                 tournament.getEndDate(), tournament.getTournamentId());
         return true;
+    }
+
+    @Override
+    public Map<String, Integer> getTourneyWins(long id) {
+        Map<String, Integer> tourneyWins = new LinkedHashMap<>();
+        String sql = "SELECT teams.team_name, COUNT(tournamentmatch.winner_id) AS wins FROM tournamentroster " +
+        "JOIN tournamentmatch ON tournamentmatch.winner_id = tournamentroster.team_id " +
+        "JOIN teams ON tournamentroster.team_id = teams.id " +
+        "WHERE tournamentroster.tourney_id = ? " +
+        "GROUP BY teams.team_name " +
+        "ORDER BY wins desc LIMIT 3;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
+        while(results.next()){
+            tourneyWins.put(results.getString("team_name"), results.getInt("wins"));
+        }
+
+        return tourneyWins;
     }
 
 }
