@@ -13,9 +13,20 @@
           contain
         />
         <p>Come and see our many tournaments featuring all kinds of different sports and games. From magic to basketball, here at Tournament Buddy, we've got them all!</p>
+        <v-btn href="/browse-tournaments">
+           Click here to browse tournaments
+        </v-btn>
       </v-col>
       <v-col cols="6">
-
+        <v-img
+          :src="require('../assets/loss.jpg')"
+          class="my-3"
+          contain
+        />
+        <p>We've got some fierce competitors in our selection of awesome teams! check them out to see the best of the best!</p>
+        <v-btn href="/browse-teams">
+           Click here to browse teams
+        </v-btn>
       </v-col>
     </v-row>
   </v-container>

@@ -105,7 +105,7 @@ INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Cyclone
 
 
 
-INSERT INTO teamRoster(team_id, user_id, captain) VALUES (1,1,true);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (1,1,false);
 INSERT INTO teamRoster(team_id, user_id, captain) VALUES (1,2,true);
 INSERT INTO teamRoster(team_id, user_id, captain) VALUES (2,3,false);
 INSERT INTO teamRoster(team_id, user_id, captain) VALUES (2,4,true);
