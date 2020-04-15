@@ -4,12 +4,16 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import com.techelevator.authentication.AuthProvider;
+import com.techelevator.authentication.UnauthorizedException;
 import com.techelevator.model.JdbcRequestDAO;
 import com.techelevator.model.JdbcTeamDao;
 import com.techelevator.model.JdbcTournamentTeamDao;
+import com.techelevator.model.JdbcUserDao;
 import com.techelevator.model.Request;
 import com.techelevator.model.Team;
 import com.techelevator.model.TournamentTeam;
+import com.techelevator.model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -39,21 +43,38 @@ public class TeamApiController {
     private JdbcRequestDAO requestDAO;
 
     @Autowired
+    private JdbcUserDao userDao;
+
+    @Autowired
+    private AuthProvider auth;
+
+    @Autowired
     public TeamApiController(JdbcTeamDao teamDao) {
         this.teamDao = teamDao;
     }
 
     @GetMapping
-    public List<Team> getAllTeams(@RequestParam(required = false) Long userId) {
-        if (userId == null) {
-            return teamDao.getAllTeams();
+    public List<Team> getAllTeams(@RequestParam(required = false) Long userId) throws UnauthorizedException {
+        if (userId != null) {
+            if (userId == auth.getCurrentUser().getId()) {
+                return teamDao.getTeamsByUser(userId);
+            } else {
+                throw new UnauthorizedException();
+            }
         }
-        return teamDao.getTeamsByUser(userId);
+        return teamDao.getAllTeams();
     }
 
     @PutMapping
-    public boolean updateTeam(@Valid @RequestBody Team team, BindingResult result) {
-        return teamDao.updateTeam(team);
+    public void updateTeam(@Valid @RequestBody Team team, BindingResult result) throws UnauthorizedException {
+        List<Long> userTeams = userDao.getUsersCaptainedTeams(auth.getCurrentUser().getId());
+        for (Long t : userTeams) {
+            if (t == team.getTeamId()) {
+                teamDao.updateTeam(team);
+            } else {
+                throw new UnauthorizedException();
+            }
+        }
     }
 
     @GetMapping("/{teamId}")
@@ -77,13 +98,14 @@ public class TeamApiController {
 
     @DeleteMapping("/tournament/{tournamentId}")
     public void deleteTournamentTeam(@PathVariable long tournamentId, @RequestParam long teamId) {
+
         tournamentTeamDao.deleteTeam(tournamentId, teamId);
     }
 
     @PostMapping
     public Team createTeam(@Valid @RequestBody Team team, BindingResult result, @RequestParam Long userId) {
 
-        if (result.hasErrors() == false) {
+        if ((result.hasErrors() == false) && (userId == auth.getCurrentUser().getId())) {
             return teamDao.createTeam(team, userId);
 
         }
@@ -91,8 +113,13 @@ public class TeamApiController {
     }
 
     @PostMapping("/join-request")
-    public void joinTeamRequest(@RequestBody Request request) {
-        requestDAO.createTeamRequest(request);
+    public void joinTeamRequest(@RequestBody Request request) throws UnauthorizedException {
+        if (request.getSenderId() == auth.getCurrentUser().getId()) {
+            requestDAO.createTeamRequest(request);
+        } else {
+            throw new UnauthorizedException();
+        }
+
     }
 
     @GetMapping("/request")
@@ -101,23 +128,45 @@ public class TeamApiController {
     }
 
     @DeleteMapping("/request")
-    public boolean deleteTeamRequest(@RequestBody Request request, BindingResult result) {
-        if (result.hasErrors()) {
-            return false;
+    public boolean deleteTeamRequest(@RequestBody Request request, BindingResult result) throws UnauthorizedException {
+        List<Long> userTeams = userDao.getUsersCaptainedTeams(auth.getCurrentUser().getId());
+        boolean isAuthorized = false;
+        for (Long t : userTeams) {
+            if (t == request.getRecipientId()) {
+                requestDAO.deleteTeamRequest(request);
+                isAuthorized = true;
+            } else {
+                throw new UnauthorizedException();
+            }
         }
-
-        requestDAO.deleteTeamRequest(request);
-        return true;
+        return isAuthorized;
     }
 
     @PostMapping("/roster")
-    public void addTeamMember(@Valid @RequestParam boolean captainStatus, @RequestBody Request request) {
-        teamDao.addMember(request, captainStatus);
+    public void addTeamMember(@Valid @RequestParam boolean captainStatus, @RequestBody Request request)
+            throws UnauthorizedException {
+        List<Long> userTeams = userDao.getUsersCaptainedTeams(auth.getCurrentUser().getId());
+        for (Long t : userTeams) {
+            if (t == request.getRecipientId()) {
+                teamDao.addMember(request, captainStatus);
+            } else {
+                throw new UnauthorizedException();
+            }
+        }
+
     }
 
     @DeleteMapping("/roster")
-    public void deleteTeamMember(@RequestParam long userId, @RequestParam long teamId) {
-        teamDao.deleteMember(userId, teamId);
+    public void deleteTeamMember(@RequestParam long userId, @RequestParam long teamId) throws UnauthorizedException {
+        List<Long> userTeams = userDao.getUsersCaptainedTeams(auth.getCurrentUser().getId());
+        for (Long t : userTeams) {
+            if (t == teamId) {
+                teamDao.deleteMember(userId, teamId);
+            } else {
+                throw new UnauthorizedException();
+            }
+        }
+
     }
 
     @GetMapping("/captain-teams")
