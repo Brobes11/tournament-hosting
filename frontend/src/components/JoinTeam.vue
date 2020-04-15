@@ -111,9 +111,7 @@ export default {
       this.userTeams.forEach(team => {
         if (team.teamId === this.request.recipientId) {
           this.isMember = true;
-        } else {
-          this.isMember = false;
-        }
+        } 
       });
     }
   },
