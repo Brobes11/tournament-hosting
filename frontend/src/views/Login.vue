@@ -1,5 +1,5 @@
 <template>
-  <v-card width="450" id="login" class="mx-auto mt-5 at-5" @keydown.enter="login">
+  <v-card width="450" id="login" class="mx-auto mt-5 at-5">
     <v-card-title>
       <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
     </v-card-title>
@@ -22,6 +22,7 @@
           @click:append="showPassword = !showPassword"
           :rules="passwordRules"
           color="#03DAC5"
+          @keydown.enter="login"
         />
       </v-form>
       <div id="invalidCredentials" v-if="invalidCredentials">Incorrect Username and Password.</div>
@@ -30,7 +31,7 @@
     <v-card-actions>
       <v-btn color="#BB86FC" :to="{ name: 'register' }">Not Registered?</v-btn>
       <v-spacer></v-spacer>
-      <v-btn color="#03DAC5" type="submit" @click="login">Log In</v-btn>
+      <v-btn color="#03DAC5" type="submit" @click="login" @keydown.enter="login">Log In</v-btn>
     </v-card-actions>
   </v-card>
 </template>

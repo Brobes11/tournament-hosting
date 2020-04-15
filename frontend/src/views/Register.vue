@@ -1,5 +1,5 @@
 <template>
-  <v-card width="500" id="register" class="mx-auto mt-5 at-5" @keydown.enter="register">
+  <v-card width="500" id="register" class="mx-auto mt-5 at-5">
     <v-card-title>
       <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
     </v-card-title>
@@ -48,6 +48,7 @@
           :append-icon="showConfirmPassword ? 'mdi-eye' : 'mdi-eye-off'"
           @click:append="showConfirmPassword = !showConfirmPassword"
           :rules="confirmPasswordRules"
+          @keydown.enter="register"
         />
       </v-form>
       <div id="errors" v-for="error in errors" :key="error">{{error}}</div>
