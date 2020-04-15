@@ -53,6 +53,12 @@ INSERT INTO tournamentrequest (team_id, tourney_id, message) VALUES (3,1,'test')
 
 SELECT team_id FROM teamroster WHERE user_id = 5 AND captain = true
 
+<<<<<<< Updated upstream
 SELECT * FROM users
 
 SELECT * FROM teamrequest
+=======
+SELECT * FROM tournamentmatch
+
+SELECT * FROM tournamentmatch WHERE tourney_id = 1 AND round_number = 1
+>>>>>>> Stashed changes

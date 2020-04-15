@@ -6,8 +6,6 @@ import javax.validation.Valid;
 
 import com.techelevator.authentication.AuthProvider;
 import com.techelevator.authentication.UnauthorizedException;
-import com.techelevator.model.Tournament;
-import com.techelevator.model.TournamentDao;
 import com.techelevator.model.User;
 import com.techelevator.model.UserDao;
 
@@ -37,8 +35,7 @@ public class UserApiController {
     @Autowired
     private UserDao userDao;
 
-    @Autowired
-    private TournamentDao tournamentDao;
+    
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public String authorizedOnly() throws UnauthorizedException {
