@@ -22,8 +22,8 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click="dialog = false; resetTournament()">Close</v-btn>
-          <v-btn color="blue darken-1" text @click="updateTournament()">Save</v-btn>
+          <v-btn color="blue darken-1" text @click="dialog=false; resetMatchScores()">Close</v-btn>
+          <v-btn color="blue darken-1" text @click="updateMatchupScores()">Update!</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -38,10 +38,14 @@ export default {
   },
   data() {
     return {
-      matchup: null
+      matchup: null,
+      dialog: false
     };
   },
   methods: {
+    resetMatchScores() {
+      this.matchup = Object.assign({}, this.currentMatchup);
+    },
     updateMatchupScores() {
       fetch(`${process.env.VUE_APP_REMOTE_API}/api/tournament/scores`, {
         method: "POST",
@@ -58,6 +62,9 @@ export default {
         }
       });
     }
+  },
+  created() {
+    this.resetMatchScores();
   }
 };
 </script>

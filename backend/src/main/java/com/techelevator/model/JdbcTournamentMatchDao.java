@@ -87,4 +87,12 @@ public class JdbcTournamentMatchDao implements TournamentMatchDao {
         return allRounds;
     }
 
+    @Override
+    public boolean updateMatchScores(TournamentMatch tournamentMatch) {
+        String sql = "UPDATE tournamentmatch SET team_1_score = ?, team_2_score = ? WHERE match_id = ?;";
+        jdbcTemplate.update(sql, tournamentMatch.getHomeScore(), tournamentMatch.getAwayScore(),
+                tournamentMatch.getId());
+        return true;
+    }
+
 }

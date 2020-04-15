@@ -12,4 +12,6 @@ public interface TournamentMatchDao {
 
     public List<Integer> getAllRoundsByTournamentId(long tournamentId);
 
+    public boolean updateMatchScores(TournamentMatch tournamentMatch);
+
 }

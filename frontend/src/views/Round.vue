@@ -36,9 +36,11 @@
             <v-divider></v-divider>
             <p>Winner: {{matchup.Winner}}</p>
           </v-card-text>
-          <v-spacer></v-spacer>
-          <update-score :current-matchup="matchup" @update-scores="getMatchUps()" />
-          <v-spacer></v-spacer>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <update-score :current-matchup="matchup" @update-scores="getMatchUps()" />
+            <v-spacer></v-spacer>
+          </v-card-actions>
         </v-card>
       </v-col>
     </v-row>
@@ -79,6 +81,23 @@ export default {
         })
         .then(data => {
           this.matchups = data;
+        });
+    },
+    getTournament() {
+      const tourneyId = this.$route.params.id;
+      fetch(`${process.env.VUE_APP_REMOTE_API}/api/tournament/${tourneyId}`, {
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + auth.getToken()
+        }
+      })
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          }
+        })
+        .then(data => {
+          this.tournament = data;
         });
     }
   },

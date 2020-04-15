@@ -97,57 +97,59 @@ public class TournamentApiController {
     }
 
     @PutMapping
-    public boolean updateTournament(@Valid @RequestBody Tournament tournament) throws UnauthorizedException{
-        //Making sure that the ID passed to the update belongs to a tournament the user is owner of
+    public boolean updateTournament(@Valid @RequestBody Tournament tournament) throws UnauthorizedException {
+        // Making sure that the ID passed to the update belongs to a tournament the user
+        // is owner of
         Tournament idTourney = tournamentDao.getTournamentById(tournament.getTournamentId());
-        if(idTourney.getTournamentOwner() == auth.getCurrentUser().getId()){
+        if (idTourney.getTournamentOwner() == auth.getCurrentUser().getId()) {
             return tournamentDao.updateTournament(tournament);
         } else {
             throw new UnauthorizedException();
         }
-        
 
     }
 
     @GetMapping("/request")
     public List<Request> getTournamentRequests(@RequestParam long tournamentId) throws UnauthorizedException {
         Tournament idTourney = tournamentDao.getTournamentById(tournamentId);
-        if(idTourney.getTournamentOwner() == auth.getCurrentUser().getId()){
+        if (idTourney.getTournamentOwner() == auth.getCurrentUser().getId()) {
             return requestDao.getRequestsByTournamentId(tournamentId);
-        } else{
+        } else {
             throw new UnauthorizedException();
         }
-        
+
     }
 
     @DeleteMapping("/request")
-    public void deleteTournamentRequest(@Valid @RequestBody Request tourneyRequest, BindingResult result) throws UnauthorizedException {
+    public void deleteTournamentRequest(@Valid @RequestBody Request tourneyRequest, BindingResult result)
+            throws UnauthorizedException {
         if (result.hasErrors()) {
 
         }
 
         Tournament idTourney = tournamentDao.getTournamentById(tourneyRequest.getRecipientId());
-        if(idTourney.getTournamentOwner() == auth.getCurrentUser().getId()){
+        if (idTourney.getTournamentOwner() == auth.getCurrentUser().getId()) {
             requestDao.deleteTourneyRequest(tourneyRequest);
-        } else{
+        } else {
             throw new UnauthorizedException();
         }
-        
+
     }
 
     @PostMapping("/request")
-    public void acceptTournamentRequest(@Valid @RequestBody Request tourneyRequest, BindingResult result) throws UnauthorizedException{
+    public void acceptTournamentRequest(@Valid @RequestBody Request tourneyRequest, BindingResult result)
+            throws UnauthorizedException {
         if (result.hasErrors()) {
 
         }
 
         Tournament idTourney = tournamentDao.getTournamentById(tourneyRequest.getRecipientId());
-        if(idTourney.getTournamentOwner() == auth.getCurrentUser().getId()){
+        if (idTourney.getTournamentOwner() == auth.getCurrentUser().getId()) {
             requestDao.acceptTourneyRequest(tourneyRequest);
-        } else{
+        } else {
             throw new UnauthorizedException();
         }
-        
+
     }
 
     @PostMapping("/join-request")
@@ -171,31 +173,38 @@ public class TournamentApiController {
     }
 
     @PostMapping("/matchups")
-    public void submitTournamentMatchups(@Valid @RequestBody List<TournamentMatch> matches, BindingResult result) throws UnauthorizedException{
+    public void submitTournamentMatchups(@Valid @RequestBody List<TournamentMatch> matches, BindingResult result)
+            throws UnauthorizedException {
         if (result.hasErrors()) {
 
         }
         long initialTourneyId = matches.get(0).getTournamentId();
         boolean sameTourney = true;
-        //makes sure that all the matchups are set to be a part of the same tourney to ensure fake data doesn't slip through
-        for(TournamentMatch match: matches){
-            if(match.getTournamentId() != initialTourneyId){
+        // makes sure that all the matchups are set to be a part of the same tourney to
+        // ensure fake data doesn't slip through
+        for (TournamentMatch match : matches) {
+            if (match.getTournamentId() != initialTourneyId) {
                 sameTourney = false;
             }
         }
-        //ensures the token is the owner of the tourney that matchups are being set for
+        // ensures the token is the owner of the tourney that matchups are being set for
         Tournament idTourney = tournamentDao.getTournamentById(initialTourneyId);
-        if(idTourney.getTournamentOwner() == auth.getCurrentUser().getId() && sameTourney){
+        if (idTourney.getTournamentOwner() == auth.getCurrentUser().getId() && sameTourney) {
             tournamentMatchDao.createMatches(matches);
-        } else{
+        } else {
             throw new UnauthorizedException();
         }
-        
+
     }
 
     @GetMapping("/matchups")
     public List<TournamentMatch> getTourneyMatchupsByRound(@RequestParam Long tournamentId, @RequestParam Long round) {
         return tournamentMatchDao.getAllMatchesByTournamentRound(tournamentId, round);
+    }
+
+    @PostMapping("/scores")
+    public boolean updateMatchScores(@RequestBody TournamentMatch tournamentMatch) {
+        return tournamentMatchDao.updateMatchScores(tournamentMatch);
     }
 
     @GetMapping("/tournamentRounds/{tournamentId}")
