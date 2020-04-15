@@ -22,7 +22,7 @@
         <v-select
           :disabled="teams.length === 0"
           :items="matchups"
-          label="Matchup"
+          label="Match"
           v-model="selectedMatchup"
           outlined
           item-text
@@ -56,8 +56,8 @@
           @click="createMatchup()"
           class="primary"
         >Add Matchup</v-btn>
-        <v-btn v-if="readyToSubmit === false && teams.length > 0" disabled>Add Matchup</v-btn>
-        <v-btn v-if="teams.length === 0" color="success" @click="submitMatchups()">Submit Mathcups</v-btn>
+        <v-btn v-if="readyToSubmit === false && teams.length > 0" disabled>Add Match</v-btn>
+        <v-btn v-if="teams.length === 0" color="success" @click="submitMatchups()">Submit Matches</v-btn>
       </v-col>
     </v-row>
     <v-row justify="center">
@@ -137,11 +137,11 @@ export default {
 
       if (this.teams.length % 2 === 0) {
         for (let index = 0; index < numOfMatchups; index++) {
-          emptyMatchups.push("Matchup " + (index + 1));
+          emptyMatchups.push("Match " + (index + 1));
         }
       } else {
         for (let index = 1; index < numOfMatchups; index++) {
-          emptyMatchups.push("Matchup " + index);
+          emptyMatchups.push("Match " + index);
         }
         emptyMatchups.push("BYE");
       }
