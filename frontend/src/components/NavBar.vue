@@ -6,7 +6,7 @@
         <!-- https://i.picsum.photos/id/353/6016/3376.jpg -->
 
         <v-col md="6" cols="12" class="pa-1">
-          <div class="d-flex align-center">
+          <div class="d-flex align-center clickable">
             <v-img
               alt="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
               class="shrink mr-2"
@@ -14,8 +14,9 @@
               src="@/assets/tournLogo.png"
               transition="scale-transition"
               width="40"
+              @click="$router.push('/')"
             />
-            <h1 class="d-flex align-center pa-1">Tournament Buddy</h1>
+            <h1 class="d-flex align-center pa-1 clickable" @click="$router.push('/')">Tournament Buddy</h1>
           </div>
         </v-col>
 
