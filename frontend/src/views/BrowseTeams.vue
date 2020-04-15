@@ -26,7 +26,7 @@
           <td
             class="clickable"
             @click="$router.push('/team-page/' + row.item.teamId)"
-          >{{row.item.teamName}}</td>
+          ><v-btn small outlined block> {{row.item.teamName}}</v-btn></td>
           <td>{{row.item.game}}</td>
           <td>{{row.item.teamBio}}</td>
           <td>

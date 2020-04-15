@@ -33,7 +33,7 @@
           <td
             class="clickable"
             @click="$router.push('/tournament-page/' + row.item.tournamentId)"
-          >{{row.item.tournamentName}}</td>
+          ><v-btn small outlined block>{{row.item.tournamentName}}</v-btn></td>
           <td>{{row.item.game}}</td>
           <td>{{row.item.startDate}}</td>
           <td>{{row.item.endDate}}</td>

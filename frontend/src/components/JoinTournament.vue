@@ -51,6 +51,7 @@
 
 <script>
 import auth from '@/auth';
+import api from "@/api.js";
 
   export default {
     name:'JoinTournament',
@@ -84,6 +85,7 @@ import auth from '@/auth';
       }],
       selectedTeam:'',
       selectedTeamObj:[],
+      tourneys:[],
     }),
 
       methods:{
@@ -145,6 +147,7 @@ import auth from '@/auth';
       this.setTeam();
       this.setUserId();
       this.getCaptainsTeamsByGame();
+      api.getUserTournaments().then(result => (this.tourneys = result));
 
     },
 

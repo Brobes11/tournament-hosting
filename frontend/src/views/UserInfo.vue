@@ -2,7 +2,7 @@
   <div>
     <v-card class="ml-3 mt-4" max-width="600">
       <v-list-item>
-        <v-list-item-avatar tile size="150" color="grey"></v-list-item-avatar>
+        <v-list-item-avatar tile size="150" ><v-img src="@/assets/avatars/avatar-4.png"></v-img></v-list-item-avatar>
         <v-list-item-content>
           <v-list-item-title class="headline mb-1">{{user.firstName}} {{user.lastName}}</v-list-item-title>
           <div class="overline">Username: {{user.username}}</div>
@@ -15,13 +15,14 @@
     </v-card>
     <v-row class="mx-auto">
       <v-col>
+        <h1>Teams</h1>
         <v-data-table :headers="teamHeaders" :items="teams" :items-per-page="5" class="elevation-1">
           <template v-slot:item="row">
             <tr>
               <td
                 class="clickable"
                 @click="$router.push('/team-page/' + row.item.teamId)"
-              >{{row.item.teamName}}</td>
+              ><v-btn small outlined block>{{row.item.teamName}}</v-btn> </td>
               <td>{{row.item.game}}</td>
               <td>{{row.item.teamBio}}</td>
               <td>
@@ -32,6 +33,7 @@
         </v-data-table>
       </v-col>
       <v-col>
+        <h1>Tournaments</h1>
         <v-data-table
           :headers="tourneyHeaders"
           :items="tourneys"
@@ -43,7 +45,7 @@
               <td
                 class="clickable"
                 @click="$router.push('/tournament-page/' + row.item.tournamentId)"
-              >{{row.item.tournamentName}}</td>
+              ><v-btn small outlined block>{{row.item.tournamentName}}</v-btn></td>
               <td>{{row.item.game}}</td>
               <td>{{row.item.startDate}}</td>
             </tr>
