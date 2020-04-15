@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-row>
+    <v-row justify="center">
       <v-col class="d-flex" cols="12">
         <v-card width="400" class="matchup mt-5 at-5" v-for="matchup in matchups" :key="matchup">
           <v-card-title>
@@ -13,7 +13,7 @@
                 <span class="hometeam">{{matchup.homeTeam.teamName}}</span>
               </p>
               <p v-if="matchup.homeScore > 0">
-                Home Score:
+                Score:
                 <span class="hometeam">{{matchup.homeScore}}</span>
               </p>
             </v-card>
@@ -23,7 +23,7 @@
                 <span class="awayteam">{{matchup.awayTeam.teamName}}</span>
               </p>
               <p v-if="matchup.homeScore > 0">
-                Away Score:
+                Score:
                 <span class="awayteam">{{matchup.awayScore}}</span>
               </p>
             </v-card>
@@ -120,7 +120,7 @@ export default {
 }
 .hometeam {
   font-weight: bolder;
-  color: firebrick;
+  color: rgb(35, 150, 106);
 }
 .awayteam {
   font-weight: bolder;
