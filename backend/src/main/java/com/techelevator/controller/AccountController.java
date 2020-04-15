@@ -48,7 +48,8 @@ public class AccountController {
             if (createdUser != null) {
                 registrationResult.setSuccess(true);
             } else {
-                registrationResult.addError("Username or Email already exists. Please select a different username.");
+                registrationResult
+                        .addError("Username or Email already exists. Please select a different username or email.");
             }
         }
         return registrationResult;

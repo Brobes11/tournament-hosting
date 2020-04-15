@@ -64,8 +64,6 @@ INSERT INTO tournamentmatch (team_1_id, team_2_id, tourney_id, round_number ,win
 
 
 
-
-<<<<<<< Updated upstream
 SELECT * FROM users
 
 SELECT * FROM teamrequest
@@ -73,12 +71,13 @@ SELECT * FROM tournamentmatch
 
 SELECT * FROM tournamentmatch WHERE tourney_id = 1 AND round_number = 1
 
+
 SELECT * FROM users
-=======
+
 
 SELECT team_id FROM teamroster WHERE user_id = 5 AND captain = true
 
-SELECT * FROM tournamentmatch;
+
 
 SELECT teams.team_name, COUNT(tournamentmatch.winner_id) AS wins FROM tournamentroster
 JOIN tournamentmatch ON tournamentmatch.winner_id = tournamentroster.team_id
@@ -86,4 +85,7 @@ JOIN teams ON tournamentroster.team_id = teams.id
 WHERE tournamentroster.tourney_id = 1
 GROUP BY teams.team_name
 ORDER BY wins desc LIMIT 3;
->>>>>>> Stashed changes
+
+
+
+SELECT * FROM tournaments;
