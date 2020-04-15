@@ -18,13 +18,33 @@
                   <v-text-field
                     v-model="tournament.tournamentName"
                     label="Tournament Name"
-                    required
+                    :rules="tourneyNameRules"
                   />
-                  <v-text-field v-model="tournament.entryFee" label="Entry Fee" />
-                  <v-text-field v-model="tournament.prizeDescription" label="Prize Description" />
-                  <v-text-field v-model="tournament.location" label="Location"></v-text-field>
-                  <v-text-field v-model="tournament.startDate" label="Tournament Start Date" />
-                  <v-text-field v-model="tournament.endDate" label="Tournament End Date" />
+                  <v-text-field
+                    v-model="tournament.entryFee"
+                    label="Entry Fee"
+                    :rules="entryFeeRules"
+                  />
+                  <v-text-field
+                    v-model="tournament.prizeDescription"
+                    label="Prize Description"
+                    :rules="prizeDescriptionRules"
+                  />
+                  <v-text-field
+                    v-model="tournament.location"
+                    label="Location"
+                    :rules="locationRules"
+                  ></v-text-field>
+                  <v-text-field
+                    v-model="tournament.startDate"
+                    label="Tournament Start Date"
+                    :rules="startDateRules"
+                  />
+                  <v-text-field
+                    v-model="tournament.endDate"
+                    label="Tournament End Date"
+                    :rules="endDateRules"
+                  />
                 </v-form>
               </v-col>
             </v-row>
@@ -58,6 +78,19 @@ export default {
         startDate: "",
         endDate: ""
       },
+      tourneyNameRules: [v => !!v || "Tournament Name is required."],
+      entryFeeRules: [
+        v => !!v || "Entry Fee is required.",
+        v => v >= 5 || "Entry Fee must be a number greater than or equal to 5."
+      ],
+      prizeDescriptionRules: [v => !!v || "Prize Description is required."],
+      locationRules: [v => !!v || "Location is required."],
+      startDateRules: [
+        v => !!v || "A Start Date is required for your tournament."
+      ],
+      endDateRules: [
+        v => !!v || "An End Date is required for your tournament."
+      ],
       isValid: true,
       dialog: false
     };

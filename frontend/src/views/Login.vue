@@ -25,7 +25,7 @@
           @keydown.enter="login"
         />
       </v-form>
-      <div id="invalidCredentials" v-if="invalidCredentials">Incorrect Username and Password.</div>
+      <div id="invalidCredentials" v-if="invalidCredentials">Incorrect Username or Password.</div>
     </v-card-text>
     <v-divider></v-divider>
     <v-card-actions>
