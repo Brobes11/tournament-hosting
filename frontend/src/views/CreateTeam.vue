@@ -5,7 +5,7 @@
         <h1 class="display-1">Create A Team</h1>
       </v-card-title>
       <v-card-text>
-        <v-form ref="createTeamForm">
+        <v-form ref="createTeamForm" v-model="isValid">
           <v-text-field label="Team Name" :rules="teamNameRules" required v-model="team.teamName" />
           <v-spacer></v-spacer>
           <h4>Please select your sport/game:</h4>
@@ -33,7 +33,7 @@
         </v-form>
       </v-card-text>
       <v-card-actions>
-        <v-btn color="#03DAC5" @click="createTeam">Register</v-btn>
+        <v-btn color="#03DAC5" @click="createTeam" :disabled="!isValid" >Register</v-btn>
       </v-card-actions>
     </v-card>
   </v-app>
@@ -50,7 +50,7 @@ export default {
   data: () => {
     return {
       checkbox1: true,
-
+      isValid:true,
       sports: [
         "Volleyball",
         "Basketball",

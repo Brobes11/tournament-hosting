@@ -7,7 +7,7 @@
       below to create your tournament.
     </v-card-text>
     <v-card-text>
-      <v-form ref="createTournamentForm">
+      <v-form ref="createTournamentForm" v-model="isValid">
         <v-text-field label="Tournament Name" v-model="tournament.tournamentName" :rules="tNameRules" required></v-text-field>
         <v-select :items="sports" v-model="tournament.game" :rules="sportSelectRules" required />
         <v-text-field type="date" label="Start Date" v-model="tournament.startDate" :rules="startDateRules" required></v-text-field>
@@ -17,7 +17,7 @@
         <v-textarea label="Prize Description" v-model="tournament.prizeDescription" :rules="prizeDescriptionRules" required></v-textarea>
       </v-form>
       <v-card-actions>
-        <v-btn color="#03DAC5" @click="createTournament" >Create Your Tournament</v-btn>
+        <v-btn color="#03DAC5" @click="createTournament" :disabled="!isValid" >Create Your Tournament</v-btn>
       </v-card-actions>
     </v-card-text>
   </v-card>
@@ -29,6 +29,7 @@ import auth from "@/auth";
 export default {
   data() {
     return {
+      isValid: true,
       tournament: {
         tournamentName: "",
         game: "",
