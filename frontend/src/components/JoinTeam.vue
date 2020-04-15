@@ -6,6 +6,7 @@
         <v-btn color="#03DAC5" dark v-on="on"><v-icon dark>mdi-send</v-icon> Join  </v-btn>
       </template>
       <v-card>
+       
         <v-card-title>
           <span class="headline">Join Team</span>
         </v-card-title>
@@ -13,16 +14,20 @@
           <v-container>
             <v-row>
               <v-col cols="12">
-                <v-textarea outlined label="Message Team Captian" v-model="request.message" required></v-textarea>
+                 <v-form ref="joinTeamForm">
+                <v-textarea outlined label="Message Team Captian" v-model="request.message" :rules="msgRules" required></v-textarea>
+              </v-form>
               </v-col>
             </v-row>
           </v-container>
         </v-card-text>
+         
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="#03DAC5" text @click="dialog = false;">Close</v-btn>
-          <v-btn color="#03DAC5" text @click="dialog = false; sendJoinRequest()">Join</v-btn>
+          <v-btn color="#03DAC5" text @click=" sendJoinRequest()" @join-success="dialog=false">Join</v-btn>
         </v-card-actions>
+       
       </v-card>
     </v-dialog>
 
@@ -46,11 +51,13 @@ import auth from '@/auth';
         recipientId: '',
         message: ''
       },
+      msgRules:[v => !!v || "Please enter a message. ", v => v && v.length >= 10 || " Your message needs to be 10 characters or more."],
 
     }),
 
       methods:{
       sendJoinRequest(){
+        if(this.$refs.joinTeamForm.validate()){
         fetch(`${process.env.VUE_APP_REMOTE_API}/api/team/join-request`,{
          method:'POST',
          headers:{
@@ -63,11 +70,14 @@ import auth from '@/auth';
        .then(response =>{
          if(response.ok){
            this.$emit('join-success');
+           this.dialog = false;
          }
          else{
            this.$emit('duplicate-request');
+           this.dialog=false;
          }
        })
+        }
       },
       setUser(){
         this.request.senderId = auth.getUser().id;

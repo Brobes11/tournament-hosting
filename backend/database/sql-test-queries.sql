@@ -52,3 +52,7 @@ SELECT * FROM tournamentroster
 INSERT INTO tournamentrequest (team_id, tourney_id, message) VALUES (3,1,'test')
 
 SELECT team_id FROM teamroster WHERE user_id = 5 AND captain = true
+
+SELECT * FROM users
+
+SELECT * FROM teamrequest
