@@ -91,8 +91,11 @@
     <v-row>
       <v-spacer></v-spacer>
       <v-card>
-        <v-card-actions v-for="round in rounds" :key="round">
-          <v-btn :to="{name: 'round'}" color="#03DAC5">Round {{round}} Details</v-btn>
+        <v-card-actions v-for="currentRound in rounds" :key="currentRound">
+          <v-btn
+            :to="{name: 'round', params: {id : tournament.tournamentId, roundNumber : currentRound}}"
+            color="#03DAC5"
+          >Round {{currentRound}} Details</v-btn>
         </v-card-actions>
       </v-card>
       <v-spacer></v-spacer>
