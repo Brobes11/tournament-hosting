@@ -1,40 +1,41 @@
 <template>
-  <v-container grid-list-xl>
-    <v-app-bar prominent flat src="https://i.picsum.photos/id/353/6016/3376.jpg"  >
+  <v-app-bar app prominent flat src="@/assets/Banner.png">
+    <v-container>
       <v-row>
         <!-- nav bar- row tag start -->
+        <!-- https://i.picsum.photos/id/353/6016/3376.jpg -->
 
         <v-col md="6" cols="12" class="pa-1">
-          <div class="d-flex align-end">
+          <div class="d-flex align-center">
             <v-img
               alt="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
               class="shrink mr-2"
               contain
               src="@/assets/tournLogo.png"
               transition="scale-transition"
-              width="50"
+              width="40"
             />
-            <h1 class="d-flex align-end pa-1">Tournament Buddy</h1>
+            <h1 class="d-flex align-center pa-1">Tournament Buddy</h1>
           </div>
         </v-col>
 
-        <v-row v-if="user === null" class="d-flex justify-center align-end pa-1" dense align-end>
-          <router-link to="/browse" class="d-flex justify-center align-end pa-1">
-            <v-col cols="4" class="d-flex justify-center">
+        <v-row v-if="user === null" class="d-flex justify-center align-start pa-1" dense align-end>
+          <router-link to="/browse" class="d-flex justify-center align-start pa-1">
+            <v-col cols="4" class="d-flex justify-center align-start">
               <v-btn target="_blank" text v-if="user === null">
                 <v-icon>mdi-magnify</v-icon>Browse
               </v-btn>
             </v-col>
           </router-link>
-          <router-link to="/login" class="d-flex justify-center align-end pa-1">
-            <v-col cols="4" class="d-flex justify-center">
+          <router-link to="/login" class="d-flex justify-center align-start pa-1">
+            <v-col cols="4" class="d-flex justify-center align-start">
               <v-btn target="_blank" text v-if="user === null">
                 <v-icon>mdi-account</v-icon>Login
               </v-btn>
             </v-col>
           </router-link>
-          <router-link to="/register" class="d-flex justify-center align-end ">
-            <v-col cols="4"  class="d-flex justify-center">
+          <router-link to="/register" class="d-flex justify-center align-start pa-1">
+            <v-col cols="4" class="d-flex justify-center align-start">
               <v-btn target="_blank" text v-if="user === null">
                 <v-icon>mdi-new-box</v-icon>Register
               </v-btn>
@@ -42,11 +43,11 @@
           </router-link>
         </v-row>
 
-        <v-row v-if="user !== null" class="d-flex justify-center align-end pa-1" dense align-end>
+        <v-row v-if="user !== null" class="d-flex justify-center align-center pa-1" >
           <v-menu offset-y v-if="user !== null">
             <template v-slot:activator="{ on }">
-              <v-col cols="4"  class="d-flex justify-center">
-                <v-btn target="_blank" text v-on="on">
+              <v-col cols="4" class="d-flex justify-center">
+                <v-btn app target="_blank" text v-on="on">
                   <v-icon>mdi-account-group</v-icon>Teams
                 </v-btn>
               </v-col>
@@ -70,7 +71,7 @@
 
           <v-menu offset-y v-if="user !== null">
             <template v-slot:activator="{ on }">
-              <v-col cols="4"  class="d-flex justify-center">
+              <v-col cols="4" class="d-flex justify-center align-center">
                 <v-btn target="_blank" text v-on="on">
                   <v-icon>mdi-trophy</v-icon>Tournaments
                 </v-btn>
@@ -95,7 +96,7 @@
 
           <v-menu offset-y v-if="user !== null">
             <template v-slot:activator="{ on }">
-              <v-col cols="4"  class="d-flex justify-center">
+              <v-col cols="4" class="d-flex justify-center align-center">
                 <v-btn target="_blank" text v-on="on">
                   <v-icon>mdi-account-circle</v-icon>
                   Hi {{user.sub}}!
@@ -113,8 +114,8 @@
           </v-menu>
         </v-row>
       </v-row>
-    </v-app-bar>
-  </v-container>
+    </v-container>
+  </v-app-bar>
 </template>
 
 <script>

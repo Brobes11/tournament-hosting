@@ -4,7 +4,7 @@
       <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
     </v-card-title>
     <v-card-text>
-      <v-form>
+      <v-form ref="registrationForm">
         <v-text-field
           v-model="user.firstName"
           label="First Name"
@@ -105,35 +105,37 @@ export default {
   },
   methods: {
     register() {
-      fetch(`${process.env.VUE_APP_REMOTE_API}/register`, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(this.user)
-      })
-        .then(response => {
-          if (response.ok) {
-            return response.json();
-          } else {
-            this.registrationErrors = true;
-            throw "Register returned: " + response.status;
-          }
+      if (this.$refs.registrationForm.validate()) {
+        fetch(`${process.env.VUE_APP_REMOTE_API}/register`, {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(this.user)
         })
-        .then(parsedData => {
-          if (parsedData.success) {
-            this.$router.push({
-              path: "/login",
-              query: { registration: "success" }
-            });
-          } else {
-            this.registrationErrors = true;
-            this.errors = parsedData.errors;
-          }
-        })
-        .catch(err => console.log(err));
-      this.$emit("update-user");
+          .then(response => {
+            if (response.ok) {
+              return response.json();
+            } else {
+              this.registrationErrors = true;
+              throw "Register returned: " + response.status;
+            }
+          })
+          .then(parsedData => {
+            if (parsedData.success) {
+              this.$router.push({
+                path: "/login",
+                query: { registration: "success" }
+              });
+            } else {
+              this.registrationErrors = true;
+              this.errors = parsedData.errors;
+            }
+          })
+          .catch(err => console.log(err));
+        this.$emit("update-user");
+      }
     }
   }
 };
