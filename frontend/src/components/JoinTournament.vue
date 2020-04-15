@@ -6,12 +6,14 @@
         <v-btn  color="#03DAC5" dark v-on="on"><v-icon dark>mdi-send</v-icon> Join  </v-btn>
       </template>
       <v-card>
+        <v-form v-model="isValid" ref="joinTournamentForm">
         <v-card-title>
           <v-row>
             <v-col>
           <span class="headline">Join Tournament</span>
             </v-col>
           <v-col class="d-flex" cols="12" sm="6">
+             
             <v-select 
               :items="userTeams" 
               item-text="teamName" 
@@ -26,17 +28,22 @@
         <v-card-text>
           <v-container>
             <v-row>
+             
               <v-col cols="12">
+                 
                 <v-textarea outlined label="Message Tournament Host" v-model="request.message" required></v-textarea>
+             
               </v-col>
             </v-row>
           </v-container>
         </v-card-text>
+          </v-form>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="#03DAC5" text @click="dialog = false;">Close</v-btn>
-          <v-btn color="#03DAC5" text @click="dialog = false; sendJoinRequest()">Join</v-btn>
+          <v-btn color="#03DAC5" :disabled="!isValid" text @click="dialog = false ; sendJoinRequest()" >Join</v-btn>
         </v-card-actions>
+        
       </v-card>
     </v-dialog>
   </v-row>
@@ -54,7 +61,14 @@ import auth from '@/auth';
     },
       
     data: () => ({
+      joinTournamentRules:[
+      v => !!v || "Please enter a message. ",
+      v =>
+        (v && v.length >= 10) ||
+        " Your message needs to be 10 characters or more."
+      ],
       dialog: false,
+      isValid: true,
       request: {
         senderId: '',
         recipientId: '',
@@ -74,7 +88,7 @@ import auth from '@/auth';
 
       methods:{
       sendJoinRequest(){
-        
+        if (this.$refs.joinTournamentForm.validate()) {
         fetch(`${process.env.VUE_APP_REMOTE_API}/api/tournament/join-request`,{
          method:'POST',
          headers:{
@@ -93,6 +107,7 @@ import auth from '@/auth';
          }
 
        })
+        }
       },
 
       getCaptainsTeamsByGame(){
@@ -122,7 +137,7 @@ import auth from '@/auth';
         this.setTeam();
       },
       
-
+      
     },
 
     created(){
@@ -137,10 +152,10 @@ import auth from '@/auth';
       getListOfUserGames(){
         return this.userTeams.map(a => a.teamName);
       },
-
+    
     },
 
-
+      
 
 
   };

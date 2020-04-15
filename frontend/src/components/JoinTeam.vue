@@ -17,7 +17,7 @@
           <v-container>
             <v-row>
               <v-col cols="12">
-                <v-form ref="joinTeamForm">
+                <v-form ref="joinTeamForm" v-model="isValid">
                   <v-textarea
                     outlined
                     label="Message Team Captian"
@@ -38,9 +38,10 @@
           <v-btn
             color="#03DAC5"
             text
-            :disabled="isMember == true"
+            :disabled="!isValid"
             @click=" sendJoinRequest()"
             @join-success="dialog=false"
+            
           >Join</v-btn>
         </v-card-actions>
       </v-card>
@@ -60,6 +61,7 @@ export default {
 
   data: () => ({
     dialog: false,
+    isValid: true,
     request: {
       senderId: "",
       recipientId: "",
