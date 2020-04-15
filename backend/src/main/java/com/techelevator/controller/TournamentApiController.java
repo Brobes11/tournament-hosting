@@ -213,12 +213,12 @@ public class TournamentApiController {
     }
 
     @GetMapping("/wins")
-    public Map<Integer, String> getAllTournamentRounds(@RequestParam Long tourneyId){
+    public Map<Integer, String> getAllTournamentRounds(@RequestParam Long tourneyId) {
         return tournamentDao.getTourneyWins(tourneyId);
     }
 
     @PutMapping("/end")
-    public void endTournament(@RequestParam Long tourneyId) throws UnauthorizedException{
+    public void endTournament(@RequestParam Long tourneyId) throws UnauthorizedException {
         Tournament idTourney = tournamentDao.getTournamentById(tourneyId);
         if (idTourney.getTournamentOwner() == auth.getCurrentUser().getId()) {
             tournamentDao.endTournament(tourneyId);

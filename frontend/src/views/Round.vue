@@ -4,31 +4,41 @@
       <v-col class="d-flex" cols="12">
         <v-card width="400" class="matchup mt-5 at-5" v-for="matchup in matchups" :key="matchup">
           <v-card-title>
-            <h3 class="h1 mb-3 font-weight-normal">Match Up #{{matchup.id}}</h3>
+            <h3 class="h1 mb-3 font-weight-normal">Match #{{matchup.id}}</h3>
           </v-card-title>
           <v-card-text>
             <v-card>
               <p>
                 Home Team:
-                <span>{{matchup.homeTeam.teamName}}</span>
+                <span class="hometeam">{{matchup.homeTeam.teamName}}</span>
               </p>
-              <p>
+              <p v-if="matchup.homeScore > 0">
                 Home Score:
-                <span>{{matchup.homeScore}}</span>
+                <span class="hometeam">{{matchup.homeScore}}</span>
               </p>
             </v-card>
             <v-card>
               <p>
                 Away Team:
-                <span>{{matchup.awayTeam.teamName}}</span>
+                <span class="awayteam">{{matchup.awayTeam.teamName}}</span>
               </p>
-              <p>
+              <p v-if="matchup.homeScore > 0">
                 Away Score:
-                <span>{{matchup.awayScore}}</span>
+                <span class="awayteam">{{matchup.awayScore}}</span>
               </p>
             </v-card>
-            <v-divider></v-divider>
-            <p>Winner: {{matchup.Winner}}</p>
+            <v-card>
+              <v-spacer></v-spacer>
+              <p v-if="matchup.homeScore > matchup.awayScore">
+                Winner:
+                <span class="hometeam">{{matchup.homeTeam.teamName}}</span>
+              </p>
+              <p v-if="matchup.homeScore < matchup.awayScore">
+                Winner:
+                <span class="awayteam">{{matchup.awayTeam.teamName}}</span>
+              </p>
+              <v-spacer></v-spacer>
+            </v-card>
           </v-card-text>
           <v-card-actions v-if="tournament.tournamentOwner === currentUser">
             <v-spacer></v-spacer>
@@ -96,9 +106,9 @@ export default {
     }
   },
   created() {
-    this.getMatchUps();
     this.getTournament();
     this.currentUser = auth.getUser().id;
+    this.getMatchUps();
   }
 };
 </script>
@@ -107,5 +117,19 @@ export default {
 .matchup {
   margin-right: 10px;
   margin-left: 10px;
+}
+.hometeam {
+  font-weight: bolder;
+  color: firebrick;
+}
+.awayteam {
+  font-weight: bolder;
+  color: rgb(13, 140, 190);
+}
+* {
+  font-family: "Lucida Console", Courier, monospace;
+}
+p {
+  font-size: 20px;
 }
 </style>

@@ -269,7 +269,7 @@ export default {
         }
       });
     },
-    getTop3(){
+    getTop3() {
       fetch(
         `${process.env.VUE_APP_REMOTE_API}/api/tournament/wins?tourneyId=${this.$route.params.id}`,
         {
@@ -287,8 +287,8 @@ export default {
         .then(data => (this.top3 = data));
     }
   },
-  computed:{
-    tournamentStarted(){
+  computed: {
+    tournamentStarted() {
       var date1 = this.tournament.startDate;
       date1 = new Date(date1);
       var date2 = new Date();
@@ -297,9 +297,10 @@ export default {
   },
   created() {
     this.getTourneyRounds();
+
+    this.getTourneyTeams();
     this.currentUser = auth.getUser().id;
     this.getTournamentOwnerUsername();
-    this.getTourneyTeams();
     this.getTournament();
     this.getTop3();
   }
