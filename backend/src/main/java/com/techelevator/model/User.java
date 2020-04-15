@@ -10,7 +10,9 @@ import javax.validation.constraints.NotBlank;
 public class User {
     @NotBlank(message = "Username is required")
     private String username;
+    @NotBlank(message="First name is required")
     private String firstName;
+    @NotBlank(message="Last name is required")
     private String lastName;
 
     @NotBlank(message = "Please provide a valid email address.")
@@ -21,6 +23,7 @@ public class User {
 
     @NotBlank(message = "Password is required")
     private String password;
+    @NotBlank(message = "Please confirm your password")
     private String confirmPassword;
 
     @AssertTrue(message = "Passwords must match")

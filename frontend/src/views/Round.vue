@@ -36,11 +36,9 @@
             <v-divider></v-divider>
             <p>Winner: {{matchup.Winner}}</p>
           </v-card-text>
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn>Update Score</v-btn>
-            <v-spacer></v-spacer>
-          </v-card-actions>
+          <v-spacer></v-spacer>
+          <update-score :current-matchup="matchup" @update-scores="getMatchUps()" />
+          <v-spacer></v-spacer>
         </v-card>
       </v-col>
     </v-row>
@@ -49,7 +47,11 @@
 
 <script>
 import auth from "@/auth";
+import UpdateScore from "@/components/UpdateScore.vue";
 export default {
+  components: {
+    UpdateScore
+  },
   data() {
     return {
       tournament: null,
