@@ -89,16 +89,18 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-spacer></v-spacer>
-      <v-card>
-        <v-card-actions v-for="currentRound in rounds" :key="currentRound">
-          <v-btn
-            :to="{name: 'round', params: {id : tournament.tournamentId, roundNumber : currentRound}}"
-            color="#03DAC5"
-          >Round {{currentRound}} Details</v-btn>
-        </v-card-actions>
-      </v-card>
-      <v-spacer></v-spacer>
+      <v-col class="d-flex" cols="12">
+        <v-spacer></v-spacer>
+        <v-card v-for="currentRound in rounds" :key="currentRound">
+          <v-card-actions>
+            <v-btn
+              :to="{name: 'round', params: {id : tournament.tournamentId, roundNumber : currentRound}}"
+              color="#03DAC5"
+            >Round {{currentRound}} Details</v-btn>
+          </v-card-actions>
+        </v-card>
+        <v-spacer></v-spacer>
+      </v-col>
     </v-row>
   </v-container>
 </template>
