@@ -17,6 +17,8 @@ public interface TournamentDao {
 
     public boolean updateTournament(Tournament tournament);
 
-    public Map<String,Integer> getTourneyWins(long id);
+    public Map<Integer,String> getTourneyWins(long id);
+
+    public void endTournament(long id);
 
 }

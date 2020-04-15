@@ -64,6 +64,7 @@ INSERT INTO tournamentmatch (team_1_id, team_2_id, tourney_id, round_number ,win
 
 
 
+
 SELECT * FROM users
 
 SELECT * FROM teamrequest
@@ -89,3 +90,9 @@ ORDER BY wins desc LIMIT 3;
 
 
 SELECT * FROM tournaments;
+ORDER BY wins desc, team_name 
+LIMIT 3;
+
+SELECT * FROM tournaments
+
+UPDATE tournaments SET completed = true WHERE id = 4;

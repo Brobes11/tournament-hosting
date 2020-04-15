@@ -13,7 +13,6 @@ import com.techelevator.model.JdbcUserDao;
 import com.techelevator.model.Request;
 import com.techelevator.model.Team;
 import com.techelevator.model.TournamentTeam;
-import com.techelevator.model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;

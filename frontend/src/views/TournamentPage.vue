@@ -23,7 +23,7 @@
         <v-row>
           <v-col>
             <h3>Tournament Entry Fee:</h3>
-            <p>$$$ {{tournament.entryFee}}</p>
+            <p>${{tournament.entryFee}}</p>
           </v-col>
           <v-col>
             <h3>Tournament Timeline:</h3>
@@ -37,17 +37,27 @@
           <v-spacer></v-spacer>
           <v-btn
             color="#03DAC5"
-            v-if="tournament.tournamentOwner === currentUser"
-            :to="{ name: 'tournament-pairings' }"
+            v-if="tournament.tournamentOwner === currentUser  && !tournament.completed"
+            :to="{ name: 'tournament-pairings', params:{id: tournament.tournamentId, round: rounds.length + 1}}"
           >Make New Round</v-btn>
           <v-spacer></v-spacer>
-          <edit-tournament :current-tournament="tournament" @update-tournament="getTournament()" />
+          <v-btn
+            color="#03DAC5"
+            v-if="tournament.tournamentOwner === currentUser  && !tournament.completed"
+            @click="endTournament()"
+          >End Tournament</v-btn>
+          <v-spacer></v-spacer>
+          <edit-tournament
+            :current-tournament="tournament"
+            @update-tournament="getTournament()"
+            v-if="tournament.tournamentOwner === currentUser  && !tournament.completed"
+          />
           <v-spacer></v-spacer>
         </v-card-actions>
       </v-col>
     </v-row>
 
-    <v-row>
+    <v-row v-if="!tournament.completed">
       <v-col>
         <v-card>
           <v-card-title>
@@ -76,7 +86,7 @@
                 <td>{{row.item.captainEmail}}</td>
                 <td align="right" width="10">
                   <v-btn
-                    v-if="tournament.tournamentOwner === currentUser"
+                    v-if="tournament.tournamentOwner === currentUser && tournamentStarted === false"
                     class="error"
                     small
                     @click="deleteTeamFromTournament(row.item.teamId)"
@@ -86,6 +96,13 @@
             </template>
           </v-data-table>
         </v-card>
+      </v-col>
+    </v-row>
+    <v-row v-if="tournament.completed">
+      <v-col class="text-center">
+        <h1>WINNER: {{top3[1]}}</h1>
+        <h2>Second: {{top3[2]}}</h2>
+        <h3>Third: {{top3[3]}}</h3>
       </v-col>
     </v-row>
     <v-row>
@@ -135,7 +152,8 @@ export default {
       tournamentOwner: {
         username: ""
       },
-      rounds: []
+      rounds: [],
+      top3: []
     };
   },
   methods: {
@@ -229,6 +247,52 @@ export default {
           }
         })
         .then(data => (this.rounds = data));
+    },
+    endTournament() {
+      fetch(
+        `${process.env.VUE_APP_REMOTE_API}/api/tournament/end?tourneyId=${this.tournament.tournamentId}`,
+        {
+          method: "PUT",
+          headers: {
+            Authorization: "Bearer " + auth.getToken(),
+            Accept: "application/json",
+            "content-type": "application/json"
+          }
+        }
+      ).then(response => {
+        if (response.ok) {
+          this.getTourneyRounds();
+          this.currentUser = auth.getUser().id;
+          this.getTournamentOwnerUsername();
+          this.getTourneyTeams();
+          this.getTournament();
+        }
+      });
+    },
+    getTop3(){
+      fetch(
+        `${process.env.VUE_APP_REMOTE_API}/api/tournament/wins?tourneyId=${this.$route.params.id}`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: "Bearer " + auth.getToken()
+          }
+        }
+      )
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          }
+        })
+        .then(data => (this.top3 = data));
+    }
+  },
+  computed:{
+    tournamentStarted(){
+      var date1 = this.tournament.startDate;
+      date1 = new Date(date1);
+      var date2 = new Date();
+      return date1 <= date2;
     }
   },
   created() {
@@ -237,6 +301,7 @@ export default {
     this.getTournamentOwnerUsername();
     this.getTourneyTeams();
     this.getTournament();
+    this.getTop3();
   }
 };
 </script>
