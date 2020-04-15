@@ -28,6 +28,7 @@ public class Tournament {
     @NotNull
     private int tournamentOwner;
     private boolean acceptingEntries;
+    private boolean completed;
 
     public long getTournamentId() {
         return tournamentId;
@@ -107,5 +108,13 @@ public class Tournament {
 
     public boolean isAcceptingEntries() {
         return acceptingEntries;
+    }
+
+    public void setCompleted(boolean completed){
+        this.completed = completed;
+    }
+
+    public boolean isCompleted(){
+        return completed;
     }
 }

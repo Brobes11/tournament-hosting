@@ -23,7 +23,7 @@ public class JdbcTournamentDao implements TournamentDao {
     @Override
     public List<Tournament> getAllTournaments() {
         List<Tournament> allTournaments = new ArrayList<>();
-        String sql = "SELECT id, tourney_name, game, start_date, end_date, location, entry_fee, prize_desc, accepting_entries, tournament_owner FROM "
+        String sql = "SELECT id, tourney_name, game, start_date, end_date, location, entry_fee, prize_desc, accepting_entries, tournament_owner, completed FROM "
                 + "tournaments;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
         while (results.next()) {
@@ -45,13 +45,14 @@ public class JdbcTournamentDao implements TournamentDao {
         tournament.setPrizeDescription(results.getString("prize_desc"));
         tournament.setTournamentOwner(results.getInt("tournament_owner"));
         tournament.setAcceptingEntries(results.getBoolean("accepting_entries"));
+        tournament.setCompleted(results.getBoolean("completed"));
         return tournament;
     }
 
     @Override
     public Tournament getTournamentById(long id) {
         String sql = "SELECT id, tourney_name, game, start_date, end_date, location, "
-                + " entry_fee, prize_desc, tournament_owner, accepting_entries FROM tournaments WHERE id = ? ;";
+                + " entry_fee, prize_desc, tournament_owner, accepting_entries, completed FROM tournaments WHERE id = ? ;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
         if (results.next()) {
             return mapRowSetTournament(results);
@@ -64,7 +65,7 @@ public class JdbcTournamentDao implements TournamentDao {
         List<Tournament> usersTournaments = new ArrayList<>();
 
         String sql = "SELECT id, tourney_name, game, start_date, end_date, location, "
-                + " entry_fee, prize_desc, tournament_owner, accepting_entries FROM tournaments "
+                + " entry_fee, prize_desc, tournament_owner, accepting_entries, completed FROM tournaments "
                 + "WHERE id IN (SELECT tourney_id FROM tournamentroster WHERE team_id "
                 + "IN (SELECT team_id FROM teamroster WHERE user_id = ?)) GROUP BY id;";
 

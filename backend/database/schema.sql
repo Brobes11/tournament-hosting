@@ -52,7 +52,8 @@ CREATE TABLE tournaments (
   entry_fee integer NOT NULL, 
   prize_desc varchar(300) NOT NULL,
   tournament_owner integer REFERENCES users(id),
-  accepting_entries boolean NOT NULL
+  accepting_entries boolean NOT NULL,
+  completed boolean NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE tournamentRequest (
