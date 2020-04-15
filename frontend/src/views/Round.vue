@@ -2,13 +2,7 @@
   <v-container>
     <v-row>
       <v-col class="d-flex" cols="12">
-        <v-card
-          width="400"
-          id="login"
-          class="mx-auto mt-5 at-5"
-          v-for="matchup in matchups"
-          :key="matchup"
-        >
+        <v-card width="400" class="matchup mt-5 at-5" v-for="matchup in matchups" :key="matchup">
           <v-card-title>
             <h3 class="h1 mb-3 font-weight-normal">Match Up #{{matchup.id}}</h3>
           </v-card-title>
@@ -36,7 +30,7 @@
             <v-divider></v-divider>
             <p>Winner: {{matchup.Winner}}</p>
           </v-card-text>
-          <v-card-actions>
+          <v-card-actions v-if="tournament.tournamentOwner === currentUser">
             <v-spacer></v-spacer>
             <update-score :current-matchup="matchup" @update-scores="getMatchUps()" />
             <v-spacer></v-spacer>
@@ -57,7 +51,7 @@ export default {
   data() {
     return {
       tournament: null,
-      tournamentMatch: {},
+      currentUser: null,
       matchups: []
     };
   },
@@ -103,10 +97,15 @@ export default {
   },
   created() {
     this.getMatchUps();
+    this.getTournament();
     this.currentUser = auth.getUser().id;
   }
 };
 </script>
 
 <style scoped>
+.matchup {
+  margin-right: 10px;
+  margin-left: 10px;
+}
 </style>

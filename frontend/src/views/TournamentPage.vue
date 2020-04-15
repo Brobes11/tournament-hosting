@@ -91,7 +91,7 @@
     <v-row>
       <v-col class="d-flex" cols="12">
         <v-spacer></v-spacer>
-        <v-card v-for="currentRound in rounds" :key="currentRound">
+        <v-card class="round" v-for="currentRound in rounds" :key="currentRound">
           <v-card-actions>
             <v-btn
               :to="{name: 'round', params: {id : tournament.tournamentId, roundNumber : currentRound}}"
@@ -241,5 +241,9 @@ export default {
 };
 </script>
  
- <style>
+ <style scoped>
+.round {
+  margin-right: 10px;
+  margin-left: 10px;
+}
 </style>
