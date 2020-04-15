@@ -14,12 +14,18 @@
           <v-container>
             <v-row>
               <v-col cols="12">
-                <v-text-field v-model="tournament.tournamentName" label="Tournament Name" required />
-                <v-text-field v-model="tournament.entryFee" label="Entry Fee" />
-                <v-text-field v-model="tournament.prizeDescription" label="Prize Description" />
-                <v-text-field v-model="tournament.location" label="Location"></v-text-field>
-                <v-text-field v-model="tournament.startDate" label="Tournament Start Date" />
-                <v-text-field v-model="tournament.endDate" label="Tournament End Date" />
+                <v-form v-model="isValid">
+                  <v-text-field
+                    v-model="tournament.tournamentName"
+                    label="Tournament Name"
+                    required
+                  />
+                  <v-text-field v-model="tournament.entryFee" label="Entry Fee" />
+                  <v-text-field v-model="tournament.prizeDescription" label="Prize Description" />
+                  <v-text-field v-model="tournament.location" label="Location"></v-text-field>
+                  <v-text-field v-model="tournament.startDate" label="Tournament Start Date" />
+                  <v-text-field v-model="tournament.endDate" label="Tournament End Date" />
+                </v-form>
               </v-col>
             </v-row>
           </v-container>
@@ -27,7 +33,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" text @click="dialog = false; resetTournament()">Close</v-btn>
-          <v-btn color="blue darken-1" text @click="updateTournament()">Save</v-btn>
+          <v-btn color="blue darken-1" text :disabled="!isValid" @click="updateTournament()">Save</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -52,6 +58,7 @@ export default {
         startDate: "",
         endDate: ""
       },
+      isValid: true,
       dialog: false
     };
   },
@@ -71,13 +78,13 @@ export default {
       }).then(response => {
         if (response.ok) {
           this.$emit("update-tournament");
-          this.dailog = false;
+          this.dialog = false;
         }
       });
     }
   },
   created() {
-    this.resetTeam();
+    this.resetTournament();
   }
 };
 </script>
