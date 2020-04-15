@@ -1,15 +1,25 @@
 <template>
-  <hello-world />
+  <v-container>
+    <v-row class = "text-center">
+      <v-col>
+        <h1 class="display-3 font-weight-bold mb-3">Welcome to Tournament Buddy!</h1>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col col="6">
+        <v-img
+          :src="require('../assets/salad.jpg')"
+          class="my-3"
+          contain
+        />
+        <p>Come and see our many tournaments featuring all kinds of different sports and games. From magic to basketball, here at Tournament Buddy, we've got them all!</p>
+      </v-col>
+      <v-col cols="6">
+
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
-  import HelloWorld from '../components/HelloWorld'
-
-  export default {
-    name: 'Home',
-
-    components: {
-      HelloWorld,
-    },
-  }
 </script>

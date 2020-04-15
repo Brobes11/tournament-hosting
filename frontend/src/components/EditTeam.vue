@@ -6,7 +6,7 @@
           <v-icon small>mdi-cog</v-icon>Edit Team
         </v-btn>
       </template>
-      <v-card>
+      <v-card  ref="card" v-model="valid" lazy-validation>
         <v-card-title>
           <span class="headline">Edit Team Info</span>
         </v-card-title>
@@ -14,10 +14,12 @@
           <v-container>
             <v-row>
               <v-col cols="12">
-                <v-text-field v-model="team.teamName" label="Team Name" required/>
-                <v-text-field v-model="team.game" label="sport/game" required/>
-                <v-text-field v-model="team.teamBio" label="Team Bio" required/>
+                <v-form v-model="isValid">
+                <v-text-field v-model="team.teamName" label="Team Name" :rules="teamNameRules" error-count="2" required/>
+                <v-text-field v-model="team.game" label="sport/game" :rules="teamGameRules" required/>
+                <v-text-field v-model="team.teamBio" label="Team Bio" :rules="teamBioRules" required/>
                 <v-checkbox v-model="team.acceptingNewMembers" label="Accepting Members" required/>
+                </v-form>
               </v-col>
             </v-row>
           </v-container>
@@ -25,7 +27,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" text @click="dialog = false; resetTeam()">Cancel</v-btn>
-          <v-btn color="blue darken-1" text @click="dialog = false; updateTeam()">Save</v-btn>
+          <v-btn color="blue darken-1" :disabled="!isValid" text @click="dialog = false; updateTeam()">Save</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -40,13 +42,24 @@ export default {
     },
   data() {
     return {
-        team: {
-            teamName:'',
-            teamBio:'',
-            game:'',
-            acceptingNewMembers:'',
-        },
-        dialog: false
+      team: {
+        teamName:'',
+        teamBio:'',
+        game:'',
+         acceptingNewMembers:'',
+      },
+      teamNameRules: [
+        v => !!v || "Team name is required.",
+        v => v.length >= 4 || "Team name must be at least 4 characters.",
+      ],
+      teamGameRules: [
+        v => !!v || "Team Game/Sport is required.",
+      ],
+      teamBioRules: [
+        v=> !!v || "Team Bio is required",
+      ],
+      dialog: false,
+      isValid: true
     };
   },
   methods:{

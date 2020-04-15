@@ -122,6 +122,10 @@ export default {
         { text: "Message", value: "message"},
         { text: "accept/decline", value: "accept/decline" }
       ],
+       teamNameRules: [
+        v => !!v || "Team name is required.",
+        v => v.length >= 8 || "Team name must be at least 4 characters.",
+      ],
 
       rosterHeaders: [
         { text: "Username", value: "username" },
