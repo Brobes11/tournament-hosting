@@ -66,7 +66,7 @@ public class JdbcTournamentMatchDao implements TournamentMatchDao {
     public List<TournamentMatch> getAllMatchesByTournamentRound(Long tournamentId, Long round) {
         List<TournamentMatch> roundsMatches = new ArrayList<>();
         String sql = "SELECT match_id, tourney_id, round_number, team_1_id, team_2_id, team_1_score, team_2_score, winner_id "
-                + "FROM tournamentmatch WHERE tourney_id = ? AND round_number = ?";
+                + "FROM tournamentmatch WHERE tourney_id = ? AND round_number = ? ORDER BY match_id asc";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, tournamentId, round);
         while (results.next()) {
             TournamentMatch matchup = mapRowSetTournamentMatch(results);
