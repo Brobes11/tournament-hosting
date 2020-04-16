@@ -1,5 +1,6 @@
 <template>
-  <v-container>
+
+  <v-container id="hello">
     <v-row class = "text-center">
       <v-col>
         <h1 class="display-3 font-weight-bold mb-3">Welcome to Tournament Buddy!</h1>
@@ -29,15 +30,18 @@
         </v-btn>
       </v-col>
     </v-row>
+    <video id="video" playsinline autoplay muted loop poster=''>
+        <source :src='require("@/assets/background.mp4")' type='video/mp4'></video>
   </v-container>
   
+
 </template>
 
 <script>
 </script>
 
 
-<style>
+<style scoped >
  #Home {
      background-image: url('../assets/background.mp4');
      /* background-color: #8f2c2c; */
@@ -46,4 +50,20 @@
     background-size: cover;
     position: relative;
   }
+
+#video{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: 0;
+  filter: brightness(30%)
+
+}
+#hello>div{
+  z-index: 1;
+  position: relative;
+}
+
 </style>
