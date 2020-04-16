@@ -108,17 +108,16 @@ public class JdbcTournamentDao implements TournamentDao {
     }
 
     @Override
-    public Map<Integer,String> getTourneyWins(long id) {
-        Map<Integer,String> tourneyWins = new LinkedHashMap<>();
-        String sql = "SELECT teams.team_name, COUNT(tournamentmatch.winner_id) AS wins FROM tournamentroster " +
-        "JOIN tournamentmatch ON tournamentmatch.winner_id = tournamentroster.team_id " +
-        "JOIN teams ON tournamentroster.team_id = teams.id " +
-        "WHERE tournamentroster.tourney_id = ? " +
-        "GROUP BY teams.team_name " +
-        "ORDER BY wins desc, team_name LIMIT 3;";
+    public Map<Integer, String> getTourneyWins(long id) {
+        Map<Integer, String> tourneyWins = new LinkedHashMap<>();
+        String sql = "SELECT c.team_name, count(b.winner_id) AS wins, sum(b.team_1_score) AS home_points, "
+                + "sum(b.team_2_score) AS away_points, (sum(b.team_1_score) + sum(b.team_2_score)) AS total_points "
+                + "FROM tournamentroster a JOIN tournamentmatch b ON b.winner_id = a.team_id "
+                + "JOIN teams c ON a.team_id = c.id WHERE a.tourney_id = ? GROUP BY c.team_name "
+                + "ORDER BY wins desc, total_points desc LIMIT 3";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
         Integer place = 1;
-        while(results.next()){
+        while (results.next()) {
             tourneyWins.put(place++, results.getString("team_name"));
         }
 
