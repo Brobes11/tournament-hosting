@@ -89,9 +89,9 @@ public class JdbcTournamentMatchDao implements TournamentMatchDao {
 
     @Override
     public boolean updateMatchScores(TournamentMatch tournamentMatch) {
-        String sql = "UPDATE tournamentmatch SET team_1_score = ?, team_2_score = ? WHERE match_id = ?;";
+        String sql = "UPDATE tournamentmatch SET team_1_score = ?, team_2_score = ?, winner_id = ? WHERE match_id = ?;";
         jdbcTemplate.update(sql, tournamentMatch.getHomeScore(), tournamentMatch.getAwayScore(),
-                tournamentMatch.getId());
+                tournamentMatch.getWinnerId(), tournamentMatch.getId());
         return true;
     }
 
