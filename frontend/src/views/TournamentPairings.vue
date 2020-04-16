@@ -17,6 +17,10 @@
       </v-col>
     </v-row>
 
+    <p
+          v-if="homeTeam === awayTeam && homeTeam !== null && selectedMatchup !== 'BYE'"
+        class="red--text text-center">Can't choose same team for Home and Away</p>
+
     <v-row justify="center">
       <v-col class="d-flex" cols="6" sm="3">
         <v-select
@@ -60,11 +64,9 @@
         <v-btn v-if="teams.length === 0" color="success" @click="submitMatchups()">Submit Matches</v-btn>
       </v-col>
     </v-row>
-    <v-row justify="center">
-      <v-col>
-        <p
-          v-if="homeTeam === awayTeam && homeTeam !== null && selectedMatchup !== 'BYE'"
-        >Can't choose same team for Home and Away</p>
+    <v-row>
+      <v-col class="justify-center d-flex">
+        <v-btn  v-if="finalMatchups.length > 0" color="error" small @click="resetMatchups()">Reset Matches</v-btn>
       </v-col>
     </v-row>
     <v-row>
@@ -85,6 +87,7 @@
         </v-card>
       </v-col>
     </v-row>
+    
   </v-container>
 </template>
 
@@ -192,6 +195,11 @@ export default {
             this.$router.push("/user-info");
           }
         });
+    },
+    resetMatchups(){
+     this.finalMatchups = [];
+     this.getTournament();
+     this.getTournamentTeams();
     }
   },
   created() {
