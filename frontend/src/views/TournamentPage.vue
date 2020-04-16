@@ -34,6 +34,10 @@
       </v-col>
       <v-col v-if="tournament.tournamentOwner === currentUser">
         <v-card-actions>
+          <accept-entries
+            v-if="tournament.tournamentOwner === currentUser"
+            :currentTourney="tournament"
+          />
           <v-spacer></v-spacer>
           <v-btn
             color="#03DAC5"
@@ -64,7 +68,11 @@
               <v-divider></v-divider>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="red" text @click="dialog2 = false; endTournament()">Finalize Tournament</v-btn>
+                <v-btn
+                  color="red"
+                  text
+                  @click="dialog2 = false; endTournament()"
+                >Finalize Tournament</v-btn>
               </v-card-actions>
             </v-card>
           </v-dialog>
@@ -75,7 +83,6 @@
             @update-tournament="tourneyEvent()"
             v-if="tournament.tournamentOwner === currentUser  && !tournament.completed"
           />
-          <v-spacer></v-spacer>
         </v-card-actions>
       </v-col>
     </v-row>
@@ -86,10 +93,6 @@
           <v-card-title>
             Tournament Teams
             <v-spacer></v-spacer>
-            <accept-entries
-              v-if="tournament.tournamentOwner === currentUser"
-              :currentTourney="tournament"
-            />
             <v-text-field
               v-model="searchTeams"
               append-icon="mdi-magnify"
@@ -108,7 +111,6 @@
                 <td>{{row.item.captainUsername}}</td>
                 <td>{{row.item.captainEmail}}</td>
                 <td align="right" width="10">
-
                   <!--add dialog pop up-->
                   <v-dialog v-model="dialog" width="500" overlay-opacity="0.2">
                     <template v-slot:activator="{ on }">
@@ -136,7 +138,6 @@
                     </v-card>
                   </v-dialog>
                   <!-- end dialog-->
-                  
                 </td>
               </tr>
             </template>
@@ -154,7 +155,7 @@
     <v-row>
       <v-col class="d-flex" cols="12">
         <v-spacer></v-spacer>
-        <h3 v-if="rounds.length > 0">Rounds: </h3>
+        <h3 v-if="rounds.length > 0">Rounds:</h3>
         <v-card class="round" v-for="currentRound in rounds" :key="currentRound">
           <v-card-actions>
             <v-btn
@@ -182,7 +183,7 @@ export default {
     EditTournament,
     AcceptEntries
   },
-  props:{
+  props: {
     currentTournament: Object
   },
   data() {
@@ -271,22 +272,19 @@ export default {
     },
     deleteTeamFromTournament(teamId) {
       const tournamentId = this.$route.params.id;
-      confirm(
-        "Are you sure you want to remove this team from your tournament?"
-      ) &&
-        fetch(
-          `${process.env.VUE_APP_REMOTE_API}/api/team/tournament/${tournamentId}?teamId=${teamId}`,
-          {
-            method: "DELETE",
-            headers: {
-              Authorization: "Bearer " + auth.getToken()
-            }
+      fetch(
+        `${process.env.VUE_APP_REMOTE_API}/api/team/tournament/${tournamentId}?teamId=${teamId}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: "Bearer " + auth.getToken()
           }
-        ).then(response => {
-          if (response.ok) {
-            return response.json();
-          }
-        });
+        }
+      ).then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+      });
       this.getTourneyTeams();
     },
     getTourneyRounds() {
@@ -325,7 +323,7 @@ export default {
           this.getTournamentOwnerUsername();
           this.getTourneyTeams();
           this.getTournament();
-          this.$emit('update-tournament', this.tournament.tournamentId);
+          this.$emit("update-tournament", this.tournament.tournamentId);
         }
       });
     },
@@ -346,18 +344,17 @@ export default {
         })
         .then(data => (this.top3 = data));
     },
-    updateTourney(){
-    this.getTourneyRounds();
-    this.getTourneyTeams();
-    this.currentUser = auth.getUser().id;
-    this.getTournamentOwnerUsername();
-    this.getTournament();
-    this.getTop3();
+    updateTourney() {
+      this.getTourneyRounds();
+      this.getTourneyTeams();
+      this.currentUser = auth.getUser().id;
+      this.getTournamentOwnerUsername();
+      this.getTournament();
+      this.getTop3();
     },
-    tourneyEvent(){
-      this.$emit('update-tournament', this.tournament.tournamentId);
+    tourneyEvent() {
+      this.$emit("update-tournament", this.tournament.tournamentId);
     }
-
   },
   computed: {
     tournamentStarted() {
@@ -366,8 +363,8 @@ export default {
       var date2 = new Date();
       return date1 <= date2;
     },
-    tournament(){
-      if(this.currentTournament !== null){
+    tournament() {
+      if (this.currentTournament !== null) {
         this.updateTourney();
         return this.currentTournament;
       } else {
@@ -376,7 +373,7 @@ export default {
     }
   },
   created() {
-    this.updateTourney()
+    this.updateTourney();
   }
 };
 </script>

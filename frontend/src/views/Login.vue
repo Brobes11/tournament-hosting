@@ -29,9 +29,9 @@
     </v-card-text>
     <v-divider></v-divider>
     <v-card-actions>
-      <v-btn color="#BB86FC" :to="{ name: 'register' }">Not Registered?</v-btn>
+      <v-btn outlined color="#BB86FC" :to="{ name: 'register' }">Not Registered?</v-btn>
       <v-spacer></v-spacer>
-      <v-btn color="#03DAC5" type="submit" @click="login" @keydown.enter="login">Log In</v-btn>
+      <v-btn outlined color="#03DAC5" type="submit" @click="login" @keydown.enter="login">Log In</v-btn>
     </v-card-actions>
   </v-card>
 </template>
