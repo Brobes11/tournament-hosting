@@ -15,7 +15,7 @@
           </v-col>
           <v-col v-if="captainedTeams.includes(team.teamId)">
             <v-card-actions>
-              <edit-team :current-team="team" @update-team="getTeam()" />
+              <edit-team :current-team="team" @update-team="getTeam(); teamEvent()" />
             </v-card-actions>
           </v-col>
         </v-row>
@@ -267,6 +267,9 @@ export default {
         }
       });
     },
+    teamEvent(){
+      this.$emit('update-team', this.team.teamId)
+    }
 
   },
   computed:{

@@ -70,7 +70,7 @@
           <v-spacer></v-spacer>
           <edit-tournament
             :current-tournament="tournament"
-            @update-tournament="getTournament()"
+            @update-tournament="tourneyEvent()"
             v-if="tournament.tournamentOwner === currentUser  && !tournament.completed"
           />
           <v-spacer></v-spacer>
@@ -318,6 +318,7 @@ export default {
           this.getTournamentOwnerUsername();
           this.getTourneyTeams();
           this.getTournament();
+          this.$emit('update-tournament', this.tournament.tournamentId);
         }
       });
     },
@@ -345,7 +346,11 @@ export default {
     this.getTournamentOwnerUsername();
     this.getTournament();
     this.getTop3();
+    },
+    tourneyEvent(){
+      this.$emit('update-tournament', this.tournament.tournamentId);
     }
+
   },
   computed: {
     tournamentStarted() {

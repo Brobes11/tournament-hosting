@@ -5,7 +5,8 @@
     @update-tournament="getTournament($event)" @update-team="getTeam($event)"/>
     <v-content>
       <router-view :currentTeam="team" :currentTournament="tournament"
-      @update-user="currentUser = getUser(); getUserTeams(); getUserTournaments()"/>
+      @update-user="currentUser = getUser(); getUserTeams(); getUserTournaments()"
+      @update-tournament="getTournament($event)" @update-team="getTeam($event)"/>
     </v-content>
   </v-app>
 </template>

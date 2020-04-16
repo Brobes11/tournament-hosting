@@ -454,7 +454,7 @@ INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_
 VALUES(4,'Tri-State Invitational','Soccer', '2020-11-06','2020-11-08','Louisville, KY',10,'New Adidas kits for the Winning Team',4,false);
 
 INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
-VALUES(5,'Southeast Ohio Streetball Tournament','Basketball', '2020-04-12','2020-04-19','Cincinnati, OH',30,'A year supply of Gatorade and New Team Jordans',5,true);
+VALUES(5,'Southeast Ohio Streetball Tournament','Basketball', '2020-09-12','2020-09-19','Cincinnati, OH',30,'A year supply of Gatorade and New Team Jordans',5,true);
 
 INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
 VALUES(6,'So-Cal Invitational','Bike Polo', '2020-10-21','2020-10-25','Los Angeles, CA',5,'New Bikes from the LA Bike Polo Commission',12,true);
@@ -463,7 +463,7 @@ INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_
 VALUES(7,'National Semi-Pro Championship','Volleyball', '2020-08-06','2020-08-08','Orlando, FL',250,'$10,000 Cash Prize and the 2020 Misty May Treanor Trophy',1,true);
 
 INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
-VALUES(8,'Vegas Invitational','Basketball', '2020-05-06','2020-05-08','Las Vegas, NV',30,'$100,000 Cash Prize for the Winning Team',3,false);
+VALUES(8,'Vegas Invitational','Basketball', '2020-04-12','2020-04-19','Las Vegas, NV',30,'$100,000 Cash Prize for the Winning Team',3,false);
 
 INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
 VALUES(9,'Kick-It Charleston','Soccer', '2020-09-06','2020-09-08','Charleston, SC',43,'New Nike kits for your entire team.',8,false);
@@ -565,6 +565,22 @@ INSERT INTO tournamentmatch (tourney_id, round_number, team_1_id, team_2_id, tea
 INSERT INTO tournamentmatch (tourney_id, round_number, team_1_id, team_2_id, team_1_score, team_2_score, winner_id) VALUES (2, 5, 2, 5, 1, 3, 5);
 INSERT INTO tournamentmatch (tourney_id, round_number, team_1_id, team_2_id, team_1_score, team_2_score, winner_id) VALUES (2, 5, 9, 4, 3, 1, 9);
 
+
+INSERT INTO tournamentmatch (tourney_id, round_number, team_1_id, team_2_id, team_1_score, team_2_score, winner_id) VALUES (8, 1, 13, 3, 54, 45, 13);
+INSERT INTO tournamentmatch (tourney_id, round_number, team_1_id, team_2_id, team_1_score, team_2_score, winner_id) VALUES (8, 1, 14, 10, 63, 69, 10);
+INSERT INTO tournamentmatch (tourney_id, round_number, team_1_id, team_2_id, team_1_score, team_2_score, winner_id) VALUES (8, 1, 15, 11, 57, 54, 15);
+INSERT INTO tournamentmatch (tourney_id, round_number, team_1_id, team_2_id, team_1_score, team_2_score, winner_id) VALUES (8, 1, 16, 12, 60, 52, 16);
+INSERT INTO tournamentmatch (tourney_id, round_number, team_1_id, team_2_id, team_1_score, team_2_score, winner_id) VALUES (8, 1, 17, null, null, null, 17);
+INSERT INTO tournamentmatch (tourney_id, round_number, team_1_id, team_2_id, team_1_score, team_2_score, winner_id) VALUES (8, 2, 14, 3, 54, 45, 14);
+INSERT INTO tournamentmatch (tourney_id, round_number, team_1_id, team_2_id, team_1_score, team_2_score, winner_id) VALUES (8, 2, 15, 10, 63, 69, 10);
+INSERT INTO tournamentmatch (tourney_id, round_number, team_1_id, team_2_id, team_1_score, team_2_score, winner_id) VALUES (8, 2, 16, 11, 57, 54, 16);
+INSERT INTO tournamentmatch (tourney_id, round_number, team_1_id, team_2_id, team_1_score, team_2_score, winner_id) VALUES (8, 2, 17, 12, 60, 62, 12);
+INSERT INTO tournamentmatch (tourney_id, round_number, team_1_id, team_2_id, team_1_score, team_2_score, winner_id) VALUES (8, 2, 13, null, null, null, 13);
+INSERT INTO tournamentmatch (tourney_id, round_number, team_1_id, team_2_id, team_1_score, team_2_score, winner_id) VALUES (8, 1, 16, 3, 54, 65, 3);
+INSERT INTO tournamentmatch (tourney_id, round_number, team_1_id, team_2_id, team_1_score, team_2_score, winner_id) VALUES (8, 1, 17, 10, 61, 69, 10);
+INSERT INTO tournamentmatch (tourney_id, round_number, team_1_id, team_2_id, team_1_score, team_2_score, winner_id) VALUES (8, 1, 13, 11, 57, 54, 13);
+INSERT INTO tournamentmatch (tourney_id, round_number, team_1_id, team_2_id, team_1_score, team_2_score, winner_id) VALUES (8, 1, 14, 12, 60, 52, 14);
+INSERT INTO tournamentmatch (tourney_id, round_number, team_1_id, team_2_id, team_1_score, team_2_score, winner_id) VALUES (8, 1, 15, null, null, null, 15);
 
 
 
