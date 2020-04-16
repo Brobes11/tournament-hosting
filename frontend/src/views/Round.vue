@@ -5,7 +5,7 @@
         <v-btn
           :to="{name: 'tournament-page', params: {id: this.tournament.tournamentId}}"
           class="backbutton"
-        >🏆🎯 BACK TO TOURNAMENT HOME PAGE 🎯🏆</v-btn>
+        >🏆🎮🏆 BACK TO TOURNAMENT HOME PAGE 🏆🎮🏆</v-btn>
       </v-col>
     </v-row>
     <v-row>
@@ -147,16 +147,16 @@ export default {
 }
 .hometeam {
   font-weight: bolder;
-  color: rgb(35, 150, 106);
+  color: rgb(53, 199, 143);
 }
 .awayteam {
   font-weight: bolder;
-  color: rgb(13, 140, 190);
+  color: rgb(131, 216, 250);
 }
 * {
   font-family: "Lucida Console", Courier, monospace;
 }
 p {
-  font-size: 20px;
+  font-size: 12pt;
 }
 </style>
