@@ -37,6 +37,7 @@
           <v-spacer></v-spacer>
           <v-btn
             color="#03DAC5"
+            outlined
             v-if="tournament.tournamentOwner === currentUser  && !tournament.completed"
             :to="{ name: 'tournament-pairings', params:{id: tournament.tournamentId, round: rounds.length + 1}}"
           >Make New Round</v-btn>
@@ -50,7 +51,8 @@
           <v-dialog v-model="dialog2" width="500" overlay-opacity="0.9">
             <template v-slot:activator="{ on }">
               <v-btn
-                color="#03DAC5"
+                color="red lighten-2"
+                outlined
                 dark
                 v-on="on"
                 v-if="tournament.tournamentOwner === currentUser  && !tournament.completed"
@@ -113,6 +115,7 @@
                       <v-btn
                         small
                         color="red lighten-2"
+                        outlined
                         dark
                         v-on="on"
                         v-if="tournament.tournamentOwner === currentUser && tournamentStarted === false"
@@ -151,12 +154,16 @@
     <v-row>
       <v-col class="d-flex" cols="12">
         <v-spacer></v-spacer>
+        <h3 v-if="rounds.length > 0">Rounds: </h3>
         <v-card class="round" v-for="currentRound in rounds" :key="currentRound">
           <v-card-actions>
             <v-btn
               :to="{name: 'round', params: {id : tournament.tournamentId, roundNumber : currentRound}}"
               color="#03DAC5"
-            >Round {{currentRound}} Details</v-btn>
+              small
+              outlined
+              fab
+            >{{currentRound}}</v-btn>
           </v-card-actions>
         </v-card>
         <v-spacer></v-spacer>

@@ -2,7 +2,8 @@
   <v-row justify="center">
     <v-dialog v-model="dialog" persistent max-width="600px">
       <template v-slot:activator="{ on }">
-        <v-btn color="primary" dark v-on="on">Team Requests</v-btn>
+        <v-btn color="#03DAC5"
+            outlined dark v-on="on">Team Requests</v-btn>
       </template>
       <v-card>
         <v-card-title>
@@ -58,10 +59,6 @@ export default {
       tourney: null,
       dialog: false,
       requests: [
-        {
-          teamName: "team team",
-          message: "Please let me play"
-        }
       ]
     };
   },

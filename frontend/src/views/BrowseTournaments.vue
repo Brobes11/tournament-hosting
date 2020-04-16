@@ -49,7 +49,7 @@
           <td>{{row.item.prizeDescription}}</td>
           <td>
             <join-tournament
-              v-if="row.item.acceptingEntries===true"
+              v-if="row.item.acceptingEntries===true && tournamentStarted(row.item) === false"
               :game="row.item.game"
               :tournamentId="row.item.tournamentId"
               @join-success="handleSnack()"
@@ -58,7 +58,7 @@
             <v-row justify="center">
               <v-btn
                 class="mxauto"
-                v-if="row.item.acceptingEntries===false"
+                v-if="row.item.acceptingEntries===false || tournamentStarted(row.item) === true"
                 disabled
                 color="primary"
               >
@@ -112,7 +112,8 @@ export default {
           value: "name"
         },
         { text: "Game", value: "game" },
-        { text: "Start Date", value: "date" },
+        { text: "Start Date", value: "startDate" },
+        { text: "End Date", value: "endDate" },
         { text: "Tournament Prize", value: "prize" },
         { text: "", value: "join" }
       ],
@@ -142,13 +143,13 @@ export default {
       if (this.gamefilter === "All" && this.show_closed_tournaments) {
         return this.tournaments;
       } else if (this.gamefilter !== "All" && this.show_closed_tournaments) {
-        return this.tournaments.filter(team => team.game === this.gamefilter);
+        return this.tournaments.filter(tourney => tourney.game === this.gamefilter);
       } else if (this.gamefilter === "All" && !this.show_closed_tournaments) {
-        return this.tournaments.filter(team => team.acceptingEntries === true);
+        return this.tournaments.filter(tourney => tourney.acceptingEntries === true && !this.tournamentStarted(tourney));
       } else {
-        return this.tournaments.filter(team => {
+        return this.tournaments.filter(tourney => {
           return (
-            team.acceptingEntries === true && team.game === this.gamefilter
+            tourney.acceptingEntries === true && tourney.game === this.gamefilter && !this.tournamentStarted(tourney)
           );
         });
       }
@@ -181,6 +182,12 @@ export default {
       this.snackText =
         "You must join with a compatible team, or you already have a pending request";
       this.snackbar = true;
+    },
+    tournamentStarted(tournament) {
+      var date1 = tournament.startDate;
+      date1 = new Date(date1);
+      var date2 = new Date();
+      return date1 <= date2;
     }
   }
 };
