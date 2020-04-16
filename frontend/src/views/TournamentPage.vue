@@ -62,7 +62,7 @@
               <v-divider></v-divider>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="red" text @click="dialog = false; endTournament()">Finalize Tournament</v-btn>
+                <v-btn color="red" text @click="dialog2 = false; endTournament()">Finalize Tournament</v-btn>
               </v-card-actions>
             </v-card>
           </v-dialog>
