@@ -55,9 +55,9 @@
     </v-card-text>
     <v-divider></v-divider>
     <v-card-actions>
-      <v-btn color="info" :to="{ name: 'login' }">Already Have an Account?</v-btn>
+      <v-btn outlined color="#BB86FC" :to="{ name: 'login' }">Already Have an Account?</v-btn>
       <v-spacer></v-spacer>
-      <v-btn color="success" type="submit" @click="register">Register</v-btn>
+      <v-btn outlined color="#03DAC5" type="submit" @click="register">Register</v-btn>
     </v-card-actions>
   </v-card>
 </template>
