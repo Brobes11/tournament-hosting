@@ -8,9 +8,13 @@
           </v-card-title>
           <v-card-text>
             <v-card>
-              <p>
+              <p v-if="matchup.homeTeam.teamName != null">
                 Home Team:
                 <span class="hometeam">{{matchup.homeTeam.teamName}}</span>
+              </p>
+              <p v-if="matchup.homeTeam.teamName == null">
+                Home Team:
+                <span class="hometeam">BYE</span>
               </p>
               <p v-if="matchup.homeScore > 0">
                 Score:
@@ -18,9 +22,13 @@
               </p>
             </v-card>
             <v-card>
-              <p>
+              <p v-if="matchup.awayTeam.teamName != null">
                 Away Team:
                 <span class="awayteam">{{matchup.awayTeam.teamName}}</span>
+              </p>
+              <p v-if="matchup.awayTeam.teamName == null">
+                Away Team:
+                <span class="awayteam">BYE</span>
               </p>
               <p v-if="matchup.homeScore > 0">
                 Score:
