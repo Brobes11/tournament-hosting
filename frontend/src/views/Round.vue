@@ -4,8 +4,8 @@
       <v-col class="d-flex" cols="12">
         <v-spacer></v-spacer>
         <v-card class="matchup mt-5 at-5" v-for="matchup in matchups" :key="matchup">
-          <v-card-title>
-            <h3 class="h1 mb-3 font-weight-normal">Match #{{matchup.id}}</h3>
+          <v-card-title class="justify-center">
+            <h3 class="h1 mb-3 font-weight-normal">MATCH</h3>
           </v-card-title>
           <v-card-text>
             <v-card>
@@ -28,18 +28,22 @@
                 <span class="awayteam">{{matchup.awayScore}}</span>
               </p>
             </v-card>
-            <v-card>
-              <v-spacer></v-spacer>
-              <p v-if="matchup.homeScore > matchup.awayScore">
-                Winner:
-                <span class="hometeam">{{matchup.homeTeam.teamName}}</span>
-              </p>
-              <p v-if="matchup.homeScore < matchup.awayScore">
-                Winner:
-                <span class="awayteam">{{matchup.awayTeam.teamName}}</span>
-              </p>
-              <v-spacer></v-spacer>
-            </v-card>
+            <v-row>
+              <v-col class="d-flex justify-center" cols="12">
+                <v-card width="200">
+                  <v-spacer></v-spacer>
+                  <p v-if="matchup.homeScore > matchup.awayScore">
+                    Winner:
+                    <span class="hometeam">{{matchup.homeTeam.teamName}}</span>
+                  </p>
+                  <p v-if="matchup.homeScore < matchup.awayScore">
+                    Winner:
+                    <span class="awayteam">{{matchup.awayTeam.teamName}}</span>
+                  </p>
+                  <v-spacer></v-spacer>
+                </v-card>
+              </v-col>
+            </v-row>
           </v-card-text>
           <v-card-actions v-if="tournament.tournamentOwner === currentUser">
             <v-spacer></v-spacer>

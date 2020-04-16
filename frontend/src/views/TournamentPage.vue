@@ -297,7 +297,6 @@ export default {
   },
   created() {
     this.getTourneyRounds();
-
     this.getTourneyTeams();
     this.currentUser = auth.getUser().id;
     this.getTournamentOwnerUsername();
