@@ -2,6 +2,11 @@
   <v-container>
     <v-row>
       <v-col class="d-flex flex-wrap justify-center" cols="12">
+        <v-btn class="backbutton">🏆🎯 BACK TO TOURNAMENT HOME PAGE 🎯🏆</v-btn>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col class="d-flex flex-wrap justify-center" cols="12">
         <v-card class="matchup mt-5 at-5" v-for="matchup in matchups" :key="matchup">
           <v-card-title class="justify-center">
             <h3 class="h1 mb-3 font-weight-normal">MATCH</h3>
@@ -126,6 +131,11 @@ export default {
 </script>
 
 <style scoped>
+.backbutton {
+  color: rgb(131, 216, 250);
+  font-weight: bolder;
+  font-style: unset;
+}
 .matchup {
   width: 350px;
   height: auto;
