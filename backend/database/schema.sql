@@ -82,97 +82,466 @@ CREATE TABLE tournamentMatch (
 );
 
 INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('DirtyDan', '8FEzT3Yop2aA7MJNWw7dyg==', 'zFiGLfGKoTZPIVaF6bhqfRfFeSr3EsmgXfAlhZEw28rwi42Hou5NIjNVjJgIrtd6n50VseitoiS1hCyKqMJBIK0K+Tua5es8uh2pMerQoceujeMewXkGyAZbTdYSR172h2BhwiclB9UbhonIHsGlbW1kwGqsTddxA3jiy4vaCfI=', 'junk@junkmail.com', 'Ben', 'Peters');
-INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('Brobes11', 'pjL/Ikmd4opHKbbrA70o8g==	', '1I0cJKQaQ+8oUbGd4gQK4zdTehUedjJqQ6o+6SGu4+qhZIMWF7QYpo1Dz+F6z7CjrftlwsRMWUG3nl6Z9jNlDYX60wYtI7CXMITMNgai2kYeHvXmq5+bOpMl81BvjMRi8GgL7R+8G1OWSK2X4rVn43xFY1NBVfW0ots+8TEe+hs=', 'brobes11@gmail.com', 'Taylor', 'Broberg');
-INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('WaterBoy', 'OHlSjWgXpn9+F9tNQxQJQw==', 'b4iuB9/S1D1DQPDk5S5l1iZdbVhnPA1DgbZwBGur+I2tacuj6J1d/Mga3hrEcHRdJ+t0xpqYaIVWzCIAk9acBPK36+UhtEWCCxHuXGxW9BcGO13DfCGUcjEPGE3TS4VjIJgAM3u+eqU1hceFn/L69fLLUdf7Rg55O7An/uMaKBk=', 'thewaterboy@waterboy.org', 'Bobby', 'Bouche');
-INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('BIG', '3DR4R18IGzjnA5iVh5m+RA==', 'wGnAK/Zhicve54OmiPoH1RlkyGrJC09YUC9i5NRSZ97cujoFb3FOzB6fQNMh0tuZ2dKP2XkOdVQyHzzfXqzDH9kZuWmiFSKdyb7QjZtsKWrwacCCwlmVbDss9nJOI5U6mwZWEWMWCGE3jfjSKVLBuMaatP0h0CxPH0Ugu2O9FJE=', 'thenotorius@gmail.com', 'Biggie', 'Smalls');
+INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('Brobes11', 'Zdtc91cLb+thWmu5fNNVBQ==', 't4BG5V9Mv9DDeL7G4cuQBf2D/xfIPA1GrGlEFxcMgpMjDbEHCfAylpG8owOfEXoo3kw5hFNXp/Of4G2RjsYp5RSAthqxkII5cC81WGQFARLAev204VGZQ7e67KX7HE8EjAhtmOYHQGmEK61551+rod/YuVacfd1OkVkiltByoKk=', 'brobes11@gmail.com', 'Taylor', 'Broberg');
+INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('al3x', 'Zdtc91cLb+thWmu5fNNVBQ==', 't4BG5V9Mv9DDeL7G4cuQBf2D/xfIPA1GrGlEFxcMgpMjDbEHCfAylpG8owOfEXoo3kw5hFNXp/Of4G2RjsYp5RSAthqxkII5cC81WGQFARLAev204VGZQ7e67KX7HE8EjAhtmOYHQGmEK61551+rod/YuVacfd1OkVkiltByoKk=', 'alexelsener@gmail.com', 'Alex', 'Elsener');
+INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('swisher', 'Zdtc91cLb+thWmu5fNNVBQ==', 't4BG5V9Mv9DDeL7G4cuQBf2D/xfIPA1GrGlEFxcMgpMjDbEHCfAylpG8owOfEXoo3kw5hFNXp/Of4G2RjsYp5RSAthqxkII5cC81WGQFARLAev204VGZQ7e67KX7HE8EjAhtmOYHQGmEK61551+rod/YuVacfd1OkVkiltByoKk=', 'coryswisher@gmail.com', 'Cory', 'Swisher');
 INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('zaniad', 'Zdtc91cLb+thWmu5fNNVBQ==', 't4BG5V9Mv9DDeL7G4cuQBf2D/xfIPA1GrGlEFxcMgpMjDbEHCfAylpG8owOfEXoo3kw5hFNXp/Of4G2RjsYp5RSAthqxkII5cC81WGQFARLAev204VGZQ7e67KX7HE8EjAhtmOYHQGmEK61551+rod/YuVacfd1OkVkiltByoKk=', 'austinzani@gmail.com', 'Austin', 'Zani');
-INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('TheRealSlimShady', 'AsBdYTF15lNapuqpTxj9LA==', 'UzfWrA9Wk1eHeH4wvrl0GHsegL/UCncWVuIr5OQoDKbFPs98eLdGpCf6pKxo0TR6XhcmzoXLAHgtyDToARBOudj9yGK060XU77slcrQvTumghkkpgtPMJnfbdxlKg3Q/1M+At2i6gSttQFu0UYOy4GIJcjMiI2jFiM1Dij9TNxY=', 'shady@dreRecords.com', 'Marshall', 'Mathers');
-INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('BringMeACarrot', 'CpS4JcKslj15L5cbMuiJDA==', 'J+jzNPL1ALV6gCU0sIdix8XRedSeQqcEtNmGSBQyl8+3JVSxkmdbba38MtgcxZ04zDvubzdnON8nu1YPw/GUA9/lfMjzrr7FvTJnHIXLnW8nItWZdoxb9HuUveXLeK2VxW+QSvdefngNjRWsiJyBzg/WbDXu7GWmvXwlRRqAk1c=', 'IuseAustinsEmail@gmail.com', 'Austins', 'Rabbit');
-INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('IputTheSecureInSecurity', 'T/LZ8EtJAuzEMSxeujimSQ==', 'ccNvZXRL4Wx7t0KRX2boH/DJofnvGbbBSV8wE8EVwzNZOJHLt243WlppOh2fjBRjd0wxrt3C45KZLSgzbx+k9qxPxOkTA8iME9fW1vKXqbDEAxxoj+03SlGj2zHZZi00s4/QDnS2DUH5Pp/o2d5dIxbKh2X2q3V/uz2dSQR4COY=', 'joe.security@darkweb.com', 'Joe', 'Security');
-INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('MissileMan69', 'aJpq5YPlwUpOosvalA0Oxg==', 'yZp4LiKMqJ5QZO0/nq1OL+wDkPEFVBcEYV5tMmuRr77u2QinkRTvl25MLt6IA7rIiDv3fcw1PzhpQm8uc1b1lbZjg1P8rWV2l8gJ+FPNFH5xKS8adSfcegsew61pz6kFcs9VrM0Kf+PmJwfd9JeAN4J+x+tDp4d110Yg8IxJeQs=', 'TheOneTrueLeader@northkorea.com', 'Kim', 'Jong-un');
-INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('I_Pitty_The_Fool', '5ACU3Q3rHHSTdcgMquig0Q==', 'jdTc9I7aK9rois2BJBuZmAUr/QWGntB2cb6q0k2DpK7YT5T5JBM3aax+L67oScgqpFy41hGAlo99Jtfh/xAMALtE2Uog577aCcOpJjiSyvnYcpT4TbZ6NlA4nKLfEdNlfQ2+rpRT22oACQ+c2mVzLlbqRXkh2UYgMboTE3YwvL0=', 'theOneAndOnly@yoursTruly.com', 'Mr.', 'T');
+INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('smithsssss', 'NFGOLZPdeL6HyDJjqJUeug==', 'ocM454mpQxRI9ZucEehbDdM5buMKgZJM7rF7UCqBX6U/2V03GYvIUCPxmvxcmXkfD1nCtY5oI/adhbg3ZgaprhH5hT6TmF1kych36uhr84TS1Sjm9MPUDmT0QVXEuBLkVICj/JP861SLUQKCciP6FhlKrd1OxDYVXizihsboPM4=', 'susansmith@gmail.com', 'Susan', 'Smith');
+INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('smithjs', 'NFGOLZPdeL6HyDJjqJUeug==', 'ocM454mpQxRI9ZucEehbDdM5buMKgZJM7rF7UCqBX6U/2V03GYvIUCPxmvxcmXkfD1nCtY5oI/adhbg3ZgaprhH5hT6TmF1kych36uhr84TS1Sjm9MPUDmT0QVXEuBLkVICj/JP861SLUQKCciP6FhlKrd1OxDYVXizihsboPM4=', 'johnsmith@gmail.com', 'John', 'Smith');
+INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('puppyLover', 'NFGOLZPdeL6HyDJjqJUeug==', 'ocM454mpQxRI9ZucEehbDdM5buMKgZJM7rF7UCqBX6U/2V03GYvIUCPxmvxcmXkfD1nCtY5oI/adhbg3ZgaprhH5hT6TmF1kych36uhr84TS1Sjm9MPUDmT0QVXEuBLkVICj/JP861SLUQKCciP6FhlKrd1OxDYVXizihsboPM4=', 'trentadams@hotmail.com', 'Trent', 'Adams');
+INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('bornwinner', 'NFGOLZPdeL6HyDJjqJUeug==', 'ocM454mpQxRI9ZucEehbDdM5buMKgZJM7rF7UCqBX6U/2V03GYvIUCPxmvxcmXkfD1nCtY5oI/adhbg3ZgaprhH5hT6TmF1kych36uhr84TS1Sjm9MPUDmT0QVXEuBLkVICj/JP861SLUQKCciP6FhlKrd1OxDYVXizihsboPM4=', 'justice4all@live.com', 'Justice', 'Winslow');
+INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('chosenone', 'NFGOLZPdeL6HyDJjqJUeug==', 'ocM454mpQxRI9ZucEehbDdM5buMKgZJM7rF7UCqBX6U/2V03GYvIUCPxmvxcmXkfD1nCtY5oI/adhbg3ZgaprhH5hT6TmF1kych36uhr84TS1Sjm9MPUDmT0QVXEuBLkVICj/JP861SLUQKCciP6FhlKrd1OxDYVXizihsboPM4=', 'pistonlegend@aol.com', 'Grant', 'Hill');
+INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('cincinnati513', 'NFGOLZPdeL6HyDJjqJUeug==', 'ocM454mpQxRI9ZucEehbDdM5buMKgZJM7rF7UCqBX6U/2V03GYvIUCPxmvxcmXkfD1nCtY5oI/adhbg3ZgaprhH5hT6TmF1kych36uhr84TS1Sjm9MPUDmT0QVXEuBLkVICj/JP861SLUQKCciP6FhlKrd1OxDYVXizihsboPM4=', 'baker@browns.org', 'Baker', 'Mayfield');
+INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('goodluck', 'NFGOLZPdeL6HyDJjqJUeug==', 'ocM454mpQxRI9ZucEehbDdM5buMKgZJM7rF7UCqBX6U/2V03GYvIUCPxmvxcmXkfD1nCtY5oI/adhbg3ZgaprhH5hT6TmF1kych36uhr84TS1Sjm9MPUDmT0QVXEuBLkVICj/JP861SLUQKCciP6FhlKrd1OxDYVXizihsboPM4=', 'dexter@mlb.com', 'Dexter', 'Fowler');
+INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('bigslim', 'NFGOLZPdeL6HyDJjqJUeug==', 'ocM454mpQxRI9ZucEehbDdM5buMKgZJM7rF7UCqBX6U/2V03GYvIUCPxmvxcmXkfD1nCtY5oI/adhbg3ZgaprhH5hT6TmF1kych36uhr84TS1Sjm9MPUDmT0QVXEuBLkVICj/JP861SLUQKCciP6FhlKrd1OxDYVXizihsboPM4=', 'zeller@hornets.com', 'Cody', 'Zeller');
+INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('gosports222', 'NFGOLZPdeL6HyDJjqJUeug==', 'ocM454mpQxRI9ZucEehbDdM5buMKgZJM7rF7UCqBX6U/2V03GYvIUCPxmvxcmXkfD1nCtY5oI/adhbg3ZgaprhH5hT6TmF1kych36uhr84TS1Sjm9MPUDmT0QVXEuBLkVICj/JP861SLUQKCciP6FhlKrd1OxDYVXizihsboPM4=', 'mike123@gmail.com', 'Mike', 'Number');
+INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('passwordistaco', 'NFGOLZPdeL6HyDJjqJUeug==', 'ocM454mpQxRI9ZucEehbDdM5buMKgZJM7rF7UCqBX6U/2V03GYvIUCPxmvxcmXkfD1nCtY5oI/adhbg3ZgaprhH5hT6TmF1kych36uhr84TS1Sjm9MPUDmT0QVXEuBLkVICj/JP861SLUQKCciP6FhlKrd1OxDYVXizihsboPM4=', 'itsalwaysthehusband@book.com', 'Michelle', 'Campbell');
+INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('smashBROSchamp', 'NFGOLZPdeL6HyDJjqJUeug==', 'ocM454mpQxRI9ZucEehbDdM5buMKgZJM7rF7UCqBX6U/2V03GYvIUCPxmvxcmXkfD1nCtY5oI/adhbg3ZgaprhH5hT6TmF1kych36uhr84TS1Sjm9MPUDmT0QVXEuBLkVICj/JP861SLUQKCciP6FhlKrd1OxDYVXizihsboPM4=', 'livingsingle@hotmail.com', 'Queen', 'Latifah');
+INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('twills', 'NFGOLZPdeL6HyDJjqJUeug==', 'ocM454mpQxRI9ZucEehbDdM5buMKgZJM7rF7UCqBX6U/2V03GYvIUCPxmvxcmXkfD1nCtY5oI/adhbg3ZgaprhH5hT6TmF1kych36uhr84TS1Sjm9MPUDmT0QVXEuBLkVICj/JP861SLUQKCciP6FhlKrd1OxDYVXizihsboPM4=', 'hotnready@lc.com', 'Little', 'Ceasar');
+INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('ucbearcat16', 'NFGOLZPdeL6HyDJjqJUeug==', 'ocM454mpQxRI9ZucEehbDdM5buMKgZJM7rF7UCqBX6U/2V03GYvIUCPxmvxcmXkfD1nCtY5oI/adhbg3ZgaprhH5hT6TmF1kych36uhr84TS1Sjm9MPUDmT0QVXEuBLkVICj/JP861SLUQKCciP6FhlKrd1OxDYVXizihsboPM4=', 'zion@pels.com', 'Zion', 'Williamson');
+INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('ayyitsal', 'NFGOLZPdeL6HyDJjqJUeug==', 'ocM454mpQxRI9ZucEehbDdM5buMKgZJM7rF7UCqBX6U/2V03GYvIUCPxmvxcmXkfD1nCtY5oI/adhbg3ZgaprhH5hT6TmF1kych36uhr84TS1Sjm9MPUDmT0QVXEuBLkVICj/JP861SLUQKCciP6FhlKrd1OxDYVXizihsboPM4=', 'jj@hotmail.com', 'John', 'Johnston');
+INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('gobearcats62', 'NFGOLZPdeL6HyDJjqJUeug==', 'ocM454mpQxRI9ZucEehbDdM5buMKgZJM7rF7UCqBX6U/2V03GYvIUCPxmvxcmXkfD1nCtY5oI/adhbg3ZgaprhH5hT6TmF1kych36uhr84TS1Sjm9MPUDmT0QVXEuBLkVICj/JP861SLUQKCciP6FhlKrd1OxDYVXizihsboPM4=', 'legendsson@aol.com', 'Tim', 'Hardaway Jr.');
+INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('flatearther', 'NFGOLZPdeL6HyDJjqJUeug==', 'ocM454mpQxRI9ZucEehbDdM5buMKgZJM7rF7UCqBX6U/2V03GYvIUCPxmvxcmXkfD1nCtY5oI/adhbg3ZgaprhH5hT6TmF1kych36uhr84TS1Sjm9MPUDmT0QVXEuBLkVICj/JP861SLUQKCciP6FhlKrd1OxDYVXizihsboPM4=', 'bill@ringer.com', 'Bill', 'Simmons');
+INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('techelevatorgrad', 'NFGOLZPdeL6HyDJjqJUeug==', 'ocM454mpQxRI9ZucEehbDdM5buMKgZJM7rF7UCqBX6U/2V03GYvIUCPxmvxcmXkfD1nCtY5oI/adhbg3ZgaprhH5hT6TmF1kych36uhr84TS1Sjm9MPUDmT0QVXEuBLkVICj/JP861SLUQKCciP6FhlKrd1OxDYVXizihsboPM4=', 'outliers@gmail.com', 'Malcom', 'Gladwell');
+INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('orangehead', 'NFGOLZPdeL6HyDJjqJUeug==', 'ocM454mpQxRI9ZucEehbDdM5buMKgZJM7rF7UCqBX6U/2V03GYvIUCPxmvxcmXkfD1nCtY5oI/adhbg3ZgaprhH5hT6TmF1kych36uhr84TS1Sjm9MPUDmT0QVXEuBLkVICj/JP861SLUQKCciP6FhlKrd1OxDYVXizihsboPM4=', 'beastmode@aol.com', 'Marshawn', 'Lynch');
+INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('falloutboylover', 'NFGOLZPdeL6HyDJjqJUeug==', 'ocM454mpQxRI9ZucEehbDdM5buMKgZJM7rF7UCqBX6U/2V03GYvIUCPxmvxcmXkfD1nCtY5oI/adhbg3ZgaprhH5hT6TmF1kych36uhr84TS1Sjm9MPUDmT0QVXEuBLkVICj/JP861SLUQKCciP6FhlKrd1OxDYVXizihsboPM4=', 'beyonceshusband@tidal.com', 'Jay', 'Z');
+INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('rosesarered', 'NFGOLZPdeL6HyDJjqJUeug==', 'ocM454mpQxRI9ZucEehbDdM5buMKgZJM7rF7UCqBX6U/2V03GYvIUCPxmvxcmXkfD1nCtY5oI/adhbg3ZgaprhH5hT6TmF1kych36uhr84TS1Sjm9MPUDmT0QVXEuBLkVICj/JP861SLUQKCciP6FhlKrd1OxDYVXizihsboPM4=', 'goodmusic@gmail.com', 'Kanye', 'West');
+INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('worldwidewob', 'NFGOLZPdeL6HyDJjqJUeug==', 'ocM454mpQxRI9ZucEehbDdM5buMKgZJM7rF7UCqBX6U/2V03GYvIUCPxmvxcmXkfD1nCtY5oI/adhbg3ZgaprhH5hT6TmF1kych36uhr84TS1Sjm9MPUDmT0QVXEuBLkVICj/JP861SLUQKCciP6FhlKrd1OxDYVXizihsboPM4=', 'goreds@mlb.com', 'Pete', 'Rose');
+INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('hoodiemelo', 'NFGOLZPdeL6HyDJjqJUeug==', 'ocM454mpQxRI9ZucEehbDdM5buMKgZJM7rF7UCqBX6U/2V03GYvIUCPxmvxcmXkfD1nCtY5oI/adhbg3ZgaprhH5hT6TmF1kych36uhr84TS1Sjm9MPUDmT0QVXEuBLkVICj/JP861SLUQKCciP6FhlKrd1OxDYVXizihsboPM4=', 'goreds2@mlb.com', 'Joey', 'Votto');
+INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('dcthecoach', 'NFGOLZPdeL6HyDJjqJUeug==', 'ocM454mpQxRI9ZucEehbDdM5buMKgZJM7rF7UCqBX6U/2V03GYvIUCPxmvxcmXkfD1nCtY5oI/adhbg3ZgaprhH5hT6TmF1kych36uhr84TS1Sjm9MPUDmT0QVXEuBLkVICj/JP861SLUQKCciP6FhlKrd1OxDYVXizihsboPM4=', 'green@bengals.com', 'AJ', 'Green');
+INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('thecorso', 'NFGOLZPdeL6HyDJjqJUeug==', 'ocM454mpQxRI9ZucEehbDdM5buMKgZJM7rF7UCqBX6U/2V03GYvIUCPxmvxcmXkfD1nCtY5oI/adhbg3ZgaprhH5hT6TmF1kych36uhr84TS1Sjm9MPUDmT0QVXEuBLkVICj/JP861SLUQKCciP6FhlKrd1OxDYVXizihsboPM4=', 'cravings@cookbook.com', 'Chrissy', 'Teagan');
+INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('theXfactor', 'NFGOLZPdeL6HyDJjqJUeug==', 'ocM454mpQxRI9ZucEehbDdM5buMKgZJM7rF7UCqBX6U/2V03GYvIUCPxmvxcmXkfD1nCtY5oI/adhbg3ZgaprhH5hT6TmF1kych36uhr84TS1Sjm9MPUDmT0QVXEuBLkVICj/JP861SLUQKCciP6FhlKrd1OxDYVXizihsboPM4=', 'vampireweekend@gmail.com', 'Ezra', 'Koenig');
+INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('camelCase', 'NFGOLZPdeL6HyDJjqJUeug==', 'ocM454mpQxRI9ZucEehbDdM5buMKgZJM7rF7UCqBX6U/2V03GYvIUCPxmvxcmXkfD1nCtY5oI/adhbg3ZgaprhH5hT6TmF1kych36uhr84TS1Sjm9MPUDmT0QVXEuBLkVICj/JP861SLUQKCciP6FhlKrd1OxDYVXizihsboPM4=', 'coderchick@hotmail.com', 'Erika', 'Alexander');
+INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('PascalCase', 'NFGOLZPdeL6HyDJjqJUeug==', 'ocM454mpQxRI9ZucEehbDdM5buMKgZJM7rF7UCqBX6U/2V03GYvIUCPxmvxcmXkfD1nCtY5oI/adhbg3ZgaprhH5hT6TmF1kych36uhr84TS1Sjm9MPUDmT0QVXEuBLkVICj/JP861SLUQKCciP6FhlKrd1OxDYVXizihsboPM4=', 'java4lyfe@techelevator.org', 'Nina', 'Simone');
+INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('kabob-case', 'NFGOLZPdeL6HyDJjqJUeug==', 'ocM454mpQxRI9ZucEehbDdM5buMKgZJM7rF7UCqBX6U/2V03GYvIUCPxmvxcmXkfD1nCtY5oI/adhbg3ZgaprhH5hT6TmF1kych36uhr84TS1Sjm9MPUDmT0QVXEuBLkVICj/JP861SLUQKCciP6FhlKrd1OxDYVXizihsboPM4=', 'dotnetrulez@techelevator.org', 'Matthew', 'Bennett');
+INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('missingcomma', 'NFGOLZPdeL6HyDJjqJUeug==', 'ocM454mpQxRI9ZucEehbDdM5buMKgZJM7rF7UCqBX6U/2V03GYvIUCPxmvxcmXkfD1nCtY5oI/adhbg3ZgaprhH5hT6TmF1kych36uhr84TS1Sjm9MPUDmT0QVXEuBLkVICj/JP861SLUQKCciP6FhlKrd1OxDYVXizihsboPM4=', 'wyatt@campbell.edu', 'Wyatt', 'Varner');
+INSERT INTO users(username, password, salt, email, first_name, last_name) VALUES ('stackOverflow', 'NFGOLZPdeL6HyDJjqJUeug==', 'ocM454mpQxRI9ZucEehbDdM5buMKgZJM7rF7UCqBX6U/2V03GYvIUCPxmvxcmXkfD1nCtY5oI/adhbg3ZgaprhH5hT6TmF1kych36uhr84TS1Sjm9MPUDmT0QVXEuBLkVICj/JP861SLUQKCciP6FhlKrd1OxDYVXizihsboPM4=', 'wannacracker2@gmail.com', 'Polly', 'Wells');
+
+
+
+INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('The Sharks', 'Volleyball', true, 'Spiking opponents all day long!');
+INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('The Dolphins', 'Volleyball', true, 'Just Bump it!');
+INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Magic', 'Basketball', true, 'Orlando is our home.');
+INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Dust Devils', 'Volleyball', false, 'Sand or Indoor we will put you in the floor!');
+INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('The Eternals', 'Volleyball', true, 'Winning is all we know.');
+INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Win or Bust', 'Volleyball', true, 'If you don''t care about winning don''t join.');
+INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Zebra Gang', 'Volleyball', true, 'Looking to play volleyball and have fun!');
+INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Jr. Bearcats', 'Volleyball', false, 'Not good enough for collegiate sports so here we are.');
+INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Amigos', 'Volleyball', true, 'Friends just wanting to bump volleyballs around');
+INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Awesome Anteaters', 'Basketball', true, 'Looking for a solid 3 and D wing.');
+INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Cool Colonels', 'Basketball', true, 'Real hoopers only please!');
+INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('The Tide', 'Basketball', true, 'Just some middle aged men reliving their glory days.');
+INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Golden Grizzlies', 'Basketball', true, 'If you look good in gold you belong here.');
+INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('KingFish', 'Basketball', false, 'We play pass first basketball!');
+INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Squaaad', 'Basketball', true, 'SQUAAAAAAAAD');
+INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Silver Knights', 'Basketball', true, 'We play for the love of the game.');
+INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Little Giants', 'Basketball', true, 'Remember that movie? What a great movie!');
+INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Mighty Ducks', 'Soccer', false, 'Gordon Bombay is not our coach.');
+INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('The Titans', 'Soccer', true, 'We don''t call it soccer. It''s futbol!');
+INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Dillon Panthers', 'Soccer', true, 'Just as good as the football team!');
+INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('King Lizards', 'Soccer', false, 'Just love playing the beautiful game.');
+INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Mudhens', 'Hockey', true, 'Grab your sticks and hit the ice with us!');
+INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Pink Dragons', 'Bike Polo', true, 'We REEEAALLLLY need players.');
+INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Queens of the Court', 'Bike Polo', true, 'Showing men who is boss since 2017');
+INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Ragin'' Cajuns', 'Euchre', false, 'We call at least one loner a game. Play it on the edge!');
+INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Sea Lions', 'Euchre', true, 'We will call people for table talk.');
+INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Shark Bit', 'Poker', true, 'Training for the World Series of Poker');
+INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Savannah Stampede', 'DnD', false, 'We meet on Tuesdays at 7PM');
+INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Sugar Bears', 'Super Smash Brothers', true, 'If Kirby is your main please stay away.');
+INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Thundering Herd', 'Super Smash Brothers', true, 'Donkey Kong and Diddy Kong only please.');
 
 
 
 
 
-INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('The Sharks', 'Super Smash Bros', true, 'Come have fun and get your smash on!');
-INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('The Exotics', 'Volleyball', true, 'Just Bump it');
-INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Magic', 'Basketball', false, 'Orlando is our home');
-INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Pen15', 'DnD', false, 'beep boop beep');
-INSERT INTO teams(team_name, game, accepting_members, team_bio) VALUES ('Cyclone jr.', 'Bike Polo', true, 'Grab your sticks and your bikes');
-
-
-
-
-INSERT INTO teamRoster(team_id, user_id, captain) VALUES (1,1,false);
-INSERT INTO teamRoster(team_id, user_id, captain) VALUES (1,2,true);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (1,1,true);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (1,12,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (1,22,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (1,23,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (1,27,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (1,3,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (1,9,false);
 INSERT INTO teamRoster(team_id, user_id, captain) VALUES (2,3,false);
 INSERT INTO teamRoster(team_id, user_id, captain) VALUES (2,4,true);
-INSERT INTO teamRoster(team_id, user_id, captain) VALUES (3,5,true);
-INSERT INTO teamRoster(team_id, user_id, captain) VALUES (3,6,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (2,14,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (2,20,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (2,11,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (2,33,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (2,35,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (3,2,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (3,15,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (3,19,true);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (3,31,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (3,21,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (3,7,false);
 INSERT INTO teamRoster(team_id, user_id, captain) VALUES (4,7,false);
-INSERT INTO teamRoster(team_id, user_id, captain) VALUES (4,8,true);
-INSERT INTO teamRoster(team_id, user_id, captain) VALUES (5,9,false);
-INSERT INTO teamRoster(team_id, user_id, captain) VALUES (5,10,true);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (4,2,true);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (4,10,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (4,13,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (4,16,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (4,28,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (5,6,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (5,5,true);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (5,8,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (5,17,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (5,18,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (5,24,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (5,25,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (6,26,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (6,29,true);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (6,30,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (6,32,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (6,34,false);
+
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (7,1,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (8,12,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (9,22,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (10,23,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (11,27,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (12,3,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (7,9,true);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (8,3,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (9,4,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (10,14,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (11,20,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (12,11,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (7,33,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (8,35,true);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (9,2,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (10,15,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (11,19,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (12,31,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (7,21,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (8,7,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (9,7,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (10,2,true);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (11,10,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (12,13,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (7,16,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (8,28,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (9,6,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (10,5,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (11,8,true);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (12,17,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (7,18,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (8,24,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (9,25,true);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (10,26,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (11,29,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (12,30,true);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (7,32,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (8,34,false);
+
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (13,1,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (14,12,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (15,22,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (16,23,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (17,27,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (18,3,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (18,9,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (17,3,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (16,4,true);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (15,14,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (14,20,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (13,11,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (13,33,true);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (14,35,true);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (15,2,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (16,15,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (17,19,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (18,31,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (18,21,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (17,7,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (16,7,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (15,29,true);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (14,10,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (13,13,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (13,16,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (14,28,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (15,6,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (16,5,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (17,8,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (18,17,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (18,18,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (17,24,true);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (16,25,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (15,26,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (14,29,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (13,30,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (18,32,true);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (17,34,false);
+
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (19,1,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (20,12,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (21,22,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (22,23,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (23,27,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (24,3,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (19,9,true);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (20,3,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (21,4,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (22,14,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (23,20,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (24,11,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (24,33,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (23,35,true);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (22,2,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (21,15,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (20,19,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (19,31,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (19,21,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (20,7,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (21,7,true);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (22,29,true);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (23,10,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (24,13,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (24,16,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (23,28,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (22,6,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (21,5,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (20,8,true);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (19,17,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (22,18,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (21,24,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (20,25,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (19,26,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (23,29,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (24,30,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (24,32,true);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (22,34,false);
+
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (25,3,true);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (26,12,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (27,22,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (28,23,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (29,27,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (30,1,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (25,9,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (26,1,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (27,4,true);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (28,14,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (29,20,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (30,11,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (25,33,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (26,35,true);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (27,2,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (28,15,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (29,19,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (30,31,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (30,21,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (29,7,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (28,7,true);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (27,29,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (26,10,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (25,13,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (25,16,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (26,28,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (27,6,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (28,5,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (29,8,true);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (30,17,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (25,18,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (26,24,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (27,25,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (28,26,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (29,29,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (30,30,true);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (29,32,false);
+INSERT INTO teamRoster(team_id, user_id, captain) VALUES (28,34,false);
 
 
 
-
-INSERT INTO teamRequest(team_id, user_id, message) VALUES (1,10, 'please sir give me a home');
-INSERT INTO teamRequest(team_id, user_id, message) VALUES (1,9, 'you guys want some cookieeesss!');
-INSERT INTO teamRequest(team_id, user_id, message) VALUES (1,8, 'me big and strong. me play ball');
-INSERT INTO teamRequest(team_id, user_id, message) VALUES (1,7, 'death by snu snu ');
-INSERT INTO teamRequest(team_id, user_id, message) VALUES (1,6, 'Mr. Gorbachev, tear down this wall!');
-INSERT INTO teamRequest(team_id, user_id, message) VALUES (1,5, 'In the town where I was born Lived a man who sailed to sea And he told us of his life In the land of submarines');
-INSERT INTO teamRequest(team_id, user_id, message) VALUES (1,4, 'yall motha f*&c!S need jesus');
-INSERT INTO teamRequest(team_id, user_id, message) VALUES (1,3, 'Dont you lose him, Samwise Gamgee');
-INSERT INTO teamRequest(team_id, user_id, message) VALUES (1,2, 'In a galaxy far far away');
-INSERT INTO teamRequest(team_id, user_id, message) VALUES (1,1, 'you dont even know me');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (1,13, 'Your team seems cool!');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (1,25, 'I am the missing link for your teams success.');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (1,3, 'Our friend Tom told me about your team.');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (2,15, 'Can I join please?');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (2,19, 'I am very interested in your team!');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (2,34, 'I''ve been kicked off all the other teams.');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (3,8, 'Your team seems cool!');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (3,30, 'I am the missing link for your teams success.');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (3,20, 'Our friend Tom told me about your team.');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (4,11, 'Can I join please?');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (4,22, 'I am very interested in your team!');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (4,33, 'I''ve been kicked off all the other teams.');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (5,10, 'Your team seems cool!');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (5,11, 'I am the missing link for your teams success.');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (5,22, 'Our friend Tom told me about your team.');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (6,22, 'Can I join please?');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (6,35, 'I am very interested in your team!');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (6,1, 'I''ve been kicked off all the other teams.');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (7,11, 'Your team seems cool!');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (7,19, 'I am the missing link for your teams success.');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (7,27, 'Our friend Tom told me about your team.');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (8,4, 'Can I join please?');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (8,11, 'I am very interested in your team!');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (8,20, 'I''ve been kicked off all the other teams.');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (9,20, 'Your team seems cool!');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (9,35, 'I am the missing link for your teams success.');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (9,11, 'Our friend Tom told me about your team.');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (10,22, 'Can I join please?');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (10,25, 'I am very interested in your team!');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (11,6, 'I''ve been kicked off all the other teams.');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (11,25, 'Your team seems cool!');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (11,24, 'I am the missing link for your teams success.');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (12,8, 'Our friend Tom told me about your team.');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (12,9, 'Can I join please?');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (12,32, 'I am very interested in your team!');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (13,12, 'I''ve been kicked off all the other teams.');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (13,14, 'Your team seems cool!');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (13,17, 'I am the missing link for your teams success.');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (14,13, 'Our friend Tom told me about your team.');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (14,21, 'Can I join please?');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (14,31, 'I am very interested in your team!');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (15,31, 'I''ve been kicked off all the other teams.');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (15,32, 'Your team seems cool!');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (15,33, 'I am the missing link for your teams success.');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (16,12, 'Our friend Tom told me about your team.');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (16,13, 'Can I join please?');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (16,14, 'I am very interested in your team!');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (17,21, 'I''ve been kicked off all the other teams.');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (17,22, 'Your team seems cool!');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (17,23, 'I am the missing link for your teams success.');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (18,20, 'Our friend Tom told me about your team.');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (19,3, 'Can I join please?');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (19,2, 'I am very interested in your team!');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (19,1, 'I''ve been kicked off all the other teams.');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (20,26, 'Your team seems cool!');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (20,27, 'I am the missing link for your teams success.');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (20,28, 'Our friend Tom told me about your team.');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (21,16, 'Can I join please?');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (21,18, 'I am very interested in your team!');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (21,20, 'I''ve been kicked off all the other teams.');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (22,30, 'Your team seems cool!');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (22,31, 'I am the missing link for your teams success.');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (22,32, 'Our friend Tom told me about your team.');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (23,1, 'Can I join please?');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (23,2, 'I am very interested in your team!');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (24,6, 'I''ve been kicked off all the other teams.');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (24,7, 'Your team seems cool!');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (24,8, 'I am the missing link for your teams success.');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (25,6, 'Our friend Tom told me about your team.');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (25,7, 'Can I join please?');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (25,31, 'I am very interested in your team!');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (26,19, 'I''ve been kicked off all the other teams.');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (26,20, 'Your team seems cool!');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (26,21, 'I am the missing link for your teams success.');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (27,14, 'Our friend Tom told me about your team.');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (27,16, 'Can I join please?');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (27,19, 'I am very interested in your team!');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (28,17, 'I''ve been kicked off all the other teams.');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (28,18, 'Your team seems cool!');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (28,19, 'I am the missing link for your teams success.');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (29,33, 'Our friend Tom told me about your team.');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (29,34, 'Can I join please?');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (29,35, 'I am very interested in your team!');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (30,4, 'I''ve been kicked off all the other teams.');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (30,6, 'Your team seems cool!');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (30,8, 'I am the missing link for your teams success.');
 
 
 
  
 INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
-VALUES(1,'Smash to the death','Super Smash Brothers', '2020-10-06','2020-10-08','Cincinnati',5,'winner gets gold joycons',5,true);
+VALUES(1,'Smash Brothers World Championship','Super Smash Brothers', '2020-10-06','2020-10-08','San Francisco, CA',25,'Commemorative Joy-Cons and Title of World Champ',8,true);
 
 INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
-VALUES(2,'Sun in the Sand','Volleyball', '2020-08-06','2020-08-08','Cincinnati',25,'winner gets a new ball and sunglasses',2,true);
+VALUES(2,'Sun in the Sand','Volleyball', '2020-03-06','2020-03-08','Tampa Bay, FL',250,'$50000 Cash Prize and a New Ford Escape',3,true);
 
 INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
-VALUES(3,'White men cant jump','Basketball', '2020-01-06','2020-01-08','Brooklyn',30,'winner gets new jock strap',5,false);
+VALUES(3,'Rucker Park Invitational','Basketball', '2020-05-06','2020-05-08','Brooklyn, NY',30,'$20,000 and Going Down in History as a Street Ball Legend',2,false);
 
 INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
-VALUES(4,'Your soul will be mine','DnD', '2020-11-06','2020-11-08','Tampa',10,'almighty glory',8,false);
+VALUES(4,'Tri-State Invitational','Soccer', '2020-11-06','2020-11-08','Louisville, KY',10,'New Adidas kits for the Winning Team',4,false);
 
 INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
-VALUES(5,'Tour De France','Bike Polo', '2020-01-06','2020-01-08','Brooklyn',30,'winner gets new bike',5,true);
+VALUES(5,'Southeast Ohio Streetball Tournament','Basketball', '2020-04-12','2020-04-19','Cincinnati, OH',30,'A year supply of Gatorade and New Team Jordans',5,true);
+
+INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
+VALUES(6,'So-Cal Invitational','Bike Polo', '2020-10-21','2020-10-25','Los Angeles, CA',5,'New Bikes from the LA Bike Polo Commission',12,true);
+
+INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
+VALUES(7,'National Semi-Pro Championship','Volleyball', '2020-08-06','2020-08-08','Orlando, FL',250,'$10,000 Cash Prize and the 2020 Misty May Treanor Trophy',1,true);
+
+INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
+VALUES(8,'Vegas Invitational','Basketball', '2020-05-06','2020-05-08','Las Vegas, NV',30,'$100,000 Cash Prize for the Winning Team',3,false);
+
+INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
+VALUES(9,'Kick-It Charleston','Soccer', '2020-09-06','2020-09-08','Charleston, SC',43,'New Nike kits for your entire team.',8,false);
+
+INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
+VALUES(10,'All In Albany','Euchre', '2020-07-06','2020-07-10','Albany, NY',100,'$25,000 Cash Prize',9,true);
+
+INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
+VALUES(11,'Bluff In Bluffdale','Poker', '2020-10-06','2020-10-08','Bluffdale, UT',35,'$10,000 Grand Prize to the Winner',10,true);
+
+INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
+VALUES(12,'CAHL Championship','Hockey', '2020-08-06','2020-08-08','Cincinnati, OH',250,'$1,000 Cash Prize and New CCM Sticks',11,true);
+
+
+
+
+INSERT INTO tournamentRequest(tourney_id, team_id,message)VALUES(1,30,'We would really like to join your tournament.');
+INSERT INTO tournamentRequest(tourney_id, team_id,message)VALUES(2,4,'We would really like to join your tournament.');
+INSERT INTO tournamentRequest(tourney_id, team_id,message)VALUES(2,7,'Can I please join your tournament?');
+INSERT INTO tournamentRequest(tourney_id, team_id,message)VALUES(3,3,'We would really like to join your tournament.');
+INSERT INTO tournamentRequest(tourney_id, team_id,message)VALUES(4,19,'We would really like to join your tournament.');
+INSERT INTO tournamentRequest(tourney_id, team_id,message)VALUES(5,17,'We would really like to join your tournament.');
+INSERT INTO tournamentRequest(tourney_id, team_id,message)VALUES(7,6,'We would really like to join your tournament.');
 
 
 
 
 
-INSERT INTO tournamentRequest(tourney_id, team_id,message)VALUES(1,1,'let us host a tournament please');
-INSERT INTO tournamentRequest(tourney_id, team_id,message)VALUES(2,2,'you let us in!');
-INSERT INTO tournamentRequest(tourney_id, team_id,message)VALUES(3,3,'we host tourney. have mad fun.');
-INSERT INTO tournamentRequest(tourney_id, team_id,message)VALUES(4,4,'we play ball');
-INSERT INTO tournamentRequest(tourney_id, team_id,message)VALUES(5,5,'champions r us ');
 
-
-
-
-INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (1,1);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (1,29);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (2,1);
 INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (2,2);
-INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (3,3);
-INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (4,4);
-INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (5,5);
-
-
-
-
-
-
-
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (2,5);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (2,6);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (2,8);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (2,9);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (3,10);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (3,11);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (3,12);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (3,13);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (3,14);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (3,15);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (3,16);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (3,17);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (4,18);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (4,20);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (4,21);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (5,3);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (5,10);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (5,12);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (5,13);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (5,15);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (5,16);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (6,23);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (6,24);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (7,1);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (7,2);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (7,4);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (7,5);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (7,7);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (7,9);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (8,10);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (8,11);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (8,12);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (8,13);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (8,14);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (8,15);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (8,16);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (8,17);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (8,3);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (9,18);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (9,19);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (9,20);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (9,21);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (10,25);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (10,26);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (11,27);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (12,22);
 
 
 COMMIT TRANSACTION;
