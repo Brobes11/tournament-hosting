@@ -157,7 +157,7 @@ export default {
     }
   },
   created() {
-    fetch(`${process.env.VUE_APP_REMOTE_API}/api/tournament`, {
+    fetch(`${process.env.VUE_APP_REMOTE_API}/api/tournament/public`, {
       method: "GET",
       headers: new Headers({
         Authorization: "Bearer " + auth.getToken()

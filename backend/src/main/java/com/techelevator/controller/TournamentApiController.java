@@ -53,6 +53,11 @@ public class TournamentApiController {
         this.tournamentDao = tournamentDao;
     }
 
+    @GetMapping("/public")
+    public List<Tournament> getAllTournamentsPublic() {
+        return tournamentDao.getAllTournaments();
+    }
+
     @GetMapping
     public List<Tournament> getAllTournaments(@RequestParam(required = false) Long userId,
             @RequestParam(required = false) Long teamId) throws UnauthorizedException {
