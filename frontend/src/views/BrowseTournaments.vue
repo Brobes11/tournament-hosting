@@ -40,7 +40,8 @@
     <v-data-table :headers="headers" :items="sortTournaments" flat>
       <template v-slot:item="row">
         <tr>
-          <td class="clickable" @click="$router.push('/tournament-page/' + row.item.tournamentId)">
+          <td v-if="user === null || user === undefined">{{row.item.tournamentName}}</td>
+          <td v-if="user !== null" class="clickable" @click="$router.push('/tournament-page/' + row.item.tournamentId)">
             <v-btn small outlined block>{{row.item.tournamentName}}</v-btn>
           </td>
           <td>{{row.item.game}}</td>
@@ -49,7 +50,7 @@
           <td>{{row.item.prizeDescription}}</td>
           <td>
             <join-tournament
-              v-if="row.item.acceptingEntries===true && tournamentStarted(row.item) === false"
+              v-if="row.item.acceptingEntries===true && tournamentStarted(row.item) === false && user !== null"
               :game="row.item.game"
               :tournamentId="row.item.tournamentId"
               @join-success="handleSnack()"
@@ -58,7 +59,7 @@
             <v-row justify="center">
               <v-btn
                 class="mxauto"
-                v-if="row.item.acceptingEntries===false || tournamentStarted(row.item) === true"
+                v-if="row.item.acceptingEntries===false || tournamentStarted(row.item) === true || user === null || user === undefined"
                 disabled
                 color="primary"
               >
@@ -132,7 +133,7 @@ export default {
         }
       ],
       userId: "",
-      user: null,
+      user: this.getUser(),
       snackbar: false,
       snackText: "Your request has been submitted!"
     };
@@ -188,6 +189,9 @@ export default {
       date1 = new Date(date1);
       var date2 = new Date();
       return date1 <= date2;
+    },
+    getUser() {
+      return auth.getUser();
     }
   }
 };

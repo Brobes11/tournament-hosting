@@ -8,7 +8,7 @@
     <v-row>
       <v-col col="6">
         <v-img
-          :src="require('../assets/salad.jpg')"
+          :src="require('../assets/brackets.jpg')"
           class="my-3"
           contain
         />
@@ -19,7 +19,7 @@
       </v-col>
       <v-col cols="6">
         <v-img
-          :src="require('../assets/loss.jpg')"
+          :src="require('../assets/athletes.jpg')"
           class="my-3"
           contain
         />
@@ -29,8 +29,6 @@
         </v-btn>
       </v-col>
     </v-row>
-    <video id="video" playsinline autoplay muted loop poster=''>
-        <source :src='require("@/assets/background.mp4")' type='video/mp4'></video>
   </v-container>
   
 </template>
@@ -39,19 +37,13 @@
 </script>
 
 
-<style scoped>
-#video{
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  min-width: 100%;
-  min-height: 100%;
-  z-index: -1;
-  filter: brightness(30%)
-
-}
-.theme--dark.v-application{
-  background: none;
-  
-}
+<style>
+ #Home {
+     background-image: url('../assets/background.mp4');
+     /* background-color: #8f2c2c; */
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+  }
 </style>
