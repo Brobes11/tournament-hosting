@@ -139,6 +139,11 @@ export default {
         this.numOfMatchups(results);
       });
     },
+    resetMatchups(){
+      this.finalMatchups = [];
+      this.matchups = [];
+      this.getTournamentTeams();
+    },
     numOfMatchups(teams) {
       let numOfMatchups = Math.ceil(teams.length / 2);
       let emptyMatchups = [];

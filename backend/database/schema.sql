@@ -353,7 +353,7 @@ INSERT INTO teamRoster(team_id, user_id, captain) VALUES (28,34,false);
 
 INSERT INTO teamRequest(team_id, user_id, message) VALUES (1,13, 'Your team seems cool!');
 INSERT INTO teamRequest(team_id, user_id, message) VALUES (1,25, 'I am the missing link for your teams success.');
-INSERT INTO teamRequest(team_id, user_id, message) VALUES (1,3, 'Our friend Tom told me about your team.');
+INSERT INTO teamRequest(team_id, user_id, message) VALUES (1,4, 'Our friend Tom told me about your team.');
 INSERT INTO teamRequest(team_id, user_id, message) VALUES (2,15, 'Can I join please?');
 INSERT INTO teamRequest(team_id, user_id, message) VALUES (2,19, 'I am very interested in your team!');
 INSERT INTO teamRequest(team_id, user_id, message) VALUES (2,34, 'I''ve been kicked off all the other teams.');
