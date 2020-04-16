@@ -20,32 +20,32 @@
           </div>
         </v-col>
 
-        <v-row v-if="user === null" class="d-flex justify-center align-start pa-1" dense align-end>
+        <v-row v-if="user === null || user === undefined" class="d-flex justify-center align-start pa-1" dense align-end>
           <router-link to="/browse" class="d-flex justify-center align-start pa-1">
             <v-col cols="4" class="d-flex justify-center align-start">
-              <v-btn target="_blank" text v-if="user === null">
+              <v-btn target="_blank" text v-if="user === null || user === undefined">
                 <v-icon>mdi-magnify</v-icon>Browse
               </v-btn>
             </v-col>
           </router-link>
           <router-link to="/login" class="d-flex justify-center align-start pa-1">
             <v-col cols="4" class="d-flex justify-center align-start">
-              <v-btn target="_blank" text v-if="user === null">
+              <v-btn target="_blank" text v-if="user === null || user === undefined">
                 <v-icon>mdi-account</v-icon>Login
               </v-btn>
             </v-col>
           </router-link>
           <router-link to="/register" class="d-flex justify-center align-start pa-1">
             <v-col cols="4" class="d-flex justify-center align-start">
-              <v-btn target="_blank" text v-if="user === null">
+              <v-btn target="_blank" text v-if="user === null || user === undefined">
                 <v-icon>mdi-new-box</v-icon>Register
               </v-btn>
             </v-col>
           </router-link>
         </v-row>
 
-        <v-row v-if="user !== null" class="d-flex justify-center align-center pa-1" >
-          <v-menu offset-y v-if="user !== null">
+        <v-row v-if="user !== null && user !== undefined" class="d-flex justify-center align-center pa-1" >
+          <v-menu offset-y v-if="user !== null && user !== undefined">
             <template v-slot:activator="{ on }">
               <v-col cols="4" class="d-flex justify-center">
                 <v-btn app target="_blank" text v-on="on">
@@ -70,7 +70,7 @@
             </v-list>
           </v-menu>
 
-          <v-menu offset-y v-if="user !== null">
+          <v-menu offset-y v-if="user !== null && user !== undefined">
             <template v-slot:activator="{ on }">
               <v-col cols="4" class="d-flex justify-center align-center">
                 <v-btn target="_blank" text v-on="on">
@@ -95,7 +95,7 @@
             </v-list>
           </v-menu>
 
-          <v-menu offset-y v-if="user !== null">
+          <v-menu offset-y v-if="user !== null && user !== undefined">
             <template v-slot:activator="{ on }">
               <v-col cols="4" class="d-flex justify-center align-center">
                 <v-btn target="_blank" text v-on="on">
