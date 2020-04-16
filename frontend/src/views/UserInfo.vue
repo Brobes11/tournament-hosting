@@ -59,6 +59,7 @@
 <script>
 import EditUser from "@/components/EditUser.vue";
 import api from "@/api.js";
+import auth from "@/auth.js";
 
 export default {
   components: {
@@ -111,11 +112,11 @@ export default {
   created() {
     this.updateUser();
 
-    api.getCaptainedTeams().then(result => (this.captainedTeams = result));
+    api.getCaptainedTeams(auth.getUser().id).then(result => (this.captainedTeams = result));
 
-    api.getUserTeams().then(result => (this.teams = result));
+    api.getUserTeams(auth.getUser().id).then(result => (this.teams = result));
 
-    api.getUserTournaments().then(result => (this.tourneys = result));
+    api.getUserTournaments(auth.getUser().id).then(result => (this.tourneys = result));
   }
 };
 </script>

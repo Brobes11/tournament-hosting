@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <nav-bar :user="currentUser" :teams="currentTeams" :tournaments="currentTournaments" @update-user="currentUser = getUser()"/>
+    <nav-bar :user="currentUser" :teams="currentTeams" :tournaments="currentTournaments" @update-user="currentUser = getUser(); getUserTeams(); getUserTournaments()"/>
     <v-content>
       <router-view @update-user="currentUser = getUser(); getUserTeams(); getUserTournaments()"/>
     </v-content>
@@ -29,12 +29,20 @@ export default {
       return auth.getUser();
     },
     getUserTeams(){
+      if(auth.getUser() === null || auth.getUser() === undefined){
+        this.currentTeams = [];
+      }else{
        api.getUserTeams()
        .then(results => this.currentTeams = results)
+      }
     },
      getUserTournaments(){
+       if(auth.getUser() === null || auth.getUser() === undefined){
+         this.currentTournaments = [];
+       } else{
       api.getUserTournaments()
     .then(tourneysFromApi => this.currentTournaments = tourneysFromApi);
+       }
     }
   }
 };
