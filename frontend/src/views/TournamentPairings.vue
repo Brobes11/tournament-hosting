@@ -18,8 +18,9 @@
     </v-row>
 
     <p
-          v-if="homeTeam === awayTeam && homeTeam !== null && selectedMatchup !== 'BYE'"
-        class="red--text text-center">Can't choose same team for Home and Away</p>
+      v-if="homeTeam === awayTeam && homeTeam !== null && selectedMatchup !== 'BYE'"
+      class="red--text text-center"
+    >Can't choose same team for Home and Away</p>
 
     <v-row justify="center">
       <v-col class="d-flex" cols="6" sm="3">
@@ -66,7 +67,12 @@
     </v-row>
     <v-row>
       <v-col class="justify-center d-flex">
-        <v-btn  v-if="finalMatchups.length > 0" color="error" small @click="resetMatchups()">Reset Matches</v-btn>
+        <v-btn
+          v-if="finalMatchups.length > 0"
+          color="error"
+          small
+          @click="resetMatchups()"
+        >Reset Matches</v-btn>
       </v-col>
     </v-row>
     <v-row>
@@ -87,7 +93,6 @@
         </v-card>
       </v-col>
     </v-row>
-    
   </v-container>
 </template>
 
@@ -178,28 +183,6 @@ export default {
       this.awayTeam = null;
       this.selectedMatchup = null;
     },
-    submitMatchups(){
-      fetch(
-          `${process.env.VUE_APP_REMOTE_API}/api/tournament/matchups`,
-          {
-            method: "POST",
-            headers: {
-              Authorization: "Bearer " + auth.getToken(),
-              Accept: "application/json",
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify(this.finalMatchups)
-          }
-        ).then(response => {
-          if (response.ok) {
-            this.$router.push("/user-info");
-          }
-        });
-    },
-    resetMatchups(){
-     this.finalMatchups = [];
-     this.getTournament();
-     this.getTournamentTeams();
     submitMatchups() {
       fetch(`${process.env.VUE_APP_REMOTE_API}/api/tournament/matchups`, {
         method: "POST",
