@@ -42,14 +42,7 @@
 
 
 <style scoped >
- #Home {
-     background-image: url('../assets/background.mp4');
-     /* background-color: #8f2c2c; */
-    height: 100vh;
-    background-position: center;
-    background-size: cover;
-    position: relative;
-  }
+
 
 #video{
   position: absolute;
