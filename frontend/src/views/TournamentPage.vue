@@ -41,11 +41,32 @@
             :to="{ name: 'tournament-pairings', params:{id: tournament.tournamentId, round: rounds.length + 1}}"
           >Make New Round</v-btn>
           <v-spacer></v-spacer>
-          <v-btn
+          <!--dialog pop up-->
+          <!-- <v-btn
             color="#03DAC5"
             v-if="tournament.tournamentOwner === currentUser  && !tournament.completed"
             @click="endTournament()"
-          >End Tournament</v-btn>
+          >End Tournament</v-btn>-->
+          <v-dialog v-model="dialog2" width="500" overlay-opacity="0.9">
+            <template v-slot:activator="{ on }">
+              <v-btn
+                color="#03DAC5"
+                dark
+                v-on="on"
+                v-if="tournament.tournamentOwner === currentUser  && !tournament.completed"
+              >End Tournament</v-btn>
+            </template>
+            <v-card>
+              <v-card-title primary-title>Confirmation</v-card-title>
+              <v-card-text>Are you sure you want to end the tournament?</v-card-text>
+              <v-divider></v-divider>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="red" text @click="dialog2 = false; endTournament()">Finalize Tournament</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+          <!--dialog pop up-->
           <v-spacer></v-spacer>
           <edit-tournament
             :current-tournament="tournament"
@@ -85,12 +106,34 @@
                 <td>{{row.item.captainUsername}}</td>
                 <td>{{row.item.captainEmail}}</td>
                 <td align="right" width="10">
-                  <v-btn
-                    v-if="tournament.tournamentOwner === currentUser && tournamentStarted === false"
-                    class="error"
-                    small
-                    @click="deleteTeamFromTournament(row.item.teamId)"
-                  >Remove Team</v-btn>
+
+                  <!--add dialog pop up-->
+                  <v-dialog v-model="dialog" width="500" overlay-opacity="0.2">
+                    <template v-slot:activator="{ on }">
+                      <v-btn
+                        small
+                        color="red lighten-2"
+                        dark
+                        v-on="on"
+                        v-if="tournament.tournamentOwner === currentUser && tournamentStarted === false"
+                      >Remove Team</v-btn>
+                    </template>
+                    <v-card>
+                      <v-card-title primary-title>Confirmation</v-card-title>
+                      <v-card-text>Are you sure you want to remove this team?</v-card-text>
+                      <v-divider></v-divider>
+                      <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn
+                          color="red"
+                          text
+                          @click="dialog = false; deleteTeamFromTournament(row.item.teamId)"
+                        >Remove Team</v-btn>
+                      </v-card-actions>
+                    </v-card>
+                  </v-dialog>
+                  <!-- end dialog-->
+                  
                 </td>
               </tr>
             </template>
@@ -137,7 +180,18 @@ export default {
   },
   data() {
     return {
-      startingTournament: null,
+      startingTournament: {
+        tournamentId: "",
+        tournamentName: "",
+        entryFee: "",
+        game: "",
+        location: "",
+        prizeDescription: "",
+        startDate: "",
+        endDate: ""
+      },
+      dialog: false,
+      dialog2: false,
       currentUser: null,
       searchTeams: "",
       tourneyTeamHeaders: [
