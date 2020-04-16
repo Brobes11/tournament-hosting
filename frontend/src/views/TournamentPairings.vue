@@ -93,7 +93,7 @@
 
 <script>
 import api from "@/api.js";
-import auth from "@/auth.js"
+import auth from "@/auth.js";
 
 export default {
   data() {
@@ -200,6 +200,20 @@ export default {
      this.finalMatchups = [];
      this.getTournament();
      this.getTournamentTeams();
+    submitMatchups() {
+      fetch(`${process.env.VUE_APP_REMOTE_API}/api/tournament/matchups`, {
+        method: "POST",
+        headers: {
+          Authorization: "Bearer " + auth.getToken(),
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(this.finalMatchups)
+      }).then(response => {
+        if (response.ok) {
+          this.$router.push(`/tournament-page/${this.tournament.tournamentId}`);
+        }
+      });
     }
   },
   created() {
