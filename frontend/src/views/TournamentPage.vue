@@ -134,7 +134,16 @@ export default {
   },
   data() {
     return {
-      tournament: null,
+      tournament: {
+        tournamentId: "",
+        tournamentName: "",
+        entryFee: "",
+        game: "",
+        location: "",
+        prizeDescription: "",
+        startDate: "",
+        endDate: ""
+      },
       currentUser: null,
       searchTeams: "",
       tourneyTeamHeaders: [
@@ -143,12 +152,7 @@ export default {
         { text: "Captain Email", value: "email" },
         { text: "", value: "button" }
       ],
-      tourneyTeams: {
-        teamId: "",
-        teamName: "",
-        captainUsername: "",
-        captainEmail: ""
-      },
+      tourneyTeams: [],
       tournamentOwner: {
         username: ""
       },
