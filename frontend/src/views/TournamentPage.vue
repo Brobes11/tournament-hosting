@@ -132,18 +132,12 @@ export default {
     EditTournament,
     AcceptEntries
   },
+  props:{
+    currentTournament: Object
+  },
   data() {
     return {
-      tournament: {
-        tournamentId: "",
-        tournamentName: "",
-        entryFee: "",
-        game: "",
-        location: "",
-        prizeDescription: "",
-        startDate: "",
-        endDate: ""
-      },
+      startingTournament: null,
       currentUser: null,
       searchTeams: "",
       tourneyTeamHeaders: [
@@ -175,7 +169,7 @@ export default {
           }
         })
         .then(data => {
-          this.tournament = data;
+          this.startingTournament = data;
         });
     },
     getTournamentOwnerUsername() {
@@ -289,6 +283,14 @@ export default {
           }
         })
         .then(data => (this.top3 = data));
+    },
+    updateTourney(){
+    this.getTourneyRounds();
+    this.getTourneyTeams();
+    this.currentUser = auth.getUser().id;
+    this.getTournamentOwnerUsername();
+    this.getTournament();
+    this.getTop3();
     }
   },
   computed: {
@@ -297,15 +299,18 @@ export default {
       date1 = new Date(date1);
       var date2 = new Date();
       return date1 <= date2;
+    },
+    tournament(){
+      if(this.currentTournament !== null){
+        this.updateTourney();
+        return this.currentTournament;
+      } else {
+        return this.startingTournament;
+      }
     }
   },
   created() {
-    this.getTourneyRounds();
-    this.getTourneyTeams();
-    this.currentUser = auth.getUser().id;
-    this.getTournamentOwnerUsername();
-    this.getTournament();
-    this.getTop3();
+    this.updateTourney()
   }
 };
 </script>

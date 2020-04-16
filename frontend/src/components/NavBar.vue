@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app prominent flat src="@/assets/Banner.png">
+  <v-app-bar app prominent text src="@/assets/Banner.png">
     <v-container>
       <v-row>
         <!-- nav bar- row tag start -->
@@ -64,7 +64,7 @@
               <v-list-item v-for="(item, index) in teams" :key="index">
                 <v-list-item-title
                   class="clickable"
-                  @click="$router.push('/team-page/' + item.teamId)"
+                  @click="updateTeam(item.teamId)"
                 >{{ item.teamName }}</v-list-item-title>
               </v-list-item>
             </v-list>
@@ -89,7 +89,7 @@
               <v-list-item v-for="(item, index) in tournaments" :key="index">
                 <v-list-item-title
                   class="clickable"
-                  @click="$router.push('/tournament-page/' + item.tournamentId)"
+                  @click="updateTournament(item.tournamentId)"
                 >{{ item.tournamentName }}</v-list-item-title>
               </v-list-item>
             </v-list>
@@ -137,6 +137,14 @@ export default {
       auth.logout();
       this.$router.push("/login");
       this.$emit("update-user");
+    },
+    updateTournament(id){
+      this.$router.push('/tournament-page/' + id); 
+      this.$emit("update-tournament", id);
+    },
+    updateTeam(id){
+      this.$router.push('/team-page/' + id); 
+      this.$emit("update-team", id);
     }
   }
 };

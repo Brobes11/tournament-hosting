@@ -90,9 +90,9 @@
                 <td>{{row.item.firstName}}</td>
                 <td>{{row.item.lastName}}</td>
                 <td>{{row.item.email}}</td>
-                <td>{{row.item.role}}</td>
-                <td v-if="captainedTeams.includes(team.teamId)">
-                  <v-icon small @click="deleteMember(row.item.id)">mdi-delete</v-icon>
+                <td><v-icon v-if="row.item.role === 'captain'">mdi-check-bold</v-icon></td>
+                <td>
+                  <v-icon v-if="captainedTeams.includes(team.teamId)" small @click="deleteMember(row.item.id)">mdi-delete</v-icon>
                 </td>
               </tr>
             </template>
@@ -112,9 +112,12 @@ export default {
   components: {
     EditTeam
   },
+  props:{
+    currentTeam: Object
+  },
   data() {
     return {
-      team: null,
+      startingTeam: null,
       searchRequest: "",
       searchRoster: "",
       pendingHeaders: [
@@ -132,7 +135,7 @@ export default {
         { text: "First Name", value: "firstName" },
         { text: "Last Name", value: "lastName" },
         { text: "Email Address", value: "email" },
-        { text: "Role", value: "role" },
+        { text: "Captain", value: "captain", sortable: false },
         { text: "", value: "delete" }
       ],
 
@@ -165,15 +168,15 @@ export default {
           return response.json();
         })
         .then(data => {
-          this.team = data;
-          this.getRequests(teamId);
-          this.getRoster(data.teamId);
+          this.startingTeam = data;
+          this.getRequests();
+          this.getRoster();
         });
     },
 
-    getRequests(teamId) {
+    getRequests() {
       fetch(
-        `${process.env.VUE_APP_REMOTE_API}/api/team/request?teamId=${teamId}`,
+        `${process.env.VUE_APP_REMOTE_API}/api/team/request?teamId=${this.$route.params.id}`,
         {
           method: "GET",
           headers: {
@@ -188,9 +191,9 @@ export default {
         .then(data => (this.requests = data));
     },
 
-    getRoster(teamId) {
+    getRoster() {
       fetch(
-        `${process.env.VUE_APP_REMOTE_API}/api/user?teamId=${teamId}`,
+        `${process.env.VUE_APP_REMOTE_API}/api/user?teamId=${this.$route.params.id}`,
         {
           method: "GET",
           headers: {
@@ -265,6 +268,17 @@ export default {
       });
     },
 
+  },
+  computed:{
+    team(){
+      if(this.currentTeam !== null){
+        this.getRequests();
+        this.getRoster();
+        return this.currentTeam;
+      } else {
+        return this.startingTeam;
+      }
+    }
   }
 };
 </script>

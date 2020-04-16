@@ -106,5 +106,20 @@ export default {
           .then(teamsInfo => {
             return teamsInfo;
           });
+      },
+
+      getTeam(teamId){
+        return fetch(`${process.env.VUE_APP_REMOTE_API}/api/team/${teamId}`, {
+          method: "GET",
+          headers: {
+            Authorization: "Bearer " + auth.getToken()
+          }
+        })
+          .then(response => {
+            return response.json();
+          })
+          .then(data => {
+            return data;
+          });
       }
 }

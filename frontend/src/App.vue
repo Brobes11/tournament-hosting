@@ -1,8 +1,11 @@
 <template>
   <v-app>
-    <nav-bar :user="currentUser" :teams="currentTeams" :tournaments="currentTournaments" @update-user="currentUser = getUser(); getUserTeams(); getUserTournaments()"/>
+    <nav-bar :user="currentUser" :teams="currentTeams" :tournaments="currentTournaments" 
+    @update-user="currentUser = getUser(); getUserTeams(); getUserTournaments()"
+    @update-tournament="getTournament($event)" @update-team="getTeam($event)"/>
     <v-content>
-      <router-view @update-user="currentUser = getUser(); getUserTeams(); getUserTournaments()"/>
+      <router-view :currentTeam="team" :currentTournament="tournament"
+      @update-user="currentUser = getUser(); getUserTeams(); getUserTournaments()"/>
     </v-content>
   </v-app>
 </template>
@@ -21,7 +24,9 @@ export default {
     return{
       currentUser: this.getUser(),
       currentTeams: this.getUserTeams(),
-      currentTournaments: this.getUserTournaments()
+      currentTournaments: this.getUserTournaments(),
+      team: null,
+      tournament: null
     }
   },
   methods: {
@@ -43,6 +48,14 @@ export default {
       api.getUserTournaments()
     .then(tourneysFromApi => this.currentTournaments = tourneysFromApi);
        }
+    },
+    getTournament(id){
+      api.getTournament(id)
+      .then(tourney => this.tournament = tourney);
+    },
+    getTeam(id){
+      api.getTeam(id)
+      .then(data => this.team = data);
     }
   }
 };
