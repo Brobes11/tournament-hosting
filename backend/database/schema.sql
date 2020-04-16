@@ -441,41 +441,41 @@ INSERT INTO teamRequest(team_id, user_id, message) VALUES (30,8, 'I am the missi
 
 
  
-INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
-VALUES(1,'Smash Brothers World Championship','Super Smash Brothers', '2020-10-06','2020-10-08','San Francisco, CA',25,'Commemorative Joy-Cons and Title of World Champ',8,true);
+INSERT INTO tournaments(tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
+VALUES('Smash Brothers World Championship','Super Smash Brothers', '2020-10-06','2020-10-08','San Francisco, CA',25,'Commemorative Joy-Cons and Title of World Champ',8,true);
 
-INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries, completed)
-VALUES(2,'Sun in the Sand','Volleyball', '2020-03-06','2020-03-08','Tampa Bay, FL',250,'$50000 Cash Prize and a New Ford Escape',3,true,true);
+INSERT INTO tournaments(tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries, completed)
+VALUES('Sun in the Sand','Volleyball', '2020-03-06','2020-03-08','Tampa Bay, FL',250,'$50000 Cash Prize and a New Ford Escape',3,true,true);
 
-INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
-VALUES(3,'Rucker Park Invitational','Basketball', '2020-05-06','2020-05-08','Brooklyn, NY',30,'$20,000 and Going Down in History as a Street Ball Legend',2,false);
+INSERT INTO tournaments(tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
+VALUES('Rucker Park Invitational','Basketball', '2020-05-06','2020-05-08','Brooklyn, NY',30,'$20,000 and Going Down in History as a Street Ball Legend',2,false);
 
-INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
-VALUES(4,'Tri-State Invitational','Soccer', '2020-11-06','2020-11-08','Louisville, KY',10,'New Adidas kits for the Winning Team',4,false);
+INSERT INTO tournaments(tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
+VALUES('Tri-State Invitational','Soccer', '2020-11-06','2020-11-08','Louisville, KY',10,'New Adidas kits for the Winning Team',4,false);
 
-INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
-VALUES(5,'Southeast Ohio Streetball Tournament','Basketball', '2020-09-12','2020-09-19','Cincinnati, OH',30,'A year supply of Gatorade and New Team Jordans',5,true);
+INSERT INTO tournaments(tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
+VALUES('Southeast Ohio Streetball Tournament','Basketball', '2020-09-12','2020-09-19','Cincinnati, OH',30,'A year supply of Gatorade and New Team Jordans',5,true);
 
-INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
-VALUES(6,'So-Cal Invitational','Bike Polo', '2020-10-21','2020-10-25','Los Angeles, CA',5,'New Bikes from the LA Bike Polo Commission',12,true);
+INSERT INTO tournaments(tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
+VALUES('So-Cal Invitational','Bike Polo', '2020-10-21','2020-10-25','Los Angeles, CA',5,'New Bikes from the LA Bike Polo Commission',12,true);
 
-INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
-VALUES(7,'National Semi-Pro Championship','Volleyball', '2020-08-06','2020-08-08','Orlando, FL',250,'$10,000 Cash Prize and the 2020 Misty May Treanor Trophy',1,true);
+INSERT INTO tournaments(itourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
+VALUES('National Semi-Pro Championship','Volleyball', '2020-08-06','2020-08-08','Orlando, FL',250,'$10,000 Cash Prize and the 2020 Misty May Treanor Trophy',1,true);
 
-INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
-VALUES(8,'Vegas Invitational','Basketball', '2020-04-12','2020-04-19','Las Vegas, NV',30,'$100,000 Cash Prize for the Winning Team',3,false);
+INSERT INTO tournaments(itourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
+VALUES('Vegas Invitational','Basketball', '2020-04-12','2020-04-19','Las Vegas, NV',30,'$100,000 Cash Prize for the Winning Team',3,false);
 
-INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
-VALUES(9,'Kick-It Charleston','Soccer', '2020-09-06','2020-09-08','Charleston, SC',43,'New Nike kits for your entire team.',8,false);
+INSERT INTO tournaments(itourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
+VALUES('Kick-It Charleston','Soccer', '2020-09-06','2020-09-08','Charleston, SC',43,'New Nike kits for your entire team.',8,false);
 
-INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
-VALUES(10,'All In Albany','Euchre', '2020-07-06','2020-07-10','Albany, NY',100,'$25,000 Cash Prize',9,true);
+INSERT INTO tournaments(itourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
+VALUES('All In Albany','Euchre', '2020-07-06','2020-07-10','Albany, NY',100,'$25,000 Cash Prize',9,true);
 
-INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
-VALUES(11,'Bluff In Bluffdale','Poker', '2020-10-06','2020-10-08','Bluffdale, UT',35,'$10,000 Grand Prize to the Winner',10,true);
+INSERT INTO tournaments(itourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
+VALUES('Bluff In Bluffdale','Poker', '2020-10-06','2020-10-08','Bluffdale, UT',35,'$10,000 Grand Prize to the Winner',10,true);
 
-INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
-VALUES(12,'CAHL Championship','Hockey', '2020-08-06','2020-08-08','Cincinnati, OH',250,'$1,000 Cash Prize and New CCM Sticks',11,true);
+INSERT INTO tournaments(tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
+VALUES('CAHL Championship','Hockey', '2020-08-06','2020-08-08','Cincinnati, OH',250,'$1,000 Cash Prize and New CCM Sticks',11,true);
 
 
 

@@ -93,12 +93,12 @@ public class TournamentApiController {
     }
 
     @PostMapping
-    public Tournament createTournament(@Valid @RequestBody Tournament tournament, BindingResult result,
+    public void createTournament(@Valid @RequestBody Tournament tournament, BindingResult result,
             @RequestParam Long userId) {
         if (result.hasErrors() == false) {
-            return tournamentDao.createTournament(tournament, userId);
+            tournamentDao.createTournament(tournament, userId);
         }
-        return null;
+        
     }
 
     @PutMapping

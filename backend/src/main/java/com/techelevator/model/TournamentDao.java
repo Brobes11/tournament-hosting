@@ -13,7 +13,7 @@ public interface TournamentDao {
 
     public List<Tournament> getTournamentsByTeam(long id);
 
-    public Tournament createTournament(Tournament newTournament, Long userId);
+    public void createTournament(Tournament newTournament, Long userId);
 
     public boolean updateTournament(Tournament tournament);
 

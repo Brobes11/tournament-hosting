@@ -79,16 +79,13 @@ public class JdbcTournamentDao implements TournamentDao {
     }
 
     @Override
-    public Tournament createTournament(Tournament newTournament, Long userId) {
+    public void createTournament(Tournament newTournament, Long userId) {
         String sql = "INSERT INTO tournaments (tourney_name, game, start_date, end_date, location, prize_desc, tournament_owner, entry_fee, accepting_entries) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id";
-        Long newId = jdbcTemplate.queryForObject(sql, Long.class, newTournament.getTournamentName(),
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        jdbcTemplate.update(sql, newTournament.getTournamentName(),
                 newTournament.getGame(), newTournament.getStartDate(), newTournament.getEndDate(),
                 newTournament.getLocation(), newTournament.getPrizeDescription(), userId, newTournament.getEntryFee(),
                 newTournament.isAcceptingEntries());
-        newTournament.setTournamentId(newId);
-
-        return newTournament;
     }
 
     @Override
