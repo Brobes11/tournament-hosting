@@ -25,6 +25,7 @@
                     :rules="msgRules"
                     :disabled="isMember == true"
                     required
+                    color="#03DAC5"
                   ></v-textarea>
                 </v-form>
               </v-col>
@@ -38,7 +39,7 @@
           <v-btn
             color="#03DAC5"
             text
-            :disabled="!isValid"
+            :disabled="(!isValid) || (isMember === true)"
             @click=" sendJoinRequest()"
             @join-success="dialog=false"
             
