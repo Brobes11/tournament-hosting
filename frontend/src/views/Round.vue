@@ -1,8 +1,7 @@
 <template>
   <v-container>
     <v-row>
-      <v-col class="d-flex" cols="12">
-        <v-spacer></v-spacer>
+      <v-col class="d-flex flex-wrap justify-center" cols="12">
         <v-card class="matchup mt-5 at-5" v-for="matchup in matchups" :key="matchup">
           <v-card-title class="justify-center">
             <h3 class="h1 mb-3 font-weight-normal">MATCH</h3>
@@ -51,7 +50,6 @@
             <v-spacer></v-spacer>
           </v-card-actions>
         </v-card>
-        <v-spacer></v-spacer>
       </v-col>
     </v-row>
   </v-container>
@@ -121,10 +119,8 @@ export default {
 
 <style scoped>
 .matchup {
-  min-width: 340px;
-  max-width: 400px;
-  max-height: auto;
-  min-height: auto;
+  width: 350px;
+  height: auto;
   margin-right: 10px;
   margin-left: 10px;
 }
