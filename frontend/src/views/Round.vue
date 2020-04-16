@@ -2,7 +2,10 @@
   <v-container>
     <v-row>
       <v-col class="d-flex flex-wrap justify-center" cols="12">
-        <v-btn class="backbutton">🏆🎯 BACK TO TOURNAMENT HOME PAGE 🎯🏆</v-btn>
+        <v-btn
+          :to="{name: 'tournament-page', params: {id: this.tournament.tournamentId}}"
+          class="backbutton"
+        >🏆🎯 BACK TO TOURNAMENT HOME PAGE 🎯🏆</v-btn>
       </v-col>
     </v-row>
     <v-row>
