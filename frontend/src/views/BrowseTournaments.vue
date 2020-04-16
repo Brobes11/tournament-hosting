@@ -5,6 +5,7 @@
     <v-container>
       <v-row>
         <v-col cols="1" class="d-flex justify-start align-center">
+          <v-card></v-card>
           <p>Filter by:</p>
         </v-col>
 
@@ -18,22 +19,30 @@
           ></v-overflow-btn>
         </v-col>
       </v-row>
-      <p>Show Closed Tournaments?</p>
-      <v-switch
-        color="#03DAC5"
-        inset
-        v-model="show_closed_tournaments"
-        :label="show_closed_tournaments? 'True':'False'"
-      ></v-switch>
+
+      <v-row>
+        <v-col cols="12" md="4" class="d-flex align-center">
+          <v-card outlined class="d-flex justify-center align-center">
+            <v-card-text>Show Closed Tournaments?</v-card-text>
+            <v-card-actions>
+              <v-switch
+                color="#03DAC5"
+                inset
+                v-model="show_closed_tournaments"
+                :label="show_closed_tournaments? 'Yes':'No'"
+              ></v-switch>
+            </v-card-actions>
+          </v-card>
+        </v-col>
+      </v-row>
     </v-container>
 
     <v-data-table :headers="headers" :items="sortTournaments" flat>
       <template v-slot:item="row">
         <tr>
-          <td
-            class="clickable"
-            @click="$router.push('/tournament-page/' + row.item.tournamentId)"
-          ><v-btn small outlined block>{{row.item.tournamentName}}</v-btn></td>
+          <td class="clickable" @click="$router.push('/tournament-page/' + row.item.tournamentId)">
+            <v-btn small outlined block>{{row.item.tournamentName}}</v-btn>
+          </td>
           <td>{{row.item.game}}</td>
           <td>{{row.item.startDate}}</td>
           <td>{{row.item.endDate}}</td>
@@ -169,7 +178,8 @@ export default {
       this.snackbar = true;
     },
     duplicateRequestSnack() {
-      this.snackText = "You must join with a compatible team, or you already have a pending request";
+      this.snackText =
+        "You must join with a compatible team, or you already have a pending request";
       this.snackbar = true;
     }
   }
