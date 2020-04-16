@@ -444,8 +444,8 @@ INSERT INTO teamRequest(team_id, user_id, message) VALUES (30,8, 'I am the missi
 INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
 VALUES(1,'Smash Brothers World Championship','Super Smash Brothers', '2020-10-06','2020-10-08','San Francisco, CA',25,'Commemorative Joy-Cons and Title of World Champ',8,true);
 
-INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
-VALUES(2,'Sun in the Sand','Volleyball', '2020-03-06','2020-03-08','Tampa Bay, FL',250,'$50000 Cash Prize and a New Ford Escape',3,true);
+INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries, completed)
+VALUES(2,'Sun in the Sand','Volleyball', '2020-03-06','2020-03-08','Tampa Bay, FL',250,'$50000 Cash Prize and a New Ford Escape',3,true,true);
 
 INSERT INTO tournaments(id,tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
 VALUES(3,'Rucker Park Invitational','Basketball', '2020-05-06','2020-05-08','Brooklyn, NY',30,'$20,000 and Going Down in History as a Street Ball Legend',2,false);
@@ -481,8 +481,6 @@ VALUES(12,'CAHL Championship','Hockey', '2020-08-06','2020-08-08','Cincinnati, O
 
 
 INSERT INTO tournamentRequest(tourney_id, team_id,message)VALUES(1,30,'We would really like to join your tournament.');
-INSERT INTO tournamentRequest(tourney_id, team_id,message)VALUES(2,4,'We would really like to join your tournament.');
-INSERT INTO tournamentRequest(tourney_id, team_id,message)VALUES(2,7,'Can I please join your tournament?');
 INSERT INTO tournamentRequest(tourney_id, team_id,message)VALUES(3,3,'We would really like to join your tournament.');
 INSERT INTO tournamentRequest(tourney_id, team_id,message)VALUES(4,19,'We would really like to join your tournament.');
 INSERT INTO tournamentRequest(tourney_id, team_id,message)VALUES(5,17,'We would really like to join your tournament.');
@@ -496,8 +494,10 @@ INSERT INTO tournamentRequest(tourney_id, team_id,message)VALUES(7,6,'We would r
 INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (1,29);
 INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (2,1);
 INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (2,2);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (2,4);
 INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (2,5);
 INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (2,6);
+INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (2,7);
 INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (2,8);
 INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (2,9);
 INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (3,10);
@@ -542,6 +542,30 @@ INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (10,25);
 INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (10,26);
 INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (11,27);
 INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (12,22);
+
+
+INSERT INTO tournamentmatch (tourney_id, round_number, team_1_id, team_2_id, team_1_score, team_2_score, winner_id) VALUES (2, 1, 1, 2, 3, 1, 1);
+INSERT INTO tournamentmatch (tourney_id, round_number, team_1_id, team_2_id, team_1_score, team_2_score, winner_id) VALUES (2, 1, 5, 4, 3, 2, 5);
+INSERT INTO tournamentmatch (tourney_id, round_number, team_1_id, team_2_id, team_1_score, team_2_score, winner_id) VALUES (2, 1, 7, 6, 3, 2, 7);
+INSERT INTO tournamentmatch (tourney_id, round_number, team_1_id, team_2_id, team_1_score, team_2_score, winner_id) VALUES (2, 1, 8, 9, 2, 3, 9);
+INSERT INTO tournamentmatch (tourney_id, round_number, team_1_id, team_2_id, team_1_score, team_2_score, winner_id) VALUES (2, 2, 8, 1, 2, 3, 8);
+INSERT INTO tournamentmatch (tourney_id, round_number, team_1_id, team_2_id, team_1_score, team_2_score, winner_id) VALUES (2, 2, 2, 9, 3, 1, 2);
+INSERT INTO tournamentmatch (tourney_id, round_number, team_1_id, team_2_id, team_1_score, team_2_score, winner_id) VALUES (2, 2, 6, 5, 2, 3, 5);
+INSERT INTO tournamentmatch (tourney_id, round_number, team_1_id, team_2_id, team_1_score, team_2_score, winner_id) VALUES (2, 2, 7, 4, 3, 2, 7);
+INSERT INTO tournamentmatch (tourney_id, round_number, team_1_id, team_2_id, team_1_score, team_2_score, winner_id) VALUES (2, 3, 1, 9, 3, 2, 1);
+INSERT INTO tournamentmatch (tourney_id, round_number, team_1_id, team_2_id, team_1_score, team_2_score, winner_id) VALUES (2, 3, 8, 2, 3, 1, 8);
+INSERT INTO tournamentmatch (tourney_id, round_number, team_1_id, team_2_id, team_1_score, team_2_score, winner_id) VALUES (2, 3, 7, 5, 1, 3, 5);
+INSERT INTO tournamentmatch (tourney_id, round_number, team_1_id, team_2_id, team_1_score, team_2_score, winner_id) VALUES (2, 3, 6, 4, 3, 2, 6);
+INSERT INTO tournamentmatch (tourney_id, round_number, team_1_id, team_2_id, team_1_score, team_2_score, winner_id) VALUES (2, 4, 6, 2, 1, 3, 2);
+INSERT INTO tournamentmatch (tourney_id, round_number, team_1_id, team_2_id, team_1_score, team_2_score, winner_id) VALUES (2, 4, 1, 4, 2, 3, 4);
+INSERT INTO tournamentmatch (tourney_id, round_number, team_1_id, team_2_id, team_1_score, team_2_score, winner_id) VALUES (2, 4, 5, 9, 3, 2, 5);
+INSERT INTO tournamentmatch (tourney_id, round_number, team_1_id, team_2_id, team_1_score, team_2_score, winner_id) VALUES (2, 4, 8, 7, 1, 3, 7);
+INSERT INTO tournamentmatch (tourney_id, round_number, team_1_id, team_2_id, team_1_score, team_2_score, winner_id) VALUES (2, 5, 1, 7, 2, 3, 7);
+INSERT INTO tournamentmatch (tourney_id, round_number, team_1_id, team_2_id, team_1_score, team_2_score, winner_id) VALUES (2, 5, 8, 6, 3, 2, 8);
+INSERT INTO tournamentmatch (tourney_id, round_number, team_1_id, team_2_id, team_1_score, team_2_score, winner_id) VALUES (2, 5, 2, 5, 1, 3, 5);
+INSERT INTO tournamentmatch (tourney_id, round_number, team_1_id, team_2_id, team_1_score, team_2_score, winner_id) VALUES (2, 5, 9, 4, 3, 1, 9);
+
+
 
 
 COMMIT TRANSACTION;

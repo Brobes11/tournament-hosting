@@ -95,31 +95,11 @@ export default {
           game: ""
         }
       ],
-      tourneys: [
-        {
-          tournamentName: "",
-          game: "",
-          startDate: ""
-        },
-        {
-          name: "Red Team",
-          game: "Baseball",
-          info:
-            "quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in"
-        },
-        {
-          name: "Green Team",
-          info:
-            "voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-          game: "Volleyball"
-        },
-        {
-          name: "Yellow Team",
-          info:
-            "voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-          game: "Super Smash"
-        }
-      ],
+      tourneys: [{
+        tournamentName:"",
+        game:"",
+        startDate:""
+      }],
       captainedTeams: []
     };
   },

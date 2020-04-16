@@ -73,7 +73,7 @@ SELECT * FROM tournamentmatch
 SELECT * FROM tournamentmatch WHERE tourney_id = 1 AND round_number = 1
 
 
-SELECT * FROM users
+SELECT * FROM teams
 
 
 SELECT team_id FROM teamroster WHERE user_id = 5 AND captain = true
