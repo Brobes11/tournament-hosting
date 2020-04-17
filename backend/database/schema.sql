@@ -448,7 +448,7 @@ INSERT INTO tournaments(tourney_name,game,start_date,end_date,location,entry_fee
 VALUES('Sun in the Sand','Volleyball', '2020-03-06','2020-03-08','Tampa Bay, FL',250,'$50000 Cash Prize and a New Ford Escape',3,true,true);
 
 INSERT INTO tournaments(tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
-VALUES('Rucker Park Invitational','Basketball', '2020-05-06','2020-05-08','Brooklyn, NY',30,'$20,000 and Going Down in History as a Street Ball Legend',2,false);
+VALUES('Rucker Park Invitational','Basketball', '2020-05-06','2020-05-08','Brooklyn, NY',30,'$20,000 and Going Down in History as a Street Ball Legend',2,true);
 
 INSERT INTO tournaments(tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
 VALUES('Tri-State Invitational','Soccer', '2020-11-06','2020-11-08','Louisville, KY',10,'New Adidas kits for the Winning Team',4,false);
@@ -459,19 +459,19 @@ VALUES('Southeast Ohio Streetball Tournament','Basketball', '2020-09-12','2020-0
 INSERT INTO tournaments(tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
 VALUES('So-Cal Invitational','Bike Polo', '2020-10-21','2020-10-25','Los Angeles, CA',5,'New Bikes from the LA Bike Polo Commission',12,true);
 
-INSERT INTO tournaments(itourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
+INSERT INTO tournaments(tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
 VALUES('National Semi-Pro Championship','Volleyball', '2020-08-06','2020-08-08','Orlando, FL',250,'$10,000 Cash Prize and the 2020 Misty May Treanor Trophy',1,true);
 
-INSERT INTO tournaments(itourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
+INSERT INTO tournaments(tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
 VALUES('Vegas Invitational','Basketball', '2020-04-12','2020-04-19','Las Vegas, NV',30,'$100,000 Cash Prize for the Winning Team',3,false);
 
-INSERT INTO tournaments(itourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
+INSERT INTO tournaments(tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
 VALUES('Kick-It Charleston','Soccer', '2020-09-06','2020-09-08','Charleston, SC',43,'New Nike kits for your entire team.',8,false);
 
-INSERT INTO tournaments(itourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
+INSERT INTO tournaments(tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
 VALUES('All In Albany','Euchre', '2020-07-06','2020-07-10','Albany, NY',100,'$25,000 Cash Prize',9,true);
 
-INSERT INTO tournaments(itourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
+INSERT INTO tournaments(tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
 VALUES('Bluff In Bluffdale','Poker', '2020-10-06','2020-10-08','Bluffdale, UT',35,'$10,000 Grand Prize to the Winner',10,true);
 
 INSERT INTO tournaments(tourney_name,game,start_date,end_date,location,entry_fee,prize_desc,tournament_owner,accepting_entries)
@@ -500,13 +500,11 @@ INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (2,6);
 INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (2,7);
 INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (2,8);
 INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (2,9);
-INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (3,10);
 INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (3,11);
 INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (3,12);
 INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (3,13);
 INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (3,14);
 INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (3,15);
-INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (3,16);
 INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (3,17);
 INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (4,18);
 INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (4,20);
@@ -522,7 +520,6 @@ INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (6,24);
 INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (7,1);
 INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (7,2);
 INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (7,4);
-INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (7,5);
 INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (7,7);
 INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (7,9);
 INSERT INTO tournamentRoster(tourney_id, team_id) VALUES (8,10);

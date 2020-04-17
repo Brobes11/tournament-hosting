@@ -21,16 +21,9 @@
         </v-col>
 
         <v-row v-if="user === null || user === undefined" class="d-flex justify-center align-start pa-1" dense align-end>
-          <router-link to="/browse" class="d-flex justify-center align-start pa-1">
-            <v-col cols="4" class="d-flex justify-center align-start">
-              <v-btn target="_blank" text v-if="user === null || user === undefined">
-                <v-icon>mdi-magnify</v-icon>Browse
-              </v-btn>
-            </v-col>
-          </router-link>
           <router-link to="/login" class="d-flex justify-center align-start pa-1">
             <v-col cols="4" class="d-flex justify-center align-start">
-              <v-btn target="_blank" text v-if="user === null || user === undefined">
+              <v-btn text v-if="user === null || user === undefined">
                 <v-icon>mdi-account</v-icon>Login
               </v-btn>
             </v-col>

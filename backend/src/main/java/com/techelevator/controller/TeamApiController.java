@@ -66,14 +66,7 @@ public class TeamApiController {
 
     @PutMapping
     public void updateTeam(@Valid @RequestBody Team team, BindingResult result) throws UnauthorizedException {
-        List<Long> userTeams = userDao.getUsersCaptainedTeams(auth.getCurrentUser().getId());
-        for (Long t : userTeams) {
-            if (t == team.getTeamId()) {
-                teamDao.updateTeam(team);
-            } else {
-                throw new UnauthorizedException();
-            }
-        }
+        teamDao.updateTeam(team);
     }
 
     @GetMapping("/{teamId}")
