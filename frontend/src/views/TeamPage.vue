@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col cols="3">
-        <v-img :src="require('../assets/logo.svg')" class="my-3" contain height="150" />
+        <v-img :src="getImage()" class="my-3" contain height="150" />
       </v-col>
       <v-col cols="3">
         <h1>{{team.teamName}}</h1>
@@ -107,6 +107,7 @@
 import EditTeam from "@/components/EditTeam.vue";
 import auth from "@/auth";
 import api from "@/api";
+import img from "@/image.js";
 
 export default {
   components: {
@@ -269,6 +270,9 @@ export default {
     },
     teamEvent(){
       this.$emit('update-team', this.team.teamId)
+    },
+    getImage(){
+      return img.getImage(this.team.teamId);
     }
 
   },

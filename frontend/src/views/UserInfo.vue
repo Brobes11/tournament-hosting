@@ -2,7 +2,7 @@
   <div>
     <v-card class="ml-3 mt-4" max-width="600">
       <v-list-item>
-        <v-list-item-avatar tile size="150" ><v-img src="@/assets/avatars/avatar-4.png"></v-img></v-list-item-avatar>
+        <v-list-item-avatar tile size="150" ><v-img :src="getImage()"></v-img></v-list-item-avatar>
         <v-list-item-content>
           <v-list-item-title class="headline mb-1">{{user.firstName}} {{user.lastName}}</v-list-item-title>
           <div class="overline">Username: {{user.username}}</div>
@@ -60,6 +60,7 @@
 import EditUser from "@/components/EditUser.vue";
 import api from "@/api.js";
 import auth from "@/auth.js";
+import img from "@/image.js";
 
 export default {
   components: {
@@ -107,6 +108,9 @@ export default {
   methods: {
     updateUser() {
       api.getUser().then(result => (this.user = result));
+    },
+    getImage(){
+      return img.getImage(auth.getUser().id);
     }
   },
   created() {
