@@ -35,7 +35,7 @@
       <v-col v-if="tournament.tournamentOwner === currentUser">
         <v-card-actions>
           <accept-entries
-            v-if="tournament.tournamentOwner === currentUser"
+            v-if="tournament.tournamentOwner === currentUser && !tournament.completed"
             :currentTourney="tournament"
           />
           <v-spacer></v-spacer>
@@ -145,7 +145,7 @@
         </v-card>
       </v-col>
     </v-row>
-    <h1 class="text-center">Final Results</h1>
+    <h1 class="text-center" v-if="tournament.completed">Final Results</h1>
     <v-row v-if="tournament.completed">
       <v-spacer></v-spacer>
       <v-col col="1" class="text-center d-flex align-end silver">
