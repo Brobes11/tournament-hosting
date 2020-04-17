@@ -145,12 +145,30 @@
         </v-card>
       </v-col>
     </v-row>
+    <h1 class="text-center">Final Results</h1>
     <v-row v-if="tournament.completed">
-      <v-col class="text-center">
-        <h1>WINNER: {{top3[1]}}</h1>
-        <h2>Second: {{top3[2]}}</h2>
-        <h3>Third: {{top3[3]}}</h3>
+      <v-spacer></v-spacer>
+      <v-col col="1" class="text-center d-flex align-end silver">
+        <v-card height="200" width="150">
+          <h2>{{top3[2]}}</h2>
+          <v-icon large color="#E0E0E0">mdi-medal</v-icon>
+        </v-card>
       </v-col>
+      <v-spacer></v-spacer>
+      <v-col col="1" class="text-center d-flex align-end">
+        <v-card height="300" width="150" color="">
+          <h1>{{top3[1]}}</h1>
+          <v-icon large color="#FFD600">mdi-medal</v-icon>
+        </v-card>
+      </v-col>
+      <v-spacer></v-spacer>
+      <v-col col="1" class="text-center d-flex align-end">
+        <v-card height="100" width="150" color="">
+          <h3>{{top3[3]}}</h3>
+          <v-icon large color="#cd7f32">mdi-medal</v-icon>
+        </v-card>
+      </v-col>
+      <v-spacer></v-spacer>
     </v-row>
     <v-row>
       <v-col class="d-flex" cols="12">
