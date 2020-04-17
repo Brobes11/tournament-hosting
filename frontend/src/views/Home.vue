@@ -58,5 +58,8 @@
   z-index: 1;
   position: relative;
 }
+.my-3{
+max-width: 30vw;
+}
 
 </style>
