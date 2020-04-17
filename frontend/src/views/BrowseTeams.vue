@@ -10,6 +10,7 @@
         </v-col>
         <v-col xs="4" md="3">
           <v-overflow-btn
+            color="#03DAC5"
             :items="dropdown_games"
             label="Choose Sport"
             v-model="gamefilter"

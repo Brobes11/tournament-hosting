@@ -16,7 +16,7 @@
     <v-row class="mx-auto">
       <v-col>
         <h1>Teams</h1>
-        <v-data-table :headers="teamHeaders" :items="teams" :items-per-page="5" class="elevation-1">
+        <v-data-table :headers="teamHeaders" :items="teams" :items-per-page="5" >
           <template v-slot:item="row">
             <tr>
               <td

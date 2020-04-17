@@ -41,29 +41,29 @@
               <tr>
                 <td>{{row.item.senderName}}</td>
                 <td>{{row.item.message}}</td>
-                 <td>
-                <v-spacer></v-spacer>
-                <v-btn
-                  class="mx-2"
-                  fab
-                  dark
-                  small
-                  color="green"
-                  @click="dialog = false;acceptRequest(row.item)"
-                >
-                  <v-icon dark>mdi-check-circle-outline</v-icon>
-                </v-btn>
-                <v-btn
-                  class="mx-2"
-                  fab
-                  dark
-                  small
-                  color="red"
-                  @click="dialog = false;deleteRequest(row.item)"
-                >
-                  <v-icon dark>mdi-minus-circle-outline</v-icon>
-                </v-btn>
-              </td>
+                <td>
+                  <v-row>
+                    <v-btn
+                      class="mx-2"
+                      fab
+                      x-small
+                      color="#03DAC5"
+                      @click="dialog = false;acceptRequest(row.item)"
+                    >
+                      <v-icon>mdi-check-circle-outline</v-icon>
+                    </v-btn>
+
+                    <v-btn
+                      class="mx-2"
+                      fab
+                      x-small
+                      color="#D52D2D"
+                      @click="dialog = false;deleteRequest(row.item)"
+                    >
+                      <v-icon dark>mdi-minus-circle-outline</v-icon>
+                    </v-btn>
+                  </v-row>
+                </td>
               </tr>
             </template>
           </v-data-table>
@@ -83,16 +83,23 @@
               hide-details
             ></v-text-field>
           </v-card-title>
-          <v-data-table :headers="rosterHeaders" :items="roster" :search="searchRoster">
+          <v-data-table color="#03DAC5" :headers="rosterHeaders" :items="roster" :search="searchRoster">
             <template v-slot:item="row">
               <tr>
                 <td>{{row.item.username}}</td>
                 <td>{{row.item.firstName}}</td>
                 <td>{{row.item.lastName}}</td>
                 <td>{{row.item.email}}</td>
-                <td><v-icon v-if="row.item.role === 'captain'">mdi-check-bold</v-icon></td>
                 <td>
-                  <v-icon v-if="captainedTeams.includes(team.teamId)" small @click="deleteMember(row.item.id)">mdi-delete</v-icon>
+                  <v-icon v-if="row.item.role === 'captain'">mdi-check-bold</v-icon>
+                </td>
+                <td>
+                  <v-icon
+                    color="red lighten-2"
+                    v-if="captainedTeams.includes(team.teamId)"
+                    small
+                    @click="deleteMember(row.item.id)"
+                  >mdi-delete</v-icon>
                 </td>
               </tr>
             </template>
@@ -113,7 +120,7 @@ export default {
   components: {
     EditTeam
   },
-  props:{
+  props: {
     currentTeam: Object
   },
   data() {
@@ -123,12 +130,12 @@ export default {
       searchRoster: "",
       pendingHeaders: [
         { text: "Username", value: "senderName" },
-        { text: "Message", value: "message"},
+        { text: "Message", value: "message" },
         { text: "accept/decline", value: "accept/decline" }
       ],
-       teamNameRules: [
+      teamNameRules: [
         v => !!v || "Team name is required.",
-        v => v.length >= 8 || "Team name must be at least 4 characters.",
+        v => v.length >= 8 || "Team name must be at least 4 characters."
       ],
 
       rosterHeaders: [
@@ -145,15 +152,13 @@ export default {
       roster: [],
 
       captainedTeams: []
-
     };
   },
 
   created() {
     this.getTeam();
-    
-   api.getCaptainedTeams()
-    .then(result => this.captainedTeams = result);
+
+    api.getCaptainedTeams().then(result => (this.captainedTeams = result));
   },
 
   methods: {
@@ -214,16 +219,15 @@ export default {
 
       confirm("Are you sure you want to delete this team member?") &&
         fetch(
-        `${process.env.VUE_APP_REMOTE_API}/api/team/roster?userId=${userId}&teamId=${teamId}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: "Bearer " + auth.getToken()
-          },
-          credentials: "same-origin"
-        }
-      )
-        .then(response => {
+          `${process.env.VUE_APP_REMOTE_API}/api/team/roster?userId=${userId}&teamId=${teamId}`,
+          {
+            method: "DELETE",
+            headers: {
+              Authorization: "Bearer " + auth.getToken()
+            },
+            credentials: "same-origin"
+          }
+        ).then(response => {
           if (response.ok) {
             this.getRoster(teamId);
           }
@@ -231,29 +235,31 @@ export default {
     },
 
     acceptRequest(request) {
-       const teamId = this.team.teamId;
+      const teamId = this.team.teamId;
 
       confirm("Are you sure you want to accept this request?") &&
-      fetch(`${process.env.VUE_APP_REMOTE_API}/api/team/roster?captainStatus=false`, {
-        method: "POST",
-        headers: {
-          Authorization: "Bearer " + auth.getToken(),
-          Accept: "application/json",
-          "content-type": "application/json"
-        },
-        body: JSON.stringify(request)
-      }).then(response => {
-        if (response.ok) {
-          this.deleteRequest(request);
-          this.getRoster(teamId);
-        }
-      });
+        fetch(
+          `${process.env.VUE_APP_REMOTE_API}/api/team/roster?captainStatus=false`,
+          {
+            method: "POST",
+            headers: {
+              Authorization: "Bearer " + auth.getToken(),
+              Accept: "application/json",
+              "content-type": "application/json"
+            },
+            body: JSON.stringify(request)
+          }
+        ).then(response => {
+          if (response.ok) {
+            this.deleteRequest(request);
+            this.getRoster(teamId);
+          }
+        });
     },
 
     deleteRequest(request) {
-       const teamId = this.team.teamId;
+      const teamId = this.team.teamId;
 
-      
       fetch(`${process.env.VUE_APP_REMOTE_API}/api/team/request`, {
         method: "DELETE",
         headers: {
@@ -274,11 +280,10 @@ export default {
     getImage(){
       return img.getImage(this.team.teamId);
     }
-
   },
-  computed:{
-    team(){
-      if(this.currentTeam !== null){
+  computed: {
+    team() {
+      if (this.currentTeam !== null) {
         this.getRequests();
         this.getRoster();
         return this.currentTeam;

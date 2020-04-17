@@ -23,7 +23,7 @@
                   fab
                   dark
                   small
-                  color="green"
+                  color="#03DAC5"
                   @click="dialog = false;acceptRequest(row.item)"
                 >
                   <v-icon dark>mdi-check-circle-outline</v-icon>
@@ -33,7 +33,7 @@
                   fab
                   dark
                   small
-                  color="red"
+                  color="red lighten-2"
                   @click="dialog = false;deleteRequest(row.item)"
                 >
                   <v-icon dark>mdi-minus-circle-outline</v-icon>

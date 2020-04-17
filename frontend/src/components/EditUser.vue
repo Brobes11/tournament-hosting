@@ -15,9 +15,9 @@
             <v-row>
               <v-col cols="12">
                 <v-form v-model="isValid">
-                <v-text-field v-model="user.firstName" label="First Name" :rules="userFirstNameRules" required/>
-                <v-text-field v-model="user.lastName" label="Last Name" :rules="userLastNameRules" required/>
-                <v-text-field v-model="user.email" label="Email" type="email" :rules="userEmailRules" required/>
+                <v-text-field v-model="user.firstName" label="First Name" :rules="userFirstNameRules" color="#03DAC5" required/>
+                <v-text-field v-model="user.lastName" label="Last Name" :rules="userLastNameRules" color="#03DAC5" required/>
+                <v-text-field v-model="user.email" label="Email" type="email" :rules="userEmailRules" color="#03DAC5" required/>
                 </v-form>
               </v-col>
             </v-row>
@@ -25,8 +25,8 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click="dialog = false; resetUser()">Cancel</v-btn>
-          <v-btn color="blue darken-1" :disabled="!isValid" text @click="updateUser()">Save</v-btn>
+          <v-btn color="red lighten-2" text @click="dialog = false; resetUser()">Cancel</v-btn>
+          <v-btn color="#03DAC5" :disabled="!isValid" text @click="updateUser()">Save</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>

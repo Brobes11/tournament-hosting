@@ -14,16 +14,16 @@
           <v-container>
             <v-row>
               <v-col cols="12">
-                <v-text-field v-model="matchup.homeScore" label="Home Team Score" required />
-                <v-text-field v-model="matchup.awayScore" label="Away Team Score" required />
+                <v-text-field color="#03DAC5" v-model="matchup.homeScore" label="Home Team Score" required />
+                <v-text-field color="#03DAC5" v-model="matchup.awayScore" label="Away Team Score" required />
               </v-col>
             </v-row>
           </v-container>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click="dialog=false; resetMatchScores()">Close</v-btn>
-          <v-btn color="blue darken-1" text @click="setWinner(); updateMatchupScores()">Update!</v-btn>
+          <v-btn color="red lighten-2" text @click="dialog=false; resetMatchScores()">Close</v-btn>
+          <v-btn color="#03DAC5" text @click="setWinner(); updateMatchupScores()">Update!</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>

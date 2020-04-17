@@ -16,31 +16,37 @@
               <v-col cols="12">
                 <v-form v-model="isValid">
                   <v-text-field
+                    color="#03DAC5"
                     v-model="tournament.tournamentName"
                     label="Tournament Name"
                     :rules="tourneyNameRules"
                   />
                   <v-text-field
+                    color="#03DAC5"
                     v-model="tournament.entryFee"
                     label="Entry Fee"
                     :rules="entryFeeRules"
                   />
                   <v-text-field
+                    color="#03DAC5"
                     v-model="tournament.prizeDescription"
                     label="Prize Description"
                     :rules="prizeDescriptionRules"
                   />
                   <v-text-field
+                    color="#03DAC5"
                     v-model="tournament.location"
                     label="Location"
                     :rules="locationRules"
                   ></v-text-field>
                   <v-text-field
+                    color="#03DAC5"
                     v-model="tournament.startDate"
                     label="Tournament Start Date"
                     :rules="startDateRules"
                   />
                   <v-text-field
+                    color="#03DAC5"
                     v-model="tournament.endDate"
                     label="Tournament End Date"
                     :rules="endDateRules"
@@ -52,8 +58,8 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click="dialog = false; resetTournament()">Close</v-btn>
-          <v-btn color="blue darken-1" text :disabled="!isValid" @click="updateTournament()">Save</v-btn>
+          <v-btn color="red lighten-2" text @click="dialog = false; resetTournament()">Close</v-btn>
+          <v-btn color="#03DAC5" text :disabled="!isValid" @click="updateTournament()">Save</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>

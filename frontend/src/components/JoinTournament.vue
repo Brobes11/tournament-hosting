@@ -2,7 +2,7 @@
   <v-row justify="center">
     <v-dialog v-model="dialog" persistent max-width="600px">
       <template v-slot:activator="{ on }">
-        <v-btn color="#03DAC5" dark v-on="on" @click="checkIfMember()">
+        <v-btn outlined color="#03DAC5" dark v-on="on" @click="checkIfMember()">
           <v-icon dark>mdi-send</v-icon>Join
         </v-btn>
       </template>

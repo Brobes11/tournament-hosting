@@ -5,7 +5,14 @@
         <v-btn
           :to="{name: 'tournament-page', params: {id: this.tournament.tournamentId}}"
           class="backbutton"
-        >🏆🎮🏆 BACK TO TOURNAMENT HOME PAGE 🏆🎮🏆</v-btn>
+        ><v-icon color="#DCAE3F">mdi-trophy-outline</v-icon>
+         <v-icon color="#A4A3A2">mdi-google-controller</v-icon>
+         <v-icon color="#DCAE3F">mdi-trophy-outline</v-icon> 
+         BACK TO TOURNAMENT HOME PAGE 
+         <v-icon color="#DCAE3F">mdi-trophy-outline</v-icon>
+         <v-icon color="#A4A3A2">mdi-google-controller</v-icon>
+         <v-icon color="#DCAE3F">mdi-trophy-outline</v-icon> 
+         </v-btn>
       </v-col>
     </v-row>
     <v-row justify="center">
@@ -39,6 +46,7 @@
           v-model="selectedMatchup"
           outlined
           item-text
+          color="#03DAC5"
         ></v-select>
       </v-col>
       <v-col class="d-flex" cols="6" sm="3">
@@ -50,6 +58,7 @@
           v-model="homeTeam"
           outlined
           :disabled="teams.length === 0"
+          color="#03DAC5"
         ></v-select>
       </v-col>
       <v-col class="d-flex" cols="6" sm="3">
@@ -61,13 +70,14 @@
           v-model="awayTeam"
           outlined
           :disabled="selectedMatchup === 'BYE' || teams.length === 0"
+          color="#03DAC5"
         ></v-select>
       </v-col>
       <v-col class="d-flex" cols="6" sm="2">
         <v-btn
           v-if="readyToSubmit && teams.length > 0"
           @click="createMatchup()"
-          class="primary"
+          color="#03DAC5"
         >Add Matchup</v-btn>
         <v-btn v-if="readyToSubmit === false && teams.length > 0" disabled>Add Match</v-btn>
         <v-btn v-if="teams.length === 0" color="success" @click="submitMatchups()">Submit Matches</v-btn>
