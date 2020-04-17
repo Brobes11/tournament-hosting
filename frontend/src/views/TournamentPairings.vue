@@ -1,5 +1,13 @@
 <template>
   <v-container>
+    <v-row>
+      <v-col class="d-flex flex-wrap justify-center" cols="12">
+        <v-btn
+          :to="{name: 'tournament-page', params: {id: this.tournament.tournamentId}}"
+          class="backbutton"
+        >🏆🎮🏆 BACK TO TOURNAMENT HOME PAGE 🏆🎮🏆</v-btn>
+      </v-col>
+    </v-row>
     <v-row justify="center">
       <v-col cols="6" sm="3">
         <v-img :src="require('../assets/logo.svg')" class="my-3" contain height="150" />
